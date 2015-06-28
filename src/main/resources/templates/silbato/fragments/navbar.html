@@ -34,9 +34,9 @@
                         <a href="/user/register">Register</a>
                     </li>
                     <li>
-                        <a href="/login">Login</a>
-                        <div sec:authorize="hasRole('ROLE_ADMIN')">This is Admin</div>
-                        <div sec:authorize="hasRole('ROLE_USER')">This is User</div>
+                        <a href="/login" sec:authorize="isAnonymous()">Login</a>
+                        <a href="/logout" sec:authorize="hasRole('ROLE_ADMIN')">Logout</a>
+                        <a href="/logout" sec:authorize="hasRole('ROLE_USER')">Logout</a>
                     </li>
                 </ul>
             </div>
