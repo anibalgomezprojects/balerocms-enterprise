@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="authorized/fragments/metas :: metas">
+       <title></title>
+</head>
+
+<body>
+
+<div th:include="authorized/fragments/navbar :: navbar"></div>
+
+<div class="container">
+
+    <!-- Content -->
+    <div th:fragment="main">
+
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Enter a valid email address
+        </div>
+
+        <!-- Main component for a primary marketing message or call to action -->
+
+        <div class="box-content">
+            <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
+            <b th:text="#{dashboard-title}">Dashboard Panel</b>
+            <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
+            <hr />
+            <div class="row box-text">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+
+</div>
+<!-- /container -->
+
+<div th:replace="authorized/fragments/footer :: footer"></div>
+
+</body>
+</html>
+
