@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:include="authorized/fragments/metas :: metas">
        <title></title>
@@ -28,7 +28,7 @@
             <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
             <hr />
             <div class="row box-text">
-                <div class="col-md-4">
+                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a href="/admin/settings" th:text="#{dashboard-settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
                     <a href="/admin/homepage" th:text="#{homepage-settings}">_HOMEPAGE_BLOCKS</a>
