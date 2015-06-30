@@ -10,6 +10,7 @@ package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.domain.Settings;
 import com.neblina.balero.service.SettingsService;
+import com.neblina.balero.service.repository.HomepageRepository;
 import com.neblina.balero.service.repository.SettingsRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,9 @@ public class AdminController {
 
     @Autowired
     private SettingsService settingsService;
+
+    @Autowired
+    private HomepageRepository homepageRepository;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -82,7 +86,8 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/homepage")
-    public String homepage() {
+    public String homepage(Model model) {
+        model.addAttribute("homepage", homepageRepository.findAll());
         return "authorized/homepage";
     }
 
