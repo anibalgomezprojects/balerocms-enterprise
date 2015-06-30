@@ -80,4 +80,10 @@ public class AdminController {
         return "authorized/languages";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/homepage")
+    public String homepage() {
+        return "authorized/homepage";
+    }
+
 }
