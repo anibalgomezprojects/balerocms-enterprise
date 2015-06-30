@@ -2,7 +2,9 @@
   "debug-title": "Welcome JSON",
   "dashboard-title" : "Dashboard Panel",
   "login-remember": "Recordar",
+
   "dashboard-settings": "Configuración Global",
+  "homepage-settings": "Bloques De Portada",
   "language-settings": "Lenguaje De Sistema",
   "offline-settings": "Mensaje De Fuera De Servicio",
 

@@ -2,7 +2,9 @@
   "debug-title": "Welcome JSON",
   "dashboard-title": "Dashboard Panel",
   "login-remember": "Remember me",
+
   "dashboard-settings": "Global Settings",
+  "homepage-settings": "Homepage Blocks",
   "language-settings": "System Language",
   "offline-settings": "Offline Message",
 
