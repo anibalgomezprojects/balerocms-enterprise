@@ -11,63 +11,18 @@
 <div th:include="silbato/fragments/navbar :: navbar"></div>
 <div th:include="silbato/fragments/header :: header"></div>
 
-<!-- Content -->
 <div th:fragment="main">
 
-    <!-- Page Content -->
+    <!-- Content -->
 
-    <div class="content-section-a">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer" />
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Enterprise CMS</h2>
-                    <p class="lead">Made with the powerful of Java 8, Hibernate And Spring. You can edit this content from your <a href="/admin">Admin</a> Dashboard Panel. You can optimize this website from your tablet.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="/images/ipad.png" alt="" />
-                </div>
-            </div>
-        </div>
+    <!-- HomePage Blocks -->
+    <div th:each="block : ${homepage}">
+        <div th:utext="${block.content}">_CONTENT</div>
     </div>
-
-    <div class="content-section-b">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer" />
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Demo Content</h2>
-                    <p class="lead">This is a demo content example. You can edit your HTML templates with live reload. You can optimize your website from desktops.</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="/images/dog.png" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-section-a">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer" />
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Simple, Beautiful, Easy</h2>
-                    <p class="lead">You can optimize this website from your mobile too. This website has been built with Bootstrap.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="/images/phones.png" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- /HomePage Blocks -->
 
     <div class="banner">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-6">
                     <h2>Static Content</h2>
@@ -84,15 +39,11 @@
                     </ul>
                 </div>
             </div>
-
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.banner -->
 
+    <!-- /Content -->
 </div>
-<!-- /Content -->
 
     <div th:replace="silbato/fragments/footer :: footer"></div>
 

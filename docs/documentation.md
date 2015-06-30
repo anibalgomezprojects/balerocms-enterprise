@@ -52,14 +52,21 @@ Open http://localhost:8080/ in your favourite browser.
 
 To login to your administrator panel:
 
-http://localhost:8080/admin
+http://localhost:8080/admin (Hidden link)
 
 And login with the sample data:
 
 * admin:admin
+
+To login to user's dashboard panel:
+
+http://localhost:8080/user/dashboard (Public link)
+
+And login with the sample data:
+
 * user:user
 
-Note: In a live website, please delete 'user' account and change your admin password.
+**Note: In a live website, please delete 'user' account and change your admin password.**
 
 ### Updating Software
 
