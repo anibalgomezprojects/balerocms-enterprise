@@ -32,15 +32,17 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Content</th>
+                        <th>Name</th>
                         <th>Code</th>
+                        <th class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="block : ${homepage}">
                         <td th:text="${block.id}">_ID</td>
-                        <td th:text="${block.content}">_CONTENT</td>
+                        <td><a th:href="@{'/admin/homepàge/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a></td>
                         <td th:text="${block.code}">_CODE</td>
+                        <td class="text-center"><a th:href="@{'/admin/homepàge/'+${block.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -17,8 +17,9 @@ public class Homepage {
     @Id
     @GeneratedValue
     private Long id;
-    private String code;
+    private String name;
     private String content;
+    private String code;
 
     public Long getId() {
         return id;
@@ -28,12 +29,12 @@ public class Homepage {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getContent() {
@@ -44,12 +45,21 @@ public class Homepage {
         this.content = content;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "Settings [" +
                 "id=" + this.id + "," +
-                "code=" + this.code + "," +
-                "content=" + this.content
+                "name=" + this.name + "," +
+                "content=" + this.content + "," +
+                "code=" + this.code
                 + "]";
     }
 
