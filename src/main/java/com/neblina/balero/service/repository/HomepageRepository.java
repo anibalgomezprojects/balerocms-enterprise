@@ -18,6 +18,8 @@ public interface HomepageRepository extends CrudRepository<Homepage, Long> {
 
     Iterable<Homepage> findAll();
 
+    Homepage findOneById(Long id);
+
     Homepage findOneByCode(String code);
 
 }
