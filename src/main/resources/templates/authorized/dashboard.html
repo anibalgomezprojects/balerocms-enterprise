@@ -14,6 +14,10 @@
     <!-- Content -->
     <div th:fragment="main">
 
+        <div class="well well-sm gradient">
+            <a href="/admin/dashboard">Dashboard</a>
+        </div>
+
         <div class="box-content">
             <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
             <b th:text="#{dashboard-title}">Dashboard Panel</b>
@@ -25,7 +29,9 @@
                     <br />
                     <a href="/admin/homepage" th:text="#{homepage-settings}">_HOMEPAGE_BLOCKS</a>
                     <br />
-                    <a href="/admin/languages" th:text="#{language-settings}"><span class="glyphicon glyphicon glyphicon-plane" aria-hidden="true"></span> _SYSTEM_LANGUAGE</a>
+                    <a href="/admin/newsletter" th:text="#{newsletter-settings}">_NEWSLETTER</a>
+                    <br />
+                    <a href="/admin/languages" th:text="#{language-settings}">_SYSTEM_LANGUAGE</a>
                     <br />
                     <a href="/admin/offline" th:text="#{offline-settings}">_OFFLINE_MESSAGE</a>
                 </div>

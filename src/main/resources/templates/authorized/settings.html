@@ -16,7 +16,7 @@
     <div th:fragment="settings">
 
         <div class="well well-sm gradient">
-            <a href="/admin/dashboard">Dashboard</a> / Settings
+            <a href="/admin/dashboard">Dashboard</a> / Global Settings
         </div>
 
         <div class="box-content">
@@ -30,7 +30,7 @@
 
             <form class="form-horizontal" method="post" th:action="@{/admin/settings}" th:object="${settings}">
                 <div class="form-group title">
-                    <h4>Site Configuration</h4>
+                    <h4>Global Settings</h4>
                 </div>
                 <hr />
                 <div class="form-group">
