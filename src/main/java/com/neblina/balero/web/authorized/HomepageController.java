@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/homepage")
@@ -66,6 +67,21 @@ public class HomepageController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String homepageEditGet() {
+        return "authorized/homepage_new";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    public String homepageNew(Model model,
+                              @RequestParam("name") String name,
+                              @RequestParam("content") String content,
+                              @RequestParam("code") String code) {
+        blockService.createBlock(
+                name,
+                content,
+                code
+        );
+        model.addAttribute("success", 1);
         return "authorized/homepage_new";
     }
 

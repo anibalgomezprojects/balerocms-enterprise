@@ -21,17 +21,27 @@ public class BlockService {
     private final Logger log = LoggerFactory.getLogger(BlockService.class);
 
     @Autowired
-    private BlockRepository homepageRepository;
+    private BlockRepository blockRepository;
+
+    public void createBlock(String name,
+                            String content,
+                            String code) {
+        Block block = new Block();
+        block.setName(name);
+        block.setContent(content);
+        block.setCode(code);
+        blockRepository.save(block);
+    }
 
     public void saveBlock(Long id,
                           String name,
                           String content,
                           String code) {
-        Block homepage = homepageRepository.findOneById(id);
-        homepage.setName(name);
-        homepage.setContent(content);
-        homepage.setCode(code);
-        homepageRepository.save(homepage);
+        Block block = blockRepository.findOneById(id);
+        block.setName(name);
+        block.setContent(content);
+        block.setCode(code);
+        blockRepository.save(block);
     }
 
 }
