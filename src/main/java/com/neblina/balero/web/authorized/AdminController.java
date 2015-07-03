@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,7 +75,7 @@ public class AdminController {
                 administratorEmail,
                 tags,
                 footer
-                );
+        );
         return "authorized/settings";
     }
 
@@ -89,6 +90,13 @@ public class AdminController {
     public String homepage(Model model) {
         model.addAttribute("homepage", homepageRepository.findAll());
         return "authorized/homepage";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/homepage/{id}", method = RequestMethod.GET)
+    public String homepageEditGet(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("homepage", homepageRepository.findOneById(id));
+        return "authorized/homepage_id";
     }
 
 }

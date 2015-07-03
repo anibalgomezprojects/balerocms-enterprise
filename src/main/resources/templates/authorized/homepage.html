@@ -40,7 +40,7 @@
                     <tbody>
                     <tr th:each="block : ${homepage}">
                         <td th:text="${block.id}">_ID</td>
-                        <td><a th:href="@{'/admin/homepàge/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a></td>
+                        <td><a th:href="@{'/admin/homepage/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a></td>
                         <td th:text="${block.code}">_CODE</td>
                         <td class="text-center"><a th:href="@{'/admin/homepàge/'+${block.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
                     </tr>
