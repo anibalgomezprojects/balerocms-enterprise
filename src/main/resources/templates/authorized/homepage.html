@@ -14,11 +14,11 @@
     <!-- Content -->
     <div th:fragment="main">
 
+        <div class="well well-sm gradient">
+            <a href="/admin/dashboard">Dashboard</a> / Homepage Blocks
+        </div>
+
         <div class="box-content">
-            <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
-            <b th:text="#{dashboard-title}">Dashboard Panel</b>
-            <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
-            <hr />
             <div class="row box-text">
                 <div class="toolbar pull-right">
                     <a href="/admin/homepage/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>

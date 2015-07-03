@@ -17,7 +17,7 @@ body {
     padding-top: 70px;
     background: #fcfcfc;
 }
-.btn-default, .note-toolbar, .note-resizebar {
+.btn-default, .note-toolbar, .note-resizebar, .gradient {
     background: #ffffff; /* Old browsers */
     background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
