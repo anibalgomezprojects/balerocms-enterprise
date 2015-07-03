@@ -63,4 +63,10 @@ public class HomepageController {
         return "authorized/homepage_save";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String homepageEditGet() {
+        return "authorized/homepage_new";
+    }
+
 }
