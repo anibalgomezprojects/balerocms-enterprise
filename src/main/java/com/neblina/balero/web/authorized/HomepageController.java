@@ -8,10 +8,8 @@
 
 package com.neblina.balero.web.authorized;
 
-import com.neblina.balero.service.HomepageService;
-import com.neblina.balero.service.SettingsService;
-import com.neblina.balero.service.repository.HomepageRepository;
-import com.neblina.balero.service.repository.SettingsRepository;
+import com.neblina.balero.service.BlockService;
+import com.neblina.balero.service.repository.BlockRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/homepage")
@@ -30,22 +27,22 @@ public class HomepageController {
     private static final Logger log = LogManager.getLogger(HomepageController.class.getName());
 
     @Autowired
-    private HomepageService homepageService;
+    private BlockService blockService;
 
     @Autowired
-    private HomepageRepository homepageRepository;
+    private BlockRepository blockRepository;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String homepage(Model model) {
-        model.addAttribute("homepage", homepageRepository.findAll());
+        model.addAttribute("blocks", blockRepository.findAll());
         return "authorized/homepage";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String homepageEditGet(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("homepage", homepageRepository.findOneById(id));
+        model.addAttribute("blocks", blockRepository.findOneById(id));
         return "authorized/homepage_save";
     }
 
@@ -55,14 +52,14 @@ public class HomepageController {
                                    String name,
                                    String content,
                                    String code) {
-        homepageService.saveBlock(
+        blockService.saveBlock(
                 id,
                 name,
                 content,
                 code
         );
         model.addAttribute("success", 1);
-        model.addAttribute("homepage", homepageRepository.findOneById(id));
+        model.addAttribute("blocks", blockRepository.findOneById(id));
         return "authorized/homepage_save";
     }
 

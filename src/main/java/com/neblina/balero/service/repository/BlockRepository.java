@@ -8,18 +8,17 @@
 
 package com.neblina.balero.service.repository;
 
-import com.neblina.balero.domain.Homepage;
-import com.neblina.balero.domain.Settings;
+import com.neblina.balero.domain.Block;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HomepageRepository extends CrudRepository<Homepage, Long> {
+public interface BlockRepository extends CrudRepository<Block, Long> {
 
-    Iterable<Homepage> findAll();
+    Iterable<Block> findAll();
 
-    Homepage findOneById(Long id);
+    Block findOneById(Long id);
 
-    Homepage findOneByCode(String code);
+    Block findOneByCode(String code);
 
 }

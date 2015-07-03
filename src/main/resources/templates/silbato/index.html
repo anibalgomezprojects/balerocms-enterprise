@@ -16,7 +16,7 @@
     <!-- Content -->
 
     <!-- HomePage Blocks -->
-    <div th:each="block : ${homepage}">
+    <div th:each="block : ${blocks}">
         <div th:utext="${block.content}">_CONTENT</div>
     </div>
     <!-- /HomePage Blocks -->

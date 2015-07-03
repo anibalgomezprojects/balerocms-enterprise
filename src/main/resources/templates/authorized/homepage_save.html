@@ -24,7 +24,7 @@
                 <span th:text="#{dashboard-settings-saved}"> _SUCCESS</span>
             </div>
 
-            <form class="form-horizontal" method="post" th:each="block : ${homepage}" th:action="@{'/admin/homepage/'+${block.id}}">
+            <form class="form-horizontal" method="post" th:each="block : ${blocks}" th:action="@{'/admin/homepage/'+${block.id}}">
                 <div class="form-group title">
                     <h4>Edit Homepage Block</h4>
                 </div>

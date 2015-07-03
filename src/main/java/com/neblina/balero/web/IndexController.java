@@ -8,9 +8,8 @@
 
 package com.neblina.balero.web;
 
-import com.neblina.balero.domain.Homepage;
 import com.neblina.balero.model.SettingsModel;
-import com.neblina.balero.service.repository.HomepageRepository;
+import com.neblina.balero.service.repository.BlockRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,12 @@ public class IndexController {
     private SettingsModel settingsModel;
 
     @Autowired
-    private HomepageRepository homepageRepository;
+    private BlockRepository blockRepository;
 
     @RequestMapping("/")
     String home(Model model) {
         model.addAllAttributes(settingsModel.add());
-        model.addAttribute("homepage", homepageRepository.findAll());
+        model.addAttribute("blocks", blockRepository.findAll());
         return "silbato/index";
     }
 

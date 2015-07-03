@@ -8,28 +8,26 @@
 
 package com.neblina.balero.service;
 
-import com.neblina.balero.domain.Homepage;
-import com.neblina.balero.domain.Settings;
-import com.neblina.balero.service.repository.HomepageRepository;
-import com.neblina.balero.service.repository.SettingsRepository;
+import com.neblina.balero.domain.Block;
+import com.neblina.balero.service.repository.BlockRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HomepageService {
+public class BlockService {
 
-    private final Logger log = LoggerFactory.getLogger(HomepageService.class);
+    private final Logger log = LoggerFactory.getLogger(BlockService.class);
 
     @Autowired
-    private HomepageRepository homepageRepository;
+    private BlockRepository homepageRepository;
 
     public void saveBlock(Long id,
                           String name,
                           String content,
                           String code) {
-        Homepage homepage = homepageRepository.findOneById(id);
+        Block homepage = homepageRepository.findOneById(id);
         homepage.setName(name);
         homepage.setContent(content);
         homepage.setCode(code);

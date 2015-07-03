@@ -13,7 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Homepage {
+public class Block {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -55,7 +56,7 @@ public class Homepage {
 
     @Override
     public String toString() {
-        return "Settings [" +
+        return "Block [" +
                 "id=" + this.id + "," +
                 "name=" + this.name + "," +
                 "content=" + this.content + "," +

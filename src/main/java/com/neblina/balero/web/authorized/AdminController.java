@@ -8,9 +8,8 @@
 
 package com.neblina.balero.web.authorized;
 
-import com.neblina.balero.domain.Settings;
 import com.neblina.balero.service.SettingsService;
-import com.neblina.balero.service.repository.HomepageRepository;
+import com.neblina.balero.service.repository.BlockRepository;
 import com.neblina.balero.service.repository.SettingsRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,9 +32,6 @@ public class AdminController {
 
     @Autowired
     private SettingsService settingsService;
-
-    @Autowired
-    private HomepageRepository homepageRepository;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {

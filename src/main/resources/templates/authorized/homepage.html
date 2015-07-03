@@ -38,7 +38,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="block : ${homepage}">
+                    <tr th:each="block : ${blocks}">
                         <td th:text="${block.id}">_ID</td>
                         <td><a th:href="@{'/admin/homepage/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a></td>
                         <td th:text="${block.code}">_CODE</td>
