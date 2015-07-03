@@ -85,18 +85,4 @@ public class AdminController {
         return "authorized/languages";
     }
 
-    @Secured("ROLE_ADMIN")
-    @RequestMapping("/homepage")
-    public String homepage(Model model) {
-        model.addAttribute("homepage", homepageRepository.findAll());
-        return "authorized/homepage";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/homepage/{id}", method = RequestMethod.GET)
-    public String homepageEditGet(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("homepage", homepageRepository.findOneById(id));
-        return "authorized/homepage_save";
-    }
-
 }
