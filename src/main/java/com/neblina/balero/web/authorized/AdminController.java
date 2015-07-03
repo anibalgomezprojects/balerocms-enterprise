@@ -8,9 +8,8 @@
 
 package com.neblina.balero.web.authorized;
 
-import com.neblina.balero.service.SettingsService;
-import com.neblina.balero.service.repository.BlockRepository;
-import com.neblina.balero.service.repository.SettingsRepository;
+import com.neblina.balero.service.SettingService;
+import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +27,10 @@ public class AdminController {
     private static final Logger log = LogManager.getLogger(AdminController.class.getName());
 
     @Autowired
-    private SettingsRepository settingsRepository;
+    private SettingRepository settingRepository;
 
     @Autowired
-    private SettingsService settingsService;
+    private SettingService settingService;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -48,7 +47,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
     public String settings(Model model) {
-        model.addAttribute("settings", settingsRepository.findOneByCode("en_US"));
+        model.addAttribute("settings", settingRepository.findOneByCode("en_US"));
         return "authorized/settings";
     }
 
@@ -62,8 +61,8 @@ public class AdminController {
                                @RequestParam(value = "footer") String footer) {
         log.debug("Saving Settings...");
         model.addAttribute("success", 1);
-        model.addAttribute("settings", settingsRepository.findOneByCode("en_US"));
-        settingsService.saveSettings(
+        model.addAttribute("settings", settingRepository.findOneByCode("en_US"));
+        settingService.saveSettings(
                 "en_US",
                 title,
                 titleHeader,

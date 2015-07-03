@@ -10,11 +10,11 @@
 <div th:fragment="footer">
 
     <!-- Footer -->
-    <footer>
+    <footer th:each="setting : ${settings}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p class="copyright text-muted small" th:utext="${footer}">
+                    <p class="copyright text-muted small" th:utext="${setting.footer}">
                         _FOOTER
                     </p>
                 </div>

@@ -8,15 +8,13 @@
 
 package com.neblina.balero.service.repository;
 
-import com.neblina.balero.domain.Settings;
+import com.neblina.balero.domain.Setting;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface SettingsRepository extends CrudRepository<Settings, Long> {
+public interface SettingRepository extends CrudRepository<Setting, Long> {
 
-    Settings findOneByCode(String code);
+    Setting findOneByCode(String code);
 
 }

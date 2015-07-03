@@ -8,8 +8,8 @@
 
 package com.neblina.balero.web;
 
-import com.neblina.balero.model.SettingsModel;
 import com.neblina.balero.service.repository.BlockRepository;
+import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +24,14 @@ public class IndexController {
     private static final Logger log = LogManager.getLogger(TestController.class.getName());
 
     @Autowired
-    private SettingsModel settingsModel;
+    private SettingRepository settingRepository;
 
     @Autowired
     private BlockRepository blockRepository;
 
     @RequestMapping("/")
     String home(Model model) {
-        model.addAllAttributes(settingsModel.add());
+        model.addAttribute("settings", settingRepository.findAll());
         model.addAttribute("blocks", blockRepository.findAll());
         return "silbato/index";
     }

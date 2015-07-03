@@ -8,22 +8,20 @@
 
 package com.neblina.balero.service;
 
-import com.neblina.balero.domain.Settings;
-import com.neblina.balero.service.repository.SettingsRepository;
+import com.neblina.balero.domain.Setting;
+import com.neblina.balero.service.repository.SettingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class SettingsService {
+public class SettingService {
 
-    private final Logger log = LoggerFactory.getLogger(SettingsService.class);
+    private final Logger log = LoggerFactory.getLogger(SettingService.class);
 
     @Autowired
-    private SettingsRepository settingsRepository;
+    private SettingRepository settingRepository;
 
     public void saveSettings(String code,
                              String title,
@@ -31,14 +29,14 @@ public class SettingsService {
                              String administratorEmail,
                              String tags,
                              String footer) {
-        Settings settings = settingsRepository.findOneByCode(code);
+        Setting settings = settingRepository.findOneByCode(code);
         settings.setCode(code);
         settings.setTitle(title);
         settings.setTitleHeader(titleHeader);
         settings.setAdministratorEmail(administratorEmail);
         settings.setTags(tags);
         settings.setFooter(footer);
-        settingsRepository.save(settings);
+        settingRepository.save(settings);
     }
 
 }

@@ -10,14 +10,14 @@
 <!-- Header -->
 <div th:fragment="header">
 
-    <div class="intro-header">
+    <div class="intro-header" th:each="setting : ${settings}">
 
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="intro-message" th:utext="${titleHeader}">
-                        Title Header
+                    <div class="intro-message" th:utext="${setting.titleHeader}">
+                        _titleHeader
                     </div>
                 </div>
             </div>

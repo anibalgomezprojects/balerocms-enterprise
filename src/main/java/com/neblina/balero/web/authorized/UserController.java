@@ -9,8 +9,8 @@
 package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.domain.User;
-import com.neblina.balero.model.SettingsModel;
 import com.neblina.balero.service.UserService;
+import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private SettingsModel settingsModel;
+    private SettingRepository settingRepository;
 
     @RequestMapping( value = {"", "/"} )
     public String rootIndex() {
@@ -47,7 +47,7 @@ public class UserController {
         if(bindingResult.hasErrors()) {
             model.addAttribute("user", user);
         }
-        model.addAllAttributes(settingsModel.add());
+        model.addAttribute("settings", settingRepository.findAll());
         return "silbato/register";
     }
 
@@ -64,7 +64,7 @@ public class UserController {
             bindingResult.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
         if(bindingResult.hasErrors()) {
-            model.addAllAttributes(settingsModel.add());
+            model.addAttribute("settings", settingRepository.findAll());
             return "silbato/register";
         }
         List<User> userArray = userService.getUserByUsername("demo");

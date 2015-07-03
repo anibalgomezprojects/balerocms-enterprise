@@ -13,7 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Settings {
+public class Setting {
     @Id
     @GeneratedValue
     private Long id;
@@ -81,7 +81,7 @@ public class Settings {
 
     @Override
     public String toString() {
-        return "Settings [" +
+        return "Setting [" +
                 "id=" + this.id + "," +
                 "code=" + this.code + "," +
                 "title=" + this.title + "," +
