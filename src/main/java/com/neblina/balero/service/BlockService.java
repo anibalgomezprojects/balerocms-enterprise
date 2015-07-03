@@ -44,4 +44,9 @@ public class BlockService {
         blockRepository.save(block);
     }
 
+    public void deleteBlock(Long id) {
+        Block block = blockRepository.findOneById(id);
+        blockRepository.delete(block);
+    }
+
 }

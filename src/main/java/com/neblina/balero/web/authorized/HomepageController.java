@@ -85,4 +85,11 @@ public class HomepageController {
         return "authorized/homepage_new";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String homepageDelete(Model model, @PathVariable("id") Long id) {
+        blockService.deleteBlock(id);
+        return "redirect:/admin/homepage";
+    }
+
 }
