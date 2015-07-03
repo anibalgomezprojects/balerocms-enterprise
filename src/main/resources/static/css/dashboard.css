@@ -59,6 +59,9 @@ body {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
     -webkit-font-smoothing: antialiased;
 }
+.box-content {
+    margin-top: 20px;
+}
 .container hr {
     width: 95%;
 }
@@ -101,6 +104,9 @@ body {
 .navbar-default .navbar-nav > .open > a:focus {
     color: #fff;
     background-color: #D5D5D5;
+}
+.navbar-right {
+    padding-top: 6px;
 }
 .box-title {
     padding: 10px;
