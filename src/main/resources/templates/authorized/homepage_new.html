@@ -17,13 +17,6 @@
 
         <div class="box-content">
 
-            <div class="alert alert-success" role="alert" th:if="${success}">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <span th:text="#{dashboard-settings-saved}"> _SUCCESS</span>
-            </div>
-
             <form class="form-horizontal" method="post" th:action="@{'/admin/homepage/new'}">
                 <div class="form-group title">
                     <h4>New Homepage Block</h4>

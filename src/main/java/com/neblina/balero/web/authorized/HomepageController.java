@@ -81,8 +81,7 @@ public class HomepageController {
                 content,
                 code
         );
-        model.addAttribute("success", 1);
-        return "authorized/homepage_new";
+        return "redirect:/admin//homepage";
     }
 
     @Secured("ROLE_ADMIN")
