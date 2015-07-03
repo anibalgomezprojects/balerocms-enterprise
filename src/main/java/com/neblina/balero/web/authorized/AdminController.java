@@ -96,7 +96,7 @@ public class AdminController {
     @RequestMapping(value = "/homepage/{id}", method = RequestMethod.GET)
     public String homepageEditGet(Model model, @PathVariable("id") Long id) {
         model.addAttribute("homepage", homepageRepository.findOneById(id));
-        return "authorized/homepage_id";
+        return "authorized/homepage_save";
     }
 
 }
