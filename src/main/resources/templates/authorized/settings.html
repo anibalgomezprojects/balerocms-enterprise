@@ -13,11 +13,9 @@
 <div class="container">
 
     <!-- Content -->
-    <div th:fragment="settings">
+    <div th:with="text='Global Settings'" th:fragment="settings">
 
-        <div class="well well-sm gradient">
-            <a href="/admin/dashboard">Dashboard</a> / Global Settings
-        </div>
+        <div th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
 

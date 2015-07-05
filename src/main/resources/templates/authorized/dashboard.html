@@ -12,11 +12,9 @@
 <div class="container">
 
     <!-- Content -->
-    <div th:fragment="main">
+    <div th:with="text='root'" th:fragment="main">
 
-        <div class="well well-sm gradient">
-            <a href="/admin/dashboard">Dashboard</a>
-        </div>
+        <div th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
             <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>

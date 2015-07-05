@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+       <title></title>
+</head>
+
+<body>
+
+
+<div th:fragment="linkbar">
+
+    <div class="well well-sm gradient">
+        <span th:if="${text == 'root'}">
+            Dashboard
+        </span>
+        <span th:if="${text != 'root'}">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard">Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard">Dashboard</a>
+            /
+            <span th:text="${text}">_TEXT</span>
+        </span>
+    </div>
+
+</div>
+
+</body>
+</html>
+
