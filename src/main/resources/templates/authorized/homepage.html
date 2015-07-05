@@ -14,15 +14,10 @@
     <!-- Content -->
     <div th:fragment="main">
 
-        <div class="well well-sm gradient">
-            <a href="/admin/dashboard">Dashboard</a> / Homepage Blocks
-        </div>
+        <div th:with="text='Homepage Blocks'" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
             <div class="row box-text">
-                <div class="toolbar pull-right">
-                    <a href="/admin/homepage/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                </div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -46,6 +41,9 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="toolbar pull-right">
+                    <a href="/admin/homepage/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                </div>
             </div>
         </div>
     </div>

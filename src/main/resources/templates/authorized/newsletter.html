@@ -13,9 +13,9 @@
 <div class="container">
 
     <!-- Content -->
-    <div th:with="text='Newsletter'" th:fragment="settings">
+    <div th:fragment="settings">
 
-        <div th:include="authorized/fragments/linkbar :: linkbar"></div>
+        <div th:with="text='Newsletter'" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
 

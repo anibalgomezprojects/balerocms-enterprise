@@ -15,6 +15,8 @@
     <!-- Content -->
     <div th:fragment="homepage_id">
 
+        <div th:with="text='Homepage Blocks'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+
         <div class="box-content">
 
             <div class="alert alert-success" role="alert" th:if="${success}">
