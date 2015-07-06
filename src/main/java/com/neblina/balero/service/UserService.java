@@ -37,10 +37,9 @@ public class UserService {
                                   String email, String roles) {
         PasswordGenerator pwd = new PasswordGenerator();
         Mail mail= new Mail();
-        mail.setEmail(email);
+        mail.setAddress(email);
         mailRepository.save(mail);
         User user = new User();
-        log.debug("Creating user... " + userName + " id: " + mail.getEmailId());
         user.setUsername(userName);
         user.setPassword(pwd.generatePassword(password));
         user.setPasswordVerify(pwd.generatePassword(passwordVerify));
@@ -49,6 +48,7 @@ public class UserService {
         user.setEmailId(mail.getEmailId());
         user.setRoles(roles);
         userRepository.save(user);
+        log.debug("Creating user... " + userName + " id: " + mail.getEmailId());
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
         //List<User> findUser = userRepository.findOneByUsername(userName);

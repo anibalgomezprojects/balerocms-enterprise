@@ -12,8 +12,11 @@ import com.neblina.balero.domain.Mail;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MailRepository extends CrudRepository<Mail, Long> {
 
+    List<Mail> findAll();
 
 }

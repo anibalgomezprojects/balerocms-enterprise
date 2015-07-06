@@ -1,6 +1,6 @@
 CREATE TABLE MAIL (
 	email_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-	email varchar(255) not null
+	address varchar(255) not null
 );
 
 CREATE TABLE USER (
@@ -39,8 +39,8 @@ CREATE TABLE BLOCK (
 	code varchar(255) not null
 );
 
-insert into MAIL (email_id, email) values ('1', 'admin@localhost.com');
-insert into MAIL (email_id, email) values ('2', 'user@localhost.com');
+insert into MAIL (email_id, address) values ('1', 'admin@localhost.com');
+insert into MAIL (email_id, address) values ('2', 'user@localhost.com');
 
 insert into USER (username, password, password_verify, first_name, last_name, email_id, roles) values ('admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', '1', 'ROLE_ADMIN');
 insert into USER (username, password, password_verify, first_name, last_name, email_id, roles) values ('user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', '2', 'ROLE_USER');

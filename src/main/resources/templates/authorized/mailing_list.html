@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="authorized/fragments/metas :: metas">
+       <title></title>
+</head>
+
+<body>
+
+<div th:include="authorized/fragments/navbar :: navbar"></div>
+
+<div class="container">
+
+    <!-- Content -->
+    <div th:fragment="main">
+
+        <div th:with="text='Mailing List'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+
+        <div class="box-content">
+            <div class="row box-text">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Email</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="mail : ${mails}">
+                        <td th:text="${mail.emailId}">_ID</td>
+                        <td>
+                            <a th:href="@{'/admin/user/'+${mail.emailId}}"><span th:text="${mail.address}">_NAME</span></a>
+                        </td>
+                        <td class="text-center">
+                            <a th:href="@{'/admin/user/'+${mail.emailId}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                            <a th:href="@{'/admin/user/unsuscribe/'+${mail.emailId}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Unsuscribe</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="toolbar pull-right">
+                    <a href="/admin/user/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+
+</div>
+<!-- /container -->
+
+<div th:replace="authorized/fragments/footer :: footer"></div>
+
+</body>
+</html>
+

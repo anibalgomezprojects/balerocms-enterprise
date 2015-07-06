@@ -24,7 +24,7 @@ public class Mail {
 
     @NotEmpty
     @Email
-    private String email;
+    private String address;
 
     public Long getEmailId() {
         return emailId;
@@ -34,18 +34,19 @@ public class Mail {
         this.emailId = emailId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
         return "Mail [" +
-                "email=" + this.email
+                "address=" + this.address
                 + "]";
     }
+
 }
