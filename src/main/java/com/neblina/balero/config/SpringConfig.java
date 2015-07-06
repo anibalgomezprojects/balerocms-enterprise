@@ -8,7 +8,7 @@
 
 package com.neblina.balero.config;
 
-import com.neblina.balero.security.ExecuteTimeInterceptor;
+import com.neblina.balero.handler.ExecuteTimeInterceptor;
 import com.neblina.balero.util.AssetPipeline;
 import com.neblina.balero.util.ResourceBundleMessageSource;
 import com.neblina.balero.web.TestController;

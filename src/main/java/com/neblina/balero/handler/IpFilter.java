@@ -6,7 +6,7 @@
  * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
  */
 
-package com.neblina.balero.security;
+package com.neblina.balero.handler;
 
 import com.neblina.balero.domain.Blacklist;
 import com.neblina.balero.service.repository.BlacklistRepository;
