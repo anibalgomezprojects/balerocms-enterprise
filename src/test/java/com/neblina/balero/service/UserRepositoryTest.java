@@ -48,7 +48,8 @@ public class UserRepositoryTest extends TestCase {
     @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
-        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost", "ADMIN, USER");
+
+        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", "ADMIN, USER");
         List<User> users = userService.getUserByUsername("demo");
         for(User user: users) {
             System.out.println("array: " + users);
@@ -67,7 +68,7 @@ public class UserRepositoryTest extends TestCase {
         int i = 0;
         for(User user: remoteUsers) {
             i++;
-            System.out.println("User[" + i + "] " + user.getUsername() + " : " + user.getEmail());
+            System.out.println("User[" + i + "] " + user.getUsername() + " : " + user.getEmailId());
         }
     }
 

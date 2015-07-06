@@ -38,7 +38,7 @@ It will activate the development profile.
 ### Production Deploy:
 
 For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
-First you need a MySQL Database called 'balero_v2'.
+First you need a MySQL Database called 'balerocms_v2'.
 
     $ mvn -Pprod spring-boot:run
     

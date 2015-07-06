@@ -11,9 +11,7 @@ package com.neblina.balero.domain;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -40,9 +38,7 @@ public class User {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
-    @Email
-    private String email;
+    private Long emailId;
 
     private String roles;
 
@@ -94,12 +90,14 @@ public class User {
         this.lastName = lastname;
     }
 
-    public String getEmail() {
-        return email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "EMAIL_ID")
+    public Long getEmailId() {
+        return emailId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailId(Long emailId) {
+        this.emailId = emailId;
     }
 
     public String getRoles() {
@@ -117,7 +115,7 @@ public class User {
                 "password=" + this.password + "," +
                 "firstName=" + this.firstName + "," +
                 "lastName=" + this.lastName + "," +
-                "email=" + this.email + "," +
+                "emailId=" + this.emailId + "," +
                 "roles=" + this.roles
                 + "]";
     }

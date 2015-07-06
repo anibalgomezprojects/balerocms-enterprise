@@ -1,6 +1,8 @@
 package com.neblina.balero.service;
 
+import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.repository.MailRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -27,17 +29,24 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MailRepository mailRepository;
+
+
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
                                   String email, String roles) {
-        log.debug("Creating user... " + userName);
         PasswordGenerator pwd = new PasswordGenerator();
+        Mail mail= new Mail();
+        mail.setEmail(email);
+        mailRepository.save(mail);
         User user = new User();
+        log.debug("Creating user... " + userName + " id: " + mail.getEmailId());
         user.setUsername(userName);
         user.setPassword(pwd.generatePassword(password));
         user.setPasswordVerify(pwd.generatePassword(passwordVerify));
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setEmail(email);
+        user.setEmailId(mail.getEmailId());
         user.setRoles(roles);
         userRepository.save(user);
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));

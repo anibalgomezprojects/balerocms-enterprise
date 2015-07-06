@@ -1,7 +1,7 @@
 spring:
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/balero_v2
+        url: jdbc:mysql://localhost:3306/balerocms_v2
         databaseName:
         serverName:
         username: root
