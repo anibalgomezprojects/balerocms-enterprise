@@ -8,6 +8,7 @@
 
 package com.neblina.balero.config;
 
+import com.neblina.balero.security.ExecuteTimeInterceptor;
 import com.neblina.balero.util.AssetPipeline;
 import com.neblina.balero.util.ResourceBundleMessageSource;
 import com.neblina.balero.web.TestController;
@@ -107,9 +108,14 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         return mailSender;
     }
 
+    /**
+     * Interceptors
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
+        registry.addInterceptor(new ExecuteTimeInterceptor());
     }
 
 }
