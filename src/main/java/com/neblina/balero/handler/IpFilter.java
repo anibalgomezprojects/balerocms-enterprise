@@ -48,16 +48,12 @@ public class IpFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
         InetAddress ip = InetAddress.getLocalHost();
-        //response.setHeader("Access-Control-Allow-Origin", "*");
-        //response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-        //response.setHeader("Access-Control-Max-Age", "3600");
-        //response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         log.debug(request.getRequestURL() + ": " + ip.getHostAddress() + ":" + request.getRemoteAddr());
-        List<Blacklist> blacklists = blacklistRepository.findAll();
-        for(Blacklist blacklist : blacklists) {
-            log.debug("User IP: " + blacklist.getIp());
-            if(ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
-                if(!url.contains("banned")) {
+        Blacklist blacklist = blacklistRepository.findOneByIp(ip.getHostAddress());
+        if(blacklist != null) {
+            if (ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
+                log.debug("User IP: " + blacklist.getIp());
+                if (!url.contains("banned")) {
                     log.info("Redirecting to banned page.");
                     response.sendRedirect("/banned/");
                 }
