@@ -41,9 +41,10 @@ public class IpFilter implements Filter {
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Filter...");
-        InetAddress ip = InetAddress.getLocalHost();
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
+        String url = request.getRequestURL().toString();
+        InetAddress ip = InetAddress.getLocalHost();
         //response.setHeader("Access-Control-Allow-Origin", "*");
         //response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         //response.setHeader("Access-Control-Max-Age", "3600");
@@ -53,9 +54,10 @@ public class IpFilter implements Filter {
         for(Blacklist blacklist : blacklists) {
             log.debug("User IP: " + blacklist.getIp());
             if(ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
-                response.setContentType("text/html");
-                response.getWriter().println("You Has Been Banned For 5 Minutes.");
-                return;
+                if(!url.contains("banned")) {
+                    response.sendRedirect("/banned/");
+                }
+                //return; // die();
             }
         }
         chain.doFilter(req, res);
