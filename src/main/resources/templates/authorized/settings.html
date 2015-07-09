@@ -50,6 +50,19 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="offline" class="col-sm-2 control-label">Offline</label>
+                    <div class="col-sm-10" th:switch="*{offline}">
+                        <select name="offline" id="offline" th:case="0">
+                            <option  value="0" th:value="0" th:selected="selected">Online</option>
+                            <option value="1" th:value="1">Offline</option>
+                        </select>
+                        <select name="offline" id="offline" th:case="1">
+                            <option  value="0" th:value="0">Online</option>
+                            <option value="1" th:value="1" th:selected="selected">Offline</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="titleHeader" class="col-sm-2 control-label">Header Title or Slogan</label>
                     <div class="col-sm-10">
                         <textarea name="titleHeader" class="summernote" rows="5" id="titleHeader" th:field="*{titleHeader}"></textarea>
@@ -59,6 +72,12 @@
                     <label for="footer" class="col-sm-2 control-label">Footer</label>
                     <div class="col-sm-10">
                         <textarea name="footer" class="summernote" rows="5" id="footer" th:field="*{footer}"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="offlineMessage" class="col-sm-2 control-label">Offline Message</label>
+                    <div class="col-sm-10">
+                        <textarea name="offlineMessage" class="summernote" rows="5" id="offlineMessage" th:field="*{offlineMessage}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

@@ -48,7 +48,7 @@ public class IpFilter implements Filter {
         //response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         //response.setHeader("Access-Control-Max-Age", "3600");
         //response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        log.debug(ip.getHostAddress() + ":" + request.getRemoteAddr());
+        log.debug(request.getRequestURL() + ": " + ip.getHostAddress() + ":" + request.getRemoteAddr());
         List<Blacklist> blacklists = blacklistRepository.findAll();
         for(Blacklist blacklist : blacklists) {
             log.debug("User IP: " + blacklist.getIp());

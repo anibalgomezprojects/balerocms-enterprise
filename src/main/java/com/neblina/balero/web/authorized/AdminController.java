@@ -58,8 +58,10 @@ public class AdminController {
                                @RequestParam(value = "titleHeader") String titleHeader,
                                @RequestParam(value = "administratorEmail") String administratorEmail,
                                @RequestParam(value = "tags") String tags,
-                               @RequestParam(value = "footer") String footer) {
-        log.debug("Saving Settings...");
+                               @RequestParam(value = "footer") String footer,
+                               @RequestParam(value = "offline") int offline,
+                               @RequestParam(value = "offlineMessage") String offlineMessage) {
+        log.debug("Saving Settings... Offline value: " + offline);
         model.addAttribute("success", 1);
         model.addAttribute("settings", settingRepository.findOneByCode("en_US"));
         settingService.saveSettings(
@@ -68,7 +70,10 @@ public class AdminController {
                 titleHeader,
                 administratorEmail,
                 tags,
-                footer
+                footer,
+                offline,
+                offlineMessage
+
         );
         return "authorized/settings";
     }

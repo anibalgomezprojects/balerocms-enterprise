@@ -54,7 +54,11 @@ public class ExecuteTimeInterceptor extends HandlerInterceptorAdapter{
         long executeTime = endTime - startTime;
 
         //modified the exisitng modelAndView
-        modelAndView.addObject("executeTime",executeTime);
+        try {
+            modelAndView.addObject("executeTime", executeTime);
+        } catch (Exception e) {
+            log.error("Object View Layer Do Not Exists: " + e.getMessage());
+        }
 
         //log it
         if(log.isDebugEnabled()){

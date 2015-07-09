@@ -8,6 +8,7 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,13 @@ public class PagesController {
 
     private static final Logger log = LogManager.getLogger(TestController.class.getName());
 
+
+    @Autowired
+    private SettingRepository settingRepository;
+
     @RequestMapping("/offline")
     String offline(Model model) {
+        model.addAttribute("settings", settingRepository.findAll());
         return "offline";
     }
 

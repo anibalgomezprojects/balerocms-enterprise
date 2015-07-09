@@ -9,6 +9,8 @@
 package com.neblina.balero.config;
 
 import com.neblina.balero.handler.ExecuteTimeInterceptor;
+import com.neblina.balero.handler.MaintenanceInterceptor;
+import com.neblina.balero.service.SettingService;
 import com.neblina.balero.util.AssetPipeline;
 import com.neblina.balero.util.ResourceBundleMessageSource;
 import com.neblina.balero.web.TestController;
@@ -58,6 +60,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/offline").setViewName("offline");
     }
 
     @Bean
@@ -116,6 +119,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
         registry.addInterceptor(new ExecuteTimeInterceptor());
+        //registry.addInterceptor(new MaintenanceInterceptor());
     }
 
 }

@@ -28,7 +28,9 @@ public class SettingService {
                              String titleHeader,
                              String administratorEmail,
                              String tags,
-                             String footer) {
+                             String footer,
+                             int offline,
+                             String offlineMessage) {
         Setting settings = settingRepository.findOneByCode(code);
         settings.setCode(code);
         settings.setTitle(title);
@@ -36,7 +38,14 @@ public class SettingService {
         settings.setAdministratorEmail(administratorEmail);
         settings.setTags(tags);
         settings.setFooter(footer);
+        settings.setOffline(offline);
+        settings.setOfflineMessage(offlineMessage);
         settingRepository.save(settings);
+    }
+
+    public int getOfflineStatus(String code) {
+        Setting settings = settingRepository.findOneByCode(code);
+        return settings.getOffline();
     }
 
 }

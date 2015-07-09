@@ -23,6 +23,8 @@ public class Setting {
     private String administratorEmail;
     private String tags;
     private String footer;
+    private int offline;
+    private String offlineMessage;
 
     public Long getId() {
         return id;
@@ -63,6 +65,7 @@ public class Setting {
     public void setAdministratorEmail(String administratorEmail) {
         this.administratorEmail = administratorEmail;
     }
+
     public String getTags() {
         return tags;
     }
@@ -79,6 +82,23 @@ public class Setting {
         this.footer = footer;
     }
 
+    public int getOffline() {
+        return offline;
+    }
+
+    public void setOffline(int offline) {
+        this.offline = offline;
+    }
+
+    public void setOfflineMessage(String offlineMessage) {
+        this.offlineMessage = offlineMessage;
+    }
+
+    public String getOfflineMessage() {
+        return offlineMessage;
+    }
+
+
     @Override
     public String toString() {
         return "Setting [" +
@@ -88,7 +108,9 @@ public class Setting {
                 "titleHeader=" + this.titleHeader + "," +
                 "administratorEmail=" + this.administratorEmail + "," +
                 "tags=" + this.tags + "," +
-                "footer=" + this.footer
+                "footer=" + this.footer + ", " +
+                "offline=" + this.offline + ", " +
+                "offlineMessage=" + this.offlineMessage
                 + "]";
     }
 
