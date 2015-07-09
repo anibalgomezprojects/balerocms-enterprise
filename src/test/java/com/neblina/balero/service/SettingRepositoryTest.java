@@ -1,10 +1,16 @@
+/**
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ *
+ * @author      Anibal Gomez <anibalgomez@icloud.com>
+ * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
+ * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ */
+
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
 import com.neblina.balero.domain.Setting;
-import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.SettingRepository;
-import com.neblina.balero.service.repository.UserRepository;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
