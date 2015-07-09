@@ -9,7 +9,10 @@
 package com.neblina.balero.handler;
 
 import com.neblina.balero.domain.Blacklist;
+import com.neblina.balero.domain.Setting;
+import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.repository.BlacklistRepository;
+import com.neblina.balero.service.repository.SettingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +58,7 @@ public class IpFilter implements Filter {
             log.debug("User IP: " + blacklist.getIp());
             if(ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
                 if(!url.contains("banned")) {
+                    log.info("Redirecting to banned page.");
                     response.sendRedirect("/banned/");
                 }
                 //return; // die();

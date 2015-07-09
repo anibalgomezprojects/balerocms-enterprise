@@ -8,7 +8,9 @@
 
 package com.neblina.balero.handler;
 
+import com.neblina.balero.domain.Blacklist;
 import com.neblina.balero.service.SettingService;
+import com.neblina.balero.service.repository.BlacklistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,16 @@ public class MaintenanceFilter implements Filter {
     @Autowired
     private SettingService settingService;
 
+    @Autowired
+    private BlacklistRepository blacklistRepository;
+
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Maintenance Filter...");
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         //Setting settings = settingRepository.findOneByCode("en_US");
         String url = request.getRequestURL().toString();
+        InetAddress ip = InetAddress.getLocalHost();
         log.info("Interceptor: Pre-handle: " + url);
         log.debug("offline value: " + settingService.getOfflineStatus("en_US"));
         if(settingService.getOfflineStatus("en_US") == 1) {
@@ -51,9 +57,15 @@ public class MaintenanceFilter implements Filter {
             } else if(url.contains("font")) {
                 log.info("Images resource file, do nothing.");
             } else if(url.contains("admin")) {
-                log.info("Admin Dashboard, do nothing.");
-            } else {
-                log.info("Redirecting to offline page.");
+                log.info("Admin url, do nothing.");
+            } else if(url.contains("login")) {
+                log.info("Login url, do nothing.");
+            } else if(url.contains("logout")) {
+                log.info("Logout url, do nothing.");
+            } else if(url.contains("banned")) {
+                log.info("Banned url, do nothing.");
+            } else if(settingService.getOfflineStatus("en_US") == 1 && !url.contains("offline")) {
+                log.debug("Redirecting to offline page.");
                 response.sendRedirect("/offline/");
             }
         }
