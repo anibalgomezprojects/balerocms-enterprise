@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 @Service
@@ -77,6 +79,32 @@ public class BlacklistService {
     public List<Blacklist> getAllIps() {
         List<Blacklist> ips = blacklistRepository.findAll();
         return ips;
+    }
+
+    public String getUserIp() throws UnknownHostException {
+        InetAddress ip = InetAddress.getLocalHost();
+        return ip.getHostAddress();
+    }
+
+    /**
+     * Check if User's IP is in blacklist.
+     * @return true if its in blacklist, else return false its not.
+     * @throws UnknownHostException
+     */
+    public boolean isIpBanned() throws UnknownHostException {
+        boolean result = false;
+        Blacklist blacklist = blacklistRepository.findOneByIp(getUserIp());
+        try {
+            if(blacklist == null) throw new Exception("User's IP not found in the blacklist.");
+            if (getUserIp().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
+                result = true; // Banned
+            } else {
+                result = false; // Granted
+            }
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+        }
+        return result;
     }
 
 }

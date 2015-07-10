@@ -8,9 +8,8 @@
 
 package com.neblina.balero.handler;
 
-import com.neblina.balero.domain.Blacklist;
+import com.neblina.balero.service.BlacklistService;
 import com.neblina.balero.service.SettingService;
-import com.neblina.balero.service.repository.BlacklistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,6 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.util.List;
 
 @Component
 public class MaintenanceFilter implements Filter {
@@ -32,48 +29,20 @@ public class MaintenanceFilter implements Filter {
     private SettingService settingService;
 
     @Autowired
-    private BlacklistRepository blacklistRepository;
+    private BlacklistService blacklistService;
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Maintenance Filter...");
+        log.debug("offline value: " + settingService.getOfflineStatus("en_US"));
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
-        //Setting settings = settingRepository.findOneByCode("en_US");
         String url = request.getRequestURL().toString();
-        InetAddress ip = InetAddress.getLocalHost();
-        log.info("Interceptor: Pre-handle: " + url);
-        log.debug("offline value: " + settingService.getOfflineStatus("en_US"));
-        Blacklist blacklist = blacklistRepository.findOneByIp(ip.getHostAddress());
-        if(settingService.getOfflineStatus("en_US") == 1) {
-            if (url.contains("offline")) {
-                log.info("I'm in offline page, do nothing.");
-            } else if(url.contains("bootstrap")) {
-                log.info("Bootstrap resource file, do nothing.");
-            } else if(url.contains("css")) {
-                log.info("Css resource file, do nothing.");
-            } else if(url.contains("images")) {
-                log.info("Images resource file, do nothing.");
-            } else if(url.contains("js")) {
-                log.info("Js resource file, do nothing.");
-            } else if(url.contains("font")) {
-                log.info("Images resource file, do nothing.");
-            } else if(url.contains("admin")) {
-                log.info("Admin url, do nothing.");
-            } else if(url.contains("login")) {
-                log.info("Login url, do nothing.");
-            } else if(url.contains("logout")) {
-                log.info("Logout url, do nothing.");
-            } else if(url.contains("banned")) {
-                log.info("Banned url, do nothing.");
-            } else if(settingService.getOfflineStatus("en_US") == 1 && !url.contains("offline")) {
-                if (blacklist != null) {
-                    if (ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
-                        log.debug("Banned, do nothing..");
-                    }
-                    if (!ip.getHostAddress().equals(blacklist.getIp())) {
-                        log.debug("Redirecting to offline page.");
-                        response.sendRedirect("/offline/");
-                    }
+        if(settingService.getOfflineStatus("en_US") == 1 && !url.contains("offline")) {
+            if(blacklistService.isIpBanned() == false) {
+                if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
+                        url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||
+                        url.contains("error")) {
+                    log.debug("Resource file or url allowed: " + url);
                 } else {
                     log.debug("Redirecting to offline page.");
                     response.sendRedirect("/offline/");
