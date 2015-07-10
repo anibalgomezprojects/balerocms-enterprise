@@ -43,6 +43,7 @@ public class MaintenanceFilter implements Filter {
         InetAddress ip = InetAddress.getLocalHost();
         log.info("Interceptor: Pre-handle: " + url);
         log.debug("offline value: " + settingService.getOfflineStatus("en_US"));
+        Blacklist blacklist = blacklistRepository.findOneByIp(ip.getHostAddress());
         if(settingService.getOfflineStatus("en_US") == 1) {
             if (url.contains("offline")) {
                 log.info("I'm in offline page, do nothing.");
@@ -65,8 +66,18 @@ public class MaintenanceFilter implements Filter {
             } else if(url.contains("banned")) {
                 log.info("Banned url, do nothing.");
             } else if(settingService.getOfflineStatus("en_US") == 1 && !url.contains("offline")) {
-                log.debug("Redirecting to offline page.");
-                response.sendRedirect("/offline/");
+                if (blacklist != null) {
+                    if (ip.getHostAddress().equals(blacklist.getIp()) && blacklist.getAttemps() > 7) {
+                        log.debug("Banned, do nothing..");
+                    }
+                    if (!ip.getHostAddress().equals(blacklist.getIp())) {
+                        log.debug("Redirecting to offline page.");
+                        response.sendRedirect("/offline/");
+                    }
+                } else {
+                    log.debug("Redirecting to offline page.");
+                    response.sendRedirect("/offline/");
+                }
             }
         }
         chain.doFilter(req, res);
