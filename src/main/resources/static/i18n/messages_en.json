@@ -10,6 +10,8 @@
   "language-settings": "System Language",
   "offline-settings": "Offline Message",
 
+  "offline-subscribe": "Subscribe",
+
   "dashboard-settings-saved": "Successfully saved!",
 
   "offline-message-warning": ["We are offline, sorry =(. We will back shortly.\n",

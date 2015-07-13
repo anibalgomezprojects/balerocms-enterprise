@@ -10,6 +10,8 @@
   "language-settings": "Lenguaje De Sistema",
   "offline-settings": "Mensaje De Fuera De Servicio",
 
+  "offline-subscribe": "Suscribirse",
+
   "dashboard-settings-saved": "Guardado con éxito!",
 
   "offline-message-warning": ["Nos encontramos fuera de servicio, lo sentimos =(. Regresaremos pronto.\n",
