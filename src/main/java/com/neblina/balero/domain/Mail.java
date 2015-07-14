@@ -11,10 +11,7 @@ package com.neblina.balero.domain;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Mail {
@@ -25,6 +22,8 @@ public class Mail {
     @NotEmpty
     @Email
     private String address;
+
+    private Long userId;
 
     public Long getEmailId() {
         return emailId;
@@ -42,10 +41,21 @@ public class Mail {
         this.address = address;
     }
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_ID")
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Mail [" +
-                "address=" + this.address
+                "address=" + this.address +
+                "userId=" + this.userId
                 + "]";
     }
 

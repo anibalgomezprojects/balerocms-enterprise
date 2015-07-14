@@ -37,26 +37,8 @@ public class UserRepositoryTest extends TestCase {
     private UserService userService;
 
     @Test
-    public void search_TwoUserEntriesFound_ShouldReturnAListOfTwoEntries() {
-        List<User> user = (List<User>) userRepository.findAll();
-        assertThat(user.size(), is(2));
-        assertThat(user, contains(
-                allOf(
-                        hasProperty("id", is(1L)),
-                        hasProperty("username", is("admin"))
-                ),
-                allOf(
-                        hasProperty("id", is(2L)),
-                        hasProperty("username", is("user"))
-                )
-        ));
-
-    }
-
-    @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
-
         userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", "ADMIN, USER");
         List<User> users = userService.getUserByUsername("demo");
         for(User user: users) {
@@ -76,7 +58,7 @@ public class UserRepositoryTest extends TestCase {
         int i = 0;
         for(User user: remoteUsers) {
             i++;
-            System.out.println("User[" + i + "] " + user.getUsername() + " : " + user.getEmailId());
+            System.out.println("User[" + i + "] " + user.getUsername());
         }
     }
 

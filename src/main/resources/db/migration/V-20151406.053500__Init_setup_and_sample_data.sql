@@ -1,8 +1,3 @@
-CREATE TABLE MAIL (
-	email_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-	address varchar(255) not null
-);
-
 CREATE TABLE USER (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	username varchar(255) not null,
@@ -10,9 +5,14 @@ CREATE TABLE USER (
 	password_verify varchar(255) not null,
 	first_name varchar(255) not null,
 	last_name varchar(255) not null,
-	email_id BIGINT not null,
-	roles varchar(255) not null,
-  CONSTRAINT fk_user_email FOREIGN KEY (email_id) REFERENCES MAIL (email_id)
+	roles varchar(255) not null
+);
+
+CREATE TABLE MAIL (
+	email_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	address varchar(255) not null,
+	user_id BIGINT not null,
+	CONSTRAINT fk_user_email FOREIGN KEY (user_id) REFERENCES USER (id)
 );
 
 CREATE TABLE SETTING (
@@ -41,11 +41,14 @@ CREATE TABLE BLOCK (
 	code varchar(255) not null
 );
 
-insert into MAIL (email_id, address) values ('1', 'admin@localhost.com');
-insert into MAIL (email_id, address) values ('2', 'user@localhost.com');
+insert into USER (username, password, password_verify, first_name, last_name, roles) values ('admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'ROLE_ADMIN');
+insert into USER (username, password, password_verify, first_name, last_name, roles) values ('user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'ROLE_USER');
+insert into USER (username, password, password_verify, first_name, last_name, roles) values ('anonymous', '$$$$$$$$', '$$$$$$$$', 'Anonymous', 'Unregistered', 'ROLE_ANONYMOUS');
 
-insert into USER (username, password, password_verify, first_name, last_name, email_id, roles) values ('admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', '1', 'ROLE_ADMIN');
-insert into USER (username, password, password_verify, first_name, last_name, email_id, roles) values ('user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', '2', 'ROLE_USER');
+insert into MAIL (email_id, address, user_id) values (1, 'admin@localhost.com', 1);
+insert into MAIL (email_id, address, user_id) values (2, 'user@localhost.com', 2);
+insert into MAIL (email_id, address, user_id) values (3, 'anonymous@localhost.com', 3);
+insert into MAIL (email_id, address, user_id) values (4, 'guest@localhost.com', 3);
 
 insert into SETTING (code, title, title_header, administrator_email, tags, footer, offline, offline_message) values ('en_US', 'Balerocms v2', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'admin@localhost', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Home</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">About</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Services</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contact</a></li></ul><br />(c) 2015. Your company. Powered by <a href="http://www.balerocms.com/">BaleroCMS</a>.', '0', 'Site under maintenance. We will back shortly.');
 

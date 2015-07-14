@@ -38,8 +38,6 @@ public class User {
     @NotEmpty
     private String lastName;
 
-    private Long emailId;
-
     private String roles;
 
     public Long getId() {
@@ -90,16 +88,6 @@ public class User {
         this.lastName = lastname;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "EMAIL_ID")
-    public Long getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(Long emailId) {
-        this.emailId = emailId;
-    }
-
     public String getRoles() {
         return roles;
     }
@@ -115,7 +103,6 @@ public class User {
                 "password=" + this.password + "," +
                 "firstName=" + this.firstName + "," +
                 "lastName=" + this.lastName + "," +
-                "emailId=" + this.emailId + "," +
                 "roles=" + this.roles
                 + "]";
     }

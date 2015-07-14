@@ -36,18 +36,18 @@ public class UserService {
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
                                   String email, String roles) {
         PasswordGenerator pwd = new PasswordGenerator();
-        Mail mail= new Mail();
-        mail.setAddress(email);
-        mailRepository.save(mail);
         User user = new User();
         user.setUsername(userName);
         user.setPassword(pwd.generatePassword(password));
         user.setPasswordVerify(pwd.generatePassword(passwordVerify));
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setEmailId(mail.getEmailId());
         user.setRoles(roles);
         userRepository.save(user);
+        Mail mail = new Mail();
+        mail.setAddress(email);
+        mail.setUserId(user.getId());
+        mailRepository.save(mail);
         log.debug("Creating user... " + userName + " id: " + mail.getEmailId());
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
