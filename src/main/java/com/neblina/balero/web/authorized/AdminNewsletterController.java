@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/newsletter")
-public class NewsletterController {
+public class AdminNewsletterController {
 
-    private static final Logger log = LogManager.getLogger(NewsletterController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminNewsletterController.class.getName());
 
 
     @Secured("ROLE_ADMIN")

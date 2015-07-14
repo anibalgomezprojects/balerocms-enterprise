@@ -20,6 +20,8 @@
 
 package com.neblina.balero.service;
 
+import com.neblina.balero.domain.Mail;
+import com.neblina.balero.service.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
@@ -43,6 +45,9 @@ public class EmailService {
 
     @Autowired
     private TemplateEngine templateEngine;
+
+    @Autowired
+    private MailRepository mailRepository;
 
     /*
      * Send HTML mail (simple)
@@ -145,5 +150,12 @@ public class EmailService {
         this.mailSender.send(mimeMessage);
 
     }
+
+    public void addUser(String email) {
+        Mail mail = new Mail();
+        mail.setAddress(email);
+        mailRepository.save(mail);
+    }
+
 
 }
