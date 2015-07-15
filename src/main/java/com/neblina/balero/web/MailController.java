@@ -90,7 +90,7 @@ public class MailController {
             throws MessagingException, IOException {
 
         this.emailService.sendMailWithAttachment(
-                recipientName, recipientEmail, attachment.getOriginalFilename(), 
+                recipientName, recipientEmail, attachment.getOriginalFilename(),
                 attachment.getBytes(), attachment.getContentType(), locale);
         return "redirect:sent.html";
         
@@ -110,13 +110,17 @@ public class MailController {
             throws MessagingException, IOException {
 
         this.emailService.sendMailWithInline(
-                recipientName, recipientEmail, image.getName(), 
+                recipientName, recipientEmail, image.getName(),
                 image.getBytes(), image.getContentType(), locale);
         return "redirect:sent.html";
         
     }
 
-    
+    @RequestMapping(value = "/mail/list", method = RequestMethod.POST)
+    public String addUserToMailList(@RequestParam("email") String email) {
+        emailService.addAnonymousUser(email);
+        return "mailing-list_added";
+    }
     
     @ExceptionHandler(Exception.class)
     public String error() {

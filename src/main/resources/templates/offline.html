@@ -13,7 +13,7 @@
     <div class="row" th:each="setting : ${settings}">
         <p th:utext="${setting.offlineMessage}">_OFFLINE_MESSAGE_WARNING</p>
         <br />
-        <form action="/newsletter" method="post">
+        <form action="/mail/list" method="post">
             <input type="email" name="email" class="form-control" placeholder="Your E-mail" />
             <br />
             <button th:text="#{offline-subscribe}" class="pull-right btn btn-lg btn-primary" type="submit">_SUBSCRIBE</button>

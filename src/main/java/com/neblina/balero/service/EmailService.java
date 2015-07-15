@@ -151,9 +151,10 @@ public class EmailService {
 
     }
 
-    public void addUser(String email) {
+    public void addAnonymousUser(String email) {
         Mail mail = new Mail();
         mail.setAddress(email);
+        mail.setUserId(3L); // Anonymous user always is '3'
         mailRepository.save(mail);
     }
 
