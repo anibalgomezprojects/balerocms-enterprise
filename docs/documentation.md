@@ -148,6 +148,11 @@ You feedback is welcome! anibalgomez@balerocms.com.
 
 This project is under development, test only for development and not for production before release date.
 
-[Powered by BaleroCMS V2](http://balerocms.com/).
+ABOUT
+=====
+
+Project development by **Neblina Software Company** and **Anibal Gomez**.
+
+Official page: [www.balerocms.com](http://balerocms.com/).
 
 Documentation Version: 0.0.1
