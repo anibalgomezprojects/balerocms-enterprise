@@ -48,7 +48,7 @@ public class UserService {
         mail.setAddress(email);
         mail.setUserId(user.getId());
         mailRepository.save(mail);
-        log.debug("Creating user... " + userName + " id: " + mail.getEmailId());
+        log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email id: " + mail.getEmailId());
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
         //List<User> findUser = userRepository.findOneByUsername(userName);
