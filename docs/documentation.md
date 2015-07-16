@@ -68,6 +68,26 @@ And login with the sample data:
 
 **Note: In a live website, please delete 'user' account and change your admin password.**
 
+### Responsive Content
+
+For Homepage Blocks, Page Content and Section Content.
+
+Add fluid containers before insert rich text content (Source Code Mode), example:
+
+&lt;div class="container-fluid"&gt;
+
+  &lt;div class="row"&gt;
+  
+...
+    
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+ 
+Please, read the Bootstrap CSS documentation:
+
+[http://getbootstrap.com/css/](http://getbootstrap.com/css/)
+
 ### Updating Software
 
 Replace your old files with the new and updated files.
