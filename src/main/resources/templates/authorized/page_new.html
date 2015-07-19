@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="authorized/fragments/metas :: metas">
+       <title></title>
+</head>
+
+<body>
+
+<div th:include="authorized/fragments/navbar :: navbar"></div>
+
+<!-- container -->
+<div class="container">
+
+    <!-- Content -->
+    <div th:fragment="homepage_new">
+
+        <div th:with="text='Static Pages'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+
+        <div class="box-content">
+
+            <form class="form-horizontal" method="post" th:action="@{'/admin/page/new'}">
+                <div class="form-group title">
+                    <h4>New Static Page</h4>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control short" id="name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control short" id="title" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">Code</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="code" class="form-control short" id="code" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content" class="col-sm-2 control-label">Content</label>
+                    <div class="col-sm-10">
+                        <textarea name="content" class="summernote" rows="5" id="content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">Permalink</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-link"></span></span>
+                            <input type="text" name="permalink" class="form-control" aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="code" class="col-sm-2 control-label">Author</label>
+                    <div class="col-sm-10">
+                        <input type="text" th:value="${#httpServletRequest.remoteUser}" name="author" class="form-control short" id="author" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="/admin/homepage" class="btn btn-default">Cancel</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <!-- Content -->
+
+</div>
+<!-- /container -->
+
+<div th:replace="authorized/fragments/footer :: footer"></div>
+
+</body>
+</html>
+

@@ -41,6 +41,17 @@ CREATE TABLE BLOCK (
 	code varchar(255) not null
 );
 
+CREATE TABLE PAGE (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	name varchar(255) not null,
+	title varchar(255) not null,
+	content varchar(1000) not null,
+	code varchar(255) not null,
+	permalink varchar(255) not null,
+	author varchar(255) not null,
+	hits int(10) not null
+);
+
 INSERT INTO USER (id, username, password, password_verify, first_name, last_name, roles) VALUES
 (1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'ROLE_ADMIN'),
 (2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'ROLE_USER'),
@@ -60,3 +71,6 @@ INSERT INTO BLOCK (id, name, content, code) VALUES
 (2, 'desktop_en', STRINGDECODE('\n<div class="content-section-b">\n\t<div class="container">\n\t\t<div class="row">\n\t\t\t<div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">\n\t\t\t\t<hr class="section-heading-spacer">\n\t\t\t\t<div class="clearfix"></div>\n\t\t\t\t<h2 class="section-heading">Demo Content</h2>\n\t\t\t\t<p class="lead">Demo content example! You cant optimize tis content from your desktop too.</p>\n\t\t\t</div>\n\t\t\t<div class="col-lg-5 col-sm-pull-6  col-sm-6">\n\t\t\t\t<img class="img-responsive" src="/images/dog.png" alt="">\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>'), 'en_US'),
 (3, 'phone_en', STRINGDECODE('\n<div class="content-section-a">\n\t<div class="container">\n\t\t<div class="row">\n\t\t\t<div class="col-lg-5 col-sm-6">\n\t\t\t\t<hr class="section-heading-spacer">\n\t\t\t\t<div class="clearfix"></div>\n\t\t\t\t<h2 class="section-heading">Simple, Beautiful, Easy</h2>\n\t\t\t\t<p class="lead">You can optimize this website from your mobile too.\n\t\t\t\tThis website has been built with Bootstrap.</p>\n\t\t\t</div>\n\t\t\t<div class="col-lg-5 col-lg-offset-2 col-sm-6">\n\t\t\t\t<img class="img-responsive" src="/images/phones.png" alt="" />\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>'), 'en_US'),
 (4, 'newsletter_en', STRINGDECODE('\n<div class="content-section-b">\n\t<div class="container">\n\t\t<div class="row">\n\t\t\t<h2 class="section-heading">Subscribe to our newsletter</h2>\n\t\t\t<form action="/mail/list" method="post">\n\t\t\t\t<input type="email" name="email" class="form-control" placeholder="Your E-mail">\n\t\t\t\t<br />\n\t\t\t\t<button class="btn btn-lg btn-primary" type="submit">Subscribe</button>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n</div>'), 'en_US');
+
+INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUES
+(1, 'demo_en', 'Demo Page Example', 'This is a demo content.', 'en_US', 'demo-page', 'admin', 1);
