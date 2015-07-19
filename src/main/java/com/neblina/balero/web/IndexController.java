@@ -9,6 +9,7 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.service.repository.BlockRepository;
+import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,10 +35,14 @@ public class IndexController {
     @Autowired
     private BlockRepository blockRepository;
 
+    @Autowired
+    private PageRepository pageRepository;
+
     @RequestMapping("/")
     String home(Model model) {
         model.addAttribute("settings", settingRepository.findAll());
         model.addAttribute("blocks", blockRepository.findAll());
+        model.addAttribute("pages", pageRepository.findAll());
         return "silbato/index";
     }
 

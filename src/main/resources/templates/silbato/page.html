@@ -15,11 +15,16 @@
 
     <!-- Content -->
 
-    <!-- HomePage Blocks -->
-    <div th:each="block : ${blocks}">
-        <div th:utext="${block.content}">_CONTENT</div>
+    <!-- Static Page -->
+    <div class="container" th:each="page : ${pages}">
+        <div class="row">
+            <h2 th:text="${page.title}">_TITLE</h2>
+            <div th:utext="${page.content}">
+                _CONTENT
+            </div>
+        </div>
     </div>
-    <!-- /HomePage Blocks -->
+    <!-- /Static Page  -->
 
     <div class="banner">
         <div class="container">
