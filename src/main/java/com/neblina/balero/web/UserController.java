@@ -1,12 +1,12 @@
 /**
- * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Silbato Project: Proyecto 100% Mexicano de código libre.
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
  * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
@@ -15,14 +15,10 @@ import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,18 +27,13 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private static final Logger log = LogManager.getLogger(UserController.class.getName());
+    private static final Logger log = LogManager.getLogger(TestController.class.getName());
 
     @Autowired
     private UserService userService;
 
     @Autowired
     private SettingRepository settingRepository;
-
-    @RequestMapping( value = {"", "/"} )
-    public String rootIndex() {
-        return "redirect:/user/dashboard";
-    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model,
@@ -81,12 +72,6 @@ public class UserController {
             log.debug("User is already exists!");
         }
         return "redirect:/login";
-    }
-
-    @Secured("ROLE_USER")
-    @RequestMapping("/dashboard")
-    public String dashboardAdmin() {
-        return "authorized/dashboard";
     }
 
 }
