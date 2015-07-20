@@ -35,7 +35,6 @@
                 <ul>
                     <li th:if="${#fields.hasErrors('username')}">Username <p th:errors="*{username}"></p></li>
                     <li th:if="${#fields.hasErrors('password')}">Password <p th:errors="*{password}"></p></li>
-                    <li th:if="${#fields.hasErrors('email')}">Email <p th:errors="*{email}"></p></li>
                     <li th:if="${#fields.hasErrors('firstName')}">First Name <p th:errors="*{firstName}"></p></li>
                     <li th:if="${#fields.hasErrors('lastName')}">Last Name <p th:errors="*{lastName}"></p></li>
                 </ul>
@@ -53,9 +52,10 @@
                 <label for="passwordVerify">Re-Type Password *</label>
                 <input type="password" class="form-control" id="passwordVerify" name="passwordVerify" th:field="*{passwordVerify}" />
             </div>
-            <div class="form-group">
-                <label for="email">Email address *</label>
-                <input type="email" class="form-control" id="email" name="email" th:field="*{email}" />
+            <div class="form-group" th:object="${mail}">
+                <label for="address">Email address *</label>
+                <li th:if="${#fields.hasErrors('address')}">Email <p th:errors="*{address}"></p></li>
+                <input type="email" class="form-control" id="address" name="address" th:field="*{address}" />
             </div>
             <div class="form-group">
                 <label for="firstname">First Name *</label>

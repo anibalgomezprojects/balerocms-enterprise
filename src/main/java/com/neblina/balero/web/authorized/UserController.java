@@ -8,6 +8,7 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.SettingRepository;
@@ -18,6 +19,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +45,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerForm(Model model, @Valid User user, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("user", user);
+    public String registerForm(Model model,
+                               @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser,
+                               @ModelAttribute(value="mail") @Valid Mail mail, BindingResult bindingResultMail) {
+        if(bindingResultUser.hasErrors() || bindingResultMail.hasErrors()) {
+            //model.addAttribute("user", user);
         }
         model.addAttribute("settings", settingRepository.findAll());
         return "silbato/register";
@@ -58,7 +62,7 @@ public class UserController {
                            @RequestParam(value = "passwordVerify") String passwordVerify,
                            @RequestParam(value = "firstName") String firstName,
                            @RequestParam(value = "lastName") String lastName,
-                           @RequestParam("email") String email) {
+                           @RequestParam("address") String address) {
         log.debug("Creating user... " + username);
         if(!password.equals(passwordVerify)) {
             bindingResult.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
@@ -69,7 +73,7 @@ public class UserController {
         }
         List<User> userArray = userService.getUserByUsername("demo");
         if(userArray.isEmpty()) {
-            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
+            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, address, "USER");
         }
         if(!userArray.isEmpty()) {
             log.debug("User is already exists!");
