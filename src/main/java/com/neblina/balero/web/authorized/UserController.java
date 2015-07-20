@@ -56,18 +56,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(Model model, @Valid User user, BindingResult bindingResult,
+    public String register(Model model,
                            @RequestParam(value = "username") String username,
                            @RequestParam(value = "password") String password,
                            @RequestParam(value = "passwordVerify") String passwordVerify,
                            @RequestParam(value = "firstName") String firstName,
                            @RequestParam(value = "lastName") String lastName,
-                           @RequestParam("address") String address) {
+                           @RequestParam(value = "address") String address,
+                           @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser,
+                           @ModelAttribute(value="mail") @Valid Mail mail, BindingResult bindingResultMail) {
         log.debug("Creating user... " + username);
         if(!password.equals(passwordVerify)) {
-            bindingResult.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
+            bindingResultUser.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
-        if(bindingResult.hasErrors()) {
+        if(bindingResultUser.hasErrors() || bindingResultMail.hasErrors()) {
             model.addAttribute("settings", settingRepository.findAll());
             return "silbato/register";
         }
