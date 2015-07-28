@@ -46,25 +46,22 @@ public class FileUploadController {
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
-        log.debug("POST /upload {}");
-        log.debug("Creating file... " + FileUploadController.class.getResource("/static/images/uploads/").getPath());
+        String filePath = FileUploadController.class.getResource("/static/images/uploads/").getPath() + file.getOriginalFilename();
         if (!file.isEmpty()) {
             try {
-                // "/static/images/uploads/test.png"
-                //String path = this.getClass().getResource("/static/images/uploads/test.png").getPath();
-                //log.debug("Resource Path: " + FileUploadController.class.getResource("/"));
-                log.debug("File Name: " + file.getOriginalFilename());
                 byte[] bytes = file.getBytes();
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(FileUploadController.class.getResource("/static/images/uploads/").getPath() + file.getOriginalFilename())));
+                        new BufferedOutputStream(new FileOutputStream(new File(filePath)));
                 stream.write(bytes);
                 stream.close();
-                return "You successfully uploaded " + "test.png" + "!";
+                log.debug("POST /upload {}");
+                log.debug("Creating file: " + filePath);
+                return "You successfully uploaded " + file.getOriginalFilename() + "!";
             } catch (Exception e) {
-                return "You failed to upload " + "test.png" + " => " + e.getMessage();
+                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
             }
         } else {
-            return "You failed to upload " + "test.png" + " because the file was empty.";
+            return "You failed to upload " + file.getOriginalFilename() + " because the file was empty.";
         }
     }
 
