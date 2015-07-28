@@ -33,6 +33,12 @@ h6 {
     font-weight: lighter;
 }
 
+/** Responsive Images **/
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .logo-small {
     margin-top: -6px;
 }
