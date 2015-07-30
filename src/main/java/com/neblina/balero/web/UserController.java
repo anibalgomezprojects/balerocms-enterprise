@@ -8,7 +8,6 @@
 
 package com.neblina.balero.web;
 
-import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.SettingRepository;
@@ -37,9 +36,8 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model,
-                               @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser,
-                               @ModelAttribute(value="mail") @Valid Mail mail, BindingResult bindingResultMail) {
-        if(bindingResultUser.hasErrors() || bindingResultMail.hasErrors()) {
+                               @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser) {
+        if(bindingResultUser.hasErrors()) {
             //model.addAttribute("user", user);
         }
         model.addAttribute("settings", settingRepository.findAll());
@@ -53,20 +51,19 @@ public class UserController {
                            @RequestParam(value = "passwordVerify") String passwordVerify,
                            @RequestParam(value = "firstName") String firstName,
                            @RequestParam(value = "lastName") String lastName,
-                           @RequestParam(value = "address") String address,
-                           @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser,
-                           @ModelAttribute(value="mail") @Valid Mail mail, BindingResult bindingResultMail) {
+                           @RequestParam(value = "email") String email,
+                           @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser) {
         log.debug("Creating user... " + username);
         if(!password.equals(passwordVerify)) {
             bindingResultUser.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
-        if(bindingResultUser.hasErrors() || bindingResultMail.hasErrors()) {
+        if(bindingResultUser.hasErrors()) {
             model.addAttribute("settings", settingRepository.findAll());
             return "silbato/register";
         }
         List<User> userArray = userService.getUserByUsername("demo");
         if(userArray.isEmpty()) {
-            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, address, "USER");
+            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
         }
         if(!userArray.isEmpty()) {
             log.debug("User is already exists!");

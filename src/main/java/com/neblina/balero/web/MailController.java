@@ -20,6 +20,7 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.service.EmailService;
+import com.neblina.balero.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +39,9 @@ public class MailController {
 
     @Autowired 
     private EmailService emailService;
+
+    @Autowired
+    private UserService userService;
     
     @RequestMapping("/mail")
     public String root() {
@@ -70,7 +74,7 @@ public class MailController {
             final Locale locale) 
             throws MessagingException {
 
-        this.emailService.sendSimpleMail(recipientName, recipientEmail, locale);
+        this.emailService.sendSimpleMail(recipientName, recipientEmail, "Subject", "Message", locale);
         return "redirect:sent.html";
         
     }
@@ -117,8 +121,10 @@ public class MailController {
     }
 
     @RequestMapping(value = "/mail/list", method = RequestMethod.POST)
-    public String addUserToMailList(@RequestParam("email") String email) {
-        emailService.addAnonymousUser(email);
+    public String addUserToMailList(@RequestParam("firstname") String firstname,
+                                    @RequestParam("email") String email) {
+        userService.createUserAccount(null, null,
+                null, firstname, null, email, null);
         return "mailing-list_added";
     }
     

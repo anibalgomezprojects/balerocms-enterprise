@@ -9,7 +9,6 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
-import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.UserRepository;
 import junit.framework.TestCase;
@@ -69,9 +68,9 @@ public class UserRepositoryTest extends TestCase {
 
     @Test
     public void printAllMailingistUsers() {
-        int totalUsers = emailService.getTotalUsers();
+        int totalUsers = userService.getTotalUsers();
         System.out.println("Getting Mailing List Users: " + totalUsers);
-        assertThat(totalUsers, is(4));
+        assertThat(totalUsers, is(3));
     }
 
 }

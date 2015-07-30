@@ -27,14 +27,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="mail : ${mails}">
-                        <td th:text="${mail.emailId}">_ID</td>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}">_ID</td>
                         <td>
-                            <a th:href="@{'/admin/user/'+${mail.emailId}}"><span th:text="${mail.address}">_NAME</span></a>
+                            <a th:href="@{'/admin/user/'+${user.id}}"><span th:text="${user.email}">_NAME</span></a>
                         </td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/user/'+${mail.emailId}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                            <a th:href="@{'/admin/user/unsuscribe/'+${mail.emailId}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Unsuscribe</a>
+                            <a th:href="@{'/admin/user/'+${user.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                            <a th:href="@{'/admin/user/unsuscribe/'+${user.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Unsuscribe</a>
                         </td>
                     </tr>
                     </tbody>

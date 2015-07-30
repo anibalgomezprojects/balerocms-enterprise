@@ -20,23 +20,21 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty
     @Size(min = 4, max = 30)
     private String username;
 
-    @NotEmpty
     @Size(min = 4, max = 100)
     private String password;
 
-    @NotEmpty
     @Size(min = 4, max = 100)
     private String passwordVerify;
 
-    @NotEmpty
     private String firstName;
 
-    @NotEmpty
     private String lastName;
+
+    @Email
+    private String email;
 
     private String roles;
 
@@ -88,6 +86,14 @@ public class User {
         this.lastName = lastname;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getRoles() {
         return roles;
     }
@@ -103,6 +109,7 @@ public class User {
                 "password=" + this.password + "," +
                 "firstName=" + this.firstName + "," +
                 "lastName=" + this.lastName + "," +
+                "email=" + this.email + "," +
                 "roles=" + this.roles
                 + "]";
     }

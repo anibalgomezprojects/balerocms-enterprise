@@ -8,7 +8,7 @@
 
 package com.neblina.balero.web.authorized;
 
-import com.neblina.balero.service.repository.MailRepository;
+import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +24,12 @@ public class MailingListController {
     private static final Logger log = LogManager.getLogger(MailingListController.class.getName());
 
     @Autowired
-    private MailRepository mailRepository;
+    private UserRepository userRepository;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String mailingList(Model model) {
-        model.addAttribute("mails", mailRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "authorized/mailing_list";
     }
 

@@ -20,8 +20,6 @@
 
 package com.neblina.balero.service;
 
-import com.neblina.balero.domain.Mail;
-import com.neblina.balero.service.repository.MailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
@@ -46,15 +44,12 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @Autowired
-    private MailRepository mailRepository;
-
     /*
      * Send HTML mail (simple)
      */
     public void sendSimpleMail(
 
-            final String recipientName, final String recipientEmail, final Locale locale)
+            final String recipientName, final String recipientEmail, final String subject, final String messageBody, final Locale locale)
             throws MessagingException {
 
         // Prepare the evaluation context
@@ -62,11 +57,12 @@ public class EmailService {
         ctx.setVariable("name", recipientName);
         ctx.setVariable("subscriptionDate", new Date());
         ctx.setVariable("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
+        ctx.setVariable("message", messageBody);
 
         // Prepare message using a Spring helper
         final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
         final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, "UTF-8");
-        message.setSubject("Example HTML email (simple)");
+        message.setSubject(subject);
         message.setFrom("thymeleaf@example.com");
         message.setTo(recipientEmail);
 
@@ -149,17 +145,6 @@ public class EmailService {
         // Send mail
         this.mailSender.send(mimeMessage);
 
-    }
-
-    public void addAnonymousUser(String email) {
-        Mail mail = new Mail();
-        mail.setAddress(email);
-        mail.setUserId(3L); // Anonymous user always is '3'
-        mailRepository.save(mail);
-    }
-
-    public int getTotalUsers() {
-        return mailRepository.findAll().size();
     }
 
 }

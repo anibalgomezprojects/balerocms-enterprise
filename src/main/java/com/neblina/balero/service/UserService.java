@@ -1,8 +1,6 @@
 package com.neblina.balero.service;
 
-import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
-import com.neblina.balero.service.repository.MailRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -29,12 +27,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private MailRepository mailRepository;
-
-
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
-                                  String address, String roles) {
+                                  String email, String roles) {
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -42,18 +36,17 @@ public class UserService {
         user.setPasswordVerify(pwd.generatePassword(passwordVerify));
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setEmail(email);
         user.setRoles(roles);
         userRepository.save(user);
-        Mail mail = new Mail();
-        mail.setAddress(address);
-        mail.setUserId(user.getId());
-        mailRepository.save(mail);
-        log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email id: " + mail.getEmailId());
+        log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email: " + email);
         //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
         //AuthorityUtils.createAuthorityList("ROLE_USER")
         //List<User> findUser = userRepository.findOneByUsername(userName);
         try {
-            inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
+            if(!userName.isEmpty() && !password.isEmpty()) {
+                inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
+            }
         } catch (Exception e) {
             log.debug("inMemoryUserDetailsManager: " + e.getMessage());
         }
@@ -67,6 +60,10 @@ public class UserService {
     public List<User> getAllUsers() {
         List<User> users = userRepository.findAll();
         return users;
+    }
+
+    public int getTotalUsers() {
+        return userRepository.findAll().size();
     }
 
 }
