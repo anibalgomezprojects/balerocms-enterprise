@@ -8,8 +8,10 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.service.EmailService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +23,13 @@ public class AdminNewsletterController {
 
     private static final Logger log = LogManager.getLogger(AdminNewsletterController.class.getName());
 
+    @Autowired
+    private EmailService emailService;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String homepage(Model model) {
+        model.addAttribute("totalUsers", emailService.getTotalUsers());
         return "authorized/newsletter";
     }
 

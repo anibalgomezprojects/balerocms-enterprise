@@ -158,5 +158,8 @@ public class EmailService {
         mailRepository.save(mail);
     }
 
+    public int getTotalUsers() {
+        return mailRepository.findAll().size();
+    }
 
 }

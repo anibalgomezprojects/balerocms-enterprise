@@ -9,6 +9,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.domain.Mail;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.UserRepository;
 import junit.framework.TestCase;
@@ -20,6 +21,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.validation.constraints.AssertTrue;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -35,6 +37,9 @@ public class UserRepositoryTest extends TestCase {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
     @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
@@ -60,6 +65,13 @@ public class UserRepositoryTest extends TestCase {
             i++;
             System.out.println("User[" + i + "] " + user.getUsername());
         }
+    }
+
+    @Test
+    public void printAllMailingistUsers() {
+        int totalUsers = emailService.getTotalUsers();
+        System.out.println("Getting Mailing List Users: " + totalUsers);
+        assertThat(totalUsers, is(4));
     }
 
 }
