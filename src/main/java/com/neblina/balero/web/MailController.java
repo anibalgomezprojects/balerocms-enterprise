@@ -21,6 +21,8 @@ package com.neblina.balero.web;
 
 import com.neblina.balero.service.EmailService;
 import com.neblina.balero.service.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,6 +38,8 @@ import java.util.Locale;
 
 @Controller
 public class MailController {
+
+    private static final Logger log = LogManager.getLogger(MailController.class.getName());
 
     @Autowired 
     private EmailService emailService;
@@ -120,17 +124,23 @@ public class MailController {
         
     }
 
+    @RequestMapping(value = "/mail/list", method = RequestMethod.GET)
+    public String addUserToMailListGet() {
+        log.debug("Mailing List Get {}");
+        return "redirect:/offline";
+    }
+
     @RequestMapping(value = "/mail/list", method = RequestMethod.POST)
     public String addUserToMailList(@RequestParam("firstname") String firstname,
                                     @RequestParam("email") String email) {
-        userService.createUserAccount(null, null,
-                null, firstname, null, email, null);
+        log.debug("Mailing List Post {}");
+        try {
+            userService.createUserAccount("temp", "temp",
+                    "temp", firstname, "temp", email, "ROLE_USER");
+        } catch (Exception e) {
+            log.debug("Error: " + e.getMessage());
+        }
         return "mailing-list_added";
-    }
-    
-    @ExceptionHandler(Exception.class)
-    public String error() {
-        return "error.html";
     }
     
 }

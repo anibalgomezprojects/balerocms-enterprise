@@ -39,12 +39,9 @@ public class UserService {
         user.setEmail(email);
         user.setRoles(roles);
         userRepository.save(user);
-        log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email: " + email);
-        //inMemoryUserDetailsManager.createUser(new User("demo", "demo", new ArrayList<GrantedAuthority>()));
-        //AuthorityUtils.createAuthorityList("ROLE_USER")
-        //List<User> findUser = userRepository.findOneByUsername(userName);
         try {
-            if(!userName.isEmpty() && !password.isEmpty()) {
+            if(!userName.equals("temp") && !password.equals("temp")) {
+                log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email: " + email);
                 inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
             }
         } catch (Exception e) {
