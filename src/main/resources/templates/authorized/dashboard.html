@@ -25,6 +25,8 @@
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <a href="/admin/settings" th:text="#{dashboard-settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
+                    <a href="/admin/profile">My Profile</a>
+                    <br />
                     <a href="/admin/homepage" th:text="#{homepage-settings}">_HOMEPAGE_BLOCKS</a>
                     <br />
                     <a href="/admin/newsletter" th:text="#{newsletter-settings}">_NEWSLETTER</a>

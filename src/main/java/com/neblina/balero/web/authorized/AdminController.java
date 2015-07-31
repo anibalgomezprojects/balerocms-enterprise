@@ -8,17 +8,23 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.User;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.repository.SettingRepository;
+import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -31,6 +37,9 @@ public class AdminController {
 
     @Autowired
     private SettingService settingService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -82,6 +91,17 @@ public class AdminController {
     @RequestMapping("/languages")
     public String languages() {
         return "authorized/languages";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/profile")
+    public String profileGet(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        log.debug("Username: " + username);
+        User user = userRepository.findOneByUsername(username);
+        model.addAttribute("user", user);
+        return "authorized/profile";
     }
 
 }

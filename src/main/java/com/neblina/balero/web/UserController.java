@@ -11,6 +11,7 @@ package com.neblina.balero.web;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.SettingRepository;
+import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private SettingRepository settingRepository;
@@ -61,12 +64,13 @@ public class UserController {
             model.addAttribute("settings", settingRepository.findAll());
             return "silbato/register";
         }
-        List<User> userArray = userService.getUserByUsername("demo");
-        if(userArray.isEmpty()) {
-            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
+        User usr = userRepository.findOneByUsername(username);
+        if(usr != null) {
+            log.debug("Username value: " + usr.getUsername());
         }
-        if(!userArray.isEmpty()) {
-            log.debug("User is already exists!");
+        if(usr == null) {
+            log.debug("Username NOT found");
+            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
         }
         return "redirect:/login";
     }

@@ -44,15 +44,8 @@ public class UserRepositoryTest extends TestCase {
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
         userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", "ADMIN, USER");
-        List<User> users = userService.getUserByUsername("demo");
-        for(User user: users) {
-            System.out.println("array: " + users);
-        }
-        assertThat(users, contains(
-                allOf(
-                        hasProperty("username", is("demo"))
-                )
-        ));
+        User user = userService.getUserByUsername("demo");
+        assertThat(user.getUsername(), is("demo"));
     }
 
     @Test

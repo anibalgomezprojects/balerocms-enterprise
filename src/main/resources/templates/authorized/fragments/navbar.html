@@ -24,7 +24,10 @@
             <ul class="nav navbar-nav">
                 <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard"><img src="/images/home-icon.png" title="Home" /></a></li>
                 <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard"><img src="/images/home-icon.png" title="Home" /></a></li>
-                <li><a href="#"><img src="/images/profile-icon.png" title="Profile" /></a></li>
+
+                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/profile"><img src="/images/profile-icon.png" title="Profile" /></a></li>
+                <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/profile"><img src="/images/profile-icon.png" title="Profile" /></a></li>
+
                 <li><a href="#"><img src="/images/settings-icon.png" title="Settings" /></a></li>
                 <li><a href="/" target="_blank"><img src="/images/preview-icon.png" title="Preview" /></a></li>
                 <!--

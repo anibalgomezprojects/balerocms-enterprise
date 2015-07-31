@@ -31,4 +31,10 @@ public class AdminUserController {
         return "authorized/dashboard";
     }
 
+    @Secured("ROLE_USER")
+    @RequestMapping("/profile")
+    public String profileGet() {
+        return "authorized/profile";
+    }
+
 }
