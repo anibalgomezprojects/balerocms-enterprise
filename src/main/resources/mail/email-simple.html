@@ -15,6 +15,13 @@
             width: 100%;
         }
 
+        .sign {
+            color: #aaaaaa;
+            font-size: small;
+            margin-top: 20px;
+            text-align: right;
+        }
+        
         .message {
             padding-top: 50px;
             padding-bottom: 50px;
@@ -359,16 +366,13 @@
         <br />
 
         <div class="message">
-            <p>Hello, <b th:text="${name}">_NAME</b></p>
-            <p th:if="${name.length() gt 10}">
-                Wow! You've got a long name (more than 10 chars)!
-            </p>
+            <p>Hi, <b th:text="${name}">_NAME</b>!</p>
             <p th:utext="${message}">_MESSAGE</p>
             <p>
-                Regards, <br />
-                &emsp; <em>The Balero CMS Team</em>
+                <i>Regards, The Balero CMS Team</i>.
             </p>
             <span th:text="${#dates.format(subscriptionDate)}">28-12-2012</span>
+            <p class="sign">Powered by <a href="http://www.balerocms.com/">Balero CMS</a> Newsletter.</p>
         </div>
 
     </div>
