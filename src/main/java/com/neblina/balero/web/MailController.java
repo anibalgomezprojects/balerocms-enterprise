@@ -37,6 +37,7 @@ import java.util.Locale;
 
 
 @Controller
+@RequestMapping("/mail")
 public class MailController {
 
     private static final Logger log = LogManager.getLogger(MailController.class.getName());
@@ -46,28 +47,43 @@ public class MailController {
 
     @Autowired
     private UserService userService;
-    
-    @RequestMapping("/mail")
+
+    @RequestMapping(value = {"", "/"} )
     public String root() {
         return "redirect:/index.html";
     }
 
-    
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String addUserToMailListGet() {
+        log.debug("Mailing List Get {}");
+        return "redirect:/offline";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public String addUserToMailList(@RequestParam("firstname") String firstname,
+                                    @RequestParam("email") String email) {
+        log.debug("Mailing List Post {}");
+        try {
+            userService.createUserAccount("temp", "temp",
+                    "temp", firstname, "temp", email, "ROLE_USER");
+        } catch (Exception e) {
+            log.debug("Error: " + e.getMessage());
+        }
+        return "mailing-list_added";
+    }
+
     /* Home page. */
-    @RequestMapping("/mail/index.html")
+    @RequestMapping("/index.html")
     public String index() {
         return "index.html";
     }
-
     
     /* Sending confirmation page. */
-    @RequestMapping("/mail/sent.html")
+    @RequestMapping("/sent.html")
     public String sent() {
         return "sent.html";
     }
 
-    
-    
     /* 
      * Send HTML mail (simple) 
      */
@@ -83,9 +99,6 @@ public class MailController {
         
     }
 
-    
-    
-    
     /* 
      * Send HTML mail with attachment. 
      */
@@ -104,8 +117,6 @@ public class MailController {
         
     }
 
-    
-    
     /* 
      * Send HTML mail with inline image
      */
@@ -122,25 +133,6 @@ public class MailController {
                 image.getBytes(), image.getContentType(), locale);
         return "redirect:sent.html";
         
-    }
-
-    @RequestMapping(value = "/mail/list", method = RequestMethod.GET)
-    public String addUserToMailListGet() {
-        log.debug("Mailing List Get {}");
-        return "redirect:/offline";
-    }
-
-    @RequestMapping(value = "/mail/list", method = RequestMethod.POST)
-    public String addUserToMailList(@RequestParam("firstname") String firstname,
-                                    @RequestParam("email") String email) {
-        log.debug("Mailing List Post {}");
-        try {
-            userService.createUserAccount("temp", "temp",
-                    "temp", firstname, "temp", email, "ROLE_USER");
-        } catch (Exception e) {
-            log.debug("Error: " + e.getMessage());
-        }
-        return "mailing-list_added";
     }
     
 }

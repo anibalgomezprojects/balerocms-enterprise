@@ -27,7 +27,7 @@ import java.net.UnknownHostException;
 @Controller
 public class IndexController {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(IndexController.class.getName());
 
     @Autowired
     private SettingRepository settingRepository;
