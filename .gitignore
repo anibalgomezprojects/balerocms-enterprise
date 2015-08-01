@@ -2,7 +2,8 @@ balero.iml
 target
 logs
 psd
-src/main/resources/static/images/uploads
+src/main/resources/static/images/uploads/*.png
+src/main/resources/static/images/uploads/*.jpg
 hs_err_pid*
 .idea
 .DS_Store
