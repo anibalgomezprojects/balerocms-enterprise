@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label">Content</label>
                     <div class="col-sm-10">
-                        <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:text="${block.content}"></textarea>
+                        <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

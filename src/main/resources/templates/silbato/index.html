@@ -17,7 +17,7 @@
 
     <!-- HomePage Blocks -->
     <div th:each="block : ${blocks}">
-        <div th:utext="${block.content}">_CONTENT</div>
+        <div th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}">_CONTENT</div>
     </div>
     <!-- /HomePage Blocks -->
 
