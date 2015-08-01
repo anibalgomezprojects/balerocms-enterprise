@@ -366,12 +366,13 @@
         <br />
 
         <div class="message">
-            <p>Hi, <b th:text="${name}">_NAME</b>!</p>
+            <p><span th:text="#{mail-hello}">_HELLO</span>, <b th:text="${name}">_NAME</b>!</p>
             <p th:utext="${message}">_MESSAGE</p>
             <p>
-                <i>Regards, The Balero CMS Team</i>.
+                <i th:text="#{mail-regards}">_REGARDS</i>.
             </p>
             <span th:text="${#dates.format(subscriptionDate)}">28-12-2012</span>
+            <hr />
             <p class="sign">Powered by <a href="http://www.balerocms.com/">Balero CMS</a> Newsletter.</p>
         </div>
 

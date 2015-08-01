@@ -12,6 +12,9 @@
 
   "offline-subscribe": "Subscribe to our newsletter",
 
+  "mail-hello": "Hello",
+  "mail-regards": "The Balero CMS team",
+
   "dashboard-settings-saved": "Successfully saved!",
 
   "offline-message-warning": ["We are offline, sorry =(. We will back shortly.\n",
