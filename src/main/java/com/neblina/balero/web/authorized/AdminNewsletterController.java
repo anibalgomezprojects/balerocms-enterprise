@@ -63,4 +63,14 @@ public class AdminNewsletterController {
         return "authorized/newsletter";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public String listPost(@RequestParam("firstName") String firstName,
+                           @RequestParam("email") String email,
+                           Model model, Locale locale) {
+        model.addAttribute("success", 1);
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, "USER");
+        return "authorized/newsletter";
+    }
+
 }
