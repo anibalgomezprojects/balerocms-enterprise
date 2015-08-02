@@ -166,7 +166,7 @@ COMPILING DOCUMENTATION
 
 To compile this source, use:
 
-    $ pandoc -o documentation.pdf documentation.md
+    $ pandoc -o docs/documentation.pdf docs/README.md
     
 Note: Require pandoc software.
 
