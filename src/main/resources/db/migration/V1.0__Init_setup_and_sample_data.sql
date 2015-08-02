@@ -39,7 +39,7 @@ CREATE TABLE PAGE (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	title varchar(255) not null,
-	content varchar(65535) not null,
+	content varchar(10000) not null,
 	code varchar(255) not null,
 	permalink varchar(255) not null,
 	author varchar(255) not null,
