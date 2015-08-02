@@ -105,11 +105,19 @@ Example: **http://localhost:8080/?lang=es**
 Edit **application.yml** under resources folder, set your credentials
 for you email account.
 
-### Database Chengelog Timestamps
+### Database Changelog Timestamps
 
-Convention:
+Timestamps Convention:
 
 V-YEAR-MONTH-DAY.HOUR-MINUTES-SECONDS__Message.sql
+
+Example:
+
+V-20150107.010600__Message_example_etc.sql
+
+Version Control Convention:
+
+V1.0__Message_example_etc.sql
 
 ### About this project
 
