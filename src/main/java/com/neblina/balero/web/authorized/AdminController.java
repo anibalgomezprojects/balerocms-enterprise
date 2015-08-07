@@ -10,6 +10,7 @@ package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.SettingService;
+import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -40,6 +41,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -101,6 +105,20 @@ public class AdminController {
         log.debug("Username: " + username);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
+        return "authorized/profile";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String profilePost(Model model,
+                              @RequestParam("firstName") String firstName,
+                              @RequestParam("lastName") String lastName,
+                              @RequestParam("email") String email) {
+        log.debug("POST /admin/profile");
+        model.addAttribute("success", 1);
+        User user = userRepository.findOneByUsername("admin");
+        model.addAttribute("user", user);
+        userService.saveAdminProfile(firstName, lastName, email);
         return "authorized/profile";
     }
 

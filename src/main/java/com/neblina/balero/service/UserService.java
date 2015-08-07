@@ -59,6 +59,28 @@ public class UserService {
         return users;
     }
 
+
+    public void saveAdminProfile(String firstName,
+                                 String lastName,
+                                 String email) {
+        User user = userRepository.findOneByUsername("admin");
+        user.setUsername(user.getUsername());
+        user.setPassword(user.getPassword());
+        user.setPasswordVerify(user.getPasswordVerify());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        userRepository.save(user);
+    }
+
+    public void changeAdminPassword(String password, String passwordVerify) {
+        User user = userRepository.findOneByUsername("admin");
+        PasswordGenerator passwordGenerator = new PasswordGenerator();
+        user.setPassword(passwordGenerator.generatePassword(password));
+        user.setPasswordVerify(passwordGenerator.generatePassword(passwordVerify));
+        userRepository.save(user);
+    }
+
     public int getTotalUsers() {
         return userRepository.findAll().size();
     }
