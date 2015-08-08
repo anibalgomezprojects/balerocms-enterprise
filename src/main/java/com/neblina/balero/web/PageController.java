@@ -33,7 +33,8 @@ public class PageController {
     @RequestMapping(value = "/{permalink}" )
     String pageIndex(Model model, @PathVariable("permalink") String permalink) {
         model.addAttribute("settings", settingRepository.findAll());
-        model.addAttribute("pages", pageRepository.findOneByPermalink(permalink));
+        model.addAttribute("staticPages", pageRepository.findOneByPermalink(permalink));
+        model.addAttribute("pages", pageRepository.findAll());
         return "silbato/page";
     }
 

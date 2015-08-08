@@ -46,8 +46,10 @@
 </div>
 
     <div class="pages">
-        <div class="row" th:each="page : ${pages}">
-            <div class="col-xs-3 col-md-3"><a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a></div>
+        <div class="row">
+            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
+                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
+            </div>
         </div>
     </div>
 

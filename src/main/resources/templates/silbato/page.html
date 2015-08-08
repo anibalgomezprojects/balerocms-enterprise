@@ -17,11 +17,11 @@
 
     <!-- Static Page -->
     <div class="static">
-        <div class="container" th:each="page : ${pages}">
+        <div class="container" th:each="staticPage : ${staticPages}">
             <div class="row">
-                <h2 th:text="${page.title}">_TITLE</h2>
+                <h2 th:text="${staticPage.title}">_TITLE</h2>
                 <br />
-                <div th:utext="${page.content}">
+                <div th:utext="${staticPage.content}">
                     _CONTENT
                 </div>
             </div>
@@ -54,8 +54,10 @@
 </div>
 
     <div class="pages">
-        <div class="row" th:each="page : ${pages}">
-            <div class="col-xs-3 col-md-3"><a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a></div>
+        <div class="row">
+            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
+                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
+            </div>
         </div>
     </div>
 
