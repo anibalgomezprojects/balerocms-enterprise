@@ -125,13 +125,12 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     public String passwordPost(Model model,
-                               @RequestParam("oldPassword") String oldPassword,
                                @RequestParam("newPassword") String newPassword) {
         log.debug("POST /admin/password");
         model.addAttribute("success", 1);
         User user = userRepository.findOneByUsername("admin");
         model.addAttribute("user", user);
-        userService.changeAdminPassword(oldPassword, newPassword);
+        userService.changeAdminPassword(newPassword);
         return "authorized/profile";
     }
 
