@@ -73,12 +73,14 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void changeAdminPassword(String password, String passwordVerify) {
+    public void changeAdminPassword(String oldPassword, String newPassword) {
         User user = userRepository.findOneByUsername("admin");
         PasswordGenerator passwordGenerator = new PasswordGenerator();
-        user.setPassword(passwordGenerator.generatePassword(password));
-        user.setPasswordVerify(passwordGenerator.generatePassword(passwordVerify));
+        user.setPassword(passwordGenerator.generatePassword(newPassword));
+        user.setPasswordVerify(passwordGenerator.generatePassword(newPassword));
         userRepository.save(user);
+        inMemoryUserDetailsManager.changePassword(passwordGenerator.generatePassword(oldPassword), passwordGenerator.generatePassword(newPassword));
+        log.debug("Changing password for admin...");
     }
 
     public int getTotalUsers() {

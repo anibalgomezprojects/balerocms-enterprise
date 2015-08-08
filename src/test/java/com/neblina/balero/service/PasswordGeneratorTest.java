@@ -32,9 +32,9 @@ public class PasswordGeneratorTest extends TestCase {
     @Test
     public void generatePassword() {
         PasswordGenerator pwd = new PasswordGenerator();
-
         System.out.println("Hash for pwd admin->" + pwd.generatePassword("admin"));
         System.out.println("Hash for pwd user->" + pwd.generatePassword("user"));
+        System.out.println("password: " + pwd.generatePassword("test") + " password verification: " + pwd.generatePassword("test"));
     }
 
 }
