@@ -185,6 +185,11 @@ img {
 }
 
 @media(max-width:767px) {
+    .container, .row {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .banner h2 {
         margin: 0;
         text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
