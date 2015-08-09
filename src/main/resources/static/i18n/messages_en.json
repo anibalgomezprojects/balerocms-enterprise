@@ -1,7 +1,7 @@
 {
   "debug-title": "Welcome JSON",
   "dashboard-title": "Dashboard Panel",
-  "login-remember": "Remember me",
+  "login.remember": "Remember me!",
 
   "dashboard-settings": "Global Settings",
   "homepage-settings": "Homepage Blocks",
