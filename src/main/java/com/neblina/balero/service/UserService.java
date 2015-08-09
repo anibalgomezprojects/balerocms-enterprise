@@ -83,6 +83,13 @@ public class UserService {
         log.debug("Changing password for admin...");
     }
 
+    public void updateUserEmail(Long id, String email) {
+        User user = userRepository.findOneById(id);
+        user.setEmail(email);
+        userRepository.save(user);
+        log.debug("Updating user's email.");
+    }
+
     public int getTotalUsers() {
         return userRepository.findAll().size();
     }

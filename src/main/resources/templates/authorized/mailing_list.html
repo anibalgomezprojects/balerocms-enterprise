@@ -30,10 +30,10 @@
                     <tr th:each="user : ${users}">
                         <td th:text="${user.id}">_ID</td>
                         <td>
-                            <a th:href="@{'/admin/user/'+${user.id}}"><span th:text="${user.email}">_NAME</span></a>
+                            <a th:href="@{'/admin/mailing-list/'+${user.id}}"><span th:text="${user.email}">_NAME</span></a>
                         </td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/user/'+${user.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                            <a th:href="@{'/admin/mailing-list/'+${user.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                             <a th:href="@{'/admin/user/unsuscribe/'+${user.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Unsuscribe</a>
                         </td>
                     </tr>
