@@ -90,6 +90,13 @@ public class UserService {
         log.debug("Updating user's email.");
     }
 
+    public void deleteUserEmail(Long id) {
+        User user = userRepository.findOneById(id);
+        user.setId(id);
+        userRepository.delete(user);
+        log.debug("Deleting user's email.");
+    }
+
     public int getTotalUsers() {
         return userRepository.findAll().size();
     }

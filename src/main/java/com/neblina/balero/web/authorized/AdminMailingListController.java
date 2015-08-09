@@ -59,4 +59,14 @@ public class AdminMailingListController {
         return "authorized/mailing_list_edit";
     }
 
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteMailingListPost(Model model,
+                                  @PathVariable("id") Long id) {
+        model.addAttribute("success", 1);
+        model.addAttribute("users", userRepository.findOneById(id));
+        userService.deleteUserEmail(id);
+        return "redirect:/admin/mailing-list/";
+    }
+
 }
