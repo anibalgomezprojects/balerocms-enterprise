@@ -26,11 +26,11 @@
                     <p th:errors="*{passwordVerify}"></p>
             </div>
 
-            <div class="alert alert-info" role="alert">
+            <div class="alert alert-info" role="alert" th:if="${#fields.hasErrors()}">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> Info</span>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> There are some errors!</span>
                 <ul>
                     <li th:if="${#fields.hasErrors('username')}">Username <p th:errors="*{username}"></p></li>
                     <li th:if="${#fields.hasErrors('password')}">Password <p th:errors="*{password}"></p></li>

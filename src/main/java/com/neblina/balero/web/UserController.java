@@ -60,6 +60,9 @@ public class UserController {
         if(!password.equals(passwordVerify)) {
             bindingResultUser.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
+        if(username.contains("admin")) {
+            bindingResultUser.rejectValue("username", "error.username", "You can't use this username.");
+        }
         if(bindingResultUser.hasErrors()) {
             model.addAttribute("settings", settingRepository.findAll());
             return "silbato/register";
