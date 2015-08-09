@@ -23,6 +23,8 @@
             <hr />
             <div class="row box-text">
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <b>Menu</b>
+                    <hr />
                     <a href="/admin/settings" th:text="#{dashboard-settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
                     <a href="/admin/profile">My Profile</a>
@@ -35,14 +37,32 @@
                     <br />
                     <a href="/admin/page">Static Pages</a>
                 </div>
-                <!-- two columns
                 <div class="col-md-4">
-                    <a href="#">Link 4</a>
+                    <b>Portal</b>
+                    <hr />
+                    <span>Total Pages <span class="badge">42</span></span>
+                    <br />
+                    <span>Blocks <span class="badge">3</span></span>
+                    <br />
+                    <span>Registered Users <span class="badge">3</span></span>
                 </div>
                 <div class="col-md-4">
-                    <a href="#">Link 5</a>
+                    <b>Shorcuts</b>
+                    <hr />
+                    <a href="/">Site Preview</a>
+                    <br />
+                    <a href="/admin/homepage/new">New Homepage Block</a>
+                    <br />
+                    <a href="#">Add New User</a>
+                    <br />
+                    <a href="/admin/page/new">Create New Static Page</a>
+                    <hr />
+                    <div class="alert alert-info" role="alert">
+                        <a href="http://docs.balerocms.com/">Documentaion</a>
+                        <br />
+                        <a href="mailto:support@balerocms.com">support@balerocms.com</a>
+                    </div>
                 </div>
-                -->
             </div>
         </div>
     </div>
