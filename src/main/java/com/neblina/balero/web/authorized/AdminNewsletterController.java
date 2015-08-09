@@ -69,7 +69,7 @@ public class AdminNewsletterController {
                            @RequestParam("email") String email,
                            Model model, Locale locale) {
         model.addAttribute("success", 1);
-        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, "USER");
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, 1, "USER");
         return "authorized/newsletter";
     }
 

@@ -8,6 +8,7 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -66,6 +67,15 @@ public class AdminMailingListController {
         model.addAttribute("success", 1);
         model.addAttribute("users", userRepository.findOneById(id));
         userService.deleteUserEmail(id);
+        return "redirect:/admin/mailing-list/";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.GET)
+    public String updateMailingListSubscribedGet(Model model,
+                                                 @PathVariable("id") Long id,
+                                                 @RequestParam("status") int status) {
+        userService.updateSubscribedStatus(id, status);
         return "redirect:/admin/mailing-list/";
     }
 

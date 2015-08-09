@@ -73,7 +73,7 @@ public class UserController {
         }
         if(usr == null) {
             log.debug("Username NOT found");
-            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, "USER");
+            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, 1, "USER");
         }
         return "redirect:/login";
     }

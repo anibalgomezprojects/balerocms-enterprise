@@ -36,6 +36,8 @@ public class User {
     @Email
     private String email;
 
+    private int subscribed;
+
     private String roles;
 
     public Long getId() {
@@ -94,6 +96,14 @@ public class User {
         this.email = email;
     }
 
+    public int getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(int subscribed) {
+        this.subscribed = subscribed;
+    }
+
     public String getRoles() {
         return roles;
     }
@@ -110,6 +120,7 @@ public class User {
                 "firstName=" + this.firstName + "," +
                 "lastName=" + this.lastName + "," +
                 "email=" + this.email + "," +
+                "subscribed=" + this.subscribed + "," +
                 "roles=" + this.roles
                 + "]";
     }
