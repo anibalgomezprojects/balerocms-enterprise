@@ -8,9 +8,12 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.Page;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
+import com.neblina.balero.service.repository.BlockRepository;
+import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -24,8 +27,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -45,6 +46,12 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PageRepository pageRepository;
+
+    @Autowired
+    private BlockRepository blockRepository;
+
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/admin/dashboard";
@@ -53,7 +60,11 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
     @RequestMapping("/dashboard")
-    public String dashboardIndex() {
+    public String dashboardIndex(Model model) {
+        model.addAttribute("totalPages", pageRepository.findAll().size());
+        model.addAttribute("totalUsers", userRepository.findAll().size());
+        model.addAttribute("totalBlocks", blockRepository.findAll().size());
+        log.debug("Total users: " + userRepository.findAll().size());
         return "authorized/dashboard";
     }
 
