@@ -73,7 +73,14 @@ public class UserController {
         }
         if(usr == null) {
             log.debug("Username NOT found");
-            userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, 1, "USER");
+            User usr2 = userRepository.findOneByEmail(email);
+            if(usr2 != null) { // email found
+                log.debug("Email already exists. Register with this email.");
+                userService.deleteUserEmail(usr2.getId()); // Clean
+                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, usr2.getEmail(), 1, "USER"); // Add
+            } else {
+                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, 1, "USER");
+            }
         }
         return "redirect:/login";
     }
