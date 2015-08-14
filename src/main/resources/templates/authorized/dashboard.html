@@ -37,7 +37,7 @@
                     <br />
                     <a href="/admin/page">Static Pages</a>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b>Portal</b>
                     <hr />
                     <span>Total Pages <span class="badge" th:text="${totalPages}">0</span></span>
@@ -46,7 +46,7 @@
                     <br />
                     <span>Registered Users <span class="badge" th:text="${totalUsers}">0</span></span>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b>Shorcuts</b>
                     <hr />
                     <a href="/">Site Preview</a>
