@@ -31,7 +31,9 @@
                         <a href="/">Home</a>
                     </li>
                     <li>
-                        <a href="/user/register">Register</a>
+                        <a href="/user/register" sec:authorize="isAnonymous()">Register</a>
+                        <a href="/admin/dashboard" sec:authorize="hasRole('ROLE_ADMIN')">Dashboard</a>
+                        <a href="/user/dashboard" sec:authorize="hasRole('ROLE_USER')">Dashboard</a>
                     </li>
                     <li>
                         <a href="/login" sec:authorize="isAnonymous()">Login</a>

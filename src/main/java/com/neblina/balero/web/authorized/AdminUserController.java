@@ -8,10 +8,16 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.User;
+import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminUserController {
 
     private static final Logger log = LogManager.getLogger(AdminUserController.class.getName());
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
@@ -33,7 +42,12 @@ public class AdminUserController {
 
     @Secured("ROLE_USER")
     @RequestMapping("/profile")
-    public String profileGet() {
+    public String profileGet(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        log.debug("Username: " + username);
+        User user = userRepository.findOneByUsername(username);
+        model.addAttribute("user", user);
         return "authorized/profile";
     }
 
