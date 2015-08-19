@@ -63,6 +63,16 @@
                         <a href="mailto:support@balerocms.com">support@balerocms.com</a>
                     </div>
                 </div>
+                <div class="container" sec:authorize="hasRole('ROLE_USER')" th:each="user : ${users}">
+                    <div class="row">
+                        <p th:text="${user.username}">Username</p>
+                        <p th:text="${user.firstName}">firstName</p>
+                        <p th:text="${user.lastName}">lastName</p>
+                        <p th:text="${user.email}">email</p>
+                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}+'?status=1'}" th:if="${user.subscribed == 0}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Subscribe</a>
+                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}+'?status=0'}" th:if="${user.subscribed == 1}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> Unsubscribe</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

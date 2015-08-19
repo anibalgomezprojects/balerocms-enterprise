@@ -61,6 +61,9 @@ public class AdminController {
     //@PreAuthorize("true")
     @RequestMapping("/dashboard")
     public String dashboardIndex(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("totalPages", pageRepository.findAll().size());
         model.addAttribute("totalUsers", userRepository.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
