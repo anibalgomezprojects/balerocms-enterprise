@@ -18,47 +18,47 @@
 
         <div class="box-content">
             <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
-            <b th:text="#{dashboard-title}">Dashboard Panel</b>
+            <b th:text="#{dashboard.title}">Dashboard Panel</b>
             <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
             <hr />
             <div class="row box-text">
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b>Menu</b>
                     <hr />
-                    <a href="/admin/settings" th:text="#{dashboard-settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
+                    <a href="/admin/settings" th:text="#{dashboard.settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
-                    <a href="/admin/profile">My Profile</a>
+                    <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
                     <br />
-                    <a href="/admin/homepage" th:text="#{homepage-settings}">_HOMEPAGE_BLOCKS</a>
+                    <a href="/admin/homepage" th:text="#{dashboard.blocks}">_HOMEPAGE_BLOCKS</a>
                     <br />
-                    <a href="/admin/newsletter" th:text="#{newsletter-settings}">_NEWSLETTER</a>
+                    <a href="/admin/newsletter" th:text="#{dashboard.newsletter}">_NEWSLETTER</a>
                     <br />
-                    <a href="/admin/mailing-list" th:text="#{mailing-list-settings}">_MAILING_LIST</a>
+                    <a href="/admin/mailing-list" th:text="#{dashboard.mailing.list}">_MAILING_LIST</a>
                     <br />
                     <a href="/admin/page">Static Pages</a>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b>Portal</b>
+                    <b th:text="#{dashboard.portal}">Portal</b>
                     <hr />
-                    <span>Total Pages <span class="badge" th:text="${totalPages}">0</span></span>
+                    <span th:text="#{dashboard.total.pages}">Total Pages </span> <span class="badge" th:text="${totalPages}">0</span>
                     <br />
-                    <span>Blocks <span class="badge" th:text="${totalBlocks}">0</span></span>
+                    <span th:text="#{dashboard.blocks}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
                     <br />
-                    <span>Registered Users <span class="badge" th:text="${totalUsers}">0</span></span>
+                    <span th:text="#{dashboard.users}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b>Shorcuts</b>
                     <hr />
-                    <a href="/">Site Preview</a>
+                    <a href="/" th:text="#{dashboard.preview}">Site Preview</a>
                     <br />
-                    <a href="/admin/homepage/new">New Homepage Block</a>
+                    <a href="/admin/homepage/new" th:text="#{dashboard.new.block}">New Homepage Block</a>
                     <br />
-                    <a href="#">Add New User</a>
+                    <a href="#" th:text="#{dashboard.new.user}">Add New User</a>
                     <br />
-                    <a href="/admin/page/new">Create New Static Page</a>
+                    <a href="/admin/page/new" th:text="#{dashboard.new.page}">Create New Static Page</a>
                     <hr />
                     <div class="alert alert-info" role="alert">
-                        <a href="http://docs.balerocms.com/">Documentaion</a>
+                        <a href="http://docs.balerocms.com/" th:text="#{dashboard.documentation}">Documentaion</a>
                         <br />
                         <a href="mailto:support@balerocms.com">support@balerocms.com</a>
                     </div>

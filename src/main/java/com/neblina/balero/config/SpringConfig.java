@@ -10,7 +10,6 @@ package com.neblina.balero.config;
 
 import com.neblina.balero.handler.ExecuteTimeInterceptor;
 import com.neblina.balero.util.AssetPipeline;
-import com.neblina.balero.util.ResourceBundleMessageSource;
 import com.neblina.balero.web.TestController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +18,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;

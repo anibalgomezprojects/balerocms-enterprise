@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Login</title>
+    <title th:text="#{login.title}">Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/css/login.css" rel="stylesheet" />
@@ -27,7 +27,7 @@
         <label class="checkbox pull">
             <input type="checkbox" value="remember-me" th:text="#{login.remember}" />
         </label>
-        <button class="btn btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-primary" type="submit" th:text="#{login.signin}">Sign in</button>
     </form>
 
     <p class="text-center"><a href="http://www.balerocms.com">BaleroCMS Software v2.</a></p>
