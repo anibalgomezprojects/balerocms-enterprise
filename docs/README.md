@@ -94,12 +94,6 @@ Replace your old files with the new and updated files.
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
 
-### i18n
-
-To change your language, set param in the URL: lang=CODE param.
-
-Example: **http://localhost:8080/?lang=es**
-
 ### Configuring E-Mail Newsletter (SMTP Client)
 
 Edit **application.yml** under resources folder, set your credentials
