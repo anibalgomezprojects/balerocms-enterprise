@@ -22,9 +22,9 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th class="text-center">Action</th>
+                        <th th:text="#{homepage.name}">Name</th>
+                        <th th:text="#{homepage.code}">Code</th>
+                        <th class="text-center" th:text="#{homepage.action}">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,8 +35,14 @@
                         </td>
                         <td th:text="${block.code}">_CODE</td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/homepage/'+${block.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                            <a th:href="@{'/admin/homepage/delete/'+${block.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                            <a th:href="@{'/admin/homepage/'+${block.id}}" href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span th:text="#{button.edit}">Edit</span>
+                            </a>
+                            <a th:href="@{'/admin/homepage/delete/'+${block.id}}" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span th:text="#{button.delete}">Delete</span>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
