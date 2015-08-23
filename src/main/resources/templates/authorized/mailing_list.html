@@ -33,10 +33,22 @@
                             <a th:href="@{'/admin/mailing-list/'+${user.id}}"><span th:text="${user.email}">_NAME</span></a>
                         </td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/mailing-list/'+${user.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                            <a th:href="@{'/admin/mailing-list/delete/'+${user.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                            <a th:href="@{'/admin/mailing-list/subscribe/'+${user.id}+'?status=1'}" th:if="${user.subscribed == 0}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Subscribe</a>
-                            <a th:href="@{'/admin/mailing-list/subscribe/'+${user.id}+'?status=0'}" th:if="${user.subscribed == 1}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> Unsubscribe</a>
+                            <a th:href="@{'/admin/mailing-list/'+${user.id}}" href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span th:text="#{button.edit}">Edit</span>
+                            </a>
+                            <a th:href="@{'/admin/mailing-list/delete/'+${user.id}}" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span th:text="#{button.delete}">Delete</span>
+                            </a>
+                            <a th:href="@{'/admin/mailing-list/subscribe/'+${user.id}+'?status=1'}" th:if="${user.subscribed == 0}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                <span th:text="#{button.subscribe}">Subscribe</span>
+                            </a>
+                            <a th:href="@{'/admin/mailing-list/subscribe/'+${user.id}+'?status=0'}" th:if="${user.subscribed == 1}" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-thumbs-down"></span>
+                                <span th:text="#{button.unsubscribe}">Unsubscribe</span>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
@@ -50,24 +62,24 @@
         <div class="box-content">
             <form class="form-horizontal" method="post" th:action="@{/admin/newsletter/list}">
                 <div class="form-group title">
-                    <h4>Add E-Mail</h4>
+                    <h4 th:text="#{mailing.list.header}">Add E-Mail</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                    <label for="firstName" class="col-sm-2 control-label" th:text="#{mailing.list.firstname}">First Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="firstName" class="form-control short" id="firstName" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">E-Mail</label>
+                    <label for="email" class="col-sm-2 control-label" th:text="#{mailing.list.email}">E-Mail</label>
                     <div class="col-sm-10">
                         <input type="text" name="email" class="form-control short" id="email" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary" th:text="#{button.add}">Add</button>
                     </div>
                 </div>
             </form>
