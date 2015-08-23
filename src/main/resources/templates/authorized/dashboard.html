@@ -47,7 +47,7 @@
                     <span th:text="#{dashboard.users}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b>Shorcuts</b>
+                    <b th:text="#{dashboard.shortcuts}">Shorcuts</b>
                     <hr />
                     <a href="/" th:text="#{dashboard.preview}">Site Preview</a>
                     <br />
