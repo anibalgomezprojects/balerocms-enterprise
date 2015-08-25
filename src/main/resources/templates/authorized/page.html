@@ -14,7 +14,7 @@
     <!-- Content -->
     <div th:fragment="main">
 
-        <div th:with="text='Static Pages'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+        <div th:with="text=#{static.page.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
             <div class="row box-text">
@@ -22,27 +22,35 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th>Code</th>
-                        <th>Hits</th>
-                        <th>Author</th>
-                        <th class="text-center">Action</th>
+                        <th th:text="#{static.page.name}">Name</th>
+                        <th th:text="#{static.page.titlepage}">Title</th>
+                        <th th:text="#{static.page.code}">Code</th>
+                        <th th:text="#{static.page.hits}">Hits</th>
+                        <th th:text="#{static.page.author}">Author</th>
+                        <th class="text-center" th:text="#{static.page.action}">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="page : ${pages}">
                         <td th:text="${page.id}">_ID</td>
                         <td>
-                            <a th:href="@{'/admin/page/'+${page.id}}"><span th:text="${page.name}">_NAME</span></a>
+                            <a th:href="@{'/admin/page/'+${page.id}}">
+                                <span th:text="${page.name}">_NAME</span>
+                            </a>
                         </td>
                         <td th:text="${page.title}">_TITLE</td>
                         <td th:text="${page.code}">_CODE</td>
                         <td th:text="${page.hits}">_HITS</td>
                         <td th:text="${page.author}">_AUTHOR</td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/page/'+${page.id}}" href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                            <a th:href="@{'/admin/page/delete/'+${page.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                            <a th:href="@{'/admin/page/'+${page.id}}" href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span th:text="#{button.edit}"></span>
+                            </a>
+                            <a th:href="@{'/admin/page/delete/'+${page.id}}" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span th:text="#{button.delete}"></span>
+                            </a>
                         </td>
                     </tr>
                     </tbody>

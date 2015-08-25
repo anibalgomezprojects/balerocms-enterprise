@@ -35,7 +35,7 @@
                     <br />
                     <a href="/admin/mailing-list" th:text="#{dashboard.mailing.list}">_MAILING_LIST</a>
                     <br />
-                    <a href="/admin/page">Static Pages</a>
+                    <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b th:text="#{dashboard.portal}">Portal</b>

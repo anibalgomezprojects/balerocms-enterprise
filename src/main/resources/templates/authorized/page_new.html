@@ -15,41 +15,41 @@
     <!-- Content -->
     <div th:fragment="homepage_new">
 
-        <div th:with="text='Static Pages'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+        <div th:with="text=#{static.page.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
 
             <form class="form-horizontal" method="post" th:action="@{'/admin/page/new'}">
                 <div class="form-group title">
-                    <h4>New Static Page</h4>
+                    <h4 th:text="#{static.page.new}">New Static Page</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <label for="name" class="col-sm-2 control-label" th:text="#{static.page.name}">Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control short" id="name" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Title</label>
+                    <label for="name" class="col-sm-2 control-label" th:text="#{static.page.title}">Title</label>
                     <div class="col-sm-10">
                         <input type="text" name="title" class="form-control short" id="title" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label">Code</label>
+                    <label for="code" class="col-sm-2 control-label" th:text="#{static.page.code}">Code</label>
                     <div class="col-sm-10">
                         <input type="text" name="code" class="form-control short" id="code" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="content" class="col-sm-2 control-label">Content</label>
+                    <label for="content" class="col-sm-2 control-label" th:text="#{static.page.content}">Content</label>
                     <div class="col-sm-10">
                         <textarea name="content" class="summernote" rows="5" id="content"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label">Permalink</label>
+                    <label for="code" class="col-sm-2 control-label" th:text="#{static.page.permalink}">Permalink</label>
                     <div class="col-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-link"></span></span>
@@ -65,8 +65,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <a href="/admin/homepage" class="btn btn-default">Cancel</a>
+                        <button type="submit" class="btn btn-primary" th:text="#{button.create}">Create</button>
+                        <a href="/admin/homepage" class="btn btn-default" th:text="#{button.cancel}">Cancel</a>
                     </div>
                 </div>
             </form>
