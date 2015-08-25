@@ -22,15 +22,15 @@
                 You have been logged out.
             </p>
         </div>
-        <input type="text" name="username" class="form-control" placeholder="Username" />
-        <input type="password" name="password" class="form-control" placeholder="Password" />
+        <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" />
+        <input type="password" name="password" class="form-control" th:placeholder="#{login.password}" />
         <label class="checkbox pull">
             <input type="checkbox" value="remember-me" th:text="#{login.remember}" />
         </label>
         <button class="btn btn-primary" type="submit" th:text="#{login.signin}">Sign in</button>
     </form>
 
-    <p class="text-center"><a href="http://www.balerocms.com">BaleroCMS Software v2.</a></p>
+    <p class="text-center"><a href="http://www.balerocms.com">Powered by BaleroCMS.</a></p>
 
 </div> <!-- /container -->
 
