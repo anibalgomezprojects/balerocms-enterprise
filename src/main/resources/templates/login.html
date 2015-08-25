@@ -15,10 +15,10 @@
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading">
             <img src="/images/logo.png" class="login_logo" />
-            <p class="bg-danger text-info" th:if="${param.error}">
+            <p class="bg-danger text-info" th:if="${param.error}" th:text="#{login.error}">
                 Invalid username and password.
             </p>
-            <p class="bg-danger text-info" th:if="${param.logout}">
+            <p class="bg-danger text-info" th:if="${param.logout}" th:text="#{login.logout}">
                 You have been logged out.
             </p>
         </div>

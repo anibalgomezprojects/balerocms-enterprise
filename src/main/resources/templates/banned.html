@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>You are banned!</title>
+    <title th:text="#{banned.title}">You are banned!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-<h2>Banned!</h2>
-<p>You Has Been Banned For 5 Minutes.</p>
+<h2 th:text="#{banned.title}">Banned!</h2>
+<p th:text="#{banned.message}">You Has Been Banned For 5 Minutes.</p>
 <p th:text="${ip}"></p>
 <p th:text="${info}"></p>
 </body>
