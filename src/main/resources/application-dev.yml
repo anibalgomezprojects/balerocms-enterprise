@@ -16,5 +16,5 @@ spring:
       level:
           org:
             springframework:
-              web: ERROR
+              web: DEBUG
           hibernate: ERROR
