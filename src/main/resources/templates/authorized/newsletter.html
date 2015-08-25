@@ -15,7 +15,7 @@
     <!-- Content -->
     <div th:fragment="settings">
 
-        <div th:with="text='Newsletter'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+        <div th:with="text=#{newsletter.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
 
@@ -28,24 +28,24 @@
 
             <form class="form-horizontal" method="post" th:action="@{/admin/newsletter}">
                 <div class="form-group title">
-                    <h4>Newsletter</h4>
+                    <h4 th:text="#{newsletter.title}">Newsletter</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="subject" class="col-sm-2 control-label">Subject</label>
+                    <label for="subject" class="col-sm-2 control-label" th:text="#{newsletter.subject}">Subject</label>
                     <div class="col-sm-10">
                         <input type="text" name="subject" class="form-control short" id="subject" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="messageBody" class="col-sm-2 control-label">Message Body</label>
+                    <label for="messageBody" class="col-sm-2 control-label" th:text="#{newsletter.message}">Message Body</label>
                     <div class="col-sm-10">
                         <textarea name="messageBody" class="summernote" rows="5" id="messageBody"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Send to (<b th:text="${totalUsers}">0</b> users)</button>
+                        <button type="submit" class="btn btn-primary"><span th:text="#{newsletter.send}">Send to users</span> (<b th:text="${totalUsers}">0</b>)</button>
                     </div>
                 </div>
             </form>
@@ -55,24 +55,24 @@
         <div class="box-content">
             <form class="form-horizontal" method="post" th:action="@{/admin/newsletter/list}">
                 <div class="form-group title">
-                    <h4>Add E-Mail</h4>
+                    <h4 th:text="#{mailing.list.header}">Add E-Mail</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                    <label for="firstName" class="col-sm-2 control-label" th:text="#{mailing.list.firstname}">First Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="firstName" class="form-control short" id="firstName" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">E-Mail</label>
+                    <label for="email" class="col-sm-2 control-label" th:text="#{mailing.list.email}">E-Mail</label>
                     <div class="col-sm-10">
                         <input type="text" name="email" class="form-control short" id="email" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary" th:text="#{button.add}">Add</button>
                     </div>
                 </div>
             </form>
