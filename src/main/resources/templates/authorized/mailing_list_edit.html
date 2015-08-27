@@ -23,7 +23,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <span th:text="#{dashboard-settings-saved}"> _SUCCESS</span>
+                <span th:text="#{success.saved}"> _SUCCESS</span>
             </div>
 
             <form class="form-horizontal" method="post" th:each="user : ${users}" th:action="@{'/admin/mailing-list/'+${user.id}}">

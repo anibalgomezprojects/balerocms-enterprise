@@ -23,7 +23,7 @@
             <hr />
             <div class="row box-text">
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b>Menu</b>
+                    <b th:text="#{dashboard.menu}">Menu</b>
                     <hr />
                     <a href="/admin/settings" th:text="#{dashboard.settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
