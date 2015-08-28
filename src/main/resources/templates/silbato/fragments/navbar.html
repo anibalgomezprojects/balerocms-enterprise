@@ -28,17 +28,24 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="/" th:text="#{frontend.home}">Home</a>
                     </li>
                     <li>
-                        <a href="/user/register" sec:authorize="isAnonymous()">Register</a>
-                        <a href="/admin/dashboard" sec:authorize="hasRole('ROLE_ADMIN')">Dashboard</a>
-                        <a href="/user/dashboard" sec:authorize="hasRole('ROLE_USER')">Dashboard</a>
+                        <a href="/user/register" sec:authorize="isAnonymous()" th:text="#{frontend.register}">Register</a>
+                        <a href="/admin/dashboard" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{frontend.dashbord}">Dashboard</a>
+                        <a href="/user/dashboard" sec:authorize="hasRole('ROLE_USER')" th:text="#{frontend.dashboard}">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/login" sec:authorize="isAnonymous()">Login</a>
-                        <a href="/logout" sec:authorize="hasRole('ROLE_ADMIN')">Logout</a>
-                        <a href="/logout" sec:authorize="hasRole('ROLE_USER')">Logout</a>
+                        <a href="/login" sec:authorize="isAnonymous()" th:text="#{frontend.login}">Login</a>
+                        <a href="/logout" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{frontend.logout}">Logout</a>
+                        <a href="/logout" sec:authorize="hasRole('ROLE_USER')" th:text="#{frontend.logout}">Logout</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span th:text="#{frontend.language}">Language</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="./?lang=en">English</a></li>
+                            <li><a href="./?lang=es">Español</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
