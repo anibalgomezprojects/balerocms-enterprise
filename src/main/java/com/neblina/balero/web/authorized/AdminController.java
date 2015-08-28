@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -74,13 +76,14 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
     public String settings(Model model) {
-        model.addAttribute("settings", settingRepository.findOneByCode("en_US"));
+        model.addAttribute("settings", settingRepository.findOneByCode("en"));
         return "authorized/settings";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public String saveSettings(Model model,
+                               Locale locale,
                                @RequestParam(value = "title") String title,
                                @RequestParam(value = "titleHeader") String titleHeader,
                                @RequestParam(value = "administratorEmail") String administratorEmail,
@@ -90,9 +93,9 @@ public class AdminController {
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
         log.debug("Saving Settings... Offline value: " + offline);
         model.addAttribute("success", 1);
-        model.addAttribute("settings", settingRepository.findOneByCode("en_US"));
+        model.addAttribute("settings", settingRepository.findOneByCode("en"));
         settingService.saveSettings(
-                "en_US",
+                locale.getLanguage(),
                 title,
                 titleHeader,
                 administratorEmail,

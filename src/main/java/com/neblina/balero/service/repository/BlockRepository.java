@@ -19,6 +19,8 @@ public interface BlockRepository extends CrudRepository<Block, Long> {
 
     List<Block> findAll();
 
+    List<Block> findAllByCode(String code);
+
     Block findOneById(Long id);
 
     Block findOneByCode(String code);

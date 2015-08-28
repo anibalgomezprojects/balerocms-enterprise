@@ -12,9 +12,15 @@ import com.neblina.balero.domain.Setting;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface SettingRepository extends CrudRepository<Setting, Long> {
 
+    List<Setting> findAll();
+
     Setting findOneByCode(String code);
+
+    Setting findOneById(Long id);
 
 }

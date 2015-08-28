@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Locale;
+
 @Controller
 @RequestMapping("/page")
 public class PageController {
@@ -31,10 +33,10 @@ public class PageController {
     private PageRepository pageRepository;
 
     @RequestMapping(value = "/{permalink}" )
-    String pageIndex(Model model, @PathVariable("permalink") String permalink) {
-        model.addAttribute("settings", settingRepository.findAll());
+    String pageIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("staticPages", pageRepository.findOneByPermalink(permalink));
-        model.addAttribute("pages", pageRepository.findAll());
+        model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         return "silbato/page";
     }
 

@@ -23,6 +23,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -39,10 +40,12 @@ public class IndexController {
     private PageRepository pageRepository;
 
     @RequestMapping("/")
-    String home(Model model) {
-        model.addAttribute("settings", settingRepository.findAll());
-        model.addAttribute("blocks", blockRepository.findAll());
-        model.addAttribute("pages", pageRepository.findAll());
+    String home(Model model, Locale locale) {
+        String lang = locale.getLanguage();
+        log.debug("Current Language: " + lang);
+        model.addAttribute("settings", settingRepository.findOneByCode(lang));
+        model.addAttribute("blocks", blockRepository.findAllByCode(lang));
+        model.addAttribute("pages", pageRepository.findAllByCode(lang));
         return "silbato/index";
     }
 
@@ -53,8 +56,9 @@ public class IndexController {
     }
 
     @RequestMapping("/offline")
-    String offline(Model model) {
-        model.addAttribute("settings", settingRepository.findAll());
+    String offline(Model model,
+                   Locale locale) {
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         return "offline";
     }
 

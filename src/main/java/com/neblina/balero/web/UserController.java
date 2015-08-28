@@ -21,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/user")
@@ -39,16 +40,18 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model,
+                               Locale locale,
                                @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser) {
         if(bindingResultUser.hasErrors()) {
             //model.addAttribute("user", user);
         }
-        model.addAttribute("settings", settingRepository.findAll());
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         return "silbato/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model,
+                           Locale locale,
                            @RequestParam(value = "username") String username,
                            @RequestParam(value = "password") String password,
                            @RequestParam(value = "passwordVerify") String passwordVerify,
@@ -64,7 +67,7 @@ public class UserController {
             bindingResultUser.rejectValue("username", "error.username", "You can't use this username.");
         }
         if(bindingResultUser.hasErrors()) {
-            model.addAttribute("settings", settingRepository.findAll());
+            model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
             return "silbato/register";
         }
         User usr = userRepository.findOneByUsername(username);

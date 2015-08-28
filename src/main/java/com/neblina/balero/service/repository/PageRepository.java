@@ -21,6 +21,10 @@ public interface PageRepository extends CrudRepository<Page, Long> {
 
     Page findOneById(Long id);
 
+    List<Page> findAllByCode(String code);
+
+    Page findOneByCode(String code);
+
     Page findOneByPermalink(String permalink);
 
 }

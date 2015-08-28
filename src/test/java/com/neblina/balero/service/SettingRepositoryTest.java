@@ -38,16 +38,8 @@ public class SettingRepositoryTest extends TestCase {
 
     @Test
     public void checkIfOfflineStatusIsOff() {
-        List<Setting> settings = (List<Setting>) settingRepository.findAll();
-        assertThat(settings.size(), is(1));
-        assertThat(settings, contains(
-                allOf(
-                        hasProperty("id", is(1L)),
-                        hasProperty("offline", is(0))
-                )
-        ));
-        assertThat(settingService.getOfflineStatus("en_US"), is(0));
-        System.out.println("Offline value is: " + settingService.getOfflineStatus("en_US"));
+        assertThat(settingService.getOfflineStatus("en"), is(0));
+        System.out.println("Offline value is: " + settingService.getOfflineStatus("en"));
     }
 
 }
