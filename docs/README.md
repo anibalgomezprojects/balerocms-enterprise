@@ -177,4 +177,6 @@ Project development by **Neblina Software Company** and **Anibal Gomez**.
 
 Official page: [www.balerocms.com](http://balerocms.com/).
 
+Contact: anibalgomez@balerocms.com
+
 Documentation Version: 0.0.1
