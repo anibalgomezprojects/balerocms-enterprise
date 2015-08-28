@@ -20,10 +20,8 @@ public class Setting {
     private String code;
     private String title;
     private String titleHeader;
-    private String administratorEmail;
     private String tags;
     private String footer;
-    private int offline;
     private String offlineMessage;
 
     public Long getId() {
@@ -58,14 +56,6 @@ public class Setting {
         this.titleHeader = titleHeader;
     }
 
-    public String getAdministratorEmail() {
-        return administratorEmail;
-    }
-
-    public void setAdministratorEmail(String administratorEmail) {
-        this.administratorEmail = administratorEmail;
-    }
-
     public String getTags() {
         return tags;
     }
@@ -80,14 +70,6 @@ public class Setting {
 
     public void setFooter(String footer) {
         this.footer = footer;
-    }
-
-    public int getOffline() {
-        return offline;
-    }
-
-    public void setOffline(int offline) {
-        this.offline = offline;
     }
 
     public void setOfflineMessage(String offlineMessage) {
@@ -106,10 +88,8 @@ public class Setting {
                 "code=" + this.code + "," +
                 "title=" + this.title + "," +
                 "titleHeader=" + this.titleHeader + "," +
-                "administratorEmail=" + this.administratorEmail + "," +
                 "tags=" + this.tags + "," +
                 "footer=" + this.footer + ", " +
-                "offline=" + this.offline + ", " +
                 "offlineMessage=" + this.offlineMessage
                 + "]";
     }

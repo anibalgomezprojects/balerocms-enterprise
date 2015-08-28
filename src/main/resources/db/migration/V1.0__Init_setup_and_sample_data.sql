@@ -10,15 +10,19 @@ CREATE TABLE USER (
 	roles varchar(255) not null
 );
 
+CREATE TABLE PROPERTY (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	administrator_email varchar(255) not null,
+	offline int(10) not null
+);
+
 CREATE TABLE SETTING (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	code varchar(255) not null,
 	title varchar(255) not null,
 	title_header varchar(255) not null,
-	administrator_email varchar(255) not null,
 	tags varchar(255) not null,
 	footer varchar(1000) not null,
-	offline int(10) not null,
 	offline_message varchar(1000) not null
 );
 
@@ -52,9 +56,12 @@ INSERT INTO USER (id, username, password, password_verify, first_name, last_name
 (2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'demo@localhost.com', '1', 'ROLE_USER'),
 (3, 'anonymous', '$$$$$$$$', '$$$$$$$$', 'Anonymous', 'Unregistered', 'anonymous@localhost.com', '1', 'ROLE_ANONYMOUS');
 
-INSERT INTO SETTING (id, code, title, title_header, administrator_email, tags, footer, offline, offline_message) VALUES
-(1, 'en', 'Balerocms v2', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'admin@localhost', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Home</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">About</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Services</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contact</a></li></ul><br />(c) 2015. Your company. Powered by <a href="http://www.balerocms.com/">BaleroCMS</a>.', '0', 'Site under maintenance. We will back shortly.'),
-(2, 'es', 'Balerocms v2', '<h1>Bienvenido</h1><h3>Portal De Ejemplo</h3><hr class="intro-divider" /><p>Felicidades! La instalación fue un éxito!</p>', 'admin@localhost', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Inicio</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">Acerca de</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Servicios</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contacto</a></li></ul><br />(c) 2015. Tu empresa. Soportado por <a href="http://www.balerocms.com/">BaleroCMS</a>.', '0', 'Sitio en mantenimiento. Regresaremos pronto.');
+INSERT INTO PROPERTY (id, administrator_email, offline) VALUES
+(1, 'admin@localhost', '0');
+
+INSERT INTO SETTING (id, code, title, title_header, tags, footer, offline_message) VALUES
+(1, 'en', 'Balerocms v2', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Home</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">About</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Services</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contact</a></li></ul><br />(c) 2015. Your company. Powered by <a href="http://www.balerocms.com/">BaleroCMS</a>.', 'Site under maintenance. We will back shortly.'),
+(2, 'es', 'Balerocms v2', '<h1>Bienvenido</h1><h3>Portal De Ejemplo</h3><hr class="intro-divider" /><p>Felicidades! La instalación fue un éxito!</p>', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Inicio</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">Acerca de</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Servicios</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contacto</a></li></ul><br />(c) 2015. Tu empresa. Soportado por <a href="http://www.balerocms.com/">BaleroCMS</a>.', 'Sitio en mantenimiento. Regresaremos pronto.');
 
 INSERT INTO BLOCK (id, name, content, code) VALUES
 (1, 'tablet_en', '\n<div class="content-section-a">\n    <div class="container">\n        <div class="row">\n            <div class="col-lg-5 col-sm-6">\n                <hr class="section-heading-spacer">\n                <div class="clearfix"></div>\n                <h2 class="section-heading">Enterprise CMS</h2>\n                <p class="lead">Made with the powerful of Java 8, Hibernate And Spring. You can edit\n                this content from your <a href="/admin">Admin</a> Dashboard Panel. You can optimize\n                this website from your tablet.</p>\n            </div>\n            <div class="col-lg-5 col-lg-offset-2 col-sm-6">\n                <img class="img-responsive" src="/images/ipad.png" alt="" />\n            </div>\n        </div>\n    </div>\n</div>', 'en'),

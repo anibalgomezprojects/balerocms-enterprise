@@ -9,7 +9,9 @@
 package com.neblina.balero.handler;
 
 import com.neblina.balero.service.BlacklistService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.SettingService;
+import com.neblina.balero.service.repository.PropertyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +28,18 @@ public class MaintenanceFilter implements Filter {
     private final Logger log = LoggerFactory.getLogger(MaintenanceFilter.class);
 
     @Autowired
-    private SettingService settingService;
+    private PropertyService propertyService;
 
     @Autowired
     private BlacklistService blacklistService;
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Maintenance Filter...");
-        log.debug("offline value: " + settingService.getOfflineStatus("en"));
+        log.debug("offline value: " + propertyService.getOfflineStatus());
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        if(settingService.getOfflineStatus("en") == 1 && !url.contains("offline")) {
+        if(propertyService.getOfflineStatus() == 1 && !url.contains("offline")) {
             if(blacklistService.isIpBanned() == false) {
                 if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
                         url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||

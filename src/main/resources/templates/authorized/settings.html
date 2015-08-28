@@ -26,58 +26,58 @@
                 <span th:text="#{success.saved}"> _SUCCESS</span>
             </div>
 
-            <form class="form-horizontal" method="post" th:action="@{/admin/settings}" th:object="${settings}">
+            <form class="form-horizontal" method="post" th:action="@{/admin/settings}">
                 <div class="form-group title">
-                    <h4>Global Settings</h4>
+                    <h4 th:text="#{settings.text.header}">Global Settings</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label" th:text="#{settings.site.title}">Title</label>
+                    <label for="title" class="col-sm-2 control-label" th:text="#{settings.text.title}">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control short" id="title" th:field="*{title}" />
+                        <input type="text" name="title" class="form-control short" id="title" th:value="${settings.title}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="administratorEmail" class="col-sm-2 control-label" th:text="#{settings.administrator.email}">Administrator Email</label>
+                    <label for="administratorEmail" class="col-sm-2 control-label" th:text="#{properties.text.administrator.email}">Administrator Email</label>
                     <div class="col-sm-10">
-                        <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" th:field="*{administratorEmail}" />
+                        <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" th:value="${properties.administratorEmail}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="tags" class="col-sm-2 control-label" th:text="#{settings.tags}">Site Tags</label>
+                    <label for="tags" class="col-sm-2 control-label" th:text="#{settings.text.tags}">Site Tags</label>
                     <div class="col-sm-10">
-                        <input type="text" name="tags" class="form-control short" id="tags" th:field="*{tags}" />
+                        <input type="text" name="tags" class="form-control short" id="tags" th:value="${settings.tags}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="titleHeader" class="col-sm-2 control-label" th:text="#{settings.slogan}">Header Title or Slogan</label>
+                    <label for="titleHeader" class="col-sm-2 control-label" th:text="#{settings.text.slogan}">Header Title or Slogan</label>
                     <div class="col-sm-10">
-                        <textarea name="titleHeader" class="summernote" rows="5" id="titleHeader" th:field="*{titleHeader}"></textarea>
+                        <textarea name="titleHeader" class="summernote" rows="5" id="titleHeader" th:text="${settings.titleHeader}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="footer" class="col-sm-2 control-label" th:text="#{settings.footer}">Footer</label>
+                    <label for="footer" class="col-sm-2 control-label" th:text="#{settings.text.footer}">Footer</label>
                     <div class="col-sm-10">
-                        <textarea name="footer" class="summernote" rows="5" id="footer" th:field="*{footer}"></textarea>
+                        <textarea name="footer" class="summernote" rows="5" id="footer" th:text="${settings.footer}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="offline" class="col-sm-2 control-label" th:text="#{settings.status}">Status</label>
-                    <div class="col-sm-10" th:switch="*{offline}">
+                    <label for="offline" class="col-sm-2 control-label" th:text="#{properties.text.status}">Status</label>
+                    <div class="col-sm-10" th:switch="${properties.offline}">
                         <select name="offline" id="offline" th:case="0">
-                            <option  value="0" th:value="0" th:selected="selected" th:text="#{settings.online}">Online</option>
-                            <option value="1" th:value="1" th:text="#{settings.offline}">Offline</option>
+                            <option  value="0" th:value="0" th:selected="selected" th:text="#{properties.text.online}">Online</option>
+                            <option value="1" th:value="1" th:text="#{properties.text.offline}">Offline</option>
                         </select>
                         <select name="offline" id="offline" th:case="1">
-                            <option  value="0" th:value="0" th:text="#{settings.online}">Online</option>
-                            <option value="1" th:value="1" th:selected="selected" th:text="#{settings.offline}">Offline</option>
+                            <option  value="0" th:value="0" th:text="#{properties.text.online}">Online</option>
+                            <option value="1" th:value="1" th:selected="selected" th:text="#{properties.text.offline}">Offline</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="offlineMessage" class="col-sm-2 control-label" th:text="#{settings.offline.message}">Offline Message</label>
+                    <label for="offlineMessage" class="col-sm-2 control-label" th:text="#{settings.text.offline.message}">Offline Message</label>
                     <div class="col-sm-10">
-                        <textarea name="offlineMessage" class="summernote" rows="5" id="offlineMessage" th:field="*{offlineMessage}"></textarea>
+                        <textarea name="offlineMessage" class="summernote" rows="5" id="offlineMessage" th:text="${settings.offlineMessage}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

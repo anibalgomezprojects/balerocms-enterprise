@@ -12,10 +12,7 @@ import com.neblina.balero.domain.Page;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.BlockRepository;
-import com.neblina.balero.service.repository.PageRepository;
-import com.neblina.balero.service.repository.SettingRepository;
-import com.neblina.balero.service.repository.UserRepository;
+import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +51,9 @@ public class AdminController {
     @Autowired
     private BlockRepository blockRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/admin/dashboard";
@@ -75,8 +75,10 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
-    public String settings(Model model) {
-        model.addAttribute("settings", settingRepository.findOneByCode("en"));
+    public String settings(Model model,
+                           Locale locale) {
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         return "authorized/settings";
     }
 
@@ -93,7 +95,8 @@ public class AdminController {
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
         log.debug("Saving Settings... Offline value: " + offline);
         model.addAttribute("success", 1);
-        model.addAttribute("settings", settingRepository.findOneByCode("en"));
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         settingService.saveSettings(
                 locale.getLanguage(),
                 title,

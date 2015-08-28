@@ -8,7 +8,9 @@
 
 package com.neblina.balero.service;
 
+import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.Setting;
+import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class SettingService {
     @Autowired
     private SettingRepository settingRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     public void saveSettings(String code,
                              String title,
                              String titleHeader,
@@ -32,20 +37,17 @@ public class SettingService {
                              int offline,
                              String offlineMessage) {
         Setting settings = settingRepository.findOneByCode(code);
+        Property properties = propertyRepository.findOneById(1L);
         settings.setCode(code);
         settings.setTitle(title);
         settings.setTitleHeader(titleHeader);
-        settings.setAdministratorEmail(administratorEmail);
+        properties.setAdministratorEmail(administratorEmail);
         settings.setTags(tags);
         settings.setFooter(footer);
-        settings.setOffline(offline);
+        properties.setOffline(offline);
         settings.setOfflineMessage(offlineMessage);
         settingRepository.save(settings);
-    }
-
-    public int getOfflineStatus(String code) {
-        Setting settings = settingRepository.findOneByCode(code);
-        return settings.getOffline();
+        propertyRepository.save(properties);
     }
 
 }

@@ -9,7 +9,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
-import com.neblina.balero.domain.Setting;
+import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -28,18 +28,15 @@ import static org.junit.Assert.assertThat;
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-public class SettingRepositoryTest extends TestCase {
+public class PropertyRepositoryTest extends TestCase {
 
     @Autowired
-    private SettingRepository settingRepository;
-
-    @Autowired
-    private SettingService settingService;
+    private PropertyService propertyService;
 
     @Test
     public void checkIfOfflineStatusIsOff() {
-        assertThat(settingService.getOfflineStatus("en"), is(0));
-        System.out.println("Offline value is: " + settingService.getOfflineStatus("en"));
+        assertThat(propertyService.getOfflineStatus(), is(0));
+        System.out.println("Offline value is: " + propertyService.getOfflineStatus());
     }
 
 }
