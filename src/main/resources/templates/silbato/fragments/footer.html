@@ -17,7 +17,9 @@
                     <p class="copyright text-muted small" th:utext="${setting.footer}">
                         _FOOTER
                     </p>
-                    <p class="execute-time">Generated in: <b th:text="${executeTime}">0</b>ms</p>
+                    <p class="execute-time">
+                        <span th:text="#{footer.generated.time}">Generated in:</span> <b th:text="${executeTime}">0</b>ms
+                    </p>
                 </div>
             </div>
         </div>
