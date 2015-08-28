@@ -9,15 +9,15 @@ SOFTWARE DOCUMENTATION
 * Apache Maven (3.2.5 or Higher)
 * MySQL (5 or Higher; Only for production mode)
 
-### Welcome to Balero CMS v2.
+### Welcome to Balero CMS Enterprise.
 
 Cloning project:
 
-    $ git clone https://github.com/neblina-software/balerocms-v2.git
+    $ git clone https://github.com/neblina-software/balerocms-enterprise.git
 
 Navigate to root folder:
 
-    $ cd balerocms-v2
+    $ cd balerocms-enterprise
 
 And then, run:
 
@@ -38,7 +38,7 @@ It will activate the development profile.
 ### Production Deploy:
 
 For live portals and production (MySQL) with resource minification (HTML/CSS/JS).
-First you need a MySQL Database called 'balerocms_v2'.
+First you need a MySQL Database called 'balerocms_enterprise'.
 
     $ mvn -Pprod spring-boot:run
     
@@ -115,7 +115,7 @@ V1.0__Message_example_etc.sql
 
 ### About this project
 
-In most cases, Enterprise applications are heavy and very slow. Balero CMS v2
+In most cases, Enterprise applications are heavy and very slow. Balero CMS Enterprise
 is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
 
 NOTES
@@ -149,8 +149,8 @@ NOTES
 * Hot Swap
 * Spring Security Password Hash Encryption / Protection
 
-IoT Support on v2
-=================
+IoT Support on Enterprise version
+=================================
 
 * Arduino
 * Raspberry Pi
