@@ -11,12 +11,12 @@
 <div th:fragment="linkbar">
     <div class="space"></div>
     <div class="well well-sm gradient">
-        <span th:if="${text == 'root'}">
+        <span th:if="${text == 'root'}" th:text="#{dashboard.root}">
             Dashboard
         </span>
         <span th:if="${text != 'root'}">
-            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard">Dashboard</a>
-            <a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard">Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard" th:text="#{dashboard.root}">Dashboard</a>
+            <a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard" th:text="#{dashboard.root}">Dashboard</a>
             /
             <span th:text="${text}">_TEXT</span>
         </span>

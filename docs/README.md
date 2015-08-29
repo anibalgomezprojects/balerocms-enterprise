@@ -52,7 +52,7 @@ Open http://localhost:8080/ in your favourite browser.
 
 To login to your administrator panel:
 
-http://localhost:8080/admin (Hidden link)
+http://localhost:8080/admin/dashboard (Hidden link)
 
 And login with the sample data:
 
