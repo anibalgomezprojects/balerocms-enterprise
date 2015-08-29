@@ -9,8 +9,6 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
-import com.neblina.balero.service.repository.PropertyRepository;
-import com.neblina.balero.service.repository.SettingRepository;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +17,6 @@ import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
