@@ -13,31 +13,31 @@
 <div class="container">
 
     <!-- Content -->
-    <div th:fragment="homepage_new">
+    <div th:fragment="block_new">
 
-        <div th:with="text='Homepage Blocks'" th:include="authorized/fragments/linkbar :: linkbar"></div>
+        <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
         <div class="box-content">
 
             <form class="form-horizontal" method="post" th:action="@{'/admin/homepage/new'}">
                 <div class="form-group title">
-                    <h4 th:text="#{homepage.new}">New Homepage Block</h4>
+                    <h4 th:text="#{block.text.new}">New Homepage Block</h4>
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label" th:text="#{homepage.name}">Name</label>
+                    <label for="name" class="col-sm-2 control-label" th:text="#{block.text.name}">Name</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control short" id="name" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="content" class="col-sm-2 control-label" th:text="#{homepage.content}">Content</label>
+                    <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
                     <div class="col-sm-10">
                         <textarea name="content" class="summernote" rows="5" id="content"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label" th:text="#{homepage.code}">Code</label>
+                    <label for="code" class="col-sm-2 control-label" th:text="#{block.text.code}">Code</label>
                     <div class="col-sm-10">
                         <input type="text" name="code" class="form-control short" id="code" />
                     </div>

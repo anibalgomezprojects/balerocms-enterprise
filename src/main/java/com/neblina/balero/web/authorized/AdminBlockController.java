@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/admin/homepage")
-public class HomepageController {
+@RequestMapping("/admin/block")
+public class AdminBlockController {
 
-    private static final Logger log = LogManager.getLogger(HomepageController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminBlockController.class.getName());
 
     @Autowired
     private BlockService blockService;
@@ -37,14 +37,14 @@ public class HomepageController {
     @RequestMapping(value = {"", "/"} )
     public String homepage(Model model) {
         model.addAttribute("blocks", blockRepository.findAll());
-        return "authorized/homepage";
+        return "authorized/block";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String homepageEditGet(Model model, @PathVariable("id") Long id) {
         model.addAttribute("blocks", blockRepository.findOneById(id));
-        return "authorized/homepage_save";
+        return "authorized/block_edit";
     }
 
     @Secured("ROLE_ADMIN")
@@ -61,13 +61,13 @@ public class HomepageController {
         );
         model.addAttribute("success", 1);
         model.addAttribute("blocks", blockRepository.findOneById(id));
-        return "authorized/homepage_save";
+        return "authorized/block_edit";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String homepageEditGet() {
-        return "authorized/homepage_new";
+        return "authorized/block_new";
     }
 
     @Secured("ROLE_ADMIN")
@@ -81,14 +81,14 @@ public class HomepageController {
                 content,
                 code
         );
-        return "redirect:/admin//homepage";
+        return "redirect:/admin//block";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String homepageDelete(Model model, @PathVariable("id") Long id) {
         blockService.deleteBlock(id);
-        return "redirect:/admin/homepage";
+        return "redirect:/admin/block";
     }
 
 }
