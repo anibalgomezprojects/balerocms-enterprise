@@ -46,7 +46,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" th:inline="text"><span class="glyphicon glyphicon-user"></span> [[${#httpServletRequest.remoteUser}]] <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" th:text="#{dashboard.profile}">My Profile</a></li>
+                        <li><a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Session</li>
                         <li><a href="/logout" th:text="#{navbar.logout}">Logout</a></li>

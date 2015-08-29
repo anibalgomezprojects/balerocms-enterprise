@@ -19,7 +19,6 @@
         <div class="box-content">
             <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
             <b th:text="#{dashboard.title}">Dashboard Panel</b>
-            <span class="label label-custom pull-right"><b th:inline="text">[[${#httpServletRequest.remoteUser}]]</b></span>
             <hr />
             <div class="row box-text">
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
