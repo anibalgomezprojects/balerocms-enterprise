@@ -33,7 +33,7 @@
                     <li>
                         <a href="/user/register" sec:authorize="isAnonymous()" th:text="#{frontend.register}">Register</a>
                         <a href="/admin/dashboard" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{frontend.dashboard}">Dashboard</a>
-                        <a href="/user/dashboard" sec:authorize="hasRole('ROLE_USER')" th:text="#{frontend.dashboaard}">Dashboard</a>
+                        <a href="/user/dashboard" sec:authorize="hasRole('ROLE_USER')" th:text="#{frontend.dashboard}">Dashboard</a>
                     </li>
                     <li>
                         <a href="/login" sec:authorize="isAnonymous()" th:text="#{frontend.login}">Login</a>
