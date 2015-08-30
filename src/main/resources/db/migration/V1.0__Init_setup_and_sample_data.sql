@@ -1,4 +1,4 @@
-CREATE TABLE USER (
+CREATE TABLE IF NOT EXISTS USER (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	username varchar(255) not null,
 	password varchar(255) not null,
@@ -10,13 +10,13 @@ CREATE TABLE USER (
 	roles varchar(255) not null
 );
 
-CREATE TABLE PROPERTY (
+CREATE TABLE IF NOT EXISTS PROPERTY (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	administrator_email varchar(255) not null,
 	offline int(10) not null
 );
 
-CREATE TABLE SETTING (
+CREATE TABLE IF NOT EXISTS SETTING (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	code varchar(255) not null,
 	title varchar(255) not null,
@@ -26,21 +26,21 @@ CREATE TABLE SETTING (
 	offline_message varchar(1000) not null
 );
 
-CREATE TABLE BLACKLIST (
+CREATE TABLE IF NOT EXISTS BLACKLIST (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	ip varchar(255) not null,
 	timer int(10) not null,
 	attemps int(10) not null
 );
 
-CREATE TABLE BLOCK (
+CREATE TABLE IF NOT EXISTS BLOCK (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	content varchar(1000) not null,
 	code varchar(255) not null
 );
 
-CREATE TABLE PAGE (
+CREATE TABLE IF NOT EXISTS PAGE (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	title varchar(255) not null,
