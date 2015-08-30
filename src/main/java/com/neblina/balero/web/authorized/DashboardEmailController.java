@@ -27,10 +27,10 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/admin/newsletter")
-public class AdminNewsletterController {
+@RequestMapping("/admin/email")
+public class DashboardEmailController {
 
-    private static final Logger log = LogManager.getLogger(AdminNewsletterController.class.getName());
+    private static final Logger log = LogManager.getLogger(DashboardEmailController.class.getName());
 
     @Autowired
     private EmailService emailService;
@@ -43,14 +43,14 @@ public class AdminNewsletterController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
-    public String homepage(Model model) {
+    public String email(Model model) {
         model.addAttribute("totalUsers", userService.getTotalUsers());
-        return "authorized/newsletter";
+        return "authorized/email";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
-    public String newsletterPost(@RequestParam("subject") String subject,
+    public String emailPost(@RequestParam("subject") String subject,
                                  @RequestParam("messageBody") String messageBody,
                                  Model model, Locale locale) throws MessagingException {
         List<User> users = userRepository.findAll();
@@ -60,17 +60,7 @@ public class AdminNewsletterController {
         }
         model.addAttribute("totalUsers", userService.getTotalUsers());
         model.addAttribute("success", 1);
-        return "authorized/newsletter";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public String listPost(@RequestParam("firstName") String firstName,
-                           @RequestParam("email") String email,
-                           Model model, Locale locale) {
-        model.addAttribute("success", 1);
-        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, 1, "USER");
-        return "authorized/newsletter";
+        return "authorized/email";
     }
 
 }

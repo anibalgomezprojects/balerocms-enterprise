@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Locale;
+
 @Controller
 @RequestMapping("/admin/user")
 public class DashboardAdminUserController {
@@ -76,6 +78,16 @@ public class DashboardAdminUserController {
                                                  @RequestParam("status") int status) {
         userService.updateSubscribedStatus(id, status);
         return "redirect:/admin/user/";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public String userEmailListPost(@RequestParam("firstName") String firstName,
+                                @RequestParam("email") String email,
+                                Model model, Locale locale) {
+        model.addAttribute("success", 1);
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, 1, "USER");
+        return "redirect:/admin/user";
     }
 
 }
