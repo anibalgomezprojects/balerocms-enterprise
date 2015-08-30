@@ -28,9 +28,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin/email")
-public class DashboardEmailController {
+public class DashboardAdminEmailController {
 
-    private static final Logger log = LogManager.getLogger(DashboardEmailController.class.getName());
+    private static final Logger log = LogManager.getLogger(DashboardAdminEmailController.class.getName());
 
     @Autowired
     private EmailService emailService;

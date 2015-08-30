@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/page")
-public class AdminPageController {
+public class DashboardAdminPageController {
 
-    private static final Logger log = LogManager.getLogger(AdminPageController.class.getName());
+    private static final Logger log = LogManager.getLogger(DashboardAdminPageController.class.getName());
 
     @Autowired
     private PageService pageService;
@@ -44,7 +44,7 @@ public class AdminPageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String pageEditGet(Model model, @PathVariable("id") Long id) {
         model.addAttribute("pages", pageRepository.findOneById(id));
-        return "authorized/page_save";
+        return "authorized/page_edit";
     }
 
     @Secured("ROLE_ADMIN")
@@ -67,7 +67,7 @@ public class AdminPageController {
         );
         model.addAttribute("success", 1);
         model.addAttribute("pages", pageRepository.findOneById(id));
-        return "authorized/page_save";
+        return "authorized/page_edit";
     }
 
     @Secured("ROLE_ADMIN")
