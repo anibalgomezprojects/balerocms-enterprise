@@ -8,7 +8,6 @@
 
 package com.neblina.balero.web.authorized;
 
-import com.neblina.balero.domain.Page;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
@@ -29,9 +28,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class DashboardAdminController {
 
-    private static final Logger log = LogManager.getLogger(AdminController.class.getName());
+    private static final Logger log = LogManager.getLogger(DashboardAdminController.class.getName());
 
     @Autowired
     private SettingRepository settingRepository;

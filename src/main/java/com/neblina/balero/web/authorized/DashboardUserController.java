@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
-public class AdminUserController {
+public class DashboardUserController {
 
-    private static final Logger log = LogManager.getLogger(AdminUserController.class.getName());
+    private static final Logger log = LogManager.getLogger(DashboardUserController.class.getName());
 
     @Autowired
     private UserRepository userRepository;
