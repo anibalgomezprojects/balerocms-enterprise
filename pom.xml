@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.3.RELEASE</version>
+        <version>1.2.5.RELEASE</version>
     </parent>
 
     <properties>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>springloaded</artifactId>
-            <version>1.2.3.RELEASE</version>
+            <version>1.2.4.RELEASE</version>
         </dependency>
     </dependencies>
 
@@ -114,7 +114,7 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>1.2.3.RELEASE</version>
+                        <version>1.2.5.RELEASE</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -126,7 +126,7 @@
                             <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>springloaded</artifactId>
-                                <version>1.2.3.RELEASE</version>
+                                <version>1.2.4.RELEASE</version>
                             </dependency>
                         </dependencies>
                         <configuration>
@@ -152,7 +152,7 @@
                             <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>springloaded</artifactId>
-                                <version>1.2.3.RELEASE</version>
+                                <version>1.2.4.RELEASE</version>
                             </dependency>
                         </dependencies>
                         <configuration>
