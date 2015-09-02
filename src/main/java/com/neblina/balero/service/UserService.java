@@ -1,6 +1,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.impl.CustomUserDetailsService;
 import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -17,15 +18,11 @@ public class UserService {
 
     private static final Logger log = LogManager.getLogger(UserService.class.getName());
 
-    private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
-
-    @Autowired
-    public UserService(InMemoryUserDetailsManager inMemoryUserDetailsManager) {
-        this.inMemoryUserDetailsManager = inMemoryUserDetailsManager;
-    }
-
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
 
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
                                   String email, int subscribed, String roles) {
@@ -43,10 +40,11 @@ public class UserService {
         try {
             if(!userName.equals("temp") && !password.equals("temp")) {
                 log.debug("Creating user '" + userName + "' with User id: " + user.getId() + " and Email: " + email);
-                inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
+                //inMemoryUserDetailsManager.createUser(new org.springframework.security.core.userdetails.User(userName, pwd.generatePassword(password), AuthorityUtils.createAuthorityList("ROLE_USER")));
+                customUserDetailsService.loadUserByUsername(userName);
             }
         } catch (Exception e) {
-            log.debug("inMemoryUserDetailsManager: " + e.getMessage());
+            log.debug("Error: " + e.getMessage());
         }
     }
 
@@ -81,7 +79,7 @@ public class UserService {
         user.setPassword(passwordGenerator.generatePassword(newPassword));
         user.setPasswordVerify(passwordGenerator.generatePassword(newPassword));
         userRepository.save(user);
-        inMemoryUserDetailsManager.changePassword(null, passwordGenerator.generatePassword(newPassword));
+        //inMemoryUserDetailsManager.changePassword(null, passwordGenerator.generatePassword(newPassword));
         log.debug("Changing password for admin...");
     }
 
