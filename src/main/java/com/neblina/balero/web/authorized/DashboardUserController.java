@@ -70,4 +70,18 @@ public class DashboardUserController {
         return "redirect:/user/dashboard/";
     }
 
+    @Secured("ROLE_USER")
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    public String passwordPost(Model model,
+                               @RequestParam("newPassword") String newPassword) {
+        log.debug("POST /user/password");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        model.addAttribute("success", 1);
+        User user = userRepository.findOneByUsername(username);
+        model.addAttribute("user", user);
+        userService.changeUserPassword(newPassword);
+        return "authorized/profile";
+    }
+
 }

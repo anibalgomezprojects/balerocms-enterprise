@@ -7,6 +7,8 @@ import com.neblina.balero.util.PasswordGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -78,6 +80,18 @@ public class UserService {
         user.setPasswordVerify(passwordGenerator.generatePassword(newPassword));
         userRepository.save(user);
         //inMemoryUserDetailsManager.changePassword(null, passwordGenerator.generatePassword(newPassword));
+        customUserDetailsManager.changePassword(null, passwordGenerator.generatePassword(newPassword));
+        log.debug("Changing password for admin...");
+    }
+
+    public void changeUserPassword(String newPassword) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        User user = userRepository.findOneByUsername(username);
+        PasswordGenerator passwordGenerator = new PasswordGenerator();
+        user.setPassword(passwordGenerator.generatePassword(newPassword));
+        user.setPasswordVerify(passwordGenerator.generatePassword(newPassword));
+        userRepository.save(user);
         customUserDetailsManager.changePassword(null, passwordGenerator.generatePassword(newPassword));
         log.debug("Changing password for admin...");
     }
