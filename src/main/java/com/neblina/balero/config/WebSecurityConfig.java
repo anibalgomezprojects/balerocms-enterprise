@@ -8,7 +8,7 @@
 
 package com.neblina.balero.config;
 
-import com.neblina.balero.service.impl.CustomUserDetailsService;
+import com.neblina.balero.service.impl.CustomUserDetailsManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private CustomUserDetailsManager customUserDetailsManager;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService)
+        auth.userDetailsService(customUserDetailsManager)
                 .passwordEncoder(passwordEncoder());
     }
 
