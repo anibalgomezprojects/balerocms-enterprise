@@ -24,11 +24,11 @@
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b th:text="#{dashboard.menu}">Menu</b>
                     <hr />
-                    <a href="/admin/settings" th:text="#{dashboard.settings}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
+                    <a href="/admin/settings" th:text="#{dashboard.setting}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
                     <br />
                     <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
                     <br />
-                    <a href="/admin/block" th:text="#{dashboard.blocks}">_BLOCKS</a>
+                    <a href="/admin/block" th:text="#{dashboard.block}">_BLOCKS</a>
                     <br />
                     <a href="/admin/email" th:text="#{dashboard.email}">_EMAIL</a>
                     <br />
@@ -41,12 +41,12 @@
                     <hr />
                     <span th:text="#{dashboard.total.pages}">Total Pages </span> <span class="badge" th:text="${totalPages}">0</span>
                     <br />
-                    <span th:text="#{dashboard.blocks}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
+                    <span th:text="#{dashboard.block}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
                     <br />
-                    <span th:text="#{dashboard.users}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
+                    <span th:text="#{dashboard.user}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b th:text="#{dashboard.shortcuts}">Shorcuts</b>
+                    <b th:text="#{dashboard.shortcut}">Shorcuts</b>
                     <hr />
                     <a href="/" th:text="#{dashboard.preview}">Site Preview</a>
                     <br />
