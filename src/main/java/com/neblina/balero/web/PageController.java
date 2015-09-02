@@ -8,6 +8,7 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.domain.Page;
 import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
@@ -35,8 +36,16 @@ public class PageController {
     @RequestMapping(value = "/{permalink}" )
     String pageIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
-        model.addAttribute("staticPages", pageRepository.findOneByPermalink(permalink));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
+        try {
+            Page page = pageRepository.findOneByPermalink(permalink);
+            if(page.getPermalink() == null) {
+                throw new Exception("Error 404");
+            }
+            model.addAttribute("staticPages", pageRepository.findOneByPermalink(permalink));
+        } catch (Exception e) {
+            model.addAttribute("error404", 1);
+        }
         return "silbato/page";
     }
 
