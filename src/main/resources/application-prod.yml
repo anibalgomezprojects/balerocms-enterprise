@@ -22,7 +22,5 @@ spring:
             springframework:
               web: DEBUG
           hibernate: OFF
-
-# FLYWAY (FlywayProperties)
 flyway:
   validateOnMigrate: false

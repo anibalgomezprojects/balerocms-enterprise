@@ -8,3 +8,5 @@ spring:
         smtp:
             auth: true
             starttls: true
+server:
+    port: 8080
