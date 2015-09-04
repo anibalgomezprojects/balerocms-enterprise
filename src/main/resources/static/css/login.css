@@ -26,6 +26,9 @@ body {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
     -webkit-font-smoothing: antialiased;
 }
+.container {
+    margin-top: 70px;
+}
 .debug {
     color: white;
     background-color: #dd5152;
@@ -74,8 +77,8 @@ body {
     padding: 7px 9px;
 }
 .login_logo {
-    padding-top: 5px;
-    padding-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 .bg-danger {
     margin: 10px;

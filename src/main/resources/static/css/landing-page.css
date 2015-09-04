@@ -99,6 +99,11 @@ img {
     font-weight: lighter;
 }
 
+.navbar-brand {
+    font-size: small;
+    font-weight: bold;
+}
+
 @media(max-width:767px) {
     .intro-message {
         padding-bottom: 15%;

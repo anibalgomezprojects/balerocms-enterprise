@@ -14,7 +14,9 @@
 
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading">
-            <img src="/images/logo.png" class="login_logo" />
+            <a href="http://www.balerocms.com/">
+                <img src="/images/logos/login.png" class="login_logo" />
+            </a>
             <p class="bg-danger text-info" th:if="${param.error}" th:text="#{login.error}">
                 Invalid username and password.
             </p>
@@ -24,13 +26,15 @@
         </div>
         <input type="text" name="username" class="form-control" th:placeholder="#{login.username}" />
         <input type="password" name="password" class="form-control" th:placeholder="#{login.password}" />
-        <label class="checkbox pull">
-            <input type="checkbox" value="remember-me" th:text="#{login.remember}" />
-        </label>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me" th:text="#{login.remember}" />
+            </label>
+        </div>
         <button class="btn btn-primary" type="submit" th:text="#{login.signin}">Sign in</button>
     </form>
 
-    <p class="text-center"><a href="http://www.balerocms.com">Powered by BaleroCMS.</a></p>
+    <p class="text-center"><a href="/">Return To My Site.</a></p>
 
 </div> <!-- /container -->
 
