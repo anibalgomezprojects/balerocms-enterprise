@@ -1,7 +1,6 @@
 ![BaleroCMS v2](images/logo.png)
 
-SOFTWARE DOCUMENTATION
-======================
+### SOFTWARE DOCUMENTATION
 
 ### System Requirements
 
@@ -45,7 +44,9 @@ First you need a MySQL Database called 'balerocms_enterprise'.
 Note: Make sure your MySQL Server is running on port 3306.
 
     telnet localhost 3306
-    
+
+## Running 
+
 Open http://localhost:8080/ in your favourite browser.
 
 ## QuickStar Guide
@@ -93,6 +94,12 @@ Please, read the Bootstrap CSS documentation:
 Replace your old files with the new and updated files.
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
+
+## Configuration
+
+### Configuting Default Server Port
+
+Default server port is: 8080. To use different port edit **application.yml** -> server.port.
 
 ### Configuring E-Mail Newsletter (SMTP Client)
 
