@@ -1,0 +1,19 @@
+{
+  "records": [
+    {
+      "Name" : "Core",
+      "Version" : "v1.0",
+      "Status" : "Online"
+    },
+    {
+      "Name" : "System",
+      "Version" : "v1.0",
+      "Status" : "Online"
+    },
+    {
+      "Name" : "API",
+      "Version" : "v1.0",
+      "Status" : "Online"
+    }
+  ]
+}
