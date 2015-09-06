@@ -120,6 +120,12 @@ Version Control Convention:
 
 V1.0__Message_example_etc.sql
 
+### Bower Components
+
+To install your javascript libraries, use:
+
+$ bower install
+
 ### About this project
 
 In most cases, Enterprise applications are heavy and very slow. Balero CMS Enterprise
