@@ -1,6 +1,6 @@
 ![BaleroCMS v2](images/logo.png)
 
-### SOFTWARE DOCUMENTATION
+## SOFTWARE DOCUMENTATION
 
 ### System Requirements
 
@@ -8,7 +8,14 @@
 * Apache Maven (3.2.5 or Higher)
 * MySQL (5 or Higher; Only for production mode)
 
-### Welcome to Balero CMS Enterprise.
+## Welcome to Balero CMS Enterprise.
+
+### About this project
+
+Balero CMS Enterprise is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, Content Management System.
+It uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
+
+### Get Started
 
 Cloning project:
 
@@ -108,7 +115,7 @@ for you email account.
 
 ### Database Changelog Timestamps
 
-Timestamps Convention:
+In **db/migration** folder Timestamps Convention:
 
 V-YEAR-MONTH-DAY.HOUR-MINUTES-SECONDS__Message.sql
 
@@ -126,13 +133,9 @@ To install your javascript libraries, use:
 
 $ bower install
 
-### About this project
+It will be downloaded in resources folder **/static/bower_components**.
 
-In most cases, Enterprise applications are heavy and very slow. Balero CMS Enterprise
-is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, CMS. it uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
-
-NOTES
-=====
+## NOTES
 
 ### Frameworks, Features And Toolchains in this software: 
 
@@ -144,7 +147,6 @@ NOTES
 * Flyway DB
 * Hibernate JPA
 * Asset Pipeline
-
 
 #### Features and Plugins: 
 
@@ -162,14 +164,12 @@ NOTES
 * Hot Swap
 * Spring Security Password Hash Encryption / Protection
 
-IoT Support on Enterprise version
-=================================
+## IoT Support on Enterprise version
 
 * Arduino
 * Raspberry Pi
 
-COMPILING DOCUMENTATION
-=======================
+## COMPILING DOCUMENTATION
 
 To compile this source, use:
 
@@ -183,8 +183,7 @@ You feedback is welcome! anibalgomez@balerocms.com.
 
 This project is under development, test only for development and not for production before release date.
 
-ABOUT
-=====
+## ABOUT
 
 Project development by **Neblina Software Company** and **Anibal Gomez**.
 
