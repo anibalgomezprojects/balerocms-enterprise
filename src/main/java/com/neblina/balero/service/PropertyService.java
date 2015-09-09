@@ -36,4 +36,10 @@ public class PropertyService {
         return properties .getOffline();
     }
 
+    public void setOfflineStatus(int offline) {
+        Property properties = propertyRepository.findOneById(1L);
+        properties.setOffline(offline);
+        propertyRepository.save(properties);
+    }
+
 }
