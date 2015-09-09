@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class TestController {
 
@@ -42,8 +44,8 @@ public class TestController {
     @RequestMapping("/test")
     @ResponseBody
     @Transactional(readOnly = true)
-    public String helloWorld() {
-        return this.userRepository.findAll().toString();
+    public List<User> helloWorld() {
+        return this.userRepository.findAll();
     }
 
     @RequestMapping("/users")
