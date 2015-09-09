@@ -100,6 +100,10 @@ body {
     text-align: center;
     font-size: xx-small;
 }
+.valign {
+    height: 55px;
+    line-height: 55px;
+}
 .www-logo {
     margin-top: 5px;
     margin-left: -57px;

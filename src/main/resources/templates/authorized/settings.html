@@ -32,6 +32,13 @@
                 </div>
                 <hr />
                 <div class="form-group">
+                    <label for="offline" class="col-sm-2 control-label valign" th:text="#{properties.text.status}">Status</label>
+                    <div class="col-sm-10">
+                            <input type="checkbox" name="toggle" id="toggle" />
+                            <label for="toggle"></label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="title" class="col-sm-2 control-label" th:text="#{settings.text.title}">Title</label>
                     <div class="col-sm-10">
                         <input type="text" name="title" class="form-control short" id="title" th:value="${settings.title}" />
@@ -59,19 +66,6 @@
                     <label for="footer" class="col-sm-2 control-label" th:text="#{settings.text.footer}">Footer</label>
                     <div class="col-sm-10">
                         <textarea name="footer" class="summernote" rows="5" id="footer" th:text="${settings.footer}"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="offline" class="col-sm-2 control-label" th:text="#{properties.text.status}">Status</label>
-                    <div class="col-sm-10" th:switch="${properties.offline}">
-                        <select name="offline" id="offline" th:case="0">
-                            <option  value="0" th:value="0" th:selected="selected" th:text="#{properties.text.online}">Online</option>
-                            <option value="1" th:value="1" th:text="#{properties.text.offline}">Offline</option>
-                        </select>
-                        <select name="offline" id="offline" th:case="1">
-                            <option  value="0" th:value="0" th:text="#{properties.text.online}">Online</option>
-                            <option value="1" th:value="1" th:selected="selected" th:text="#{properties.text.offline}">Offline</option>
-                        </select>
                     </div>
                 </div>
                 <div class="form-group">
