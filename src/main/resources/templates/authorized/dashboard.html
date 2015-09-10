@@ -68,8 +68,8 @@
                         <p th:text="${user.firstName}">firstName</p>
                         <p th:text="${user.lastName}">lastName</p>
                         <p th:text="${user.email}">email</p>
-                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}+'?status=1'}" th:if="${user.subscribed == 0}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> <span th:text="#{dashboard.subscribed}">Subscribed</span></a>
-                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}+'?status=0'}" th:if="${user.subscribed == 1}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> <span th:text="#{dashboard.unsubscribed}">Unsubscribed</span></a>
+                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${!user.subscribed}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> <span th:text="#{dashboard.subscribed}">Subscribed</span></a>
+                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${user.subscribed}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> <span th:text="#{dashboard.unsubscribed}">Unsubscribed</span></a>
                     </div>
                 </div>
             </div>

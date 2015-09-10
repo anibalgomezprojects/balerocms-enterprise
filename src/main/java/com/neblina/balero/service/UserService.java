@@ -110,11 +110,11 @@ public class UserService {
         log.debug("Deleting user's email.");
     }
 
-    public void updateSubscribedStatus(Long id, boolean subscribed) {
+    public void updateSubscribedStatus(Long id) {
         User user = userRepository.findOneById(id);
-        user.setSubscribed(subscribed);
+        user.setSubscribed(!user.getSubscribed());
         userRepository.save(user);
-        log.debug("Updating subscribed status: " + subscribed);
+        log.debug("Updating subscribed status to: " + !user.getSubscribed());
     }
 
     public int getTotalUsers() {

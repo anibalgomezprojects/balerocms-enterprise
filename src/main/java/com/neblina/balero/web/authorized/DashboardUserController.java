@@ -64,9 +64,8 @@ public class DashboardUserController {
     @Secured("ROLE_USER")
     @RequestMapping(value = "/mailing-list/subscribe/{id}", method = RequestMethod.GET)
     public String updateMailingListSubscribedGet(Model model,
-                                                 @PathVariable("id") Long id,
-                                                 @RequestParam("status") boolean status) {
-        userService.updateSubscribedStatus(id, status);
+                                                 @PathVariable("id") Long id) {
+        userService.updateSubscribedStatus(id);
         return "redirect:/user/dashboard/";
     }
 

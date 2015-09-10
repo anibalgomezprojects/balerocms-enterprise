@@ -74,9 +74,8 @@ public class DashboardAdminUserController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.GET)
     public String updateUserSubscribedGet(Model model,
-                                                 @PathVariable("id") Long id,
-                                                 @RequestParam("status") boolean status) {
-        userService.updateSubscribedStatus(id, status);
+                                                 @PathVariable("id") Long id) {
+        userService.updateSubscribedStatus(id);
         return "redirect:/admin/user/";
     }
 
