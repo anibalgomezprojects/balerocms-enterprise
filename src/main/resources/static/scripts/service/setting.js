@@ -1,5 +1,5 @@
-angular.module('settingsService', ['ngResource'])
-    .factory('settingsService', function($resource) {
+angular.module('SettingService', ['ngResource'])
+    .factory('SettingService', function($resource) {
         return {
             getSettings: function() {
                 return $resource('../admin/api/settings', {}, {
