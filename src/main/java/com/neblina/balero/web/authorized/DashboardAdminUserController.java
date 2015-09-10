@@ -75,7 +75,7 @@ public class DashboardAdminUserController {
     @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.GET)
     public String updateUserSubscribedGet(Model model,
                                                  @PathVariable("id") Long id,
-                                                 @RequestParam("status") int status) {
+                                                 @RequestParam("status") boolean status) {
         userService.updateSubscribedStatus(id, status);
         return "redirect:/admin/user/";
     }
@@ -86,7 +86,7 @@ public class DashboardAdminUserController {
                                 @RequestParam("email") String email,
                                 Model model, Locale locale) {
         model.addAttribute("success", 1);
-        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, 1, "USER");
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, true, "USER");
         return "redirect:/admin/user";
     }
 

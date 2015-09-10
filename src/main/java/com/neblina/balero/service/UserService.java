@@ -25,7 +25,7 @@ public class UserService {
     private CustomUserDetailsManager customUserDetailsManager;
 
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
-                                  String email, int subscribed, String roles) {
+                                  String email, boolean subscribed, String roles) {
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -69,7 +69,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setSubscribed(1);
+        user.setSubscribed(true);
         userRepository.save(user);
     }
 
@@ -110,15 +110,11 @@ public class UserService {
         log.debug("Deleting user's email.");
     }
 
-    public void updateSubscribedStatus(Long id, int subscribed) {
+    public void updateSubscribedStatus(Long id, boolean subscribed) {
         User user = userRepository.findOneById(id);
-        if(subscribed == 1) {
-            user.setSubscribed(1);
-        } else {
-            user.setSubscribed(0);
-        }
+        user.setSubscribed(subscribed);
         userRepository.save(user);
-        log.debug("Updating subscribed status.");
+        log.debug("Updating subscribed status: " + subscribed);
     }
 
     public int getTotalUsers() {

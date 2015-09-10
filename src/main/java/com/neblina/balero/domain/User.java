@@ -36,7 +36,7 @@ public class User {
     @Email
     private String email;
 
-    private int subscribed;
+    private boolean subscribed;
 
     private String roles;
 
@@ -96,11 +96,11 @@ public class User {
         this.email = email;
     }
 
-    public int getSubscribed() {
+    public boolean getSubscribed() {
         return subscribed;
     }
 
-    public void setSubscribed(int subscribed) {
+    public void setSubscribed(boolean subscribed) {
         this.subscribed = subscribed;
     }
 

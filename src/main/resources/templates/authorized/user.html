@@ -41,11 +41,11 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                                 <span th:text="#{button.delete}">Delete</span>
                             </a>
-                            <a th:href="@{'/admin/user/subscribe/'+${user.id}+'?status=1'}" th:if="${user.subscribed == 0}" class="btn btn-success">
+                            <a th:href="@{'/admin/user/subscribe/'+${user.id}+'?status='+${!user.subscribed}}" th:if="${user.subscribed}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                                 <span th:text="#{button.subscribe}">Subscribe</span>
                             </a>
-                            <a th:href="@{'/admin/user/subscribe/'+${user.id}+'?status=0'}" th:if="${user.subscribed == 1}" class="btn btn-danger">
+                            <a th:href="@{'/admin/user/subscribe/'+${user.id}+'?status='+${!user.subscribed}}" th:if="${!user.subscribed}" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-thumbs-down"></span>
                                 <span th:text="#{button.unsubscribe}">Unsubscribe</span>
                             </a>

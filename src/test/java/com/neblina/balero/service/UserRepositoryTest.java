@@ -42,7 +42,7 @@ public class UserRepositoryTest extends TestCase {
     @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
-        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", 1, "ADMIN, USER");
+        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", true, "ADMIN, USER");
         User user = userService.getUserByUsername("demo");
         assertThat(user.getUsername(), is("demo"));
     }

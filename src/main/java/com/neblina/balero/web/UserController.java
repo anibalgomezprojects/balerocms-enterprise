@@ -80,9 +80,9 @@ public class UserController {
             if(usr2 != null) { // email found
                 log.debug("Email already exists. Register with this email.");
                 userService.deleteUserEmail(usr2.getId()); // Clean
-                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, usr2.getEmail(), 1, "ROLE_USER"); // Add
+                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, usr2.getEmail(), true, "ROLE_USER"); // Add
             } else {
-                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, 1, "ROLE_USER");
+                userService.createUserAccount(username, password, passwordVerify, firstName, lastName, email, true, "ROLE_USER");
             }
         }
         return "redirect:/login";
