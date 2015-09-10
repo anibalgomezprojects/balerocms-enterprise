@@ -1,8 +1,15 @@
 angular.module('settingsService', ['ngResource'])
     .factory('settingsService', function($resource) {
-        return $resource('../admin/api/settings',{ }, {
-            getData: {method:'GET', isArray: false},
-            setOfflineTrue: {method:'POST', params: { offline: true }},
-            setOfflineFalse: {method:'POST', params: { offline: false }}
-        });
+        return {
+            getSettings: function() {
+                return $resource('../admin/api/settings', {}, {
+                    query: { method: 'GET', params: {}, isArray: false }
+                })
+            },
+            postSettings: function(bloStatus) {
+                return $resource('../admin/api/settings', {}, {
+                    save: { method: 'POST', params: { offline: bloStatus } }
+                })
+            }
+        };
     });
