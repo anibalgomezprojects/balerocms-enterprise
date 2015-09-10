@@ -24,19 +24,19 @@ public class PropertyService {
     private PropertyRepository propertyRepository;
 
     public void saveProperties(String administratorEmail,
-                             int offline) {
+                             boolean offline) {
         Property properties = propertyRepository.findOneById(1L);
         properties.setAdministratorEmail(administratorEmail);
         properties.setOffline(offline);
         propertyRepository.save(properties);
     }
 
-    public int getOfflineStatus() {
+    public boolean getOfflineStatus() {
         Property properties = propertyRepository.findOneById(1L);
         return properties .getOffline();
     }
 
-    public void setOfflineStatus(int offline) {
+    public void setOfflineStatus(boolean offline) {
         Property properties = propertyRepository.findOneById(1L);
         properties.setOffline(offline);
         propertyRepository.save(properties);

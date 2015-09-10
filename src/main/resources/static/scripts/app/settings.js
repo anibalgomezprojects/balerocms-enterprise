@@ -2,12 +2,7 @@ angular.module('settingsApp', ['settingsService'])
 .controller('settingsController', function($scope, settingsService){
         settingsService.getData(function(data){
             $scope.settings = data;
-            if($scope.settings.offline == 1) {
-                $scope.blostatus = true;
-            }
-            if($scope.settings.offline == 0) {
-                $scope.blostatus = false;
-            }
+            $scope.blostatus = $scope.settings.offline;
         });
         $scope.togglechange = function() {
             if($scope.blostatus == true) {

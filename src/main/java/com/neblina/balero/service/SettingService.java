@@ -34,7 +34,7 @@ public class SettingService {
                              String administratorEmail,
                              String tags,
                              String footer,
-                             int offline,
+                             boolean offline,
                              String offlineMessage) {
         Setting settings = settingRepository.findOneByCode(code);
         Property properties = propertyRepository.findOneById(1L);

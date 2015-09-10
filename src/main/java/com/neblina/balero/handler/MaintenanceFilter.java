@@ -39,7 +39,7 @@ public class MaintenanceFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        if(propertyService.getOfflineStatus() == 1 && !url.contains("offline")) {
+        if(propertyService.getOfflineStatus() == true && !url.contains("offline")) {
             if(blacklistService.isIpBanned() == false) {
                 if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
                         url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||

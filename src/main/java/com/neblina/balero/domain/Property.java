@@ -18,7 +18,7 @@ public class Property {
     @GeneratedValue
     private Long id;
     private String administratorEmail;
-    private int offline;
+    private boolean offline;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Property {
         this.administratorEmail = administratorEmail;
     }
 
-    public int getOffline() {
+    public boolean getOffline() {
         return offline;
     }
 
-    public void setOffline(int offline) {
+    public void setOffline(boolean offline) {
         this.offline = offline;
     }
 

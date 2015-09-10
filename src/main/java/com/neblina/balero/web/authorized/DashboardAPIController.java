@@ -36,7 +36,7 @@ public class DashboardAPIController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     @ResponseBody
-    public Property postSettingsJSON(@RequestParam("offline") int offline) {
+    public Property postSettingsJSON(@RequestParam("offline") boolean offline) {
         propertyService.setOfflineStatus(offline);
         return propertyRepository.findOneById(1L);
     }
