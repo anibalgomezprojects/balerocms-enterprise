@@ -36,10 +36,16 @@ public class DashboardAdminUserController {
     private UserService userService;
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = {"", "/"} )
+    @RequestMapping(value = "")
     public String userList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "authorized/user";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/")
+    public String userListRedirect() {
+        return "redirect:/admin/user";
     }
 
     @Secured("ROLE_ADMIN")
@@ -68,7 +74,7 @@ public class DashboardAdminUserController {
         model.addAttribute("success", 1);
         model.addAttribute("users", userRepository.findOneById(id));
         userService.deleteUserEmail(id);
-        return "redirect:/admin/user/";
+        return "redirect:/admin/user";
     }
 
     @Secured("ROLE_ADMIN")
@@ -76,7 +82,7 @@ public class DashboardAdminUserController {
     public String updateUserSubscribedGet(Model model,
                                                  @PathVariable("id") Long id) {
         userService.updateSubscribedStatus(id);
-        return "redirect:/admin/user/";
+        return "redirect:/admin/user";
     }
 
     @Secured("ROLE_ADMIN")

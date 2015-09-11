@@ -11,6 +11,7 @@ package com.neblina.balero.web.authorized;
 import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
+import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
@@ -33,6 +34,9 @@ public class DashboardAPIController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
     @ResponseBody
@@ -52,6 +56,14 @@ public class DashboardAPIController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUsersJSON() {
+        return userRepository.findAll();
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public List<User> postSubscribeUserJSON(@PathVariable("id") Long id) {
+        userService.updateSubscribedStatus(id);
         return userRepository.findAll();
     }
 

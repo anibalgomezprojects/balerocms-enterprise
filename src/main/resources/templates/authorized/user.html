@@ -24,31 +24,37 @@
                         <th>#</th>
                         <th th:text="#{user.text.email}">Email</th>
                         <th th:text="#{user.text.action}" class="text-center">Action</th>
+                        <th class="text-center">Subscribed</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}">_ID</td>
+                    <tbody ng-app="UserApp" ng-controller="UserController">
+                    <tr ng-repeat="user in users">
+                        <td>{{user.id}}</td>
                         <td>
-                            <a th:href="@{'/admin/user/'+${user.id}}"><span th:text="${user.email}">_NAME</span></a>
+                            <a href="/admin/user/{{user.id}}"><span>{{user.email}}</span></a>
                         </td>
                         <td class="text-center">
-                            <a th:href="@{'/admin/user/'+${user.id}}" href="#" class="btn btn-default">
+                            <a href="/admin/user/{{user.id}}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span th:text="#{button.edit}">Edit</span>
                             </a>
-                            <a th:href="@{'/admin/user/delete/'+${user.id}}" class="btn btn-danger">
+                            <a href="/admin/user/delete/{{user.id}}" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
                                 <span th:text="#{button.delete}">Delete</span>
                             </a>
-                            <a th:href="@{'/admin/user/subscribe/'+${user.id}}" th:if="${user.subscribed}" class="btn btn-success">
+                            <a href="/admin/user/subscribe/{{user.id}}" ng-if="user.subscribed" class="btn btn-success">
                                 <span class="glyphicon glyphicon-thumbs-up"></span>
                                 <span th:text="#{button.subscribe}">Subscribe</span>
                             </a>
-                            <a th:href="@{'/admin/user/subscribe/'+${user.id}}" th:if="${!user.subscribed}" class="btn btn-danger">
+                            <a href="/admin/user/subscribe/{{user.id}}" ng-if="!user.subscribed" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-thumbs-down"></span>
                                 <span th:text="#{button.unsubscribe}">Unsubscribe</span>
                             </a>
+                        </td>
+                        <td>
+                            <input type="checkbox" ng-model="user.subscribed" ng-value="user" id="{{user}}" ng-change="blotoggle({{user.id}})" name="user" class="toggle" />
+                            <label for="{{user}}"></label>
+                            <!-- value {{user.subscribed}} -->
                         </td>
                     </tr>
                     </tbody>

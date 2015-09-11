@@ -169,6 +169,10 @@ It will be downloaded in resources folder **/static/bower_components**.
 * Arduino
 * Raspberry Pi
 
+## Template Engine
+
+Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
+
 ## COMPILING DOCUMENTATION
 
 To compile this source, use:
