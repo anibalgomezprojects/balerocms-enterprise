@@ -34,8 +34,8 @@
                 <div class="form-group" ng-app="SettingApp" ng-controller="SettingController">
                     <label for="offline" class="col-sm-2 control-label valign" th:text="#{properties.text.status}">Status</label>
                     <div class="col-sm-10">
-                        <input type="checkbox" name="toggle" id="toggle" ng-model="settings.offline" ng-change="blotoggle()" />
-                        <label for="toggle"></label>
+                        <input type="checkbox" name="toggle1" id="toggle1" class="toggle" ng-model="settings.offline" ng-change="blotoggle()" />
+                        <label for="toggle1"></label>
                         <!-- offline->{{settings.offline}} -->
                     </div>
                 </div>
