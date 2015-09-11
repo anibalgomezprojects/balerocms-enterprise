@@ -9,12 +9,16 @@
 package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.domain.Property;
+import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
+import com.neblina.balero.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/api")
@@ -25,6 +29,9 @@ public class DashboardAPIController {
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
@@ -39,6 +46,13 @@ public class DashboardAPIController {
     public Property postSettingsJSON(@RequestParam("offline") boolean offline) {
         propertyService.setOfflineStatus(offline);
         return propertyRepository.findOneById(1L);
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getUsersJSON() {
+        return userRepository.findAll();
     }
 
 }
