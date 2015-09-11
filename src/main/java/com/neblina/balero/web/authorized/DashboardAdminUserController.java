@@ -78,14 +78,6 @@ public class DashboardAdminUserController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.GET)
-    public String updateUserSubscribedGet(Model model,
-                                                 @PathVariable("id") Long id) {
-        userService.updateSubscribedStatus(id);
-        return "redirect:/admin/user";
-    }
-
-    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String userEmailListPost(@RequestParam("firstName") String firstName,
                                 @RequestParam("email") String email,
