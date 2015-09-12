@@ -84,7 +84,7 @@ public class DashboardAdminUserController {
                                 @RequestParam("email") String email,
                                 Model model, Locale locale) {
         model.addAttribute("success", 1);
-        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, true, "USER");
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, true, "ROLE_ANONYMOUS");
         return "redirect:/admin/user";
     }
 
