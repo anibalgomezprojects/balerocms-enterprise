@@ -135,6 +135,29 @@ $ bower install
 
 It will be downloaded in resources folder **/static/bower_components**.
 
+## Template Engine
+
+Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
+
+## Unit Testing
+
+Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: application-dev.yml.
+
+### Running Unit Tests with MySQL
+
+Sometimes you need debug a real database, or just want to analyze fields. To do this rename
+application-prod.yml to application-dev.yml and edit Line 4, add prefix '_test': 
+
+    spring:
+        datasource:
+            dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+            url: jdbc:mysql://localhost:3306/balerocms_enterprise_test
+            ...
+        
+Create a database 'balerocms_enterprise_test', Then run:
+
+    $ mvn test
+
 ## NOTES
 
 ### Frameworks, Features And Toolchains in this software: 
@@ -168,10 +191,6 @@ It will be downloaded in resources folder **/static/bower_components**.
 
 * Arduino
 * Raspberry Pi
-
-## Template Engine
-
-Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
 
 ## COMPILING DOCUMENTATION
 
