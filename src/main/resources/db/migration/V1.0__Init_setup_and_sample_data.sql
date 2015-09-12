@@ -51,6 +51,20 @@ CREATE TABLE IF NOT EXISTS PAGE (
 	hits int(10) not null
 );
 
+CREATE TABLE IF NOT EXISTS BLOG (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	bloname varchar(255) not null,
+	title varchar(255) not null,
+	intro_post varchar(255) not null,
+	full_post varchar(10000) not null,
+	code varchar(255) not null,
+	permalink varchar(255) not null,
+	author varchar(255) not null,
+	hits int(10) not null,
+	likes int(10) not null,
+	blodate binary(255) not null
+);
+
 INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles) VALUES
 (1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@balerocms.com', 'true', 'ROLE_ADMIN'),
 (2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'demo@localhost.com', 'true', 'ROLE_USER'),
@@ -76,3 +90,7 @@ INSERT INTO BLOCK (id, name, content, code) VALUES
 INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUES
 (1, 'demo_en', 'Demo Page Example', 'This is a demo content.', 'en', 'demo-page', 'admin', 1),
 (2, 'demo_es', 'Página De Demostración', 'Esto es un ejemplo.', 'es', 'demo-pagina', 'admin', 1);
+
+INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes, blodate) VALUES
+(1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, 0xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770703000007df090c78),
+(2, 'demo_post_es', 'Qué Lorem Ipsum?', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, 0xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770703000007df090c78);

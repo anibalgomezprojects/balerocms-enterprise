@@ -9,7 +9,10 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.BlogService;
+import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,6 +31,12 @@ public class TestController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BlogRepository blogRepository;
+
+    @Autowired
+    private BlogService blogService;
 
     @RequestMapping("/log")
     @ResponseBody
@@ -54,6 +63,14 @@ public class TestController {
     @Transactional(readOnly = true)
     public Iterable<User> helloUsers() {
         return this.userRepository.findAll();
+    }
+
+    @RequestMapping("/create_post")
+    @ResponseBody
+    public List<Blog> printPosts() {
+        blogService.createPost("test", "Unit Test", "Short Description",
+                "Full Description", "en", "unit-test", "malware_bytes");
+        return this.blogRepository.findAll();
     }
 
 }
