@@ -1,9 +1,10 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.web;
