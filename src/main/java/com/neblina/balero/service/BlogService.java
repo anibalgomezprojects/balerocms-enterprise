@@ -45,8 +45,8 @@ public class BlogService {
         blog.setHits(0);
         blog.setLikes(0);
         //Current Date
-        LocalDate today = LocalDate.now();
-        blog.setBlodate(today);
+        //LocalDate today = LocalDate.now();
+        //blog.setBlodate(today);
         blogRepository.save(blog);
     }
 

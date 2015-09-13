@@ -35,6 +35,8 @@
                     <a href="/admin/user" th:text="#{dashboard.user}">_USER</a>
                     <br />
                     <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
+                    <br />
+                    <a href="/admin/blog" th:text="#{blog.title}">Blog</a>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b th:text="#{dashboard.portal}">Portal</b>

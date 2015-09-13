@@ -21,6 +21,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -45,7 +47,15 @@ public class BlogServiceTest extends TestCase {
     @Test
     public void selectRecordAndPrint() {
         Blog blog = blogRepository.findOneById(3L);
-        System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getBlodate());
+        System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getIntroPost());
+    }
+
+
+    @Test
+    public void selectAllRecordAndPrint() {
+        for(Blog blog: blogRepository.findAll()) {
+            System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getIntroPost());
+        }
     }
 
 }

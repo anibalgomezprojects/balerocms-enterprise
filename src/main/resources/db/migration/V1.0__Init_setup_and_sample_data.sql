@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS BLOG (
 	permalink varchar(255) not null,
 	author varchar(255) not null,
 	hits int(10) not null,
-	likes int(10) not null,
-	blodate binary(255) not null
+	likes int(10) not null
+	--blodate date not null
 );
 
 INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles) VALUES
@@ -91,6 +91,6 @@ INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUE
 (1, 'demo_en', 'Demo Page Example', 'This is a demo content.', 'en', 'demo-page', 'admin', 1),
 (2, 'demo_es', 'Página De Demostración', 'Esto es un ejemplo.', 'es', 'demo-pagina', 'admin', 1);
 
-INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes, blodate) VALUES
-(1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, 0xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770703000007df090c78),
-(2, 'demo_post_es', 'Qué Lorem Ipsum?', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, 0xaced00057372000d6a6176612e74696d652e536572955d84ba1b2248b20c00007870770703000007df090c78);
+INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes) VALUES
+(1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0),
+(2, 'demo_post_es', 'Qué Lorem Ipsum?', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0);

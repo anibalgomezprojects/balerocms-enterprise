@@ -9,6 +9,8 @@
 
 package com.neblina.balero.domain;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,14 +34,10 @@ public class Blog {
     /**
      * Java 8 Hibernate Date
      * @author Anibal Gomez <anibalgomez@icloud.com>
-     * References:
-     * - http://www.sothawo.com/2015/01/using-the-
-     * new-java8-date-time-classes-with-hibernate/
-     * - http://www.journaldev.com/2800/java-8-date-
-     * time-api-example-tutorial-localdate-instant-
-     * localdatetime-parse-and-format
-     */
+     * References: https://hibernate.atlassian.net/browse/HHH-8844
+    //@Type(type="LocalDateType")
     private LocalDate blodate;
+    **/
 
     public Long getId() {
         return id;
@@ -121,6 +119,7 @@ public class Blog {
         this.likes = likes;
     }
 
+    /**
     public LocalDate getBlodate() {
         return blodate;
     }
@@ -128,6 +127,7 @@ public class Blog {
     public void setBlodate(LocalDate blodate) {
         this.blodate = blodate;
     }
+     **/
 
     @Override
     public String toString() {
@@ -141,8 +141,8 @@ public class Blog {
                 "permalink=" + this.permalink + ", " +
                 "author=" + this.author + ", " +
                 "hits=" + this.hits + ", " +
-                "likes=" + this.likes + ", " +
-                "blodate=" + this.blodate
+                "likes=" + this.likes
+                //"blodate=" + this.blodate
                 + "]";
     }
 
