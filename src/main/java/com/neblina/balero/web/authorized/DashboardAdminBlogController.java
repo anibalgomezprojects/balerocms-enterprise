@@ -13,6 +13,7 @@ import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.repository.BlogRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
 
 
 @Controller
@@ -75,7 +78,10 @@ public class DashboardAdminBlogController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String blogEditGet() {
+    public String blogEditGet(Model model) {
+        LocalDate today = LocalDate.now();
+        model.addAttribute("date", today);
+        log.debug("Date: " + today);
         return "authorized/blog_new";
     }
 
