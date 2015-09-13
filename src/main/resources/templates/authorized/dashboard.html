@@ -46,6 +46,8 @@
                     <span th:text="#{dashboard.block}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
                     <br />
                     <span th:text="#{dashboard.user}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
+                    <br />
+                    <span th:text="#{dashboard.total.posts}">Total Posts </span> <span class="badge" th:text="${totalPosts}">0</span>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                     <b th:text="#{dashboard.shortcut}">Shorcuts</b>

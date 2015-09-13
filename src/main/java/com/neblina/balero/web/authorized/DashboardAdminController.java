@@ -54,6 +54,9 @@ public class DashboardAdminController {
     @Autowired
     private PropertyRepository propertyRepository;
 
+    @Autowired
+    private BlogRepository blogRepository;
+
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/admin/dashboard";
@@ -69,7 +72,7 @@ public class DashboardAdminController {
         model.addAttribute("totalPages", pageRepository.findAll().size());
         model.addAttribute("totalUsers", userRepository.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
-        log.debug("Total users: " + userRepository.findAll().size());
+        model.addAttribute("totalPosts", blogRepository.findAll().size());
         return "authorized/dashboard";
     }
 
