@@ -34,10 +34,11 @@ public class Blog {
     /**
      * Java 8 Hibernate Date
      * @author Anibal Gomez <anibalgomez@icloud.com>
+     * References: https://github.com/spring-projects/spring-boot/issues/3952
      * References: https://hibernate.atlassian.net/browse/HHH-8844
-    //@Type(type="LocalDateType")
+     **/
+    @Type(type="org.hibernate.type.LocalDateType")
     private LocalDate blodate;
-    **/
 
     public Long getId() {
         return id;
@@ -119,7 +120,6 @@ public class Blog {
         this.likes = likes;
     }
 
-    /**
     public LocalDate getBlodate() {
         return blodate;
     }
@@ -127,7 +127,6 @@ public class Blog {
     public void setBlodate(LocalDate blodate) {
         this.blodate = blodate;
     }
-     **/
 
     @Override
     public String toString() {
@@ -141,8 +140,8 @@ public class Blog {
                 "permalink=" + this.permalink + ", " +
                 "author=" + this.author + ", " +
                 "hits=" + this.hits + ", " +
-                "likes=" + this.likes
-                //"blodate=" + this.blodate
+                "likes=" + this.likes + ", " +
+                "blodate=" + this.blodate
                 + "]";
     }
 

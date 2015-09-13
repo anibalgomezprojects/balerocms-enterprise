@@ -21,9 +21,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 @ActiveProfiles("dev")
@@ -44,17 +45,16 @@ public class BlogServiceTest extends TestCase {
         System.out.println("Creating Post...");
     }
 
-    @Test
-    public void selectRecordAndPrint() {
-        Blog blog = blogRepository.findOneById(3L);
-        System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getIntroPost());
-    }
-
-
+    /**
+     * Java 8 / Hibernate Date
+     * @author <anibalgomez@icloud.com><
+     */
     @Test
     public void selectAllRecordAndPrint() {
-        for(Blog blog: blogRepository.findAll()) {
-            System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getIntroPost());
+        List<Blog> lstBlog = blogRepository.findAll();
+        for(Blog blog: lstBlog) {
+            System.out.println("Username is: " + blog.getAuthor() + " and Date: " + blog.getBlodate());
+            assertThat(blog.getBlodate(), is(LocalDate.parse("2015-09-15"))); // Dia De La Independencia De México
         }
     }
 
