@@ -48,7 +48,7 @@
                             </a>
                             <a th:href="@{'/admin/page/'+${page.id}+'?developer'}" href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span>Code View</span>
+                                <span th:text="#{button.code.view}">Code View</span>
                             </a>
                             <a th:href="@{'/admin/page/delete/'+${page.id}}" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span>
