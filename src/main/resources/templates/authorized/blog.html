@@ -34,12 +34,13 @@
                             <a th:href="@{'/admin/blog/'+${post.id}}">
                                 <span th:text="${post.bloname}">_NAME</span>
                             </a>
+                            <span th:text="${post.hits}" class="badge"></span>
                         </td>
                         <td>
                             <span th:text="${post.title}"></span>
-                            <span th:text="${post.hits}" class="badge"></span>
                             <span th:text="${post.code}" class="badge"></span>
                             <span th:text="${post.author}" class="badge"></span>
+                            <span th:text="${post.blodate}" class="badge"></span>
                         </td>
                         <td class="text-center">
                             <a th:href="@{'/admin/blog/'+${post.id}}" href="#" class="btn btn-default">
