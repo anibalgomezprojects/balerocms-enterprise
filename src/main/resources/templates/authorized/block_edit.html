@@ -40,7 +40,8 @@
                 <div class="form-group">
                     <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
                     <div class="col-sm-10">
-                        <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
+                        <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:if="${param.developer}" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
+                        <textarea name="content" class="summernote" rows="20" cols="70" id="content" th:if="${param.developer == null}" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
