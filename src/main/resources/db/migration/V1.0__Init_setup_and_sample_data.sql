@@ -93,4 +93,5 @@ INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUE
 
 INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes, blodate) VALUES
 (1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, '2015-09-15'),
-(2, 'demo_post_es', 'Qué Lorem Ipsum?', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15');
+(2, 'test_post_en', 'Test demo?', '<h3>demo</h3>', 'full.', 'en', 'demostration-post-123', 'admin', 1, 10, '2015-09-15'),
+(3, 'demo_post_es', 'Qué Lorem Ipsum?', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15');

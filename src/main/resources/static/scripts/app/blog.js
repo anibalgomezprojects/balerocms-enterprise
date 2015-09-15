@@ -13,6 +13,5 @@ angular.module('BlogApp', ['BlogService'])
         $scope.blotoggle = function(bloid) {
             BlogService.postPosts(bloid).save();
             $scope.posts = BlogService.getPosts().query();
-            alert(bloid);
         };
     });

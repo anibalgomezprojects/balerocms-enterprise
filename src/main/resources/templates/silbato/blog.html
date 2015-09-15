@@ -36,23 +36,19 @@
                     </ul>
                     <div class="full-padding"></div>
                 </div>
-                <div class="col-lg-8" ng-repeat="post in posts">
-                    <h2>
-                        {{post.title}}
-                    </h2>
+                <div class="col-lg-8" th:each="post, iterStat : ${posts}">
+                    <h2 th:text="${post.title}"></h2>
                     <p></p>
-                    <p class="lead">
-                        {{post.introPost}}
-                    </p>
-                    <a href="/blog/{{post.id}}">Read More...</a>
+                    <p class="lead" th:utext="${post.introPost}"></p>
+                    <a th:text="'/blog/'+${post.id}">Read More...</a>
                     <hr />
                     <div class="social">
-                        <a href="" class="glyphicon glyphicon-thumbs-up like" ng-click="blotoggle(post.id)"></a>
-                        <span><b>{{post.likes}}</b> likes</span>
-                        <span><b>{{post.hits}}</b>hits</span>
+                        <a href="" class="glyphicon glyphicon-thumbs-up like" th:attr="ng-click='blotoggle(\''+${post.id}+'\');'"></a>
+                        <span><b th:text="'{{posts[' + ${iterStat.index}+ '].likes}}'">0</b> likes</span>
+                        <span><b th:text="${post.hits}"></b>hits</span>
                     </div>
                     <hr />
-                    Posted by <i>{{author}}</i> @  <i>{{post.blodate}}</i>
+                    Posted by <i th:text="${post.author}">author</i> @  <i th:text="${post.blodate}">blodate</i>
                 </div>
             </div>
         </div>
