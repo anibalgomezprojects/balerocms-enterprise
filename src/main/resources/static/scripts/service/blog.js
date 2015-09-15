@@ -12,12 +12,12 @@ angular.module('BlogService', ['ngResource'])
         return {
             getPosts: function() {
                 return $resource('../api/blog', {}, {
-                    query: { method: 'GET', params: {}, isArray: true }
+                    query: { method: 'GET', params: {}, isArray: true}
                 })
             },
             postPosts: function(bloId) {
                 return $resource('../api/blog/'+bloId, {}, {
-                    save: { method: 'POST', params: { id: bloId } }
+                    save: { method: 'POST', params: { id: bloId }, isArray: false }
                 })
             }
         };

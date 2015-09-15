@@ -10,11 +10,13 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Blog;
+import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.repository.BlogRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,10 +33,21 @@ public class APIController {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Autowired
+    private BlogService blogService;
+
     @RequestMapping("/blog")
     @ResponseBody
     public List<Blog> blog(Model model, Locale locale) {
         log.debug("Call for API /blog");
+        return blogRepository.findAllByCode(locale.getLanguage());
+    }
+
+    @RequestMapping("/blog/{id}")
+    @ResponseBody
+    public List<Blog> blogId(Locale locale, @PathVariable("id") Long id) {
+        log.debug("Call for API /blog/" + id);
+        blogService.setLikes(id);
         return blogRepository.findAllByCode(locale.getLanguage());
     }
 

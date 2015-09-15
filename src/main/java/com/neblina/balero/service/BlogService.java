@@ -72,4 +72,10 @@ public class BlogService {
         blogRepository.delete(blog);
     }
 
+    public void setLikes(Long id) {
+        Blog blog = blogRepository.findOneById(id);
+        blog.setLikes(blog.getLikes()+1);
+        blogRepository.save(blog);
+    }
+
 }

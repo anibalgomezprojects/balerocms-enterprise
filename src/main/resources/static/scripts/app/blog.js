@@ -11,8 +11,8 @@ angular.module('BlogApp', ['BlogService'])
 .controller('BlogController', function($scope, BlogService){
         $scope.posts = BlogService.getPosts().query();
         $scope.blotoggle = function(bloid) {
-            alert('');
-            //BlogService.postPosts(bloid).save();
-            //$scope.posts = BlogService.getPosts.query();
-        }
+            BlogService.postPosts(bloid).save();
+            $scope.posts = BlogService.getPosts().query();
+            alert(bloid);
+        };
     });
