@@ -36,8 +36,10 @@
                     </ul>
                     <div class="full-padding"></div>
                 </div>
-                <div class="col-lg-8" th:each="post : ${posts}">
-                    <h2 th:text="${post.title}"></h2>
+                <div class="col-lg-8" th:each="post,iterState : ${posts}">
+                    <h2 th:inline="text">
+                        {{ posts[ [[${iterState.index}]] ].title }}
+                    </h2>
                     <p></p>
                     <p class="lead" th:utext="${post.introPost}">
 
