@@ -10,8 +10,9 @@
 angular.module('BlogApp', ['BlogService'])
 .controller('BlogController', function($scope, BlogService){
         $scope.posts = BlogService.getPosts().query();
-        $scope.blotoggle = function(bloid) {
+        $scope.blotoggle = function(bloid, bloindex) {
             BlogService.postPosts(bloid).save();
-            $scope.posts = BlogService.getPosts().query();
+            //$scope.posts = BlogService.getPosts().query();
+            $scope.posts[bloindex].likes = $scope.posts[bloindex].likes + 1;
         };
     });
