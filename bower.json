@@ -9,6 +9,7 @@
     "angular-bootstrap": "0.13.3",
     "angular": "1.4.4",
     "angular-resource": "1.4.4",
+    "angular-sanitize": "1.4.4",
     "ngInfiniteScroll": "1.2.0",
     "ng-file-upload": "7.0.15"
   },
