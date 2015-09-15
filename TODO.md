@@ -2,3 +2,4 @@ ToDo List
 =========
 
 * If folder 'images/uploads' do not exitst, uploader will not work. Fix it.
+* Blog: Full Post, Intro Post Do Not Support Long Text Values (Only 10000 chars).

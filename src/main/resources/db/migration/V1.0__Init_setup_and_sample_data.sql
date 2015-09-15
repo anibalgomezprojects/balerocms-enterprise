@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS BLOG (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	bloname varchar(255) not null,
 	title varchar(255) not null,
-	intro_post varchar(255) not null,
+	intro_post varchar(10000) not null,
 	full_post varchar(10000) not null,
 	code varchar(255) not null,
 	permalink varchar(255) not null,

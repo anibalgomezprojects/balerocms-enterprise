@@ -9,23 +9,33 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.domain.Blog;
+import com.neblina.balero.service.repository.BlogRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/api")
 public class APIController {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(APIController.class.getName());
 
-    @RequestMapping("/message_center")
+    @Autowired
+    private BlogRepository blogRepository;
+
+    @RequestMapping("/blog")
     @ResponseBody
-    String messageCenter() {
-        log.debug("Call for /hello controller");
-        return "Hello World Java!";
+    public List<Blog> blog(Model model, Locale locale) {
+        log.debug("Call for API /blog");
+        return blogRepository.findAllByCode(locale.getLanguage());
     }
 
 }
