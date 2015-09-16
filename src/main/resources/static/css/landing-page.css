@@ -205,6 +205,7 @@ img {
     margin-right: 50px;
     padding-bottom: auto;
     float: left;
+    z-index: 100;
 }
 
 .post {
