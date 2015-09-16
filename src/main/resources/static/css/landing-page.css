@@ -109,6 +109,10 @@ img {
     font-weight: bold;
 }
 
+.table th, .table td {
+    border-top: none !important;
+}
+
 @media(max-width:767px) {
     .intro-message {
         padding-bottom: 15%;
@@ -198,9 +202,11 @@ img {
     border-width: 1px;
     border-color: #fff;
     margin-right: 50px;
-    height: 100%;
     padding-bottom: 100%;
-    margin-bottom: 100%;
+}
+
+.debug {
+    background: black;
 }
 
 .social {
@@ -208,10 +214,6 @@ img {
     font-size: 16px;
     font-weight: 400;
     color: #acacac;
-}
-
-.full-padding {
-    padding-bottom: 100%;
 }
 
 @media(max-width:1199px) {

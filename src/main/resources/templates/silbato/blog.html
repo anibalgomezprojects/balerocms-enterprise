@@ -34,9 +34,8 @@
                         <li><a href="#">Link 2</a></li>
                         <li><a href="#">Link 3</a></li>
                     </ul>
-                    <div class="full-padding"></div>
                 </div>
-                <div class="col-lg-8" th:each="post, iterStat : ${posts}">
+                <div class="col-lg-8 debug" th:each="post, iterStat : ${posts}">
                     <h2 th:text="${post.title}"></h2>
                     <p></p>
                     <p class="lead" th:utext="${post.introPost}"></p>
