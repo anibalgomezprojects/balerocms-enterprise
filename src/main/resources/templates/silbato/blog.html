@@ -43,7 +43,13 @@
                     <a th:text="'/blog/'+${post.id}">Read More...</a>
                     <hr />
                     <div class="social">
-                        <a href="" class="glyphicon glyphicon-thumbs-up like" th:attr="ng-click='blotoggle('+${post.id} + ', ' + ${iterStat.index} + ');'"></a>
+                        <a href=""
+                           class="glyphicon glyphicon-thumbs-up like"
+                           th:attr="
+                           ng-click='blotoggle('
+                           + ${post.id} + ','
+                           + ${iterStat.index} +
+                           ')'"></a>
                         <span><b th:text="'{{posts[' + ${iterStat.index}+ '].likes}}'">0</b> likes</span>
                         <span><b th:text="${post.hits}"></b>hits</span>
                     </div>
