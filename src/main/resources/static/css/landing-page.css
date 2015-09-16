@@ -235,6 +235,11 @@ img {
     padding: 15px;
 }
 
+.custom {
+    margin-left: -20px;
+    width: 350px;
+}
+
 .custom li {
     display: inline-block;
     width: 100%;
@@ -257,6 +262,11 @@ nav.custom.navbar-default li a {
 }
 
 @media(max-width:767px) {
+
+    .custom {
+        margin: auto;
+        width: 100%;
+    }
 
     .navbar-default li {
         display: inline;
