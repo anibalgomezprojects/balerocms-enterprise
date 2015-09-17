@@ -10,6 +10,7 @@
 package com.neblina.balero.service.repository;
 
 import com.neblina.balero.domain.Blog;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,7 @@ public interface BlogRepository extends CrudRepository<Blog, Long> {
 
     Blog findOneById(Long id);
 
-    List<Blog> findAllByCode(String code);
+    List<Blog> findAllByCode(String code, Pageable pageable);
 
     Blog findOneByCode(String code);
 

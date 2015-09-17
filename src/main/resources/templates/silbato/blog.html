@@ -41,7 +41,10 @@
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav sidebar-links">
-                                    <li th:each="post : ${posts}">
+                                    <li>
+                                        LATEST 10 POSTS
+                                    </li>
+                                    <li th:each="post : ${lastTen}">
                                         <a th:href="'/blog/'+${post.permalink}" th:text="${post.title}">Home</a>
                                     </li>
                                 </ul>

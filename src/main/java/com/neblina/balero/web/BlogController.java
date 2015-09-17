@@ -17,6 +17,8 @@ import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +45,9 @@ public class BlogController {
     String pageIndex(Model model, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
-        model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage()));
+        Pageable lastTen = new PageRequest(0, 10);
+        model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
+        model.addAttribute("lastTen", blogRepository.findAllByCode(locale.getLanguage(), lastTen));
         return "silbato/blog";
     }
 

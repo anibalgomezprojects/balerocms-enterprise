@@ -40,7 +40,7 @@ public class APIController {
     @ResponseBody
     public List<Blog> blog(Model model, Locale locale) {
         log.debug("Call for API /blog");
-        return blogRepository.findAllByCode(locale.getLanguage());
+        return blogRepository.findAllByCode(locale.getLanguage(), null);
     }
 
     @RequestMapping("/blog/{id}")
@@ -48,7 +48,7 @@ public class APIController {
     public List<Blog> blogId(Locale locale, @PathVariable("id") Long id) {
         log.debug("Call for API /blog/" + id);
         blogService.setLikes(id);
-        return blogRepository.findAllByCode(locale.getLanguage());
+        return blogRepository.findAllByCode(locale.getLanguage(), null);
     }
 
 }
