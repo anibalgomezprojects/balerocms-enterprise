@@ -48,9 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsManager)
-                .passwordEncoder(passwordEncoder());
+    protected void configure(AuthenticationManagerBuilder auth) {
+        try {
+            auth.userDetailsService(customUserDetailsManager)
+                    .passwordEncoder(passwordEncoder());
+        } catch (Exception e) {
+            log.debug("Balero->configure->" + e.getMessage());
+        }
     }
 
     @Bean

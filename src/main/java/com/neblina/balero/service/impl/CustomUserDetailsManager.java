@@ -32,8 +32,11 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findOneByUsername(username);
+        if(user == null) {
+            throw new UsernameNotFoundException ("Usuario no encontrado!");
+        }
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(user.getRoles()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
