@@ -10,6 +10,7 @@ package com.neblina.balero.handler;
 
 import com.neblina.balero.domain.Blacklist;
 import com.neblina.balero.service.BlacklistService;
+import com.neblina.balero.service.repository.BlacklistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
     @Autowired
     private BlacklistService blacklistService;
 
+    @Autowired
+    private BlacklistRepository blacklistRepository;
+
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
         try {
@@ -52,10 +56,19 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
 
     @Scheduled(fixedRate = 60000)
     public void blacklistChecker() {
+        log.debug("Updating timer to IP's List...");
         try {
-            List<Blacklist> ips = blacklistService.getAllIps();
+            List<Blacklist> ips = blacklistRepository.findAll();
             for(Blacklist blacklist: ips) {
-                blacklistService.updateTimer(blacklist.getIp());
+                blacklist.setTimer(blacklist.getTimer()-60000);
+                log.debug("Remaining for: " + blacklist.getIp() +
+                        " Time: " + blacklist.getTimer());
+                blacklistRepository.save(blacklist);
+                if(blacklist.getTimer() <= 0) {
+                    blacklist.setIp(blacklist.getIp());
+                    log.debug("Deleting ip: " + blacklist.getIp());
+                    blacklistRepository.delete(blacklist);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
