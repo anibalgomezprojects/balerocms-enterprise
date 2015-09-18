@@ -158,6 +158,10 @@ Create a database 'balerocms_enterprise_test', Then run:
 
     $ mvn test
 
+## Security Bugs / Reports
+
+Tested with Mantra WebBrowser. If you found a bug. Please, notify us.
+
 ## NOTES
 
 ### Frameworks, Features And Toolchains in this software: 
