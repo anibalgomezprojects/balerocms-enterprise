@@ -13,7 +13,7 @@
     <div class="row debug">
         <p align="center">
             <a th:href="@{/}" href="home.html" class="white">
-                <img src="/images/logo.png" />
+                <img src="/images/logos/balero.png" />
             </a>
         </p>
     <h1 th:text="${title}">Title</h1>
@@ -22,9 +22,11 @@
     <div>
         There was an unexpected error (type=<span th:text="${error}">Bad</span>, status=<span th:text="${status}">500</span>).
     </div>
-    <div th:text="${message}"><b>Fake content</b></div>
+    <div><b class="debug-text" th:text="${message}">Fake content</b></div>
     <div>
         Please contact the operator with the above information.
+        <br />
+        If you are the administrator, check your system console.
     </div>
     </div>
 </div>
