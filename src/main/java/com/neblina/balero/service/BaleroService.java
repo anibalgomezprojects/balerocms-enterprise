@@ -12,9 +12,9 @@ package com.neblina.balero.service;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HelloWorldService {
+public class BaleroService {
 
-    private static String version = "0.1-test";
+    private static String version = "v_1.0-RELEASE";
 
     public String getVersion() {
         return version;
