@@ -42,7 +42,7 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @RequestMapping(value = "" )
-    String pageIndex(Model model, Locale locale) {
+    String blogIndex(Model model, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         Pageable lastTen = new PageRequest(0, 10);
@@ -51,9 +51,20 @@ public class BlogController {
         return "silbato/blog";
     }
 
-    @RequestMapping(value = "/" )
-    String pageIndexRedirect() {
-        return "redirect:/blog";
+    @RequestMapping(value = "/{permalink}" )
+    String postIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
+        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+        model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
+        try {
+            Blog blog = blogRepository.findOneByPermalink(permalink);
+            if(blog.getPermalink() == null) {
+                throw new Exception("Error 404");
+            }
+            model.addAttribute("posts", blogRepository.findOneByPermalink(permalink));
+        } catch (Exception e) {
+            model.addAttribute("error404", 1);
+        }
+        return "silbato/post";
     }
 
 }
