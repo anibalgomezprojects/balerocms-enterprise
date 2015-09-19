@@ -10,7 +10,6 @@
 package com.neblina.balero.util;
 
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
-import com.neblina.balero.web.TestController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 @Profile("prod")
 public class AssetPipeline {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(AssetPipeline.class.getName());
 
     public AssetPipeline() {
         log.debug("Running Balero CMS Resource Compiler...");

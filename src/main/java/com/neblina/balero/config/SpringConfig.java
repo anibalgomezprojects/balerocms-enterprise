@@ -11,7 +11,6 @@ package com.neblina.balero.config;
 
 import com.neblina.balero.handler.ExecuteTimeInterceptor;
 import com.neblina.balero.util.AssetPipeline;
-import com.neblina.balero.web.TestController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ import java.util.Properties;
 @Configuration
 public class SpringConfig extends WebMvcConfigurerAdapter {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(SpringConfig.class.getName());
 
     /**
      * Environment Variables (application.properties)

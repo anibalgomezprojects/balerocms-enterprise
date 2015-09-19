@@ -26,7 +26,7 @@ import java.util.Locale;
 @RequestMapping("/page")
 public class PageController {
 
-    private static final Logger log = LogManager.getLogger(TestController.class.getName());
+    private static final Logger log = LogManager.getLogger(PageController.class.getName());
 
     @Autowired
     private SettingRepository settingRepository;

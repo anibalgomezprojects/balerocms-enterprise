@@ -15,6 +15,7 @@ import com.neblina.balero.service.repository.BlogRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class APIController {
 
     @RequestMapping("/blog")
     @ResponseBody
+    @Transactional(readOnly = true)
     public List<Blog> blog(Model model, Locale locale) {
         log.debug("Call for API /blog");
         return blogRepository.findAllByCode(locale.getLanguage(), null);
@@ -45,6 +47,7 @@ public class APIController {
 
     @RequestMapping("/blog/{id}")
     @ResponseBody
+    @Transactional(readOnly = true)
     public List<Blog> blogId(Locale locale, @PathVariable("id") Long id) {
         log.debug("Call for API /blog/" + id);
         blogService.setLikes(id);
