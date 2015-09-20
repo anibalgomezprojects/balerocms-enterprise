@@ -24,3 +24,4 @@ spring:
           hibernate: OFF
 flyway:
   validateOnMigrate: false
+  locations: classpath:db/migration

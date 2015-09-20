@@ -1,7 +1,7 @@
 spring:
     datasource:
         dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:balerocms_v2;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:balerocms_enterprise;DB_CLOSE_DELAY=-1
         databaseName:
         serverName:
         username:
@@ -18,3 +18,5 @@ spring:
             springframework:
               web: DEBUG
           hibernate: ERROR
+flyway:
+  locations: classpath:dev/db/migration

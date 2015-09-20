@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS SETTING (
 	title varchar(255) not null,
 	title_header varchar(255) not null,
 	tags varchar(255) not null,
-	footer varchar(1000) not null,
-	offline_message varchar(1000) not null
+	footer text not null,
+	offline_message text not null
 );
 
 CREATE TABLE IF NOT EXISTS BLACKLIST (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS BLACKLIST (
 CREATE TABLE IF NOT EXISTS BLOCK (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
-	content varchar(1000) not null,
+	content text not null,
 	code varchar(255) not null
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS PAGE (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	title varchar(255) not null,
-	content varchar(10000) not null,
+	content text not null,
 	code varchar(255) not null,
 	permalink varchar(255) not null,
 	author varchar(255) not null,
@@ -55,8 +55,8 @@ CREATE TABLE IF NOT EXISTS BLOG (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	bloname varchar(255) not null,
 	title varchar(255) not null,
-	intro_post varchar(10000) not null,
-	full_post varchar(10000) not null,
+	intro_post text not null,
+	full_post text not null,
 	code varchar(255) not null,
 	permalink varchar(255) not null,
 	author varchar(255) not null,
