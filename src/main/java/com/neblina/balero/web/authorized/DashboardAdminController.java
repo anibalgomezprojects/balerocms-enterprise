@@ -16,6 +16,7 @@ import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,6 +58,9 @@ public class DashboardAdminController {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Autowired
+    private Environment environment;
+
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/admin/dashboard";
@@ -73,6 +77,7 @@ public class DashboardAdminController {
         model.addAttribute("totalUsers", userRepository.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
         model.addAttribute("totalPosts", blogRepository.findAll().size());
+        model.addAttribute("profiles", environment.getActiveProfiles()[0]);
         return "authorized/dashboard";
     }
 
