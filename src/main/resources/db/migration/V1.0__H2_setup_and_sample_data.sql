@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS USER (
 	email varchar(255) not null,
 	subscribed bit(1) not null,
 	roles varchar(255) not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS PROPERTY (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	administrator_email varchar(255) not null,
 	offline bit(1) not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS SETTING (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -24,21 +24,21 @@ CREATE TABLE IF NOT EXISTS SETTING (
 	tags varchar(255) not null,
 	footer text not null,
 	offline_message text not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS BLACKLIST (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	ip varchar(255) not null,
 	timer int(10) not null,
 	attemps int(10) not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS BLOCK (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	content text not null,
 	code varchar(255) not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS PAGE (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS PAGE (
 	permalink varchar(255) not null,
 	author varchar(255) not null,
 	hits int(10) not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS BLOG (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS BLOG (
 	hits int(10) not null,
 	likes int(10) not null,
 	blodate date not null
-);
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles) VALUES
 (1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@balerocms.com', 1, 'ROLE_ADMIN'),
