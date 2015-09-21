@@ -1,9 +1,4 @@
 spring:
-    http:
-      encoding:
-        charset: UTF-8
-        encoding: true
-        force: true
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://localhost:3306/balerocms_enterprise?useUnicode=yes&characterEncoding=UTF-8
@@ -30,5 +25,6 @@ spring:
               web: DEBUG
           hibernate: OFF
 flyway:
+  encoding: UTF-8
   validateOnMigrate: false
   locations: classpath:db/migration
