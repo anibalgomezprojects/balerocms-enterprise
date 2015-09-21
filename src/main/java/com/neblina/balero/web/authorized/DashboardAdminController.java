@@ -99,9 +99,7 @@ public class DashboardAdminController {
                                @RequestParam(value = "administratorEmail") String administratorEmail,
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer,
-                               @RequestParam(value = "offline") boolean offline,
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
-        log.debug("Saving Settings... Offline value: " + offline);
         model.addAttribute("success", 1);
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
@@ -112,7 +110,6 @@ public class DashboardAdminController {
                 administratorEmail,
                 tags,
                 footer,
-                offline,
                 offlineMessage
 
         );
