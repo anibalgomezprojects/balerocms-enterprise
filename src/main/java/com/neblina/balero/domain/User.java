@@ -1,9 +1,10 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.domain;
@@ -36,9 +37,11 @@ public class User {
     @Email
     private String email;
 
-    private int subscribed;
+    private boolean subscribed;
 
     private String roles;
+
+    private String type;
 
     public Long getId() {
         return id;
@@ -96,11 +99,11 @@ public class User {
         this.email = email;
     }
 
-    public int getSubscribed() {
+    public boolean getSubscribed() {
         return subscribed;
     }
 
-    public void setSubscribed(int subscribed) {
+    public void setSubscribed(boolean subscribed) {
         this.subscribed = subscribed;
     }
 
@@ -112,6 +115,14 @@ public class User {
         this.roles = roles;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "User [" +
@@ -121,7 +132,8 @@ public class User {
                 "lastName=" + this.lastName + "," +
                 "email=" + this.email + "," +
                 "subscribed=" + this.subscribed + "," +
-                "roles=" + this.roles
+                "roles=" + this.roles + "," +
+                "type=" + this.type
                 + "]";
     }
 

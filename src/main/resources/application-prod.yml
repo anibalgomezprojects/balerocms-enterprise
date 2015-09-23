@@ -1,7 +1,7 @@
 spring:
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/balerocms_enterprise
+        url: jdbc:mysql://localhost:3306/balerocms_enterprise?useUnicode=yes&characterEncoding=UTF-8
         databaseName:
         serverName:
         username: root
@@ -16,6 +16,8 @@ spring:
         ddl-auto: update
     thymeleaf:
       cache: false
+      encoding: UTF-8
+      content-type: text/html
     logging:
       level:
           org:
@@ -23,4 +25,8 @@ spring:
               web: DEBUG
           hibernate: OFF
 flyway:
+  encoding: UTF-8
   validateOnMigrate: false
+  locations: classpath:db/migration
+balerocms:
+  minification: true

@@ -1,12 +1,13 @@
 /**
- * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.BlockService;
 import com.neblina.balero.service.repository.BlockRepository;
@@ -23,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/block")
-public class DashboardAdminBlockController {
+public class AdminBlockController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminBlockController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminBlockController.class.getName());
 
     @Autowired
     private BlockService blockService;

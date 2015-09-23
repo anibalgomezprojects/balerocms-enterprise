@@ -10,7 +10,6 @@
 <div th:include="silbato/fragments/navbar :: navbar"></div>
 <div th:include="silbato/fragments/header :: header"></div>
 
-<!-- Content -->
 <div th:fragment="main">
 
     <div class="container">
@@ -74,8 +73,17 @@
         </form>
     </div>
 
+    <div th:replace="silbato/fragments/block_static :: block_static"></div>
+
 </div>
-<!-- /Content -->
+
+    <div class="pages">
+        <div class="row">
+            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
+                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
+            </div>
+        </div>
+    </div>
 
     <div th:replace="silbato/fragments/footer :: footer"></div>
 

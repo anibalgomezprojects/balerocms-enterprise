@@ -11,52 +11,50 @@
 
 <div class="container">
 
-    <!-- Content -->
-    <div th:fragment="block">
+    <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
-
-        <div class="box-content">
-            <div class="row box-text">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th th:text="#{block.text.name}">Name</th>
-                        <th th:text="#{block.text.code}">Code</th>
-                        <th class="text-center" th:text="#{block.text.action}">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="block : ${blocks}">
-                        <td th:text="${block.id}">_ID</td>
-                        <td>
-                            <a th:href="@{'/admin/block/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a>
-                        </td>
-                        <td th:text="${block.code}">_CODE</td>
-                        <td class="text-center">
-                            <a th:href="@{'/admin/block/'+${block.id}}" href="#" class="btn btn-default">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span th:text="#{button.edit}">Edit</span>
-                            </a>
-                            <a th:href="@{'/admin/block/delete/'+${block.id}}" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span>
-                                <span th:text="#{button.delete}">Delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="toolbar pull-right">
-                    <a href="/admin/block/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
-                </div>
+    <div class="box-content">
+        <div class="row box-text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th th:text="#{block.text.name}">Name</th>
+                    <th th:text="#{block.text.code}">Code</th>
+                    <th class="text-center" th:text="#{block.text.action}">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="block : ${blocks}">
+                    <td th:text="${block.id}">_ID</td>
+                    <td>
+                        <a th:href="@{'/admin/block/'+${block.id}}"><span th:text="${block.name}">_NAME</span></a>
+                    </td>
+                    <td th:text="${block.code}">_CODE</td>
+                    <td class="text-center">
+                        <a th:href="@{'/admin/block/'+${block.id}}" href="#" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span th:text="#{button.edit}">Edit</span>
+                        </a>
+                        <a th:href="@{'/admin/block/'+${block.id}+'?developer'}" href="#" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span th:text="#{button.code.view}">Code View</span>
+                        </a>
+                        <a th:href="@{'/admin/block/delete/'+${block.id}}" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span th:text="#{button.delete}">Delete</span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="toolbar pull-right">
+                <a href="/admin/block/new" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
         </div>
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 

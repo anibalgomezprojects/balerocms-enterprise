@@ -6,14 +6,16 @@ CREATE TABLE IF NOT EXISTS USER (
 	first_name varchar(255) not null,
 	last_name varchar(255) not null,
 	email varchar(255) not null,
-	subscribed int(10) not null,
-	roles varchar(255) not null
+	subscribed bit(1) not null,
+	roles varchar(255) not null,
+	type varchar(255) not null
 );
 
 CREATE TABLE IF NOT EXISTS PROPERTY (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	administrator_email varchar(255) not null,
-	offline int(10) not null
+	offline bit(1) not null,
+	multi_language bit(1) not null
 );
 
 CREATE TABLE IF NOT EXISTS SETTING (
@@ -22,8 +24,8 @@ CREATE TABLE IF NOT EXISTS SETTING (
 	title varchar(255) not null,
 	title_header varchar(255) not null,
 	tags varchar(255) not null,
-	footer varchar(1000) not null,
-	offline_message varchar(1000) not null
+	footer varchar(90000) not null,
+	offline_message varchar(90000) not null
 );
 
 CREATE TABLE IF NOT EXISTS BLACKLIST (
@@ -36,7 +38,7 @@ CREATE TABLE IF NOT EXISTS BLACKLIST (
 CREATE TABLE IF NOT EXISTS BLOCK (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
-	content varchar(1000) not null,
+	content varchar(90000) not null,
 	code varchar(255) not null
 );
 
@@ -44,20 +46,45 @@ CREATE TABLE IF NOT EXISTS PAGE (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	name varchar(255) not null,
 	title varchar(255) not null,
-	content varchar(10000) not null,
+	content varchar(90000) not null,
 	code varchar(255) not null,
 	permalink varchar(255) not null,
 	author varchar(255) not null,
 	hits int(10) not null
 );
 
-INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles) VALUES
-(1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@balerocms.com', '1', 'ROLE_ADMIN'),
-(2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'demo@localhost.com', '1', 'ROLE_USER'),
-(3, 'anonymous', '$$$$$$$$', '$$$$$$$$', 'Anonymous', 'Unregistered', 'anonymous@localhost.com', '1', 'ROLE_ANONYMOUS');
+CREATE TABLE IF NOT EXISTS BLOG (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	bloname varchar(255) not null,
+	title varchar(255) not null,
+	intro_post varchar(90000) not null,
+	full_post varchar(90000) not null,
+	code varchar(255) not null,
+	permalink varchar(255) not null,
+	author varchar(255) not null,
+	hits int(10) not null,
+	likes int(10) not null,
+	blodate date not null,
+	status varchar(255) not null,
+	comments int(10) not null
+);
 
-INSERT INTO PROPERTY (id, administrator_email, offline) VALUES
-(1, 'admin@localhost', '0');
+CREATE TABLE IF NOT EXISTS COMMENT (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	content varchar(90000) not null,
+	code varchar(255) not null,
+	author varchar(255) not null,
+	blodate date not null,
+	post_permalink varchar(255) not null
+);
+
+INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles, type) VALUES
+(1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@balerocms.com', 1, 'ROLE_ADMIN', 'admin'),
+(2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'demo@localhost.com', 1, 'ROLE_USER', 'user'),
+(3, 'anonymous', '$$$$$$$$', '$$$$$$$$', 'Anonymous', 'Unregistered', 'anonymous@localhost.com', 1, 'ROLE_ANONYMOUS', 'user');
+
+INSERT INTO PROPERTY (id, administrator_email, offline, multi_language) VALUES
+(1, 'admin@localhost', 0, 1);
 
 INSERT INTO SETTING (id, code, title, title_header, tags, footer, offline_message) VALUES
 (1, 'en', 'Demo', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Home</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">About</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Services</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contact</a></li></ul><br />(c) 2015. Your company. Powered by <a href="http://www.balerocms.com/">BaleroCMS</a>.', 'Site under maintenance. We will back shortly.'),
@@ -76,3 +103,13 @@ INSERT INTO BLOCK (id, name, content, code) VALUES
 INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUES
 (1, 'demo_en', 'Demo Page Example', 'This is a demo content.', 'en', 'demo-page', 'admin', 1),
 (2, 'demo_es', 'Página De Demostración', 'Esto es un ejemplo.', 'es', 'demo-pagina', 'admin', 1);
+
+INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes, blodate, status, comments) VALUES
+(1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, '2015-09-15', 'success', '0'),
+(2, 'test_post_en', 'Test demo?', '<h3>demo</h3>', 'full.', 'en', 'demostration-post-123', 'admin', 1, 10, '2015-09-15', 'success', '0'),
+(3, 'user_post_en', 'User Post Test', '<h3>demo</h3>', 'full.', 'en', 'user-post-en', 'user', 1, 10, '2015-09-15', 'pending', '0'),
+(4, 'user_post_es', 'Post De Prueba Por User', '<h3>demo</h3>', 'full.', 'es', 'user-post-es', 'user', 1, 10, '2015-09-15', 'pending', '0'),
+(5, 'demo_post_es', 'La Niña Del Ñoño', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15', 'success', '0');
+
+INSERT INTO BLACKLIST (id, ip, timer, attemps) VALUES
+(1, '123.456.789.123', '600000', 10);

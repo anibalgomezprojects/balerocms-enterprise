@@ -1,15 +1,17 @@
 /**
- * Silbato Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.web;
 
 import com.neblina.balero.service.repository.BlockRepository;
 import com.neblina.balero.service.repository.PageRepository;
+import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +41,9 @@ public class IndexController {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @RequestMapping("/")
     String home(Model model, Locale locale) {
         String lang = locale.getLanguage();
@@ -46,6 +51,7 @@ public class IndexController {
         model.addAttribute("settings", settingRepository.findOneByCode(lang));
         model.addAttribute("blocks", blockRepository.findAllByCode(lang));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         return "silbato/index";
     }
 

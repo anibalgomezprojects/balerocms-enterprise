@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.config;
@@ -47,9 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsManager)
-                .passwordEncoder(passwordEncoder());
+    protected void configure(AuthenticationManagerBuilder auth) {
+        try {
+            auth.userDetailsService(customUserDetailsManager)
+                    .passwordEncoder(passwordEncoder());
+        } catch (Exception e) {
+            log.debug("Balero->configure->" + e.getMessage());
+        }
     }
 
     @Bean

@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.service;
@@ -31,8 +32,8 @@ public class PropertyRepositoryTest extends TestCase {
 
     @Test
     public void checkIfOfflineStatusIsOff() {
-        assertThat(propertyService.getOfflineStatus(), is(0));
-        System.out.println("Offline value is: " + propertyService.getOfflineStatus());
+        assertThat(propertyService.isOfflineStatus(), is(false));
+        System.out.println("Offline value is: " + propertyService.isOfflineStatus());
     }
 
 }

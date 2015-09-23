@@ -34,12 +34,10 @@ public class MaintenanceFilter implements Filter {
     private BlacklistService blacklistService;
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        log.debug("Loading Maintenance Filter...");
-        log.debug("offline value: " + propertyService.getOfflineStatus());
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        if(propertyService.getOfflineStatus() == 1 && !url.contains("offline")) {
+        if(propertyService.isOfflineStatus() == true && !url.contains("offline")) {
             if(blacklistService.isIpBanned() == false) {
                 if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
                         url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||

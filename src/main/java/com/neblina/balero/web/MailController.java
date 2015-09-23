@@ -17,6 +17,7 @@
  * 
  * =============================================================================
  */
+
 package com.neblina.balero.web;
 
 import com.neblina.balero.service.EmailService;
@@ -65,7 +66,7 @@ public class MailController {
         log.debug("Mailing List Post {}");
         try {
             userService.createUserAccount("temp", "temp",
-                    "temp", firstname, "temp", email, 1, "ROLE_USER");
+                    "temp", firstname, "temp", email, true, "ROLE_USER", "user");
         } catch (Exception e) {
             log.debug("Error: " + e.getMessage());
         }

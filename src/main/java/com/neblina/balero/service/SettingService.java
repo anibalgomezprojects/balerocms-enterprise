@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.service;
@@ -34,7 +35,6 @@ public class SettingService {
                              String administratorEmail,
                              String tags,
                              String footer,
-                             int offline,
                              String offlineMessage) {
         Setting settings = settingRepository.findOneByCode(code);
         Property properties = propertyRepository.findOneById(1L);
@@ -44,7 +44,6 @@ public class SettingService {
         properties.setAdministratorEmail(administratorEmail);
         settings.setTags(tags);
         settings.setFooter(footer);
-        properties.setOffline(offline);
         settings.setOfflineMessage(offlineMessage);
         settingRepository.save(settings);
         propertyRepository.save(properties);

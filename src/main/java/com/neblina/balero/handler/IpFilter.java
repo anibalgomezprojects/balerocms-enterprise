@@ -37,11 +37,9 @@ public class IpFilter implements Filter {
      * @throws ServletException
      */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        log.debug("Loading Filter...");
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        log.debug(request.getRequestURL() + ": " + blacklistService.getUserIp() + ":" + request.getRemoteAddr());
         if (blacklistService.isIpBanned()) {
             if (!url.contains("banned")) {
                 log.info("Redirecting to banned page.");

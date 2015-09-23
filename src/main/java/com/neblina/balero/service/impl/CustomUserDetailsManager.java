@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.service.impl;
@@ -31,8 +32,11 @@ public class CustomUserDetailsManager implements UserDetailsManager {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findOneByUsername(username);
+        if(user == null) {
+            throw new UsernameNotFoundException ("Usuario no encontrado!");
+        }
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(user.getRoles()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);

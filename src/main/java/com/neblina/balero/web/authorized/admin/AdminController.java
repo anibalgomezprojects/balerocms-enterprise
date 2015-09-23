@@ -1,20 +1,23 @@
 /**
- * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +31,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin")
-public class DashboardAdminController {
+public class AdminController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminController.class.getName());
 
     @Autowired
     private SettingRepository settingRepository;
@@ -53,22 +56,32 @@ public class DashboardAdminController {
     @Autowired
     private PropertyRepository propertyRepository;
 
-    @RequestMapping(value = {"", "/"} )
-    public String rootIndex() {
-        return "redirect:/admin/dashboard";
-    }
+    @Autowired
+    private BlogRepository blogRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private Environment environment;
+
+    @Autowired
+    private BaleroService baleroService;
 
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
-    @RequestMapping("/dashboard")
+    @RequestMapping(value = {"", "/", "/dashboard" })
     public String dashboardIndex(Model model) {
+        model.asMap().clear();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("totalPages", pageRepository.findAll().size());
         model.addAttribute("totalUsers", userRepository.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
-        log.debug("Total users: " + userRepository.findAll().size());
+        model.addAttribute("totalPosts", blogRepository.findAll().size());
+        model.addAttribute("totalComments", commentRepository.findAll().size());
+        model.addAttribute("profiles", environment.getActiveProfiles()[0]);
         return "authorized/dashboard";
     }
 
@@ -78,6 +91,7 @@ public class DashboardAdminController {
                            Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("version", baleroService.getVersion());
         return "authorized/settings";
     }
 
@@ -90,9 +104,7 @@ public class DashboardAdminController {
                                @RequestParam(value = "administratorEmail") String administratorEmail,
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer,
-                               @RequestParam(value = "offline") int offline,
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
-        log.debug("Saving Settings... Offline value: " + offline);
         model.addAttribute("success", 1);
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
@@ -103,7 +115,6 @@ public class DashboardAdminController {
                 administratorEmail,
                 tags,
                 footer,
-                offline,
                 offlineMessage
 
         );

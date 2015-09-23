@@ -1,12 +1,13 @@
 /**
- * Balero CMS v2 Project: Proyecto 100% Mexicano de código libre.
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.UserRepository;
@@ -25,9 +26,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin/user")
-public class DashboardAdminUserController {
+public class AdminUserController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminUserController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminUserController.class.getName());
 
     @Autowired
     private UserRepository userRepository;
@@ -36,10 +37,16 @@ public class DashboardAdminUserController {
     private UserService userService;
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = {"", "/"} )
+    @RequestMapping(value = "")
     public String userList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "authorized/user";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/")
+    public String userListRedirect() {
+        return "redirect:/admin/user";
     }
 
     @Secured("ROLE_ADMIN")
@@ -68,16 +75,7 @@ public class DashboardAdminUserController {
         model.addAttribute("success", 1);
         model.addAttribute("users", userRepository.findOneById(id));
         userService.deleteUserEmail(id);
-        return "redirect:/admin/user/";
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.GET)
-    public String updateUserSubscribedGet(Model model,
-                                                 @PathVariable("id") Long id,
-                                                 @RequestParam("status") int status) {
-        userService.updateSubscribedStatus(id, status);
-        return "redirect:/admin/user/";
+        return "redirect:/admin/user";
     }
 
     @Secured("ROLE_ADMIN")
@@ -86,7 +84,7 @@ public class DashboardAdminUserController {
                                 @RequestParam("email") String email,
                                 Model model, Locale locale) {
         model.addAttribute("success", 1);
-        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, 1, "USER");
+        userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, true, "ROLE_ANONYMOUS", "user");
         return "redirect:/admin/user";
     }
 

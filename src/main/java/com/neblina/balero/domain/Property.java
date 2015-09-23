@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.domain;
@@ -18,7 +19,8 @@ public class Property {
     @GeneratedValue
     private Long id;
     private String administratorEmail;
-    private int offline;
+    private boolean offline;
+    private boolean multiLanguage;
 
     public Long getId() {
         return id;
@@ -36,12 +38,20 @@ public class Property {
         this.administratorEmail = administratorEmail;
     }
 
-    public int getOffline() {
+    public boolean isOffline() {
         return offline;
     }
 
-    public void setOffline(int offline) {
+    public void setOffline(boolean offline) {
         this.offline = offline;
+    }
+
+    public boolean isMultiLanguage() {
+        return multiLanguage;
+    }
+
+    public void setMultiLanguage(boolean multiLanguage) {
+        this.multiLanguage = multiLanguage;
     }
 
     @Override
@@ -49,7 +59,8 @@ public class Property {
         return "Setting [" +
                 "id=" + this.id + "," +
                 "administratorEmail=" + this.administratorEmail + "," +
-                "offline=" + this.offline
+                "offline=" + this.offline+ "," +
+                "multiLanguage" + this.multiLanguage
                 + "]";
     }
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="authorized/fragments/metas :: metas">
+       <title></title>
+</head>
+
+<body>
+
+<div th:include="authorized/fragments/navbar :: navbar"></div>
+
+<div class="container">
+
+    <div th:with="text=#{blog.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
+
+    <div class="box-content">
+        <div class="row box-text">
+            <table class="table table-striped" th:fragment="blog">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th th:text="#{blog.text.bloname}">bloName</th>
+                    <th th:text="#{blog.text.titlepost}">Title</th>
+                    <th class="text-center" th:text="#{blog.text.action}">Action</th>
+                </tr>
+                </thead>
+                <tbody th:each="post : ${posts}">
+                <tr th:class="${post.status}">
+                    <td th:text="${post.id}">_ID</td>
+                    <td>
+                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}">
+                            <span th:text="${post.bloname}">_NAME</span>
+                        </a>
+                        <span th:text="${post.hits}" class="badge"></span>
+                    </td>
+                    <td>
+                        <span th:text="${post.title}"></span>
+                        <span th:text="${post.code}" class="badge"></span>
+                        <span th:text="${post.author}" class="badge"></span>
+                        <span th:text="${post.blodate}" class="badge"></span>
+                    </td>
+                    <td class="text-center">
+                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}" href="#" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span th:text="#{button.edit}"></span>
+                        </a>
+                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}+'?developer'}" href="#" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span th:text="#{button.code.view}">Code View</span>
+                        </a>
+                        <a th:href="@{'/'+${user}+'/blog/delete/'+${post.id}}" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            <span th:text="#{button.delete}"></span>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="toolbar pull-right">
+                <a th:href="'/'+${user}+'/blog/new'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:replace="authorized/fragments/footer :: footer"></div>
+
+</body>
+</html>
+

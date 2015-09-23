@@ -1,9 +1,10 @@
 /**
  * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
  * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
- * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
+ * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.service;
@@ -42,7 +43,7 @@ public class UserRepositoryTest extends TestCase {
     @Test
     public void createNewUsernameDemoAndVerifyIfIsItExists() {
         System.out.println("Creando Usuario Demo...");
-        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", 1, "ADMIN, USER");
+        userService.createUserAccount("demo", "demo", "demo", "Pepito", "Perez", "demo@localhost.com", true, "ROLE_USER", "user");
         User user = userService.getUserByUsername("demo");
         assertThat(user.getUsername(), is("demo"));
     }

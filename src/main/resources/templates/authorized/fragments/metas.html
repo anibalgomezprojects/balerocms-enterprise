@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:fragment="metas">
 
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="theme-color" content="#e8040a" />
     <link rel="icon" href="../../favicon.ico" />
 
     <title th:text="#{dashboard.title}">Dashboard</title>
@@ -19,19 +20,18 @@
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="/vendors/summernote/summernote.css" />
-    <script type="text/javascript" src="/vendors/summernote/summernote.js"></script>
+    <script type="text/javascript" src="/vendors/summernote/summernote.min.js"></script>
 
-    <!-- summernote-app -->
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/settings-admin.js" sec:authorize="hasRole('ROLE_ADMIN')"></script>
+    <script type="text/javascript" src="/js/settings-user.js" sec:authorize="hasRole('ROLE_USER')"></script>
 
     <link href="/css/dashboard.css" rel="stylesheet" />
+    <link href="/css/ui-elements.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
     <script src="/js/html5shiv.js"></script>
     <script src="/js/respond.min.js"></script>
     <![endif]-->
-
-    <!-- Header Scripts -->
 
 </head>
 

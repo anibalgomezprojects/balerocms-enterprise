@@ -9,65 +9,59 @@
 
 <div th:include="authorized/fragments/navbar :: navbar"></div>
 
-<!-- container -->
+
 <div class="container">
 
-    <!-- Content -->
-    <div th:fragment="block_edit">
+    <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
+    <div class="box-content">
 
-        <div class="box-content">
-
-            <div class="alert alert-success" role="alert" th:if="${success}">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <span th:text="#{success.saved}"> _SUCCESS</span>
-            </div>
-
-            <form class="form-horizontal" method="post" th:each="block : ${blocks}" th:action="@{'/admin/block/'+${block.id}}">
-                <div class="form-group title">
-                    <h4 th:text="#{block.text.edit}">Edit Homepage Block</h4>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label" th:text="#{block.text.name}">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control short" id="name" th:value="${block.name}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
-                    <div class="col-sm-10">
-                        <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label" th:text="#{block.text.code}">Code</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="code">
-                            <option th:value="${block.code}" th:text="'Saved ('+${block.code}+')'"></option>
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" th:text="#{button.save}">Save</button>
-                        <button type="reset" class="btn btn-default" th:text="#{button.cancel}">Cancel</button>
-                    </div>
-                </div>
-            </form>
-
+        <div class="alert alert-success" role="alert" th:if="${success}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span th:text="#{success.saved}"> _SUCCESS</span>
         </div>
 
+        <form class="form-horizontal" method="post" th:each="block : ${blocks}" th:action="@{'/admin/block/'+${block.id}}">
+            <div class="form-group title">
+                <h4 th:text="#{block.text.edit}">Edit Homepage Block</h4>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label" th:text="#{block.text.name}">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control short" id="name" th:value="${block.name}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
+                <div class="col-sm-10">
+                    <textarea name="content" class="txtEditor" rows="20" cols="70" id="content" th:if="${param.developer}" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
+                    <textarea name="content" class="summernote" rows="20" cols="70" id="content" th:if="${param.developer == null}" th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="code" class="col-sm-2 control-label" th:text="#{block.text.code}">Code</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="code">
+                        <option th:value="${block.code}" th:text="'Saved ('+${block.code}+')'"></option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" th:text="#{button.save}">Save</button>
+                    <button type="reset" class="btn btn-default" th:text="#{button.cancel}">Cancel</button>
+                </div>
+            </div>
+        </form>
+
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 

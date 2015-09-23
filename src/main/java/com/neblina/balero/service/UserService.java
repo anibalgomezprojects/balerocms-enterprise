@@ -1,3 +1,12 @@
+/**
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
+ *
+ * @author      Anibal Gomez <anibalgomez@icloud.com>
+ * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
+ * @license     Licencia BSD; vea LICENSE.txt
+ */
+
 package com.neblina.balero.service;
 
 import com.neblina.balero.domain.User;
@@ -25,7 +34,7 @@ public class UserService {
     private CustomUserDetailsManager customUserDetailsManager;
 
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
-                                  String email, int subscribed, String roles) {
+                                  String email, boolean subscribed, String roles, String type) {
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -36,6 +45,7 @@ public class UserService {
         user.setEmail(email);
         user.setSubscribed(subscribed);
         user.setRoles(roles);
+        user.setType(type);
         userRepository.save(user);
         try {
             if(!userName.equals("temp") && !password.equals("temp")) {
@@ -58,7 +68,6 @@ public class UserService {
         return users;
     }
 
-
     public void saveAdminProfile(String firstName,
                                  String lastName,
                                  String email) {
@@ -69,7 +78,23 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setSubscribed(1);
+        user.setSubscribed(user.getSubscribed());
+        userRepository.save(user);
+    }
+
+    public void saveUserProfile(String firstName,
+                                 String lastName,
+                                 String email) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        User user = userRepository.findOneByUsername(username);
+        user.setUsername(user.getUsername());
+        user.setPassword(user.getPassword());
+        user.setPasswordVerify(user.getPasswordVerify());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setSubscribed(user.getSubscribed());
         userRepository.save(user);
     }
 
@@ -110,19 +135,29 @@ public class UserService {
         log.debug("Deleting user's email.");
     }
 
-    public void updateSubscribedStatus(Long id, int subscribed) {
-        User user = userRepository.findOneById(id);
-        if(subscribed == 1) {
-            user.setSubscribed(1);
-        } else {
-            user.setSubscribed(0);
-        }
+    public void updateSubscribedStatus() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        User user = userRepository.findOneByUsername(username);
+        user.setSubscribed(!user.getSubscribed());
         userRepository.save(user);
-        log.debug("Updating subscribed status.");
+        log.debug("Updating subscribed status to: " + !user.getSubscribed()
+        + " for: " + user.getUsername());
     }
 
     public int getTotalUsers() {
         return userRepository.findAll().size();
+    }
+
+    public String getMyUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        return username;
+    }
+
+    public String getUserType() {
+        User user = userRepository.findOneByUsername(getMyUsername());
+        return user.getType();
     }
 
 }
