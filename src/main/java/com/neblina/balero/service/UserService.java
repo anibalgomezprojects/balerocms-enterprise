@@ -145,6 +145,13 @@ public class UserService {
         + " for: " + user.getUsername());
     }
 
+    public void updateSubscribedStatusByEmail(String email) {
+        log.debug("Updating subscribed for: " + email);
+        User user = userRepository.findOneByEmail(email);
+        user.setSubscribed(!user.getSubscribed());
+        userRepository.save(user);
+    }
+
     public int getTotalUsers() {
         return userRepository.findAll().size();
     }
