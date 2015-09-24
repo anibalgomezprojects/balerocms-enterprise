@@ -49,9 +49,13 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Bean
     @Profile("prod")
     public AssetPipeline compile() throws IOException {
+        log.debug("Minification: " + env.getProperty("balerocms.minification"));
+        boolean balerocmsMinification = Boolean.parseBoolean(env.getProperty("balerocms.minification"));
         AssetPipeline resources = new AssetPipeline();
-        ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
-        for(int i = 0; i < templates.size(); i++) resources.compress(templates.get(i));
+        if(balerocmsMinification == true) {
+            ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
+            for(int i = 0; i < templates.size(); i++) resources.compress(templates.get(i));
+        }
         return resources;
     }
 

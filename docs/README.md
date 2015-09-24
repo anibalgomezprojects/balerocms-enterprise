@@ -63,7 +63,7 @@ If you activate it, you website will be load faster.
 
 To activate/deactivate:
 
-    application-prod.yml
+    application-dev.yml
     balerocms:
         minification: true or false
 

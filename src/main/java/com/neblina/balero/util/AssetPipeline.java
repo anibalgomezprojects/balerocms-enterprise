@@ -12,10 +12,8 @@ package com.neblina.balero.util;
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -24,13 +22,9 @@ import java.util.ArrayList;
 
 @Configuration
 @Profile("prod")
-@PropertySource("classpath:application-prod.yml")
 public class AssetPipeline {
 
     private static final Logger log = LogManager.getLogger(AssetPipeline.class.getName());
-
-    @Value("${balerocms.minification}")
-    private boolean balerocmsMinification;
 
     public AssetPipeline() {
         log.debug("Running Balero CMS Resource Compiler...");
@@ -45,13 +39,11 @@ public class AssetPipeline {
             }
             HtmlCompressor compressor = new HtmlCompressor();
             String compressedHtml = compressor.compress(html);
-            if(balerocmsMinification == true) {
-                log.debug("Compiling Resource... " + file);
-                FileWriter output = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(output);
-                bw.write(compressedHtml);
-                bw.close();
-            }
+            log.debug("Compiling Resource... " + file);
+            FileWriter output = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(output);
+            bw.write(compressedHtml);
+            bw.close();
         } catch (Exception e) {
             System.out.println("Asset Pipeline Error: " + e.getMessage());
         }
