@@ -65,6 +65,15 @@ CREATE TABLE IF NOT EXISTS BLOG (
 	blodate date not null
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
+CREATE TABLE IF NOT EXISTS COMMENT (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	content text not null,
+	code varchar(255) not null,
+	author varchar(255) not null,
+	blodate date not null,
+	post_permalink varchar(255) not null
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
+
 INSERT INTO USER (id, username, password, password_verify, first_name, last_name, email, subscribed, roles) VALUES
 (1, 'admin', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', '$2a$10$hdOPxpQhV7sEHoSCZk9pBuQkEUYB0AWk.1DZlNgVwxe.CStQNltxm', 'Anibal', 'Gomez', 'anibalgomez@balerocms.com', 1, 'ROLE_ADMIN'),
 (2, 'user', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', '$2a$10$OhggAS1e4GiznN2QrPTHn.V1/FK4QkobOmqHFUPPA4inZcCSoqXKu', 'Jon', 'Doe', 'demo@localhost.com', 1, 'ROLE_USER'),
