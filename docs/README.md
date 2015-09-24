@@ -51,6 +51,21 @@ First you need a MySQL Database called 'balerocms_enterprise'.
 Note: Make sure your MySQL Server is running on port 3306.
 
     telnet localhost 3306
+    
+#### Minification For Production Mode
+
+Minification (also minimisation or minimization), is the process of removing all unnecessary
+characters from source code without changing its functionality. These unnecessary characters 
+usually include white space characters, new line characters, comments, and sometimes block 
+delimiters, which are used to add readability to the code but are not required for it to execute.
+
+If you activate it, you website will be load faster.
+
+To activate/deactivate:
+
+    application-prod.yml
+    balerocms:
+        minification: true or false
 
 ## Running 
 

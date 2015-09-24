@@ -28,3 +28,5 @@ flyway:
   encoding: UTF-8
   validateOnMigrate: false
   locations: classpath:db/migration
+balerocms:
+  minification: false
