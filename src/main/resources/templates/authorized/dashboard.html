@@ -38,6 +38,8 @@
                     <br />
                     <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
                     <br />
+                    <a href="/admin/comment" th:text="#{comment.text.title}">Comment</a>
+                    <br />
                     <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
                 </div>
                 <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -50,6 +52,8 @@
                     <span th:text="#{dashboard.user}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
                     <br />
                     <span th:text="#{dashboard.total.posts}">Total Posts </span> <span class="badge" th:text="${totalPosts}">0</span>
+                    <br />
+                    <span th:text="#{dashboard.total.comments}">Total Comments </span> <span class="badge" th:text="${totalComments}">0</span>
                     <br />
                     Development Active Profile: <b th:text="${profiles}"></b>
                 </div>

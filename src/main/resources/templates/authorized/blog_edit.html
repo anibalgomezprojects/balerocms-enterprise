@@ -92,6 +92,45 @@
 
         </div>
 
+        <div class="box-content">
+            <div class="row box-text">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th th:text="#{comment.text.author}">Author</th>
+                        <th th:text="#{comment.text.content}">content</th>
+                        <th class="text-center" th:text="#{comment.text.action}">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="comment : ${comments}">
+                        <td th:text="${comment.id}">_ID</td>
+                        <td>
+                            <a th:href="@{'/admin/comment/'+${comment.id}}">
+                                <span th:text="${comment.author}">Author</span>
+                            </a>
+                        </td>
+                        <td>
+                            <span th:text="${comment.content}"></span>
+                            <span th:text="${comment.blodate}" class="badge"></span>
+                        </td>
+                        <td class="text-center">
+                            <a th:href="@{'/admin/comment/'+${comment.id}}" href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span th:text="#{button.edit}"></span>
+                            </a>
+                            <a th:href="@{'/admin/comment/delete/'+${comment.id}}" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span th:text="#{button.delete}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
     <!-- Content -->
 

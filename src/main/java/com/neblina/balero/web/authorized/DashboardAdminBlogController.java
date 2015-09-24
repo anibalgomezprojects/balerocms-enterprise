@@ -11,6 +11,7 @@ package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.repository.BlogRepository;
+import com.neblina.balero.service.repository.CommentRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class DashboardAdminBlogController {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
@@ -47,6 +51,7 @@ public class DashboardAdminBlogController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String blogEditGet(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("comments", commentRepository.findOneById(id));
         model.addAttribute("posts", blogRepository.findOneById(id));
         return "authorized/blog_edit";
     }
