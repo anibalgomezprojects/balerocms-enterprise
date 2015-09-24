@@ -29,4 +29,4 @@ flyway:
   validateOnMigrate: false
   locations: classpath:db/migration
 balerocms:
-  minification: false
+  minification: true
