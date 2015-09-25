@@ -49,9 +49,11 @@ public class DashboardAdminBlogController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String blogEditGet(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("comments", commentRepository.findOneById(id));
+    @RequestMapping(value = "/{id}/{permalink}", method = RequestMethod.GET)
+    public String blogEditGet(Model model,
+                              @PathVariable("id") Long id,
+                              @PathVariable("permalink") String permalink) {
+        model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("posts", blogRepository.findOneById(id));
         return "authorized/blog_edit";
     }
