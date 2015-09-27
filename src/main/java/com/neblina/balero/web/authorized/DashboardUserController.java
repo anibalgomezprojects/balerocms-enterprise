@@ -63,6 +63,22 @@ public class DashboardUserController {
     }
 
     @Secured("ROLE_USER")
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String profilePost(Model model,
+                              @RequestParam("firstName") String firstName,
+                              @RequestParam("lastName") String lastName,
+                              @RequestParam("email") String email) {
+        log.debug("POST /user/profile");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        model.addAttribute("success", 1);
+        User user = userRepository.findOneByUsername(username);
+        model.addAttribute("user", user);
+        userService.saveUserProfile(firstName, lastName, email);
+        return "authorized/profile";
+    }
+
+    @Secured("ROLE_USER")
     @RequestMapping(value = "/mailing-list/subscribe/{id}", method = RequestMethod.GET)
     public String updateMailingListSubscribedGet(Model model,
                                                  @PathVariable("id") Long id) {

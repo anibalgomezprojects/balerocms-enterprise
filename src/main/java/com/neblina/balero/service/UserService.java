@@ -67,11 +67,26 @@ public class UserService {
         return users;
     }
 
-
     public void saveAdminProfile(String firstName,
                                  String lastName,
                                  String email) {
         User user = userRepository.findOneByUsername("admin");
+        user.setUsername(user.getUsername());
+        user.setPassword(user.getPassword());
+        user.setPasswordVerify(user.getPasswordVerify());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setSubscribed(true);
+        userRepository.save(user);
+    }
+
+    public void saveUserProfile(String firstName,
+                                 String lastName,
+                                 String email) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        User user = userRepository.findOneByUsername(username);
         user.setUsername(user.getUsername());
         user.setPassword(user.getPassword());
         user.setPasswordVerify(user.getPasswordVerify());
