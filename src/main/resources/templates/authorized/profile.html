@@ -26,7 +26,7 @@
                 <span th:text="#{success.saved}"> _SUCCESS</span>
             </div>
 
-            <form class="form-horizontal" method="post" th:action="@{/admin/profile}">
+            <form class="form-horizontal" method="post" th:action="@{'/'+${user.type}+'/profile'}">
                 <div class="form-group title">
                     <h4 th:text="#{profile.text.title}">Profile</h4>
                 </div>

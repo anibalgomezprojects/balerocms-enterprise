@@ -34,7 +34,7 @@ public class UserService {
     private CustomUserDetailsManager customUserDetailsManager;
 
     public void createUserAccount(String userName, String password, String passwordVerify, String firstName, String lastName,
-                                  String email, boolean subscribed, String roles) {
+                                  String email, boolean subscribed, String roles, String type) {
         PasswordGenerator pwd = new PasswordGenerator();
         User user = new User();
         user.setUsername(userName);
@@ -45,6 +45,7 @@ public class UserService {
         user.setEmail(email);
         user.setSubscribed(subscribed);
         user.setRoles(roles);
+        user.setType(type);
         userRepository.save(user);
         try {
             if(!userName.equals("temp") && !password.equals("temp")) {

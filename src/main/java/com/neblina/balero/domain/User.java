@@ -41,6 +41,8 @@ public class User {
 
     private String roles;
 
+    private String type;
+
     public Long getId() {
         return id;
     }
@@ -113,6 +115,14 @@ public class User {
         this.roles = roles;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "User [" +
@@ -122,7 +132,8 @@ public class User {
                 "lastName=" + this.lastName + "," +
                 "email=" + this.email + "," +
                 "subscribed=" + this.subscribed + "," +
-                "roles=" + this.roles
+                "roles=" + this.roles + "," +
+                "type=" + this.type
                 + "]";
     }
 
