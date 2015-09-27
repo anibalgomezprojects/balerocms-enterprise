@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label for="fullPost" class="col-sm-2 control-label" th:text="#{blog.text.fullPost}">fullPost</label>
                     <div class="col-sm-10">
-                        <textarea name="fullPostt" class="txtEditor" rows="5" id="fullPostt" th:text="${post.fullPost}" th:if="${param.developer}"></textarea>
+                        <textarea name="fullPost" class="txtEditor" rows="5" id="fullPostt" th:text="${post.fullPost}" th:if="${param.developer}"></textarea>
                         <textarea name="fullPost" class="summernote" rows="5" id="fullPost" th:text="${post.fullPost}" th:if="${param.developer == null}"></textarea>
                     </div>
                 </div>

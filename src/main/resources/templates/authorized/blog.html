@@ -47,7 +47,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span th:text="#{button.edit}"></span>
                             </a>
-                            <a th:href="@{'/admin/blog/'+${post.id}+'?developer'}" href="#" class="btn btn-primary">
+                            <a th:href="@{'/admin/blog/'+${post.id}+'/'+${post.permalink}+'?developer'}" href="#" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span th:text="#{button.code.view}">Code View</span>
                             </a>

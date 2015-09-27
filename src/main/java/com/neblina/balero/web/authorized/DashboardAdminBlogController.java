@@ -61,12 +61,12 @@ public class DashboardAdminBlogController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String blogEditPost(Model model, @PathVariable("id") Long id,
-                                   String bloname,
-                                   String title,
-                                   String introPost,
-                                   String fullPost,
-                                   String code,
-                                   String permalink
+                                    @RequestParam("bloname") String bloname,
+                                    @RequestParam("title") String title,
+                                    @RequestParam("introPost") String introPost,
+                                    @RequestParam("fullPost") String fullPost,
+                                    @RequestParam("code") String code,
+                                    @RequestParam("permalink") String permalink
                                ) {
         blogService.savePost(
                 id,
