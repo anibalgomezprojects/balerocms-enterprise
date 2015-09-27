@@ -59,6 +59,9 @@ public class DashboardAdminController {
     private BlogRepository blogRepository;
 
     @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
     private Environment environment;
 
     @RequestMapping(value = {"", "/"} )
@@ -77,6 +80,7 @@ public class DashboardAdminController {
         model.addAttribute("totalUsers", userRepository.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
         model.addAttribute("totalPosts", blogRepository.findAll().size());
+        model.addAttribute("totalComments", commentRepository.findAll().size());
         model.addAttribute("profiles", environment.getActiveProfiles()[0]);
         return "authorized/dashboard";
     }
