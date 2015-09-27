@@ -104,3 +104,6 @@ INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, au
 (1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, '2015-09-15'),
 (2, 'test_post_en', 'Test DEMO', '<h3>demo</h3>', 'full.', 'en', 'demostration-post-123', 'admin', 1, 10, '2015-09-15'),
 (3, 'demo_post_es', 'La Niña Del Ñoño', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15');
+
+INSERT INTO BLACKLIST (id, ip, timer, attemps) VALUES
+	(1, '123.456.789.123', '600000', 10);
