@@ -9,87 +9,79 @@
 
 <div th:include="authorized/fragments/navbar :: navbar"></div>
 
-<!-- container -->
 <div class="container">
 
-    <!-- Content -->
-    <div th:fragment="settings">
+    <div th:with="text=#{navbar.global.settings}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:with="text=#{navbar.global.settings}" th:include="authorized/fragments/linkbar :: linkbar"></div>
+    <div class="box-content">
 
-        <div class="box-content">
-
-            <div class="alert alert-success" role="alert" th:if="${success}">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <span th:text="#{success.saved}"> _SUCCESS</span>
-            </div>
-
-            <form class="form-horizontal" method="post" th:action="@{/admin/settings}">
-                <div class="form-group title">
-                    <h4 th:text="#{settings.text.header}">Global Settings</h4>
-                </div>
-                <hr />
-                <div class="form-group" ng-app="SettingApp" ng-controller="SettingController">
-                    <label for="offline" class="col-sm-2 control-label valign" th:text="#{properties.text.status}">Status</label>
-                    <div class="col-sm-10">
-                        <input type="checkbox" name="toggle1" id="toggle1" class="toggle" ng-model="settings.offline" ng-change="blotoggle()" value="" />
-                        <label for="toggle1"></label>
-                        <!-- offline->{{settings.offline}} -->
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-sm-2 control-label" th:text="#{settings.text.title}">Title</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control short" id="title" th:value="${settings.title}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="administratorEmail" class="col-sm-2 control-label" th:text="#{properties.text.administrator.email}">Administrator Email</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" th:value="${properties.administratorEmail}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="tags" class="col-sm-2 control-label" th:text="#{settings.text.tags}">Site Tags</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="tags" class="form-control short" id="tags" th:value="${settings.tags}" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="titleHeader" class="col-sm-2 control-label" th:text="#{settings.text.slogan}">Header Title or Slogan</label>
-                    <div class="col-sm-10">
-                        <textarea name="titleHeader" class="summernote" rows="5" id="titleHeader" th:text="${settings.titleHeader}"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="footer" class="col-sm-2 control-label" th:text="#{settings.text.footer}">Footer</label>
-                    <div class="col-sm-10">
-                        <textarea name="footer" class="summernote" rows="5" id="footer" th:text="${settings.footer}"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="offlineMessage" class="col-sm-2 control-label" th:text="#{settings.text.offline.message}">Offline Message</label>
-                    <div class="col-sm-10">
-                        <textarea name="offlineMessage" class="summernote" rows="5" id="offlineMessage" th:text="${settings.offlineMessage}"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" th:text="#{button.save}">Save</button>
-                        <button type="reset" class="btn btn-default" th:text="#{button.cancel}">Cancel</button>
-                    </div>
-                </div>
-            </form>
-
+        <div class="alert alert-success" role="alert" th:if="${success}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span th:text="#{success.saved}"> _SUCCESS</span>
         </div>
 
+        <form class="form-horizontal" method="post" th:action="@{/admin/settings}">
+            <div class="form-group title">
+                <h4 th:text="#{settings.text.header}">Global Settings</h4>
+            </div>
+            <hr />
+            <div class="form-group" ng-app="SettingApp" ng-controller="SettingController">
+                <label for="offline" class="col-sm-2 control-label valign" th:text="#{properties.text.status}">Status</label>
+                <div class="col-sm-10">
+                    <input type="checkbox" name="toggle1" id="toggle1" class="toggle" ng-model="settings.offline" ng-change="blotoggle()" value="" />
+                    <label for="toggle1"></label>
+                    <!-- offline->{{settings.offline}} -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label" th:text="#{settings.text.title}">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" name="title" class="form-control short" id="title" th:value="${settings.title}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="administratorEmail" class="col-sm-2 control-label" th:text="#{properties.text.administrator.email}">Administrator Email</label>
+                <div class="col-sm-10">
+                    <input type="text" name="administratorEmail" class="form-control short" id="administratorEmail" th:value="${properties.administratorEmail}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tags" class="col-sm-2 control-label" th:text="#{settings.text.tags}">Site Tags</label>
+                <div class="col-sm-10">
+                    <input type="text" name="tags" class="form-control short" id="tags" th:value="${settings.tags}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="titleHeader" class="col-sm-2 control-label" th:text="#{settings.text.slogan}">Header Title or Slogan</label>
+                <div class="col-sm-10">
+                    <textarea name="titleHeader" class="summernote" rows="5" id="titleHeader" th:text="${settings.titleHeader}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="footer" class="col-sm-2 control-label" th:text="#{settings.text.footer}">Footer</label>
+                <div class="col-sm-10">
+                    <textarea name="footer" class="summernote" rows="5" id="footer" th:text="${settings.footer}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="offlineMessage" class="col-sm-2 control-label" th:text="#{settings.text.offline.message}">Offline Message</label>
+                <div class="col-sm-10">
+                    <textarea name="offlineMessage" class="summernote" rows="5" id="offlineMessage" th:text="${settings.offlineMessage}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" th:text="#{button.save}">Save</button>
+                    <button type="reset" class="btn btn-default" th:text="#{button.cancel}">Cancel</button>
+                </div>
+            </div>
+        </form>
+
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 

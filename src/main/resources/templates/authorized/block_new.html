@@ -9,57 +9,49 @@
 
 <div th:include="authorized/fragments/navbar :: navbar"></div>
 
-<!-- container -->
 <div class="container">
 
-    <!-- Content -->
-    <div th:fragment="block_new">
+    <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:with="text=#{block.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
+    <div class="box-content">
 
-        <div class="box-content">
-
-            <form class="form-horizontal" method="post" th:action="@{'/admin/block/new'}">
-                <div class="form-group title">
-                    <h4 th:text="#{block.text.new}">New Homepage Block</h4>
+        <form class="form-horizontal" method="post" th:action="@{'/admin/block/new'}">
+            <div class="form-group title">
+                <h4 th:text="#{block.text.new}">New Homepage Block</h4>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label" th:text="#{block.text.name}">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control short" id="name" />
                 </div>
-                <hr />
-                <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label" th:text="#{block.text.name}">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control short" id="name" />
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
+                <div class="col-sm-10">
+                    <textarea name="content" class="summernote" rows="5" id="content"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="content" class="col-sm-2 control-label" th:text="#{block.text.content}">Content</label>
-                    <div class="col-sm-10">
-                        <textarea name="content" class="summernote" rows="5" id="content"></textarea>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label for="code" class="col-sm-2 control-label" th:text="#{block.text.code}">Code</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="code">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="code" class="col-sm-2 control-label" th:text="#{block.text.code}">Code</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" name="code">
-                            <option value="en">English</option>
-                            <option value="es">Español</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" th:text="#{button.create}">Create</button>
+                    <a href="/admin/block" class="btn btn-default" th:text="#{button.cancel}">Cancel</a>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" th:text="#{button.create}">Create</button>
-                        <a href="/admin/block" class="btn btn-default" th:text="#{button.cancel}">Cancel</a>
-                    </div>
-                </div>
-            </form>
-
-        </div>
+            </div>
+        </form>
 
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 

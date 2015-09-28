@@ -11,82 +11,76 @@
 
 <div class="container">
 
-    <!-- Content -->
-    <div th:with="text='root'" th:fragment="main">
+    <div th:with="text=#{dashboard.root}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:include="authorized/fragments/linkbar :: linkbar"></div>
-
-        <div class="box-content">
-            <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
-            <b th:text="#{dashboard.title}">Dashboard Panel</b>
-            <hr />
-            <div class="row box-text">
-                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b th:text="#{dashboard.menu}">Menu</b>
-                    <hr />
-                    <a href="/admin/settings" th:text="#{dashboard.setting}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
+    <div class="box-content">
+        <span class="glyphicon glyphicon glyphicon-cog" aria-hidden="true"></span>
+        <b th:text="#{dashboard.title}">Dashboard Panel</b>
+        <hr />
+        <div class="row box-text">
+            <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                <b th:text="#{dashboard.menu}">Menu</b>
+                <hr />
+                <a href="/admin/settings" th:text="#{dashboard.setting}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
+                <br />
+                <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
+                <br />
+                <a href="/admin/block" th:text="#{dashboard.block}">_BLOCKS</a>
+                <br />
+                <a href="/admin/email" th:text="#{dashboard.email}">_EMAIL</a>
+                <br />
+                <a href="/admin/user" th:text="#{dashboard.user}">_USER</a>
+                <br />
+                <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
+                <br />
+                <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
+                <br />
+                <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
+            </div>
+            <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                <b th:text="#{dashboard.portal}">Portal</b>
+                <hr />
+                <span th:text="#{dashboard.total.pages}">Total Pages </span> <span class="badge" th:text="${totalPages}">0</span>
+                <br />
+                <span th:text="#{dashboard.block}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
+                <br />
+                <span th:text="#{dashboard.user}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
+                <br />
+                <span th:text="#{dashboard.total.posts}">Total Posts </span> <span class="badge" th:text="${totalPosts}">0</span>
+                <br />
+                <span th:text="#{dashboard.total.comments}">Total Comments </span> <span class="badge" th:text="${totalComments}">0</span>
+                <br />
+                Development Active Profile: <b th:text="${profiles}"></b>
+            </div>
+            <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+                <b th:text="#{dashboard.shortcut}">Shorcuts</b>
+                <hr />
+                <a href="/" th:text="#{dashboard.preview}">Site Preview</a>
+                <br />
+                <a href="/admin/block/new" th:text="#{dashboard.new.block}">New Homepage Block</a>
+                <br />
+                <a href="/admin/page/new" th:text="#{dashboard.new.page}">Create New Static Page</a>
+                <hr />
+                <div class="alert alert-info" role="alert">
+                    <a href="http://docs.balerocms.com/" th:text="#{dashboard.documentation}">Documentaion</a>
                     <br />
-                    <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
-                    <br />
-                    <a href="/admin/block" th:text="#{dashboard.block}">_BLOCKS</a>
-                    <br />
-                    <a href="/admin/email" th:text="#{dashboard.email}">_EMAIL</a>
-                    <br />
-                    <a href="/admin/user" th:text="#{dashboard.user}">_USER</a>
-                    <br />
-                    <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
-                    <br />
-                    <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
-                    <br />
-                    <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
+                    <a href="mailto:support@balerocms.com">support@balerocms.com</a>
                 </div>
-                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b th:text="#{dashboard.portal}">Portal</b>
-                    <hr />
-                    <span th:text="#{dashboard.total.pages}">Total Pages </span> <span class="badge" th:text="${totalPages}">0</span>
-                    <br />
-                    <span th:text="#{dashboard.block}">Blocks </span> <span class="badge" th:text="${totalBlocks}">0</span>
-                    <br />
-                    <span th:text="#{dashboard.user}">Registered Users </span> <span class="badge" th:text="${totalUsers}">0</span>
-                    <br />
-                    <span th:text="#{dashboard.total.posts}">Total Posts </span> <span class="badge" th:text="${totalPosts}">0</span>
-                    <br />
-                    <span th:text="#{dashboard.total.comments}">Total Comments </span> <span class="badge" th:text="${totalComments}">0</span>
-                    <br />
-                    Development Active Profile: <b th:text="${profiles}"></b>
-                </div>
-                <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <b th:text="#{dashboard.shortcut}">Shorcuts</b>
-                    <hr />
-                    <a href="/" th:text="#{dashboard.preview}">Site Preview</a>
-                    <br />
-                    <a href="/admin/block/new" th:text="#{dashboard.new.block}">New Homepage Block</a>
-                    <br />
-                    <a href="/admin/page/new" th:text="#{dashboard.new.page}">Create New Static Page</a>
-                    <hr />
-                    <div class="alert alert-info" role="alert">
-                        <a href="http://docs.balerocms.com/" th:text="#{dashboard.documentation}">Documentaion</a>
-                        <br />
-                        <a href="mailto:support@balerocms.com">support@balerocms.com</a>
-                    </div>
-                </div>
-                <div class="container" sec:authorize="hasRole('ROLE_USER')" th:each="user : ${users}">
-                    <div class="row">
-                        <p th:text="${user.username}">Username</p>
-                        <p th:text="${user.firstName}">firstName</p>
-                        <p th:text="${user.lastName}">lastName</p>
-                        <p th:text="${user.email}">email</p>
-                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${!user.subscribed}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> <span th:text="#{dashboard.subscribed}">Subscribed</span></a>
-                        <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${user.subscribed}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> <span th:text="#{dashboard.unsubscribed}">Unsubscribed</span></a>
-                    </div>
+            </div>
+            <div class="container" sec:authorize="hasRole('ROLE_USER')" th:each="user : ${users}">
+                <div class="row">
+                    <p th:text="${user.username}">Username</p>
+                    <p th:text="${user.firstName}">firstName</p>
+                    <p th:text="${user.lastName}">lastName</p>
+                    <p th:text="${user.email}">email</p>
+                    <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${!user.subscribed}" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> <span th:text="#{dashboard.subscribed}">Subscribed</span></a>
+                    <a th:href="@{'/user/mailing-list/subscribe/'+${user.id}}" th:if="${user.subscribed}" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span> <span th:text="#{dashboard.unsubscribed}">Unsubscribed</span></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 

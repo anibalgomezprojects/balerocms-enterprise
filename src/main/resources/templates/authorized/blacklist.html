@@ -11,40 +11,34 @@
 
 <div class="container">
 
-    <!-- Content -->
-    <div th:fragment="blacklist">
+    <div th:with="text=#{blacklist.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
 
-        <div th:with="text=#{blacklist.text.title}" th:include="authorized/fragments/linkbar :: linkbar"></div>
-
-        <div class="box-content">
-            <div class="row box-text">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th th:text="#{blacklist.text.ip}">IP</th>
-                        <th th:text="#{blacklist.text.remaining}">Remaining</th>
-                        <th th:text="#{blacklist.text.attemps}">Attemps</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="blacklist : ${blacklists}">
-                        <td th:text="${blacklist.id}">_ID</td>
-                        <td>
-                            <span th:text="${blacklist.ip}">_IP</span>
-                        </td>
-                        <td><b th:text="${blacklist.timer}">_TIME</b> ms</td>
-                        <td th:text="${blacklist.attemps}">_ATTEMPS</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="box-content">
+        <div class="row box-text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th th:text="#{blacklist.text.ip}">IP</th>
+                    <th th:text="#{blacklist.text.remaining}">Remaining</th>
+                    <th th:text="#{blacklist.text.attemps}">Attemps</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="blacklist : ${blacklists}">
+                    <td th:text="${blacklist.id}">_ID</td>
+                    <td>
+                        <span th:text="${blacklist.ip}">_IP</span>
+                    </td>
+                    <td><b th:text="${blacklist.timer}">_TIME</b> ms</td>
+                    <td th:text="${blacklist.attemps}">_ATTEMPS</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- Content -->
 
 </div>
-<!-- /container -->
 
 <div th:replace="authorized/fragments/footer :: footer"></div>
 
