@@ -47,7 +47,6 @@ public class APIController {
 
     @RequestMapping("/blog/{id}")
     @ResponseBody
-    @Transactional(readOnly = true)
     public List<Blog> blogId(Locale locale, @PathVariable("id") Long id) {
         log.debug("Call for API /blog/" + id);
         blogService.setLikes(id);
