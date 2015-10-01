@@ -13,8 +13,6 @@
 
 <div th:fragment="main" ng-app="BlogApp" ng-controller="BlogController">
 
-    <!-- Content -->
-
     <div class="blog" th:if="${error404}">
         <div class="container">
             <div class="row text-center">
@@ -24,7 +22,6 @@
         </div>
     </div>
 
-    <!-- Posts -->
     <div class="blog">
         <div class="container">
             <div class="row">
@@ -48,8 +45,8 @@
                                         <a th:href="'/blog/'+${post.permalink}" th:text="${post.title}">Home</a>
                                     </li>
                                 </ul>
-                            </div><!--/.nav-collapse -->
-                        </div><!--/.container-fluid -->
+                            </div>
+                        </div>
                     </nav>
                 </div>
                 <div class="col-lg-8 post" th:each="post, iterStat : ${posts}">
@@ -75,11 +72,9 @@
             </div>
         </div>
     </div>
-    <!-- /Posts  -->
 
     <div th:replace="silbato/fragments/block_static :: block_static"></div>
 
-    <!-- /Content -->
 </div>
 
     <div class="pages">
@@ -92,7 +87,6 @@
 
     <div th:replace="silbato/fragments/footer :: footer"></div>
 
-    <!-- Footer Scripts -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/json3/lib/json3.js"></script>
     <script src="/bower_components/angular/angular.js"></script>

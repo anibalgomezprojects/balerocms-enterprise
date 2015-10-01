@@ -13,17 +13,12 @@
 
 <div th:fragment="main">
 
-    <!-- Content -->
-
-    <!-- HomePage Blocks -->
     <div th:each="block : ${blocks}">
         <div th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}">_CONTENT</div>
     </div>
-    <!-- /HomePage Blocks -->
 
     <div th:replace="silbato/fragments/block_static :: block_static"></div>
 
-    <!-- /Content -->
 </div>
 
     <div class="pages">

@@ -13,8 +13,6 @@
 
 <div th:fragment="main">
 
-    <!-- Content -->
-
     <div class="static" th:if="${error404}">
         <div class="container">
             <div class="row text-center">
@@ -26,7 +24,6 @@
         </div>
     </div>
 
-    <!-- Static Page -->
     <div class="static">
         <div class="container" th:each="staticPage : ${staticPages}">
             <div class="row">
@@ -38,11 +35,9 @@
             </div>
         </div>
     </div>
-    <!-- /Static Page  -->
 
     <div th:replace="silbato/fragments/block_static :: block_static"></div>
 
-    <!-- /Content -->
 </div>
 
     <div class="pages">
