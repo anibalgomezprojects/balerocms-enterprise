@@ -3,11 +3,25 @@
 <head>
     <title th:text="#{banned.title}">You are banned!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            background: #ff4427;
+            font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+            font-size: small;
+        }
+        .container {
+            margin-top: 250px;
+            text-align: center;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-<h2 th:text="#{banned.title}">Banned!</h2>
-<p th:text="#{banned.message}">You Has Been Banned For 5 Minutes.</p>
-<p th:text="${ip}"></p>
-<p th:text="${info}"></p>
+<div class="container">
+    <h2 th:text="#{banned.title}">Banned!</h2>
+    <p th:text="#{banned.message}">You Has Been Banned For 5 Minutes.</p>
+    <p th:text="${ip}"></p>
+    <p th:text="${info}"></p>
+</div>
 </body>
 </html>
