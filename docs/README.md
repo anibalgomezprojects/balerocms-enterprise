@@ -89,7 +89,7 @@ And login with the sample data:
 
 * user:user
 
-**Note: In a live website, please delete 'user' account and change your admin password.**
+**Note: In a live website, please delete 'user' account and change your admin password**.
 
 ### Responsive Content
 
