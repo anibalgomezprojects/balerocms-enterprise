@@ -73,6 +73,8 @@ public class BlogController {
             if(blog.getPermalink() == null) {
                 throw new Exception("Error 404");
             }
+            blog.setHits(blog.getHits()+1);
+            blogRepository.save(blog);
             model.addAttribute("posts", blogRepository.findOneByPermalink(permalink));
         } catch (Exception e) {
             model.addAttribute("error404", 1);
