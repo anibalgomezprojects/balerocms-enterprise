@@ -17,11 +17,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,9 +46,16 @@ public class APIController {
 
     @RequestMapping("/blog/{id}")
     @ResponseBody
-    public List<Blog> blogId(Locale locale, @PathVariable("id") Long id) {
+    public List<Blog> blogId(Locale locale, @PathVariable("id") Long id,
+                             HttpServletResponse response,
+                             @CookieValue(value = "likeCookie", defaultValue = "init") String likeCookie) {
         log.debug("Call for API /blog/" + id);
-        blogService.setLikes(id);
+        log.debug("Cookie value: " + likeCookie);
+        if(!likeCookie.equals("vote")) {
+            Cookie userCookie = new Cookie("likeCookie", "vote");
+            response.addCookie(userCookie);
+            blogService.setLikes(id);
+        }
         return blogRepository.findAllByCode(locale.getLanguage(), null);
     }
 
