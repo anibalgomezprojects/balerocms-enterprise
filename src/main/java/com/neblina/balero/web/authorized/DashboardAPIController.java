@@ -17,6 +17,8 @@ import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,11 +65,19 @@ public class DashboardAPIController {
     }
 
     @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserJSON(@PathVariable("id") Long id) {
+        return userRepository.findOneById(id);
+    }
+
+
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public List<User> postSubscribeUserJSON(@PathVariable("id") Long id) {
+    public HttpStatus postSubscribeUserJSON(@PathVariable("id") Long id) {
         userService.updateSubscribedStatus(id);
-        return userRepository.findAll();
+        return HttpStatus.OK;
     }
 
 }
