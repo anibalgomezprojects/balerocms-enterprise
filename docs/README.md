@@ -117,9 +117,11 @@ Replace your old files with the new and updated files.
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
 
+See **Database Repair/Migration Tool**.
+
 ## Configuration
 
-### Configuting Default Server Port
+### Configuring Default Server Port
 
 Default server port is: 8080. To use different port edit **application.yml** -> server.port.
 
@@ -142,6 +144,36 @@ Version Control Convention:
 
 V1.0__Message_example_etc.sql
 
+### Database Repair/Migration Tool
+
+If you updated your software and/or mysql/db has been changed, or
+if you get a database error migration, you can fix with:
+
+    Repair Command:
+    $ mvn compile flyway:repair -P prod
+    
+    Migration Command:
+    $ mvn compile flyway:migrate -P prod
+ 
+NOTE: To enable advanced database tool repeair/migration edit 
+"balerocms-enterprise/pom.xml", find Line 173:
+
+        <configuration>
+            <url>jdbc:mysql://localhost:3306/balerocms_enterprise</url>
+            <user>root</user>
+            <password></password>
+        </configuration>
+        
+1. Add you MYSQL DB username.
+2. Add your MYSQL DB password.
+
+## Hot Reload
+
+Balero CMS provides a way to develop and make changes in real time application after
+your application is compiled and/or running. After editing a Java Class, HTML Resource, etc:
+
+    $ mvn compile
+    
 ### Bower Components
 
 To install your javascript libraries, use:
