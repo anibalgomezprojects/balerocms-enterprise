@@ -40,8 +40,6 @@ If having troubles, then type:
     $ mvn -Pdev spring-boot:run
 
 It will activate the development profile.
-
-See **Changing Authentication For Production Database**.
     
 ### Production Deploy:
 
@@ -53,6 +51,8 @@ First you need a MySQL Database called 'balerocms_enterprise'.
 Note: Make sure your MySQL Server is running on port 3306.
 
     telnet localhost 3306
+    
+See **Changing Authentication For Production Database**.
     
 #### Minification For Production Mode
 
