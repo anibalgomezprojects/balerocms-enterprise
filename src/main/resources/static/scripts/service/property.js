@@ -15,9 +15,15 @@ angular.module('PropertyService', ['ngResource'])
                     query: { method: 'GET', params: {}, isArray: false }
                 })
             },
-            postProperties: function(bloStatus) {
+            postProperties: function(properties) {
                 return $resource('../admin/api/properties', {}, {
-                    save: { method: 'POST', params: { offline: bloStatus } }
+                    save: {
+                        method: 'POST',
+                        params: {
+                            offline: properties.offline,
+                            multiLanguage: properties.multiLanguage
+                        }
+                    }
                 })
             }
         };

@@ -32,9 +32,9 @@ public class PropertyService {
         propertyRepository.save(properties);
     }
 
-    public boolean getOfflineStatus() {
+    public boolean isOfflineStatus() {
         Property properties = propertyRepository.findOneById(1L);
-        return properties .getOffline();
+        return properties .isOffline();
     }
 
     public void setOfflineStatus(boolean offline) {
@@ -43,4 +43,9 @@ public class PropertyService {
         propertyRepository.save(properties);
     }
 
+    public void setMultiLanguage(boolean multiLanguage) {
+        Property properties = propertyRepository.findOneById(1L);
+        properties.setMultiLanguage(multiLanguage);
+        propertyRepository.save(properties);
+    }
 }

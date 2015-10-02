@@ -20,6 +20,7 @@ public class Property {
     private Long id;
     private String administratorEmail;
     private boolean offline;
+    private boolean multiLanguage;
 
     public Long getId() {
         return id;
@@ -37,7 +38,7 @@ public class Property {
         this.administratorEmail = administratorEmail;
     }
 
-    public boolean getOffline() {
+    public boolean isOffline() {
         return offline;
     }
 
@@ -45,12 +46,21 @@ public class Property {
         this.offline = offline;
     }
 
+    public boolean isMultiLanguage() {
+        return multiLanguage;
+    }
+
+    public void setMultiLanguage(boolean multiLanguage) {
+        this.multiLanguage = multiLanguage;
+    }
+
     @Override
     public String toString() {
         return "Setting [" +
                 "id=" + this.id + "," +
                 "administratorEmail=" + this.administratorEmail + "," +
-                "offline=" + this.offline
+                "offline=" + this.offline+ "," +
+                "multiLanguage" + this.multiLanguage
                 + "]";
     }
 

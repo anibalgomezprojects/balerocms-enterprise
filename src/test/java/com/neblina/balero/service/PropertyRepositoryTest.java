@@ -32,8 +32,8 @@ public class PropertyRepositoryTest extends TestCase {
 
     @Test
     public void checkIfOfflineStatusIsOff() {
-        assertThat(propertyService.getOfflineStatus(), is(false));
-        System.out.println("Offline value is: " + propertyService.getOfflineStatus());
+        assertThat(propertyService.isOfflineStatus(), is(false));
+        System.out.println("Offline value is: " + propertyService.isOfflineStatus());
     }
 
 }

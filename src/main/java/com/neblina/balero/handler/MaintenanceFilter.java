@@ -35,11 +35,11 @@ public class MaintenanceFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         log.debug("Loading Maintenance Filter...");
-        log.debug("offline value: " + propertyService.getOfflineStatus());
+        log.debug("offline value: " + propertyService.isOfflineStatus());
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        if(propertyService.getOfflineStatus() == true && !url.contains("offline")) {
+        if(propertyService.isOfflineStatus() == true && !url.contains("offline")) {
             if(blacklistService.isIpBanned() == false) {
                 if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
                         url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||

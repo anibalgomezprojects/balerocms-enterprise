@@ -11,7 +11,7 @@ angular.module('PropertyApp', ['PropertyService'])
 .controller('PropertyController', function($scope, PropertyService){
         $scope.properties = PropertyService.getProperties().query();
         $scope.blotoggle = function() {
-            PropertyService.postProperties($scope.properties.offline).save();
+            PropertyService.postProperties($scope.properties).save();
             $scope.properties = PropertyService.getProperties.query();
         }
     });
