@@ -39,16 +39,16 @@ public class DashboardAPIController {
     private UserService userService;
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/settings")
+    @RequestMapping("/properties")
     @ResponseBody
-    public Property getSettingsJSON() {
+    public Property getPropertiesJSON() {
         return propertyRepository.findOneById(1L);
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/settings", method = RequestMethod.POST)
+    @RequestMapping(value = "/properties", method = RequestMethod.POST)
     @ResponseBody
-    public Property postSettingsJSON(@RequestParam("offline") boolean offline) {
+    public Property postPropertiesJSON(@RequestParam("offline") boolean offline) {
         propertyService.setOfflineStatus(offline);
         return propertyRepository.findOneById(1L);
     }

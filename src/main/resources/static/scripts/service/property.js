@@ -7,16 +7,16 @@
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
-angular.module('SettingService', ['ngResource'])
-    .factory('SettingService', function($resource) {
+angular.module('PropertyService', ['ngResource'])
+    .factory('PropertyService', function($resource) {
         return {
-            getSettings: function() {
-                return $resource('../admin/api/settings', {}, {
+            getProperties: function() {
+                return $resource('../admin/api/properties', {}, {
                     query: { method: 'GET', params: {}, isArray: false }
                 })
             },
-            postSettings: function(bloStatus) {
-                return $resource('../admin/api/settings', {}, {
+            postProperties: function(bloStatus) {
+                return $resource('../admin/api/properties', {}, {
                     save: { method: 'POST', params: { offline: bloStatus } }
                 })
             }

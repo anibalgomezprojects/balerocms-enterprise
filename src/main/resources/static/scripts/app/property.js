@@ -7,11 +7,11 @@
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
-angular.module('SettingApp', ['SettingService'])
-.controller('SettingController', function($scope, SettingService){
-        $scope.settings = SettingService.getSettings().query();
+angular.module('PropertyApp', ['PropertyService'])
+.controller('PropertyController', function($scope, PropertyService){
+        $scope.properties = PropertyService.getProperties().query();
         $scope.blotoggle = function() {
-            SettingService.postSettings($scope.settings.offline).save();
-            $scope.settings = SettingService.getSettings.query();
+            PropertyService.postProperties($scope.properties.offline).save();
+            $scope.properties = PropertyService.getProperties.query();
         }
     });
