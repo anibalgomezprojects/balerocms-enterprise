@@ -40,6 +40,8 @@ If having troubles, then type:
     $ mvn -Pdev spring-boot:run
 
 It will activate the development profile.
+
+See **Changing Authentication For Production Database**.
     
 ### Production Deploy:
 
@@ -121,6 +123,18 @@ See **Database Repair/Migration Tool**.
 
 ## Configuration
 
+### Changing Authentication For Production Database
+
+Edit:
+
+* "balerocms-enterprise/pom.xml" starting at Line 173.
+* "balerocms-enterprise/src/main/resources/application-prod.yml" starting at Line 2.
+
+1. Add you MYSQL DB username.
+2. Add your MYSQL DB password.
+        
+Note: Usually "root" and "".
+
 ### Configuring Default Server Port
 
 Default server port is: 8080. To use different port edit **application.yml** -> server.port.
@@ -155,17 +169,8 @@ if you get a database error migration, you can fix with:
     Migration Command:
     $ mvn compile flyway:migrate -P prod
  
-NOTE: To enable advanced database tool repeair/migration edit 
-"balerocms-enterprise/pom.xml", find Line 173:
-
-        <configuration>
-            <url>jdbc:mysql://localhost:3306/balerocms_enterprise</url>
-            <user>root</user>
-            <password></password>
-        </configuration>
-        
-1. Add you MYSQL DB username.
-2. Add your MYSQL DB password.
+NOTE: To enable advanced database tool repeair/migration 
+See **Changing Authentication For Production Database**.
 
 ## Hot Reload
 
