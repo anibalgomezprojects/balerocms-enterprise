@@ -82,7 +82,7 @@ public class DashboardUserController {
     @RequestMapping(value = "/mailing-list/subscribe/{id}", method = RequestMethod.GET)
     public String updateMailingListSubscribedGet(Model model,
                                                  @PathVariable("id") Long id) {
-        userService.updateSubscribedStatus(id);
+        userService.updateSubscribedStatus();
         return "redirect:/user/dashboard/";
     }
 

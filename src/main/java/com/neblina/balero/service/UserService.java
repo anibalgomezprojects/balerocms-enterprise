@@ -135,11 +135,14 @@ public class UserService {
         log.debug("Deleting user's email.");
     }
 
-    public void updateSubscribedStatus(Long id) {
-        User user = userRepository.findOneById(id);
+    public void updateSubscribedStatus() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        User user = userRepository.findOneByUsername(username);
         user.setSubscribed(!user.getSubscribed());
         userRepository.save(user);
-        log.debug("Updating subscribed status to: " + !user.getSubscribed());
+        log.debug("Updating subscribed status to: " + !user.getSubscribed()
+        + " for: " + user.getUsername());
     }
 
     public int getTotalUsers() {

@@ -60,8 +60,8 @@
                             ng-value="user"
                             id="toggle1"
                             th:attr="
-                            ng-change='blotoggle('+${user.id}+')',
-                            ng-init='bloload('+${user.id}+')'
+                            ng-change='blotoggle(\''+${user.type}+'\')',
+                            ng-init='bloload(\''+${user.type}+'\')'
                             "
                             name="user"
                             class="toggle" />

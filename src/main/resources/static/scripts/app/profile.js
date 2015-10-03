@@ -9,11 +9,10 @@
 
 angular.module('ProfileApp', ['ProfileService'])
 .controller('ProfileController', function($scope, ProfileService){
-        $scope.blotoggle = function(bloid) {
-            ProfileService.postUser(bloid).save();
-            //$scope.user = ProfileService.getUser(bloid).query();
+        $scope.blotoggle = function(blotype) {
+            ProfileService.postUser(blotype).save();
         }
-        $scope.bloload = function(bloid) {
-            $scope.user = ProfileService.getUser(bloid).query();
+        $scope.bloload = function (blotype) {
+            $scope.user = ProfileService.getUser(blotype).query();
         }
     });

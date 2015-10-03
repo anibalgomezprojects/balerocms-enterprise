@@ -10,14 +10,14 @@
 angular.module('ProfileService', ['ngResource'])
     .factory('ProfileService', function($resource) {
         return {
-            getUser: function(bloid) {
-                return $resource('../admin/api/user/'+bloid, {}, {
+            getUser: function(blotype) {
+                return $resource('../' + blotype + '/api/profile/', {}, {
                     query: { method: 'GET', params: {}, isArray: false }
                 })
             },
-            postUser: function(bloId) {
-                return $resource('../admin/api/subscribe/'+bloId, {}, {
-                    save: { method: 'POST', params: { id: bloId } }
+            postUser: function(blotype) {
+                return $resource('../' + blotype + '/api/subscribe/', {}, {
+                    save: { method: 'POST', params: { } }
                 })
             }
         };

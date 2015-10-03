@@ -20,13 +20,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/admin/api")
-public class DashboardAPIController {
+public class DashboardAdminAPIController {
 
     @Autowired
     private PropertyRepository propertyRepository;
@@ -65,18 +67,20 @@ public class DashboardAPIController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ResponseBody
-    public User getUserJSON(@PathVariable("id") Long id) {
-        return userRepository.findOneById(id);
+    public User getAdminProfileInJSON() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        return userRepository.findOneByUsername(username);
     }
 
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping(value = "/subscribe/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     @ResponseBody
-    public HttpStatus postSubscribeUserJSON(@PathVariable("id") Long id) {
-        userService.updateSubscribedStatus(id);
+    public HttpStatus saveAdminSubscribebStatusToJSON() {
+        userService.updateSubscribedStatus();
         return HttpStatus.OK;
     }
 
