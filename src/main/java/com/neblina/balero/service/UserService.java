@@ -78,7 +78,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setSubscribed(true);
+        user.setSubscribed(user.getSubscribed());
         userRepository.save(user);
     }
 
@@ -94,7 +94,7 @@ public class UserService {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
-        user.setSubscribed(true);
+        user.setSubscribed(user.getSubscribed());
         userRepository.save(user);
     }
 
