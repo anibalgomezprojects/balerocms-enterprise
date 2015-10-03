@@ -9,10 +9,12 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
+import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,9 @@ public class DashboardUserAPIController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BlogRepository blogRepository;
+
     @Secured("ROLE_USER")
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ResponseBody
@@ -56,6 +61,15 @@ public class DashboardUserAPIController {
     public HttpStatus saveSubscribedUserToJSON() {
         userService.updateSubscribedStatus();
         return HttpStatus.OK;
+    }
+
+    @Secured("ROLE_USER")
+    @RequestMapping(value = "/posts", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Blog> getUserPostsInJSON() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        return blogRepository.findAllByAuthor(username);
     }
 
 }

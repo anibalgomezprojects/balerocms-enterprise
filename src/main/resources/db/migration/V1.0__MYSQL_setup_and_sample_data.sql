@@ -104,8 +104,10 @@ INSERT INTO PAGE (id, name, title, content, code, permalink, author, hits) VALUE
 
 INSERT INTO BLOG (id, bloname, title, intro_post, full_post, code, permalink, author, hits, likes, blodate) VALUES
 (1, 'demo_post_en', 'What is Lorem Ipsum?', 'intro.', 'full.', 'en', 'demostration-post', 'admin', 1, 0, '2015-09-15'),
-(2, 'test_post_en', 'Test DEMO', '<h3>demo</h3>', 'full.', 'en', 'demostration-post-123', 'admin', 1, 10, '2015-09-15'),
-(3, 'demo_post_es', 'La Niña Del Ñoño', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15');
+(2, 'test_post_en', 'Test demo?', '<h3>demo</h3>', 'full.', 'en', 'demostration-post-123', 'admin', 1, 10, '2015-09-15'),
+(3, 'user_post_en', 'User Post Test', '<h3>demo</h3>', 'full.', 'en', 'user-post-en', 'user', 1, 10, '2015-09-15'),
+(4, 'user_post_es', 'Post De Prueba Por User', '<h3>demo</h3>', 'full.', 'es', 'user-post-es', 'user', 1, 10, '2015-09-15'),
+(5, 'demo_post_es', 'La Niña Del Ñoño', 'intro.', 'full.', 'es', 'post-de-demostracion', 'admin', 1, 0, '2015-09-15');
 
 INSERT INTO BLACKLIST (id, ip, timer, attemps) VALUES
 	(1, '123.456.789.123', '600000', 10);

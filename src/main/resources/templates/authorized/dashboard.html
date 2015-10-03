@@ -67,9 +67,25 @@
                     <a href="mailto:support@balerocms.com">support@balerocms.com</a>
                 </div>
             </div>
-            <div class="container" sec:authorize="hasRole('ROLE_USER')" th:each="user : ${users}">
-                <div class="row">
-                    <!-- User Dashboard -->
+            <div sec:authorize="hasRole('ROLE_USER')" ng-app="DashboardApp" ng-controller="DashboardController">
+                <!-- {{posts | json }} -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Hits</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="success" ng-repeat="post in posts">
+                            <th scope="row">{{post.id}}</th>
+                            <td>{{post.bloname}}</td>
+                            <td>{{post.hits}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

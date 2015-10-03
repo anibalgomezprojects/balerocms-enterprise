@@ -11,6 +11,7 @@ package com.neblina.balero.web.authorized;
 
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
+import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,6 +38,9 @@ public class DashboardUserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private BlogRepository blogRepository;
+
     @RequestMapping(value = {"", "/"} )
     public String rootIndex() {
         return "redirect:/user/dashboard";
@@ -48,6 +52,7 @@ public class DashboardUserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         model.addAttribute("users", userRepository.findOneByUsername(username));
+        model.addAttribute("posts", blogRepository.findAllByAuthor(username));
         return "authorized/dashboard";
     }
 

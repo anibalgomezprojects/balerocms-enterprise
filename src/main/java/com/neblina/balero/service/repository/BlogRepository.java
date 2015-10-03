@@ -29,4 +29,6 @@ public interface BlogRepository extends CrudRepository<Blog, Long> {
 
     Blog findOneByPermalink(String permalink);
 
+    List<Blog> findAllByAuthor(String author);
+
 }
