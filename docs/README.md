@@ -93,25 +93,7 @@ And login with the sample data:
 
 **Note: In a live website, please delete 'user' account and change your admin password**.
 
-### Responsive Content
-
-For Homepage Blocks, Page Content and Section Content.
-
-Add fluid containers before insert rich text content (Source Code Mode), example:
-
-&lt;div class="container-fluid"&gt;
-
-  &lt;div class="row"&gt;
-  
-...
-    
-  &lt;/div&gt;
-  
-&lt;/div&gt;
- 
-Please, read the Bootstrap CSS documentation:
-
-[http://getbootstrap.com/css/](http://getbootstrap.com/css/)
+## Configuration
 
 ### Updating Software
 
@@ -119,9 +101,10 @@ Replace your old files with the new and updated files.
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
 
-See **Database Repair/Migration Tool**.
+    Execute Command:
+    $ mvn test -P prod
 
-## Configuration
+See **Database Repair/Migration Tool**.
 
 ### Changing Authentication For Production Database
 
@@ -144,20 +127,28 @@ Default server port is: 8080. To use different port edit **application.yml** -> 
 Edit **application.yml** under resources folder, set your credentials
 for you email account.
 
-### Database Changelog Timestamps
+## Unit Testing
 
-In **db/migration** folder Timestamps Convention:
+Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: application-dev.yml.
 
-V-YEAR-MONTH-DAY.HOUR-MINUTES-SECONDS__Message.sql
+### Running Unit Tests with MySQL
 
-Example:
+Sometimes you need debug a real database, or just want to analyze fields. To do this edit
+application-prod.yml. 
 
-V-20150107.010600__Message_example_etc.sql
+    spring:
+        datasource:
+            dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+            url: jdbc:mysql://localhost:3306/balerocms_enterprise
+            username: root
+            password:
+            
+Usually "root" and "".        
 
-Version Control Convention:
+Then run:
 
-V1.0__Message_example_etc.sql
-
+    $ mvn test -P prod
+    
 ### Database Repair/Migration Tool
 
 If you updated your software and/or mysql/db has been changed, or
@@ -181,7 +172,7 @@ your application is compiled and/or running. After editing a Java Class, HTML Re
     
 ### Bower Components
 
-To install your javascript libraries, use:
+To install/update your javascript libraries, use:
 
 $ bower install
 
@@ -191,28 +182,43 @@ It will be downloaded in resources folder **/static/bower_components**.
 
 Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
 
-## Unit Testing
-
-Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: application-dev.yml.
-
-### Running Unit Tests with MySQL
-
-Sometimes you need debug a real database, or just want to analyze fields. To do this rename
-application-prod.yml to application-dev.yml and edit Line 4, add prefix '_test': 
-
-    spring:
-        datasource:
-            dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-            url: jdbc:mysql://localhost:3306/balerocms_enterprise_test
-            ...
-        
-Create a database 'balerocms_enterprise_test', Then run:
-
-    $ mvn test
-
 ## Security Bugs / Reports
 
 Tested with Mantra WebBrowser. If you found a bug. Please, notify us.
+
+### Responsive Content
+
+For Homepage Blocks, Page Content and Section Content.
+
+Add fluid containers before insert rich text content (Source Code Mode), example:
+
+&lt;div class="container-fluid"&gt;
+
+  &lt;div class="row"&gt;
+  
+...
+    
+  &lt;/div&gt;
+  
+&lt;/div&gt;
+ 
+Please, read the Bootstrap CSS documentation:
+
+[http://getbootstrap.com/css/](http://getbootstrap.com/css/)
+
+### Database Changelog Timestamps
+
+In **db/migration** folder Timestamps Convention:
+
+V-YEAR-MONTH-DAY.HOUR-MINUTES-SECONDS__Message.sql
+
+Example:
+
+V-20150107.010600__Message_example_etc.sql
+
+Version Control Convention:
+
+V1.0__Message_example_etc.sql
 
 ## NOTES
 
