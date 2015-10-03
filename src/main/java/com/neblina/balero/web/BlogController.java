@@ -12,10 +12,7 @@ package com.neblina.balero.web;
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.Page;
 import com.neblina.balero.service.CommentService;
-import com.neblina.balero.service.repository.BlogRepository;
-import com.neblina.balero.service.repository.CommentRepository;
-import com.neblina.balero.service.repository.PageRepository;
-import com.neblina.balero.service.repository.SettingRepository;
+import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +50,14 @@ public class BlogController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @RequestMapping(value = "" )
     String blogIndex(Model model, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         Pageable lastTen = new PageRequest(0, 10);
         model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
         model.addAttribute("lastTen", blogRepository.findAllByCode(locale.getLanguage(), lastTen));
@@ -68,6 +69,7 @@ public class BlogController {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         try {
             Blog blog = blogRepository.findOneByPermalink(permalink);
             if(blog.getPermalink() == null) {

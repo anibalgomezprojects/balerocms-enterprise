@@ -12,6 +12,7 @@ package com.neblina.balero.web;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.PageRepository;
+import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -43,6 +44,9 @@ public class UserController {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model,
                                Locale locale,
@@ -53,6 +57,7 @@ public class UserController {
         String lang = locale.getLanguage();
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         return "silbato/register";
     }
 

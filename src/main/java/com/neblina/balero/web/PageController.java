@@ -11,6 +11,7 @@ package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Page;
 import com.neblina.balero.service.repository.PageRepository;
+import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,10 +35,14 @@ public class PageController {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     @RequestMapping(value = "/{permalink}" )
     String pageIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         try {
             Page page = pageRepository.findOneByPermalink(permalink);
             if(page.getPermalink() == null) {
