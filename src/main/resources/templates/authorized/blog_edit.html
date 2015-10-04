@@ -22,7 +22,7 @@
             <span th:text="#{success.saved}"> _SUCCESS</span>
         </div>
 
-        <form class="form-horizontal" method="post" th:each="post : ${posts}" th:action="@{'/admin/blog/'+${post.id}}">
+        <form class="form-horizontal" method="post" th:each="post : ${posts}" th:action="@{'/'+${user}+'/blog/'+${post.id}}">
             <div class="form-group title">
                 <h4 th:text="#{blog.text.edit}">Edit Blog Post</h4>
             </div>
@@ -103,7 +103,7 @@
                 <tr th:each="comment : ${comments}">
                     <td th:text="${comment.id}">_ID</td>
                     <td>
-                        <a th:href="@{'/admin/comment/'+${comment.id}}">
+                        <a th:href="@{'/'+${user}+'/comment/'+${comment.id}}">
                             <span th:text="${comment.author}">Author</span>
                         </a>
                     </td>
@@ -112,11 +112,11 @@
                         <span th:text="${comment.blodate}" class="badge"></span>
                     </td>
                     <td class="text-center">
-                        <a th:href="@{'/admin/comment/'+${comment.id}}" href="#" class="btn btn-default">
+                        <a th:href="@{'/'+${user}+'/comment/'+${comment.id}}" href="#" class="btn btn-default">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span th:text="#{button.edit}"></span>
                         </a>
-                        <a th:href="@{'/admin/comment/delete/'+${comment.id}}" class="btn btn-danger">
+                        <a th:href="@{'/'+${user}+'/comment/delete/'+${comment.id}}" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span>
                             <span th:text="#{button.delete}"></span>
                         </a>

@@ -149,4 +149,15 @@ public class UserService {
         return userRepository.findAll().size();
     }
 
+    public String getMyUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
+        return username;
+    }
+
+    public String getUserType() {
+        User user = userRepository.findOneByUsername(getMyUsername());
+        return user.getType();
+    }
+
 }
