@@ -14,6 +14,8 @@ import com.neblina.balero.service.repository.BlogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -68,8 +70,12 @@ public class BlogService {
     }
 
     public void deletePost(Long id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
         Blog blog = blogRepository.findOneById(id);
-        blogRepository.delete(blog);
+        if(blog.getAuthor().equals(username)) {
+            blogRepository.delete(blog);
+        }
     }
 
     public void setLikes(Long id) {

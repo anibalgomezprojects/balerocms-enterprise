@@ -45,6 +45,7 @@ public class DashboardAdminBlogController {
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
         model.addAttribute("posts", blogRepository.findAll());
+        model.addAttribute("user", "admin");
         return "authorized/blog";
     }
 

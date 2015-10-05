@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web.authorized;
 
+import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.BlogRepository;
@@ -57,6 +58,7 @@ public class DashboardUserBlogController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
+        model.addAttribute("user", "user");
         return "authorized/blog";
     }
 
@@ -65,9 +67,17 @@ public class DashboardUserBlogController {
     public String blogEditGet(Model model,
                               @PathVariable("id") Long id,
                               @PathVariable("permalink") String permalink) {
-        model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
-        model.addAttribute("posts", blogRepository.findOneById(id));
-        model.addAttribute("user", userService.getUserType());
+        try {
+            Blog blog = blogRepository.findOneById(id);
+            if(!blog.getAuthor().equals(userService.getMyUsername())) {
+                throw new Exception("You can't access to another user post!");
+            }
+            model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
+            model.addAttribute("posts", blogRepository.findOneById(id));
+            model.addAttribute("user", userService.getUserType());
+        } catch (Exception e) {
+            model.addAttribute("securityError", e.getMessage());
+        }
         return "authorized/blog_edit";
     }
 
@@ -79,19 +89,27 @@ public class DashboardUserBlogController {
                                     @RequestParam("introPost") String introPost,
                                     @RequestParam("fullPost") String fullPost,
                                     @RequestParam("code") String code,
-                                    @RequestParam("permalink") String permalink
+                                    @RequestParam("permalink") String permalink,
+                                    @RequestParam("author") String author
                                ) {
-        blogService.savePost(
-                id,
-                bloname,
-                title,
-                introPost,
-                fullPost,
-                code,
-                permalink
-        );
-        model.addAttribute("success", 1);
-        model.addAttribute("posts", blogRepository.findOneById(id));
+        try {
+            if(!author.equals(userService.getMyUsername())) {
+                throw new Exception("Security Exception");
+            }
+            blogService.savePost(
+                    id,
+                    bloname,
+                    title,
+                    introPost,
+                    fullPost,
+                    code,
+                    permalink
+            );
+            model.addAttribute("success", 1);
+            model.addAttribute("posts", blogRepository.findOneById(id));
+        } catch (Exception e) {
+            model.addAttribute("securityError", e.getMessage());
+        }
         return "authorized/blog_edit";
     }
 

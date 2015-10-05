@@ -53,6 +53,7 @@ public class DashboardUserController {
         String username = auth.getName(); //get logged in username
         model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
+        model.addAttribute("user", "user");
         return "authorized/dashboard";
     }
 
