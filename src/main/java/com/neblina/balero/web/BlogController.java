@@ -59,7 +59,8 @@ public class BlogController {
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         Pageable lastTen = new PageRequest(0, 10);
-        model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
+        //model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
+        model.addAttribute("posts", blogRepository.findByStatusAndCode("success", locale.getLanguage()));
         model.addAttribute("lastTen", blogRepository.findAllByCode(locale.getLanguage(), lastTen));
         return "silbato/blog";
     }
