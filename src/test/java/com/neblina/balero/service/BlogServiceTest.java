@@ -41,7 +41,7 @@ public class BlogServiceTest extends TestCase {
     @Test
     public void createTmpPost() {
         blogService.createPost("test", "Unit Test", "Short Description",
-                "Full Description", "en", "unit-test", "malware_bytes");
+                "Full Description", "en", "unit-test", "malware_bytes", "success");
         System.out.println("Creating Post...");
     }
 

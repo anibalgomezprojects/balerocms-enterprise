@@ -56,6 +56,7 @@ public class DashboardAdminBlogController {
                               @PathVariable("permalink") String permalink) {
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("posts", blogRepository.findOneById(id));
+        model.addAttribute("user", "admin");
         return "authorized/blog_edit";
     }
 
@@ -67,7 +68,8 @@ public class DashboardAdminBlogController {
                                     @RequestParam("introPost") String introPost,
                                     @RequestParam("fullPost") String fullPost,
                                     @RequestParam("code") String code,
-                                    @RequestParam("permalink") String permalink
+                                    @RequestParam("permalink") String permalink,
+                                    @RequestParam("status") String status
                                ) {
         blogService.savePost(
                 id,
@@ -76,7 +78,8 @@ public class DashboardAdminBlogController {
                 introPost,
                 fullPost,
                 code,
-                permalink
+                permalink,
+                status
         );
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogRepository.findOneById(id));
@@ -101,7 +104,8 @@ public class DashboardAdminBlogController {
                               @RequestParam("fullPost") String fullPost,
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
-                              @RequestParam("author") String author) {
+                              @RequestParam("author") String author,
+                              @RequestParam("status") String status) {
         blogService.createPost(
                 bloname,
                 title,
@@ -109,7 +113,8 @@ public class DashboardAdminBlogController {
                 fullPost,
                 code,
                 permalink,
-                author
+                author,
+                status
         );
         return "redirect:/admin/blog";
     }

@@ -35,7 +35,8 @@ public class BlogService {
                            String fullPost,
                            String code,
                            String permalink,
-                           String author) {
+                           String author,
+                           String status) {
         Blog blog = new Blog();
         blog.setBloname(bloname);
         blog.setTitle(title);
@@ -49,6 +50,7 @@ public class BlogService {
         //Current Date
         LocalDate today = LocalDate.now();
         blog.setBlodate(today);
+        blog.setStatus(status);
         blogRepository.save(blog);
     }
 
@@ -58,7 +60,8 @@ public class BlogService {
                          String introPost,
                          String fullPost,
                          String code,
-                         String permalink) {
+                         String permalink,
+                         String status) {
         Blog blog = blogRepository.findOneById(id);
         blog.setBloname(bloname);
         blog.setTitle(title);
@@ -66,6 +69,7 @@ public class BlogService {
         blog.setFullPost(fullPost);
         blog.setCode(code);
         blog.setPermalink(permalink);
+        blog.setStatus(status);
         blogRepository.save(blog);
     }
 

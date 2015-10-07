@@ -24,8 +24,8 @@
                     <th class="text-center" th:text="#{blog.text.action}">Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="post : ${posts}">
+                <tbody th:each="post : ${posts}">
+                <tr th:class="${post.status}">
                     <td th:text="${post.id}">_ID</td>
                     <td>
                         <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}">

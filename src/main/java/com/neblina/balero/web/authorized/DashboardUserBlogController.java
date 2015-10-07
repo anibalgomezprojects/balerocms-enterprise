@@ -90,8 +90,7 @@ public class DashboardUserBlogController {
                                     @RequestParam("fullPost") String fullPost,
                                     @RequestParam("code") String code,
                                     @RequestParam("permalink") String permalink,
-                                    @RequestParam("author") String author
-                               ) {
+                                    @RequestParam("author") String author) {
         try {
             if(!author.equals(userService.getMyUsername())) {
                 throw new Exception("Security Exception");
@@ -103,7 +102,8 @@ public class DashboardUserBlogController {
                     introPost,
                     fullPost,
                     code,
-                    permalink
+                    permalink,
+                    "pending"
             );
             model.addAttribute("success", 1);
             model.addAttribute("posts", blogRepository.findOneById(id));
@@ -142,7 +142,8 @@ public class DashboardUserBlogController {
                 fullPost,
                 code,
                 permalink,
-                author
+                author,
+                "pending"
         );
         return "redirect:/user/blog";
     }

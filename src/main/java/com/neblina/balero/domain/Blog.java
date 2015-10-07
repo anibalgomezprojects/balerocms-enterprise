@@ -40,6 +40,8 @@ public class Blog {
     @Type(type="org.hibernate.type.LocalDateType")
     private LocalDate blodate;
 
+    private String status;
+
     public Long getId() {
         return id;
     }
@@ -128,6 +130,14 @@ public class Blog {
         this.blodate = blodate;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Block [" +
@@ -141,7 +151,8 @@ public class Blog {
                 "author=" + this.author + ", " +
                 "hits=" + this.hits + ", " +
                 "likes=" + this.likes + ", " +
-                "blodate=" + this.blodate
+                "blodate=" + this.blodate + ", " +
+                "status=" + this.status
                 + "]";
     }
 
