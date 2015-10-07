@@ -31,6 +31,6 @@ public interface BlogRepository extends CrudRepository<Blog, Long> {
 
     List<Blog> findAllByAuthor(String author);
 
-    List<Blog> findByStatusAndCode(String status, String code);
+    List<Blog> findByStatusAndCode(String status, String code, Pageable pageable);
 
 }
