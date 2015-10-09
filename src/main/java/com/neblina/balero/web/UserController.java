@@ -72,6 +72,7 @@ public class UserController {
                            @RequestParam(value = "email") String email,
                            @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser) {
         log.debug("Creating user... " + username);
+        model.addAttribute("properties", propertyRepository.findOneById(1L));
         if(!password.equals(passwordVerify)) {
             bindingResultUser.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
