@@ -13,6 +13,7 @@ import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.Page;
 import com.neblina.balero.service.CommentService;
 import com.neblina.balero.service.repository.*;
+import org.apache.catalina.filters.ExpiresFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 @Controller
@@ -66,7 +66,9 @@ public class BlogController {
     }
 
     @RequestMapping(value = "/{permalink}", method = RequestMethod.GET)
-    String postIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
+    String postIndex(Model model, @PathVariable("permalink") String permalink, Locale locale,
+                     HttpServletResponse response,
+                     @CookieValue(value = "commentCookie", defaultValue = "init") String commentCookie) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
@@ -74,6 +76,9 @@ public class BlogController {
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         model.addAttribute("username", username);
+        if(!commentCookie.equals("commented")) {
+            model.addAttribute("addComment", 1);
+        }
         try {
             Blog blog = blogRepository.findOneByPermalink(permalink);
             if(blog.getPermalink() == null) {
@@ -91,16 +96,19 @@ public class BlogController {
     @RequestMapping(value = "/{permalink}", method = RequestMethod.POST)
     String postAddComment(Model model, @PathVariable("permalink") String permalink,
                           @RequestParam("content") String content,
-                          Locale locale) {
+                          Locale locale,
+                          HttpServletResponse response) {
         log.debug("Request method POST -> /blog/" + permalink);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
-        commentService.createComment(
-                content,
-                locale.getLanguage(),
-                username,
-                permalink
-        );
+            Cookie userCookie = new Cookie("commentCookie", "commented");
+            response.addCookie(userCookie);
+            commentService.createComment(
+                    content,
+                    locale.getLanguage(),
+                    username,
+                    permalink
+            );
         return "redirect:/blog/" + permalink;
     }
 
