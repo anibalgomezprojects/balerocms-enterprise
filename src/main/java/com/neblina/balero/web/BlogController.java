@@ -67,10 +67,13 @@ public class BlogController {
 
     @RequestMapping(value = "/{permalink}", method = RequestMethod.GET)
     String postIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //get logged in username
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("username", username);
         try {
             Blog blog = blogRepository.findOneByPermalink(permalink);
             if(blog.getPermalink() == null) {
