@@ -51,6 +51,7 @@ public class BlogService {
         LocalDate today = LocalDate.now();
         blog.setBlodate(today);
         blog.setStatus(status);
+        blog.setComments(0);
         blogRepository.save(blog);
     }
 

@@ -9,7 +9,9 @@
 
 package com.neblina.balero.service;
 
+import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.Comment;
+import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +19,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Service
 public class CommentService {
 
     private final Logger log = LoggerFactory.getLogger(CommentService.class);
+
+    @Autowired
+    private BlogRepository blogRepository;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -39,6 +45,11 @@ public class CommentService {
         comment.setBlodate(today);
         comment.setPostPermalink(postPermalink);
         commentRepository.save(comment);
+        // +1 Comment
+        List<Comment> comments = commentRepository.findAllByPostPermalink(postPermalink);
+        Blog post = blogRepository.findOneByPermalink(postPermalink);
+        post.setComments(comments.size());
+        blogRepository.save(post);
     }
 
     public void saveComment(
@@ -52,6 +63,10 @@ public class CommentService {
 
     public void deleteComment(Long id) {
         Comment comment = commentRepository.findOneById(id);
+        // -1 Comment
+        Blog post = blogRepository.findOneByPermalink(comment.getPostPermalink());
+        post.setComments(post.getComments()-1);
+        blogRepository.save(post);
         commentRepository.delete(comment);
     }
 

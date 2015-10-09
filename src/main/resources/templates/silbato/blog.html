@@ -65,6 +65,7 @@
                            ')'"></a>
                         <span><b th:text="'{{posts[' + ${iterStat.index}+ '].likes}}'">0</b> likes</span>
                         <span><b th:text="${post.hits}"></b> hits</span>
+                        <span><b th:text="${post.comments}"></b> comments</span>
                     </div>
                     <hr />
                     Posted by <i th:text="${post.author}">author</i> @  <i th:text="${post.blodate}">blodate</i>

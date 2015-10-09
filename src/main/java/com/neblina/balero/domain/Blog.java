@@ -41,6 +41,7 @@ public class Blog {
     private LocalDate blodate;
 
     private String status;
+    private int comments;
 
     public Long getId() {
         return id;
@@ -138,6 +139,14 @@ public class Blog {
         this.status = status;
     }
 
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Block [" +
@@ -152,8 +161,8 @@ public class Blog {
                 "hits=" + this.hits + ", " +
                 "likes=" + this.likes + ", " +
                 "blodate=" + this.blodate + ", " +
-                "status=" + this.status
+                "status=" + this.status + ", " +
+                "comments=" + this.comments
                 + "]";
     }
-
 }
