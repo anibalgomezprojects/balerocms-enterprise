@@ -41,13 +41,8 @@ public class DashboardUserController {
     @Autowired
     private BlogRepository blogRepository;
 
-    @RequestMapping(value = {"", "/"} )
-    public String rootIndex() {
-        return "redirect:/user/dashboard";
-    }
-
     @Secured("ROLE_USER")
-    @RequestMapping("/dashboard")
+    @RequestMapping(value = {"", "/", "/dashboard"} )
     public String dashboardUser(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
