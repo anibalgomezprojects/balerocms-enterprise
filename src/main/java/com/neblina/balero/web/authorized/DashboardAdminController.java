@@ -64,15 +64,11 @@ public class DashboardAdminController {
     @Autowired
     private Environment environment;
 
-    @RequestMapping(value = {"", "/"} )
-    public String rootIndex() {
-        return "redirect:/admin/dashboard";
-    }
-
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
-    @RequestMapping("/dashboard")
+    @RequestMapping(value = {"", "/", "/dashboard" })
     public String dashboardIndex(Model model) {
+        model.asMap().clear();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         model.addAttribute("users", userRepository.findOneByUsername(username));
