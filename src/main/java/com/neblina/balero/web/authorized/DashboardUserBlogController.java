@@ -17,6 +17,7 @@ import com.neblina.balero.service.repository.CommentRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.omg.PortableInterceptor.PolicyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import org.owasp.html.Sanitizers;
 
 import java.time.LocalDate;
 
@@ -95,12 +98,15 @@ public class DashboardUserBlogController {
             if(!author.equals(userService.getMyUsername())) {
                 throw new Exception("Security Exception");
             }
+            org.owasp.html.PolicyFactory policy = Sanitizers.STYLES.and(Sanitizers.FORMATTING).and(Sanitizers.IMAGES);
+            String uintroPost = policy.sanitize(introPost);
+            String ufullPost = policy.sanitize(fullPost);
             blogService.savePost(
                     id,
                     bloname,
                     title,
-                    introPost,
-                    fullPost,
+                    uintroPost,
+                    ufullPost,
                     code,
                     permalink,
                     "pending"
@@ -110,6 +116,7 @@ public class DashboardUserBlogController {
         } catch (Exception e) {
             model.addAttribute("securityError", e.getMessage());
         }
+        model.addAttribute("user", "user");
         return "authorized/blog_edit";
     }
 

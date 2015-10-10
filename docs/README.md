@@ -245,9 +245,11 @@ V1.0__Message_example_etc.sql
 * Resource Minification (HTML, CSS, Javascript)
 * Multiple Databases (SQL Standars)
 * User / Admin Dashboard
+* UX Elements
 * UX/Responsive Email Newsletter
 * Hot Swap
 * Spring Security Password Hash Encryption / Protection
+* AntiCross-site Scripting (XSS) / OWASP Java HTML Sanitizer
 
 ## IoT Support on Enterprise version
 
