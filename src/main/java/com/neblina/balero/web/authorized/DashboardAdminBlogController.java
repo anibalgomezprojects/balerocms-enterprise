@@ -83,6 +83,7 @@ public class DashboardAdminBlogController {
         );
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogRepository.findOneById(id));
+        model.addAttribute("user", "admin");
         return "authorized/blog_edit";
     }
 
