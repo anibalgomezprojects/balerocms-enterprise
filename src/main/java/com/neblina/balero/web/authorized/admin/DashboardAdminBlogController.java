@@ -7,7 +7,7 @@
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.repository.BlogRepository;

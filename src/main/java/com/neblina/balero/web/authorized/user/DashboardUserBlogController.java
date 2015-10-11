@@ -7,7 +7,7 @@
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.web.authorized;
+package com.neblina.balero.web.authorized.user;
 
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
@@ -18,7 +18,6 @@ import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.AntiXSS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.omg.PortableInterceptor.PolicyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -29,8 +28,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import org.owasp.html.Sanitizers;
 
 import java.time.LocalDate;
 
