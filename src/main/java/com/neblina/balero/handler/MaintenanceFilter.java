@@ -34,8 +34,6 @@ public class MaintenanceFilter implements Filter {
     private BlacklistService blacklistService;
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
-        log.debug("Loading Maintenance Filter...");
-        log.debug("offline value: " + propertyService.isOfflineStatus());
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
