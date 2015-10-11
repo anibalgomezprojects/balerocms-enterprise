@@ -29,7 +29,7 @@
             <span th:text="${securityError}">Security Error</span>
         </div>
 
-        <form class="form-horizontal" method="post" th:each="post : ${posts}" th:action="@{'/'+${user}+'/blog/'+${post.id}}">
+        <form class="form-horizontal" method="post" th:each="post : ${posts}" th:action="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}">
             <div class="form-group title">
                 <h4 th:text="#{blog.text.edit}">Edit Blog Post</h4>
             </div>
