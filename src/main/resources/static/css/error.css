@@ -12,6 +12,10 @@ body {
     padding-bottom: 40px;
     background-color: #f8f8f8;
 }
+.bg-danger {
+    margin: 10px;
+    padding: 10px;
+}
 .debug {
     color: #282828;
     background-color: #fff;
@@ -21,6 +25,9 @@ body {
 }
 .debug-text {
     color: red;
+}
+h1 {
+    color: white;
 }
 .row {
     width: 80%;
@@ -33,13 +40,6 @@ body {
     -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
-}
-.bg-danger {
-    margin: 10px;
-    padding: 10px;
-}
-h1 {
-    color: white;
 }
 .white {
     color: white;
