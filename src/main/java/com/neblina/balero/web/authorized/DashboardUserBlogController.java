@@ -98,7 +98,7 @@ public class DashboardUserBlogController {
             if(!author.equals(userService.getMyUsername())) {
                 throw new Exception("Security Exception");
             }
-            org.owasp.html.PolicyFactory policy = Sanitizers.STYLES.and(Sanitizers.FORMATTING).and(Sanitizers.IMAGES);
+            org.owasp.html.PolicyFactory policy = Sanitizers.STYLES.and(Sanitizers.FORMATTING).and(Sanitizers.IMAGES.and(Sanitizers.LINKS));
             String uintroPost = policy.sanitize(introPost);
             String ufullPost = policy.sanitize(fullPost);
             blogService.savePost(
