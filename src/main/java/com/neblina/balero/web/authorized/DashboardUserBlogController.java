@@ -15,6 +15,7 @@ import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
 import com.neblina.balero.service.repository.UserRepository;
+import com.neblina.balero.util.AntiXSS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.omg.PortableInterceptor.PolicyFactory;
@@ -85,22 +86,24 @@ public class DashboardUserBlogController {
     }
 
     @Secured("ROLE_USER")
-    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public String blogEditPost(Model model, @PathVariable("id") Long id,
-                                    @RequestParam("bloname") String bloname,
-                                    @RequestParam("title") String title,
-                                    @RequestParam("introPost") String introPost,
-                                    @RequestParam("fullPost") String fullPost,
-                                    @RequestParam("code") String code,
-                                    @RequestParam("permalink") String permalink,
-                                    @RequestParam("author") String author) {
+    @RequestMapping(value = "/{id}/{permalink}", method = RequestMethod.POST)
+    public String blogEditPost(Model model,
+                               @PathVariable("id") Long id,
+                               @PathVariable("permalink") String urlPermalink,
+                               @RequestParam("bloname") String bloname,
+                               @RequestParam("title") String title,
+                               @RequestParam("introPost") String introPost,
+                               @RequestParam("fullPost") String fullPost,
+                               @RequestParam("code") String code,
+                               @RequestParam("permalink") String permalink,
+                               @RequestParam("author") String author) {
         try {
             if(!author.equals(userService.getMyUsername())) {
                 throw new Exception("Security Exception");
             }
-            org.owasp.html.PolicyFactory policy = Sanitizers.STYLES.and(Sanitizers.FORMATTING).and(Sanitizers.IMAGES.and(Sanitizers.LINKS));
-            String uintroPost = policy.sanitize(introPost);
-            String ufullPost = policy.sanitize(fullPost);
+            AntiXSS antiXSS = new AntiXSS();
+            String uintroPost = antiXSS.blind(introPost);
+            String ufullPost = antiXSS.blind(fullPost);
             blogService.savePost(
                     id,
                     bloname,
@@ -142,11 +145,14 @@ public class DashboardUserBlogController {
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
                               @RequestParam("author") String author) {
+        AntiXSS antiXSS = new AntiXSS();
+        String uintroPost = antiXSS.blind(introPost);
+        String ufullPost = antiXSS.blind(fullPost);
         blogService.createPost(
                 bloname,
                 title,
-                introPost,
-                fullPost,
+                uintroPost,
+                ufullPost,
                 code,
                 permalink,
                 author,
