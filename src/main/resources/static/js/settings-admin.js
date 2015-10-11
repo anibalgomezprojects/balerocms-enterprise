@@ -14,7 +14,20 @@ $(function() {
                  console.log($(obj).attr('id'));
                  var id = $(obj).attr('id');
                  sendFile(files[0], id, welEditable);
-             }
+             },
+             toolbar: [
+                 // Full Editor
+                 ['style', ['style']],
+                 ['font', ['bold', 'italic', 'underline', 'clear']],
+                 ['fontname', ['fontname']],
+                 ['color', ['color']],
+                 ['para', ['ul', 'ol', 'paragraph']],
+                 ['height', ['height']],
+                 ['table', ['table']],
+                 ['insert', ['link', 'picture']],
+                 ['view', ['fullscreen', 'codeview']],
+                 //['help', ['help']]
+             ]
          });
      });
     });
