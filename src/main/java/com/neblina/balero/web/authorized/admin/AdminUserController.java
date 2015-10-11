@@ -26,9 +26,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin/user")
-public class DashboardAdminUserController {
+public class AdminUserController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminUserController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminUserController.class.getName());
 
     @Autowired
     private UserRepository userRepository;

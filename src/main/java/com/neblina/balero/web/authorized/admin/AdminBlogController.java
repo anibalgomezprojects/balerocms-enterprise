@@ -28,9 +28,9 @@ import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/admin/blog")
-public class DashboardAdminBlogController {
+public class AdminBlogController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminBlogController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminBlogController.class.getName());
 
     @Autowired
     private BlogService blogService;

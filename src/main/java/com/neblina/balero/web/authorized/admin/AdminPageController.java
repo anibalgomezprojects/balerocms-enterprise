@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/page")
-public class DashboardAdminPageController {
+public class AdminPageController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminPageController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminPageController.class.getName());
 
     @Autowired
     private PageService pageService;

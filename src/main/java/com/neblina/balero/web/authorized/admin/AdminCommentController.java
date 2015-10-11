@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/comment")
-public class DashboardAdminCommentController {
+public class AdminCommentController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminCommentController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminCommentController.class.getName());
 
     @Autowired
     private CommentRepository commentRepository;

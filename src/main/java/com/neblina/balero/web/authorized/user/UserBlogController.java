@@ -34,9 +34,9 @@ import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/user/blog")
-public class DashboardUserBlogController {
+public class UserBlogController {
 
-    private static final Logger log = LogManager.getLogger(DashboardUserBlogController.class.getName());
+    private static final Logger log = LogManager.getLogger(UserBlogController.class.getName());
 
     @Autowired
     private BlogService blogService;

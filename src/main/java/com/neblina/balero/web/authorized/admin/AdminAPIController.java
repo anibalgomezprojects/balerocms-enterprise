@@ -28,7 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/api")
-public class DashboardAdminAPIController {
+public class AdminAPIController {
 
     @Autowired
     private PropertyRepository propertyRepository;

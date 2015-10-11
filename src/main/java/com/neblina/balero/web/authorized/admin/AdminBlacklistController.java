@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/blacklist")
-public class DashboardAdminBlacklistController {
+public class AdminBlacklistController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminBlacklistController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminBlacklistController.class.getName());
 
     @Autowired
     private BlacklistService blacklistService;

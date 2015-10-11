@@ -30,9 +30,9 @@ import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin")
-public class DashboardAdminController {
+public class AdminController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminController.class.getName());
 
     @Autowired
     private SettingRepository settingRepository;

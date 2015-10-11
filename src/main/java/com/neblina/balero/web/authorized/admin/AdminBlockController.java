@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/admin/block")
-public class DashboardAdminBlockController {
+public class AdminBlockController {
 
-    private static final Logger log = LogManager.getLogger(DashboardAdminBlockController.class.getName());
+    private static final Logger log = LogManager.getLogger(AdminBlockController.class.getName());
 
     @Autowired
     private BlockService blockService;
