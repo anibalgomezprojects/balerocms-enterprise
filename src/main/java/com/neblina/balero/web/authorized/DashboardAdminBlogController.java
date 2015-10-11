@@ -122,7 +122,7 @@ public class DashboardAdminBlogController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String pageDelete(Model model, @PathVariable("id") Long id) {
+    public String postDelete(Model model, @PathVariable("id") Long id) {
         blogService.deletePost(id);
         return "redirect:/admin/blog";
     }
