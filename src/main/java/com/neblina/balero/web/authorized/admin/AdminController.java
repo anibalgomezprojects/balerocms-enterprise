@@ -10,6 +10,7 @@
 package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.*;
@@ -64,6 +65,9 @@ public class AdminController {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private BaleroService baleroService;
+
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
     @RequestMapping(value = {"", "/", "/dashboard" })
@@ -87,6 +91,7 @@ public class AdminController {
                            Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("version", baleroService.getVersion());
         return "authorized/settings";
     }
 
