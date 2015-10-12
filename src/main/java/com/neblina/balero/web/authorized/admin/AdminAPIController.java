@@ -75,7 +75,6 @@ public class AdminAPIController {
         return userRepository.findOneByUsername(username);
     }
 
-
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
     @ResponseBody

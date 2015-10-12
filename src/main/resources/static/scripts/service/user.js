@@ -15,9 +15,9 @@ angular.module('UserService', ['ngResource'])
                     query: { method: 'GET', params: {}, isArray: true }
                 })
             },
-            postUsers: function(bloId) {
-                return $resource('../admin/api/subscribe/'+bloId, {}, {
-                    save: { method: 'POST', params: { id: bloId } }
+            postUsers: function(bloEmail) {
+                return $resource('../user/api/subscribe/'+bloEmail, {}, {
+                    save: { method: 'POST', params: { id: bloEmail } }
                 })
             }
         };
