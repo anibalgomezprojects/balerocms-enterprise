@@ -7,12 +7,11 @@
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
-angular.module('UserApp', ['UserService'])
-.controller('UserController', function($scope, UserService){
+angular.module('UserApp', ['UserService', 'base64'])
+.controller('UserController', function($scope, $base64, UserService){
         $scope.users = UserService.getUsers().query();
         $scope.blotoggle = function(bloEmail) {
-            alert('email: ' + bloEmail);
-            UserService.postUsers(bloEmail).save();
+            UserService.postUsers($base64.encode(bloEmail)).save();
             $scope.users = UserService.getUsers.query();
         }
     });

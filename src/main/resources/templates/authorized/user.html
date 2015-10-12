@@ -28,7 +28,7 @@
                         <a href="/admin/user/{{user.id}}"><span>{{user.email}}</span></a>
                     </td>
                     <td class="pull-right">
-                        <input type="checkbox" ng-model="user.subscribed" ng-value="user" id="{{user}}" ng-change="blotoggle('YW5pYmFsZ29tZXpAYmFsZXJvY21zLmNvbQ==')" name="user" class="toggle" />
+                        <input type="checkbox" ng-model="user.subscribed" ng-value="user" id="{{user}}" ng-change="blotoggle('{{user.email}}')" name="user" class="toggle" />
                         <label for="{{user}}"></label>
                         value {{user.subscribed}}
                     </td>
