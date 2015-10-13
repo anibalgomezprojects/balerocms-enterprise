@@ -15,7 +15,8 @@ CREATE TABLE IF NOT EXISTS PROPERTY (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	administrator_email varchar(255) not null,
 	offline bit(1) not null,
-	multi_language bit(1) not null
+	multi_language bit(1) not null,
+	url varchar(255) not null
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;
 
 CREATE TABLE IF NOT EXISTS SETTING (
@@ -84,7 +85,7 @@ INSERT INTO USER (id, username, password, password_verify, first_name, last_name
 (3, 'anonymous', '$$$$$$$$', '$$$$$$$$', 'Anonymous', 'Unregistered', 'anonymous@localhost.com', 1, 'ROLE_ANONYMOUS', 'user');
 
 INSERT INTO PROPERTY (id, administrator_email, offline, multi_language) VALUES
-(1, 'admin@localhost', 0, 1);
+(1, 'admin@localhost', 0, 1, 'http://localhost:8080/');
 
 INSERT INTO SETTING (id, code, title, title_header, tags, footer, offline_message) VALUES
 (1, 'en', 'Demo', '<h1>Welcome</h1><h3>Example Portal</h3><hr class="intro-divider" /><p>Congratulations! Installation success!</p>', 'Business, Enterprise, Company, Etc...', '<ul class="list-inline"><li><a href="#home">Home</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#about">About</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#services">Services</a></li><li class="footer-menu-divider">&sdot;</li><li><a href="#contact">Contact</a></li></ul><br />(c) 2015. Your company. Powered by <a href="http://www.balerocms.com/">BaleroCMS</a>.', 'Site under maintenance. We will back shortly.'),
