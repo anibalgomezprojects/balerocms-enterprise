@@ -102,6 +102,7 @@ public class AdminController {
                                @RequestParam(value = "title") String title,
                                @RequestParam(value = "titleHeader") String titleHeader,
                                @RequestParam(value = "administratorEmail") String administratorEmail,
+                               @RequestParam(value = "url") String url,
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer,
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
@@ -113,6 +114,7 @@ public class AdminController {
                 title,
                 titleHeader,
                 administratorEmail,
+                url,
                 tags,
                 footer,
                 offlineMessage

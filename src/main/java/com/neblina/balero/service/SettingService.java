@@ -33,6 +33,7 @@ public class SettingService {
                              String title,
                              String titleHeader,
                              String administratorEmail,
+                             String url,
                              String tags,
                              String footer,
                              String offlineMessage) {
@@ -42,6 +43,7 @@ public class SettingService {
         settings.setTitle(title);
         settings.setTitleHeader(titleHeader);
         properties.setAdministratorEmail(administratorEmail);
+        properties.setUrl(url);
         settings.setTags(tags);
         settings.setFooter(footer);
         settings.setOfflineMessage(offlineMessage);

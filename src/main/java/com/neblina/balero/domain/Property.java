@@ -21,6 +21,7 @@ public class Property {
     private String administratorEmail;
     private boolean offline;
     private boolean multiLanguage;
+    private String url;
 
     public Long getId() {
         return id;
@@ -54,13 +55,22 @@ public class Property {
         this.multiLanguage = multiLanguage;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "Setting [" +
                 "id=" + this.id + "," +
                 "administratorEmail=" + this.administratorEmail + "," +
-                "offline=" + this.offline+ "," +
-                "multiLanguage" + this.multiLanguage
+                "offline=" + this.offline + "," +
+                "multiLanguage" + this.multiLanguage + "," +
+                "url" + this.url
                 + "]";
     }
 

@@ -64,6 +64,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="url" class="col-sm-2 control-label" th:text="#{properties.text.url}">URL</label>
+                <div class="col-sm-10">
+                    <input type="text" name="url" class="form-control short" id="url" th:value="${properties.url}" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="tags" class="col-sm-2 control-label" th:text="#{settings.text.tags}">Site Tags</label>
                 <div class="col-sm-10">
                     <input type="text" name="tags" class="form-control short" id="tags" th:value="${settings.tags}" />
