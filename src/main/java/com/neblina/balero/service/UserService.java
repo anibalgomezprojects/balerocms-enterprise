@@ -152,6 +152,13 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void cancelSubscribedStatusByEmail(String email) {
+        log.debug("Cancelling subscribed for: " + email);
+        User user = userRepository.findOneByEmail(email);
+        user.setSubscribed(false);
+        userRepository.save(user);
+    }
+
     public int getTotalUsers() {
         return userRepository.findAll().size();
     }

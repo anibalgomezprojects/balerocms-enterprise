@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 
 
@@ -92,8 +93,8 @@ public class MailController {
     public String sendSimpleMail(
             @RequestParam("recipientName") final String recipientName,
             @RequestParam("recipientEmail") final String recipientEmail,
-            final Locale locale) 
-            throws MessagingException {
+            final Locale locale)
+            throws MessagingException, UnsupportedEncodingException {
 
         this.emailService.sendSimpleMail(recipientName, recipientEmail, "Subject", "Message", locale);
         return "redirect:sent.html";

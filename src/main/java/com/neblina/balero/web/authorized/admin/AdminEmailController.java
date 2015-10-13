@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,7 +54,7 @@ public class AdminEmailController {
     @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
     public String emailPost(@RequestParam("subject") String subject,
                                  @RequestParam("messageBody") String messageBody,
-                                 Model model, Locale locale) throws MessagingException {
+                                 Model model, Locale locale) throws MessagingException, UnsupportedEncodingException {
         List<User> users = userRepository.findAll();
         for(User user: users) {
             log.debug("Sending Email To..." + user.getEmail());

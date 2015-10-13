@@ -15,6 +15,7 @@ import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Base64;
 import java.util.Locale;
 
 @Controller
@@ -163,6 +165,14 @@ public class UserController {
         model.addAttribute("user", user);
         userService.changeUserPassword(newPassword);
         return "authorized/profile";
+    }
+
+    @RequestMapping(value = "/unsubscribe/{email}", method = RequestMethod.GET)
+    public String unsubscribeUserGET(@PathVariable("email") String email) {
+        log.debug("GET Request -> /subscribe/" + email);
+        Base64.Decoder decoder = Base64.getDecoder();
+        userService.cancelSubscribedStatusByEmail(new String(decoder.decode(email)));
+        return "unsubscribe";
     }
 
 }

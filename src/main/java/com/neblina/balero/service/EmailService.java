@@ -20,6 +20,8 @@
 
 package com.neblina.balero.service;
 
+import com.neblina.balero.domain.Property;
+import com.neblina.balero.service.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
@@ -31,7 +33,9 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Locale;
 
@@ -44,13 +48,16 @@ public class EmailService {
     @Autowired
     private TemplateEngine templateEngine;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
     /*
      * Send HTML mail (simple)
      */
     public void sendSimpleMail(
 
             final String recipientName, final String recipientEmail, final String subject, final String messageBody, final Locale locale)
-            throws MessagingException {
+            throws MessagingException, UnsupportedEncodingException {
 
         // Prepare the evaluation context
         final Context ctx = new Context(locale);
@@ -58,6 +65,13 @@ public class EmailService {
         ctx.setVariable("subscriptionDate", new Date());
         ctx.setVariable("hobbies", Arrays.asList("Cinema", "Sports", "Music"));
         ctx.setVariable("message", messageBody);
+
+        // Unsubscribe Link
+        Base64.Encoder encoder = Base64.getEncoder();
+        String unsubscribeLink = encoder.encodeToString(recipientEmail.getBytes("utf-8"));
+        Property property = propertyRepository.findOneById(1L);
+        String fullLink = property.getUrl() + "user/unsubscribe/" + unsubscribeLink;
+        ctx.setVariable("unsubscribe", fullLink);
 
         // Prepare message using a Spring helper
         final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
