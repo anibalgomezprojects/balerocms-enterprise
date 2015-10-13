@@ -169,7 +169,7 @@ public class UserController {
 
     @RequestMapping(value = "/unsubscribe/{email}", method = RequestMethod.GET)
     public String unsubscribeUserGET(@PathVariable("email") String email) {
-        log.debug("GET Request -> /subscribe/" + email);
+        log.debug("GET Request -> /unsubscribe/" + email);
         Base64.Decoder decoder = Base64.getDecoder();
         userService.cancelSubscribedStatusByEmail(new String(decoder.decode(email)));
         return "unsubscribe";

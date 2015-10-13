@@ -153,7 +153,7 @@ public class UserService {
     }
 
     public void cancelSubscribedStatusByEmail(String email) {
-        log.debug("Cancelling subscribed for: " + email);
+        log.debug("Cancelling subscription for: " + email);
         User user = userRepository.findOneByEmail(email);
         user.setSubscribed(false);
         userRepository.save(user);
