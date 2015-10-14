@@ -79,7 +79,7 @@ public class AdminPageController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String pageNew(Model model,
+    public String pageNew(
                               @RequestParam("name") String name,
                               @RequestParam("title") String title,
                               @RequestParam("content") String content,
@@ -99,7 +99,8 @@ public class AdminPageController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String pageDelete(Model model, @PathVariable("id") Long id) {
+    public String pageDelete(
+                             @PathVariable("id") Long id) {
         pageService.deletePage(id);
         return "redirect:/admin/page";
     }
