@@ -15,7 +15,6 @@ import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -110,8 +109,7 @@ public class UserController {
     @Secured("ROLE_USER")
     @RequestMapping(value = {"", "/", "/dashboard"} )
     public String dashboardUser(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
         model.addAttribute("user", "user");
@@ -136,8 +134,7 @@ public class UserController {
                               @RequestParam("lastName") String lastName,
                               @RequestParam("email") String email) {
         log.debug("POST /user/profile");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         model.addAttribute("success", 1);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
@@ -147,7 +144,7 @@ public class UserController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "/mailing-list/subscribe/{id}", method = RequestMethod.GET)
-    public String updateMailingListSubscribedGet(Model model,
+    public String updateMailingListSubscribedGet(
                                                  @PathVariable("id") Long id) {
         userService.updateSubscribedStatus();
         return "redirect:/user/dashboard/";
@@ -158,8 +155,7 @@ public class UserController {
     public String passwordPost(Model model,
                                @RequestParam("newPassword") String newPassword) {
         log.debug("POST /user/password");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         model.addAttribute("success", 1);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
