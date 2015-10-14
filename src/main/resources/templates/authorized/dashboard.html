@@ -50,7 +50,7 @@
                 <br />
                 <span th:text="#{dashboard.total.comments}">Total Comments </span> <span class="badge" th:text="${totalComments}">0</span>
                 <br />
-                Development Active Profile: <b th:text="${profiles}"></b>
+                <span th:text="#{dashboard.development.profile}">Development Active Profile:</span> <b th:text="${profiles}"></b>
             </div>
             <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                 <b th:text="#{dashboard.shortcut}">Shorcuts</b>
