@@ -20,33 +20,20 @@
 
 package com.neblina.balero.web;
 
-import com.neblina.balero.service.EmailService;
 import com.neblina.balero.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.mail.MessagingException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Locale;
-
 
 @Controller
 @RequestMapping("/mail")
 public class MailController {
 
     private static final Logger log = LogManager.getLogger(MailController.class.getName());
-
-    @Autowired 
-    private EmailService emailService;
 
     @Autowired
     private UserService userService;
