@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web.authorized.admin;
 
+import com.github.slugify.Slugify;
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -45,7 +47,7 @@ public class AdminBlogController {
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
         model.addAttribute("posts", blogRepository.findAll());
-        model.addAttribute("user", "admin");
+        model.addAttribute("url", "admin");
         return "authorized/blog";
     }
 
@@ -56,7 +58,7 @@ public class AdminBlogController {
                               @PathVariable("permalink") String permalink) {
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("posts", blogRepository.findOneById(id));
-        model.addAttribute("user", "admin");
+        model.addAttribute("url", "admin");
         return "authorized/blog_edit";
     }
 
@@ -69,8 +71,9 @@ public class AdminBlogController {
                                @RequestParam("introPost") String introPost,
                                @RequestParam("fullPost") String fullPost,
                                @RequestParam("code") String code,
-                               @RequestParam("permalink") String permalink,
-                               @RequestParam("status") String status) {
+                               @RequestParam("permalink") String permalink) throws IOException {
+        Slugify slg = new Slugify();
+        String result = slg.slugify(permalink);
         blogService.savePost(
                 id,
                 bloname,
@@ -78,12 +81,12 @@ public class AdminBlogController {
                 introPost,
                 fullPost,
                 code,
-                permalink,
-                status
+                result,
+                "success"
         );
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogRepository.findOneById(id));
-        model.addAttribute("user", "admin");
+        model.addAttribute("url", "admin");
         return "authorized/blog_edit";
     }
 
@@ -91,38 +94,40 @@ public class AdminBlogController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String blogEditGet(Model model) {
         LocalDate today = LocalDate.now();
-        model.addAttribute("date", today);
         log.debug("Date: " + today);
+        model.addAttribute("date", today);
+        model.addAttribute("url" , "admin");
         return "authorized/blog_new";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String blogNew(Model model,
+    public String blogNew(
                               @RequestParam("bloname") String bloname,
                               @RequestParam("title") String title,
                               @RequestParam("introPost") String introPost,
                               @RequestParam("fullPost") String fullPost,
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
-                              @RequestParam("author") String author,
-                              @RequestParam("status") String status) {
+                              @RequestParam("author") String author) throws IOException {
+        Slugify slg = new Slugify();
+        String result = slg.slugify(permalink);
         blogService.createPost(
                 bloname,
                 title,
                 introPost,
                 fullPost,
                 code,
-                permalink,
+                result,
                 author,
-                status
+                "success"
         );
         return "redirect:/admin/blog";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String postDelete(Model model, @PathVariable("id") Long id) {
+    public String postDelete(@PathVariable("id") Long id) {
         blogService.deletePost(id);
         return "redirect:/admin/blog";
     }

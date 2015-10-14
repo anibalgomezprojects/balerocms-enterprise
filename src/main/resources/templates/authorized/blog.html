@@ -28,7 +28,7 @@
                 <tr th:class="${post.status}">
                     <td th:text="${post.id}">_ID</td>
                     <td>
-                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}">
+                        <a th:href="@{'/'+${url}+'/blog/'+${post.id}+'/'+${post.permalink}}">
                             <span th:text="${post.bloname}">_NAME</span>
                         </a>
                         <span th:text="${post.hits}" class="badge"></span>
@@ -40,15 +40,15 @@
                         <span th:text="${post.blodate}" class="badge"></span>
                     </td>
                     <td class="text-center">
-                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}}" href="#" class="btn btn-default">
+                        <a th:href="@{'/'+${url}+'/blog/'+${post.id}+'/'+${post.permalink}}" href="#" class="btn btn-default">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <span th:text="#{button.edit}"></span>
                         </a>
-                        <a th:href="@{'/'+${user}+'/blog/'+${post.id}+'/'+${post.permalink}+'?developer'}" href="#" class="btn btn-primary">
+                        <a th:href="@{'/'+${url}+'/blog/'+${post.id}+'/'+${post.permalink}+'?developer'}" href="#" class="btn btn-primary">
                             <span class="glyphicon glyphicon-eye-open"></span>
                             <span th:text="#{button.code.view}">Code View</span>
                         </a>
-                        <a th:href="@{'/'+${user}+'/blog/delete/'+${post.id}}" class="btn btn-danger">
+                        <a th:href="@{'/'+${url}+'/blog/delete/'+${post.id}}" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span>
                             <span th:text="#{button.delete}"></span>
                         </a>
@@ -57,7 +57,7 @@
                 </tbody>
             </table>
             <div class="toolbar pull-right">
-                <a th:href="'/'+${user}+'/blog/new'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+                <a th:href="'/'+${url}+'/blog/new'" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
         </div>
     </div>

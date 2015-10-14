@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web.authorized.admin;
 
+import com.github.slugify.Slugify;
 import com.neblina.balero.service.PageService;
 import com.neblina.balero.service.repository.PageRepository;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin/page")
@@ -56,14 +59,16 @@ public class AdminPageController {
                                    String content,
                                    String code,
                                    String permalink,
-                                   String author) {
+                                   String author) throws IOException {
+        Slugify slg = new Slugify();
+        String result = slg.slugify(permalink);
         pageService.savePage(
                 id,
                 name,
                 title,
                 content,
                 code,
-                permalink,
+                result,
                 author
         );
         model.addAttribute("success", 1);
@@ -85,13 +90,15 @@ public class AdminPageController {
                               @RequestParam("content") String content,
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
-                              @RequestParam("author") String author) {
+                              @RequestParam("author") String author) throws IOException {
+        Slugify slg = new Slugify();
+        String result = slg.slugify(permalink);
         pageService.createPage(
                 name,
                 title,
                 content,
                 code,
-                permalink,
+                result,
                 author
         );
         return "redirect:/admin/page";

@@ -112,7 +112,7 @@ public class UserController {
         String username = userService.getMyUsername();
         model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
-        model.addAttribute("user", "user");
+        model.addAttribute("url", "user");
         return "authorized/dashboard";
     }
 
@@ -138,6 +138,7 @@ public class UserController {
         model.addAttribute("success", 1);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("url", "user");
         userService.saveUserProfile(firstName, lastName, email);
         return "authorized/profile";
     }
@@ -159,6 +160,7 @@ public class UserController {
         model.addAttribute("success", 1);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
+        model.addAttribute("url", "user");
         userService.changeUserPassword(newPassword);
         return "authorized/profile";
     }

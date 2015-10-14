@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web.authorized.user;
 
+import com.github.slugify.Slugify;
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.UserService;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 
@@ -56,7 +58,7 @@ public class UserBlogController {
     public String blog(Model model) {
         String username = userService.getMyUsername();
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
-        model.addAttribute("user", "user");
+        model.addAttribute("url", "user");
         return "authorized/blog";
     }
 
@@ -72,7 +74,7 @@ public class UserBlogController {
             }
             model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
             model.addAttribute("posts", blogRepository.findOneById(id));
-            model.addAttribute("user", userService.getUserType());
+            model.addAttribute("url", userService.getUserType());
         } catch (Exception e) {
             model.addAttribute("securityError", e.getMessage());
         }
@@ -98,6 +100,8 @@ public class UserBlogController {
             AntiXSS antiXSS = new AntiXSS();
             String uintroPost = antiXSS.blind(introPost);
             String ufullPost = antiXSS.blind(fullPost);
+            Slugify slg = new Slugify();
+            String result = slg.slugify(permalink);
             blogService.savePost(
                     id,
                     bloname,
@@ -105,7 +109,7 @@ public class UserBlogController {
                     uintroPost,
                     ufullPost,
                     code,
-                    permalink,
+                    result,
                     "pending"
             );
             model.addAttribute("success", 1);
@@ -113,7 +117,7 @@ public class UserBlogController {
         } catch (Exception e) {
             model.addAttribute("securityError", e.getMessage());
         }
-        model.addAttribute("user", "user");
+        model.addAttribute("url", "user");
         return "authorized/blog_edit";
     }
 
@@ -124,6 +128,7 @@ public class UserBlogController {
         LocalDate today = LocalDate.now();
         model.addAttribute("date", today);
         model.addAttribute("user", userRepository.findOneByUsername(username));
+        model.addAttribute("url", "user");
         log.debug("Date: " + today);
         return "authorized/blog_new";
     }
@@ -137,17 +142,19 @@ public class UserBlogController {
                               @RequestParam("fullPost") String fullPost,
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
-                              @RequestParam("author") String author) {
+                              @RequestParam("author") String author) throws IOException {
         AntiXSS antiXSS = new AntiXSS();
         String uintroPost = antiXSS.blind(introPost);
         String ufullPost = antiXSS.blind(fullPost);
+        Slugify slg = new Slugify();
+        String result = slg.slugify(permalink);
         blogService.createPost(
                 bloname,
                 title,
                 uintroPost,
                 ufullPost,
                 code,
-                permalink,
+                result,
                 author,
                 "pending"
         );
