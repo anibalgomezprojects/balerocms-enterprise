@@ -22,8 +22,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Locale;
@@ -63,6 +65,46 @@ public class AdminEmailController {
         model.addAttribute("totalUsers", userService.getTotalUsers());
         model.addAttribute("success", 1);
         return "authorized/email";
+    }
+
+    /*
+    * Send HTML mail with attachment.
+    */
+    // TODO: Need to be integrated
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/sendMailWithAttachment", method = RequestMethod.POST)
+    public String sendMailWithAttachment(
+            @RequestParam("recipientName") final String recipientName,
+            @RequestParam("recipientEmail") final String recipientEmail,
+            @RequestParam("attachment") final MultipartFile attachment,
+            final Locale locale)
+            throws MessagingException, IOException {
+
+        this.emailService.sendMailWithAttachment(
+                recipientName, recipientEmail, attachment.getOriginalFilename(),
+                attachment.getBytes(), attachment.getContentType(), locale);
+        return "redirect:sent.html";
+
+    }
+
+    /*
+     * Send HTML mail with inline image
+     */
+    // TODO: Need to be integrated
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/sendMailWithInlineImage", method = RequestMethod.POST)
+    public String sendMailWithInline(
+            @RequestParam("recipientName") final String recipientName,
+            @RequestParam("recipientEmail") final String recipientEmail,
+            @RequestParam("image") final MultipartFile image,
+            final Locale locale)
+            throws MessagingException, IOException {
+
+        this.emailService.sendMailWithInline(
+                recipientName, recipientEmail, image.getName(),
+                image.getBytes(), image.getContentType(), locale);
+        return "redirect:sent.html";
+
     }
 
 }

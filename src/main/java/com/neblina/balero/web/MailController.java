@@ -25,6 +25,7 @@ import com.neblina.balero.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +53,7 @@ public class MailController {
 
     @RequestMapping(value = {"", "/"} )
     public String root() {
-        return "redirect:/index.html";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -72,69 +73,6 @@ public class MailController {
             log.debug("Error: " + e.getMessage());
         }
         return "mailing-list_added";
-    }
-
-    /* Home page. */
-    @RequestMapping("/index.html")
-    public String index() {
-        return "index.html";
-    }
-    
-    /* Sending confirmation page. */
-    @RequestMapping("/sent.html")
-    public String sent() {
-        return "sent.html";
-    }
-
-    /* 
-     * Send HTML mail (simple) 
-     */
-    @RequestMapping(value = "/sendMailSimple", method = RequestMethod.GET)
-    public String sendSimpleMail(
-            @RequestParam("recipientName") final String recipientName,
-            @RequestParam("recipientEmail") final String recipientEmail,
-            final Locale locale)
-            throws MessagingException, UnsupportedEncodingException {
-
-        this.emailService.sendSimpleMail(recipientName, recipientEmail, "Subject", "Message", locale);
-        return "redirect:sent.html";
-        
-    }
-
-    /* 
-     * Send HTML mail with attachment. 
-     */
-    @RequestMapping(value = "/sendMailWithAttachment", method = RequestMethod.POST)
-    public String sendMailWithAttachment(
-            @RequestParam("recipientName") final String recipientName,
-            @RequestParam("recipientEmail") final String recipientEmail,
-            @RequestParam("attachment") final MultipartFile attachment,
-            final Locale locale) 
-            throws MessagingException, IOException {
-
-        this.emailService.sendMailWithAttachment(
-                recipientName, recipientEmail, attachment.getOriginalFilename(),
-                attachment.getBytes(), attachment.getContentType(), locale);
-        return "redirect:sent.html";
-        
-    }
-
-    /* 
-     * Send HTML mail with inline image
-     */
-    @RequestMapping(value = "/sendMailWithInlineImage", method = RequestMethod.POST)
-    public String sendMailWithInline(
-            @RequestParam("recipientName") final String recipientName,
-            @RequestParam("recipientEmail") final String recipientEmail,
-            @RequestParam("image") final MultipartFile image,
-            final Locale locale)
-            throws MessagingException, IOException {
-
-        this.emailService.sendMailWithInline(
-                recipientName, recipientEmail, image.getName(),
-                image.getBytes(), image.getContentType(), locale);
-        return "redirect:sent.html";
-        
     }
     
 }
