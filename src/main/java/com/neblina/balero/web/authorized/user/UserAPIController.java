@@ -11,18 +11,14 @@ package com.neblina.balero.web.authorized.user;
 
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.User;
-import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.BlogRepository;
-import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
@@ -33,12 +29,6 @@ import java.util.List;
 public class UserAPIController {
 
     private static final Logger log = LogManager.getLogger(UserService.class.getName());
-
-    @Autowired
-    private PropertyRepository propertyRepository;
-
-    @Autowired
-    private PropertyService propertyService;
 
     @Autowired
     private UserRepository userRepository;
@@ -53,8 +43,7 @@ public class UserAPIController {
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     @ResponseBody
     public User getUserProfileInJSON() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         return userRepository.findOneByUsername(username);
     }
 
@@ -80,8 +69,7 @@ public class UserAPIController {
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     @ResponseBody
     public List<Blog> getUserPostsInJSON() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         return blogRepository.findAllByAuthor(username);
     }
 
