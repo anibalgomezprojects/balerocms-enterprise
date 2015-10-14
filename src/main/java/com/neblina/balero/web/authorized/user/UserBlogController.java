@@ -20,8 +20,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,8 +54,7 @@ public class UserBlogController {
     @Secured("ROLE_USER")
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
         model.addAttribute("user", "user");
         return "authorized/blog";
@@ -123,8 +120,7 @@ public class UserBlogController {
     @Secured("ROLE_USER")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String blogEditGet(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         LocalDate today = LocalDate.now();
         model.addAttribute("date", today);
         model.addAttribute("user", userRepository.findOneByUsername(username));
@@ -134,7 +130,7 @@ public class UserBlogController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String blogNew(Model model,
+    public String blogNew(
                               @RequestParam("bloname") String bloname,
                               @RequestParam("title") String title,
                               @RequestParam("introPost") String introPost,
@@ -160,7 +156,8 @@ public class UserBlogController {
 
     @Secured("ROLE_USER")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String pageDelete(Model model, @PathVariable("id") Long id) {
+    public String pageDelete(
+                            @PathVariable("id") Long id) {
         blogService.deletePost(id);
         return "redirect:/user/blog";
     }
