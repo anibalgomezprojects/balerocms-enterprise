@@ -77,7 +77,8 @@ public class AdminBlogController {
                                @RequestParam("introPost") String introPost,
                                @RequestParam("fullPost") String fullPost,
                                @RequestParam("code") String code,
-                               @RequestParam("permalink") String permalink) throws IOException {
+                               @RequestParam("permalink") String permalink,
+                               @RequestParam(value = "status") String status) throws IOException {
         Slugify slg = new Slugify();
         String result = slg.slugify(permalink);
         blogService.savePost(
@@ -88,7 +89,7 @@ public class AdminBlogController {
                 fullPost,
                 code,
                 result,
-                "success"
+                status
         );
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogRepository.findOneById(id));
@@ -116,7 +117,8 @@ public class AdminBlogController {
                               @RequestParam("fullPost") String fullPost,
                               @RequestParam("code") String code,
                               @RequestParam("permalink") String permalink,
-                              @RequestParam("author") String author) throws IOException {
+                              @RequestParam("author") String author,
+                              @RequestParam("status") String status) throws IOException {
         Slugify slg = new Slugify();
         String result = slg.slugify(permalink);
         blogService.createPost(
@@ -127,7 +129,7 @@ public class AdminBlogController {
                 code,
                 result,
                 author,
-                "success"
+                status
         );
         return "redirect:/admin/blog";
     }
