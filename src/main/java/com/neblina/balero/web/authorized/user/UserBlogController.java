@@ -12,6 +12,7 @@ package com.neblina.balero.web.authorized.user;
 import com.github.slugify.Slugify;
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
@@ -53,6 +54,9 @@ public class UserBlogController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @Secured("ROLE_USER")
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
@@ -75,6 +79,7 @@ public class UserBlogController {
             model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
             model.addAttribute("posts", blogRepository.findOneById(id));
             model.addAttribute("url", userService.getUserType());
+            model.addAttribute("multiLanguage" , propertyService.isMultiLanguage());
         } catch (Exception e) {
             model.addAttribute("securityError", e.getMessage());
         }
@@ -129,6 +134,7 @@ public class UserBlogController {
         model.addAttribute("date", today);
         model.addAttribute("user", userRepository.findOneByUsername(username));
         model.addAttribute("url", "user");
+        model.addAttribute("multiLanguage" , propertyService.isMultiLanguage());
         log.debug("Date: " + today);
         return "authorized/blog_new";
     }
