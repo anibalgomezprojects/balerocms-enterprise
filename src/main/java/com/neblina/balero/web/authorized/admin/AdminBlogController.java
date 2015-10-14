@@ -11,8 +11,10 @@ package com.neblina.balero.web.authorized.admin;
 
 import com.github.slugify.Slugify;
 import com.neblina.balero.service.BlogService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
+import com.neblina.balero.service.repository.PropertyRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,9 @@ public class AdminBlogController {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
@@ -59,6 +64,7 @@ public class AdminBlogController {
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("posts", blogRepository.findOneById(id));
         model.addAttribute("url", "admin");
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/blog_edit";
     }
 
@@ -97,6 +103,7 @@ public class AdminBlogController {
         log.debug("Date: " + today);
         model.addAttribute("date", today);
         model.addAttribute("url" , "admin");
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/blog_new";
     }
 

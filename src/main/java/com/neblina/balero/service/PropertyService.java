@@ -48,4 +48,10 @@ public class PropertyService {
         properties.setMultiLanguage(multiLanguage);
         propertyRepository.save(properties);
     }
+
+    public boolean isMultiLanguage() {
+        Property properties = propertyRepository.findOneById(1L);
+        return  properties.isMultiLanguage();
+    }
+
 }
