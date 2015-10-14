@@ -52,11 +52,11 @@ public class AdminAPIController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/properties", method = RequestMethod.POST)
     @ResponseBody
-    public Property postPropertiesJSON(@RequestParam("offline") boolean offline,
+    public HttpStatus postPropertiesJSON(@RequestParam("offline") boolean offline,
                                        @RequestParam("multiLanguage") boolean multiLanguage) {
         propertyService.setOfflineStatus(offline);
         propertyService.setMultiLanguage(multiLanguage);
-        return propertyRepository.findOneById(1L);
+        return HttpStatus.OK;
     }
 
     @Secured("ROLE_ADMIN")
