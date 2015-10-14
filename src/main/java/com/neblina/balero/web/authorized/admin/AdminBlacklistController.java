@@ -26,9 +26,6 @@ public class AdminBlacklistController {
     private static final Logger log = LogManager.getLogger(AdminBlacklistController.class.getName());
 
     @Autowired
-    private BlacklistService blacklistService;
-
-    @Autowired
     private BlacklistRepository blacklistRepository;
 
     @Secured("ROLE_ADMIN")
