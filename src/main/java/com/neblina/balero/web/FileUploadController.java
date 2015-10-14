@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,8 @@ public class FileUploadController {
     private static final Logger log = LogManager.getLogger(FileUploadController.class.getName());
 
     @RequestMapping(value="/upload", method=RequestMethod.GET)
-    public @ResponseBody String provideUploadInfo() {
+    @ResponseBody
+    public String provideUploadInfo() {
         log.debug("GET /upload {}");
         return "You can upload a file by posting to this same URL.";
     }
@@ -45,8 +47,10 @@ public class FileUploadController {
      * @param file
      * @return
      */
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
+    @ResponseBody
+    public String handleFileUpload(@RequestParam("file") MultipartFile file){
         String filePath = FileUploadController.class.getResource("/static/images/uploads/").getPath() + file.getOriginalFilename();
         if (!file.isEmpty()) {
             try {
