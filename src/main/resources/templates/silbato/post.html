@@ -11,7 +11,7 @@
 <div th:include="silbato/fragments/navbar :: navbar"></div>
 <div th:include="silbato/fragments/header :: header"></div>
 
-<div th:fragment="main">
+<div>
 
     <div class="static" th:if="${error404}">
         <div class="container">
@@ -71,15 +71,8 @@
 
 </div>
 
-    <div class="pages">
-        <div class="row">
-            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
-                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
-            </div>
-        </div>
-    </div>
-
-    <div th:replace="silbato/fragments/footer :: footer"></div>
+<div th:replace="silbato/fragments/pages :: pages"></div>
+<div th:replace="silbato/fragments/footer :: footer"></div>
 
 </body>
 

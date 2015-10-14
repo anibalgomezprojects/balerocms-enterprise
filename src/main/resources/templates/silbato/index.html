@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="silbato/fragments/metas :: metas">
     <title></title>
@@ -11,7 +10,7 @@
 <div th:include="silbato/fragments/navbar :: navbar"></div>
 <div th:include="silbato/fragments/header :: header"></div>
 
-<div th:fragment="main">
+<div>
 
     <div th:each="block : ${blocks}">
         <div th:utext="${#strings.replace(block.content,'\n',T(java.lang.System).getProperty('line.separator'))}">_CONTENT</div>
@@ -21,15 +20,8 @@
 
 </div>
 
-    <div class="pages">
-        <div class="row">
-            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
-                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
-            </div>
-        </div>
-    </div>
-
-    <div th:replace="silbato/fragments/footer :: footer"></div>
+<div th:replace="silbato/fragments/pages :: pages"></div>
+<div th:replace="silbato/fragments/footer :: footer"></div>
 
 </body>
 

@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="silbato/fragments/metas :: metas">
     <title></title>
@@ -11,7 +10,7 @@
 <div th:include="silbato/fragments/navbar :: navbar"></div>
 <div th:include="silbato/fragments/header :: header"></div>
 
-<div th:fragment="main" ng-app="BlogApp" ng-controller="BlogController">
+<div ng-app="BlogApp" ng-controller="BlogController">
 
     <div class="blog" th:if="${error404}">
         <div class="container">
@@ -78,26 +77,19 @@
 
 </div>
 
-    <div class="pages">
-        <div class="row">
-            <div class="col-xs-3 col-md-3" th:each="page : ${pages}">
-                <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
-            </div>
-        </div>
-    </div>
+<div th:replace="silbato/fragments/pages :: pages"></div>
+<div th:replace="silbato/fragments/footer :: footer"></div>
 
-    <div th:replace="silbato/fragments/footer :: footer"></div>
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/json3/lib/json3.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+<script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
 
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/json3/lib/json3.js"></script>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
-    <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
-
-    <script src="/scripts/app/blog.js"></script>
-    <script src="/scripts/service/blog.js"></script>
+<script src="/scripts/app/blog.js"></script>
+<script src="/scripts/service/blog.js"></script>
 
 </body>
 
