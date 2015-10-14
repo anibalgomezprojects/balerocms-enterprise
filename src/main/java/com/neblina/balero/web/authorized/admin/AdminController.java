@@ -19,8 +19,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,8 +71,7 @@ public class AdminController {
     @RequestMapping(value = {"", "/", "/dashboard" })
     public String dashboardIndex(Model model) {
         model.asMap().clear();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         model.addAttribute("users", userRepository.findOneByUsername(username));
         model.addAttribute("totalPages", pageRepository.findAll().size());
         model.addAttribute("totalUsers", userRepository.findAll().size());
@@ -132,8 +129,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/profile")
     public String profileGet(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName(); //get logged in username
+        String username = userService.getMyUsername();
         log.debug("Username: " + username);
         User user = userRepository.findOneByUsername(username);
         model.addAttribute("user", user);
