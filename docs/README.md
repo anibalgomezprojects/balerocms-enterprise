@@ -53,6 +53,9 @@ Note: Make sure your MySQL Server is running on port 3306.
     telnet localhost 3306
     
 See **Changing Authentication For Production Database**.
+
+Congratulations!, you successfully installed Balero CMS EE.
+Open http://localhost:8080/ in your favourite browser.
     
 #### Minification For Production Mode
 
@@ -68,10 +71,6 @@ To activate/deactivate:
     application-dev.yml
     balerocms:
         minification: true or false
-
-## Running 
-
-Open http://localhost:8080/ in your favourite browser.
 
 ## QuickStar Guide
 
@@ -221,6 +220,24 @@ V-20150107.010600__Message_example_etc.sql
 Version Control Convention:
 
 V1.0__Message_example_etc.sql
+
+### Internationalization
+
+You can choose the main language for you content from Dashboard.
+
+#### Main language at application startup
+
+If you want to choose your main language at application startup, you need to edit:
+
+    config/SpringConfig.java
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.forLanguageTag("LANGUAGE CODE"));
+        return slr;
+    }
+    
+ Where language code example is: en, es, fr, etc...
 
 ## NOTES
 
