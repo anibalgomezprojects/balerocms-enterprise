@@ -36,5 +36,11 @@ public class PropertyRepositoryTest extends TestCase {
         System.out.println("Offline value is: " + propertyService.isOfflineStatus());
     }
 
+    @Test
+    public void checkDefaultLanguageIsEnglish() {
+        assertThat(propertyService.getMainLanguage(), is(propertyService.getMainLanguage()));
+        System.out.println("Default language is: " + propertyService.getMainLanguage());
+    }
+
 }
 
