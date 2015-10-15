@@ -18,8 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.Cookie;
+//import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,16 +45,19 @@ public class APIController {
 
     @RequestMapping("/blog/{id}")
     @ResponseBody
-    public List<Blog> blogId(Locale locale, @PathVariable("id") Long id,
-                             HttpServletResponse response,
-                             @CookieValue(value = "likeCookie", defaultValue = "init") String likeCookie) {
+    public List<Blog> blogId(Locale locale,
+                             @PathVariable("id") Long id
+                             //HttpServletResponse response,
+                             //@CookieValue(value = "likeCookie", defaultValue = "init") String likeCookie
+                            ) {
+        // TODO: Cookie for each blog post
         log.debug("Call for API /blog/" + id);
-        log.debug("Cookie value: " + likeCookie);
-        if(!likeCookie.equals("vote")) {
-            Cookie userCookie = new Cookie("likeCookie", "vote");
-            response.addCookie(userCookie);
+        //log.debug("Cookie value: " + likeCookie);
+        //if(!likeCookie.equals("vote")) {
+            //Cookie userCookie = new Cookie("likeCookie", "vote");
+            //response.addCookie(userCookie);
             blogService.setLikes(id);
-        }
+        //}
         return blogRepository.findAllByCode(locale.getLanguage(), null);
     }
 

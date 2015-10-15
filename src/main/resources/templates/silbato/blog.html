@@ -57,6 +57,7 @@
                     <div class="social">
                         <a href=""
                            class="glyphicon glyphicon-thumbs-up like"
+                           th:id="'social'+${post.id}"
                            th:attr="
                            ng-click='blotoggle('
                            + ${post.id} + ','

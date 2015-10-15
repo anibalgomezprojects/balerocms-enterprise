@@ -14,5 +14,6 @@ angular.module('BlogApp', ['BlogService'])
             BlogService.postPosts(bloid).save();
             //$scope.posts = BlogService.getPosts().query();
             $scope.posts[bloindex].likes = $scope.posts[bloindex].likes + 1;
+            $("#social" + bloid).hide();
         };
     });
