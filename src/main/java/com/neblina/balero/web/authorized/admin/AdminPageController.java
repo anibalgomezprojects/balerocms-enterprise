@@ -11,6 +11,7 @@ package com.neblina.balero.web.authorized.admin;
 
 import com.github.slugify.Slugify;
 import com.neblina.balero.service.PageService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.PageRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,6 +38,9 @@ public class AdminPageController {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String page(Model model) {
@@ -48,6 +52,7 @@ public class AdminPageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String pageEditGet(Model model, @PathVariable("id") Long id) {
         model.addAttribute("pages", pageRepository.findOneById(id));
+        model.addAttribute("multiLang", propertyService.isMultiLanguage());
         return "authorized/page_edit";
     }
 
@@ -73,12 +78,14 @@ public class AdminPageController {
         );
         model.addAttribute("success", 1);
         model.addAttribute("pages", pageRepository.findOneById(id));
+        model.addAttribute("multiLang", propertyService.isMultiLanguage());
         return "authorized/page_edit";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String pageEditGet() {
+    public String pageEditGet(Model model) {
+        model.addAttribute("multiLang", propertyService.isMultiLanguage());
         return "authorized/page_new";
     }
 
