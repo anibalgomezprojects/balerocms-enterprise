@@ -86,6 +86,7 @@ public class AdminPageController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String pageEditGet(Model model) {
         model.addAttribute("multiLang", propertyService.isMultiLanguage());
+        model.addAttribute("mainLanguage", propertyService.getMainLanguage());
         return "authorized/page_new";
     }
 
