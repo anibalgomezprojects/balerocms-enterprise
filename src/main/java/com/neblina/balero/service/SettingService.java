@@ -32,8 +32,11 @@ public class SettingService {
     public void saveSettings(String code,
                              String title,
                              String titleHeader,
+                             // Properties
                              String administratorEmail,
                              String url,
+                             String mainLanguage,
+                             // Properties
                              String tags,
                              String footer,
                              String offlineMessage) {
@@ -42,8 +45,11 @@ public class SettingService {
         settings.setCode(code);
         settings.setTitle(title);
         settings.setTitleHeader(titleHeader);
+        // Properties
         properties.setAdministratorEmail(administratorEmail);
         properties.setUrl(url);
+        properties.setMainLanguage(mainLanguage);
+        // Properties
         settings.setTags(tags);
         settings.setFooter(footer);
         settings.setOfflineMessage(offlineMessage);

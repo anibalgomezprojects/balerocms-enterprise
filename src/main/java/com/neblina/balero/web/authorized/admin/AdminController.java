@@ -98,8 +98,11 @@ public class AdminController {
                                Locale locale,
                                @RequestParam(value = "title") String title,
                                @RequestParam(value = "titleHeader") String titleHeader,
+                               // Properties
                                @RequestParam(value = "administratorEmail") String administratorEmail,
                                @RequestParam(value = "url") String url,
+                               @RequestParam(value = "mainLanguage") String mainLanguage,
+                               // Properties
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer,
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
@@ -110,8 +113,11 @@ public class AdminController {
                 locale.getLanguage(),
                 title,
                 titleHeader,
+                // Properties
                 administratorEmail,
                 url,
+                mainLanguage,
+                // Properties
                 tags,
                 footer,
                 offlineMessage

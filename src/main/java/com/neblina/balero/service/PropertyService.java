@@ -54,4 +54,9 @@ public class PropertyService {
         return  properties.isMultiLanguage();
     }
 
+    public String getMainLanguage() {
+        Property properties = propertyRepository.findOneById(1L);
+        return properties.getMainLanguage();
+    }
+
 }
