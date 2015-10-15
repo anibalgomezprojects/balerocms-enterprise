@@ -94,6 +94,7 @@ public class AdminBlogController {
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogRepository.findOneById(id));
         model.addAttribute("url", "admin");
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/blog_edit";
     }
 

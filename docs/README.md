@@ -163,12 +163,14 @@ if you get a database error migration, you can fix with:
 NOTE: To enable advanced database tool repeair/migration 
 See **Changing Authentication For Production Database**.
 
-## Hot Reload
+## Hot Swap
 
 Balero CMS provides a way to develop and make changes in real time application after
 your application is compiled and/or running. After editing a Java Class, HTML Resource, etc:
 
     $ mvn compile
+    
+Note: In IntelliJ you need to check "Reload changes after compillation > Always".
     
 ### Bower Components
 
