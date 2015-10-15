@@ -79,7 +79,7 @@ public class AdminBlockController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String homepageNew(Model model,
+    public String homepageNew(
                               @RequestParam("name") String name,
                               @RequestParam("content") String content,
                               @RequestParam("code") String code) {
@@ -93,7 +93,7 @@ public class AdminBlockController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String homepageDelete(Model model, @PathVariable("id") Long id) {
+    public String homepageDelete(@PathVariable("id") Long id) {
         blockService.deleteBlock(id);
         return "redirect:/admin/block";
     }
