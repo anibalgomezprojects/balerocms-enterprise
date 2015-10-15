@@ -87,6 +87,7 @@ public class BlogService {
         Blog blog = blogRepository.findOneById(id);
         blog.setLikes(blog.getLikes()+1);
         blogRepository.save(blog);
+        log.debug("Likes: " + blog.getLikes());
     }
 
 }
