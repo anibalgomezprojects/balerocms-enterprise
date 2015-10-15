@@ -74,6 +74,7 @@ public class AdminBlockController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String homepageEditGet(Model model) {
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         model.addAttribute("mainLanguage", propertyService.getMainLanguage());
         return "authorized/block_new";
     }
