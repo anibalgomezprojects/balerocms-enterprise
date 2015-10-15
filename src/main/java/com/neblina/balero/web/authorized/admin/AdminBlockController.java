@@ -10,6 +10,7 @@
 package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.BlockService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlockRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,9 @@ public class AdminBlockController {
     @Autowired
     private BlockRepository blockRepository;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String homepage(Model model) {
@@ -45,6 +49,7 @@ public class AdminBlockController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String homepageEditGet(Model model, @PathVariable("id") Long id) {
         model.addAttribute("blocks", blockRepository.findOneById(id));
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/block_edit";
     }
 
@@ -62,6 +67,7 @@ public class AdminBlockController {
         );
         model.addAttribute("success", 1);
         model.addAttribute("blocks", blockRepository.findOneById(id));
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/block_edit";
     }
 
