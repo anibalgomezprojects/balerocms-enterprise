@@ -40,7 +40,7 @@ public class APIController {
     @Transactional(readOnly = true)
     public List<Blog> blog(Locale locale) {
         log.debug("Call for API /blog");
-        return blogRepository.findAllByCode(locale.getLanguage(), null);
+        return blogRepository.findByStatusAndCode("success", locale.getLanguage(), null);
     }
 
     @RequestMapping("/blog/{id}")
