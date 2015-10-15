@@ -106,6 +106,7 @@ public class AdminBlogController {
         model.addAttribute("date", today);
         model.addAttribute("url" , "admin");
         model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
+        model.addAttribute("mainLanguage", propertyService.getMainLanguage());
         return "authorized/blog_new";
     }
 

@@ -53,8 +53,8 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group" th:if="${multiLanguage == false}">
-                <input type="hidden" name="code" value="en" />
+            <div class="form-group" th:unless="${multiLanguage}">
+                <input type="hidden" name="code" th:value="${mainLanguage}" />
             </div>
             <div class="form-group">
                 <label for="permalink" class="col-sm-2 control-label" th:text="#{blog.text.permalink}">Permalink</label>
