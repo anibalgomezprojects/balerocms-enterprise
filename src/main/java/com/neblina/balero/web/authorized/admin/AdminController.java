@@ -123,7 +123,7 @@ public class AdminController {
                 offlineMessage
 
         );
-        return "authorized/settings";
+        return "redirect:/admin/settings";
     }
 
     @Secured("ROLE_ADMIN")

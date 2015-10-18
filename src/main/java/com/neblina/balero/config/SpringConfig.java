@@ -10,6 +10,8 @@
 package com.neblina.balero.config;
 
 import com.neblina.balero.handler.ExecuteTimeInterceptor;
+import com.neblina.balero.handler.LocaleInterceptor;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.util.AssetPipeline;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,6 +47,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
      */
     @Autowired
     private Environment env;
+
+    @Autowired
+    private PropertyService propertyService;
 
     @Bean
     @Profile("prod")
@@ -84,20 +89,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.forLanguageTag("en"));
-        return slr;
-    }
-
-    @Bean
-    public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        return lci;
-    }
-
-    @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         Properties mailProperties = new Properties();
@@ -113,12 +104,34 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         return mailSender;
     }
 
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.forLanguageTag(propertyService.getMainLanguage()));
+        return slr;
+    }
+
+     @Bean
+     public LocaleChangeInterceptor localeChangeInterceptor() {
+     LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+     lci.setParamName("lang");
+     return lci;
+     }
+
+    @Bean
+    public LocaleInterceptor localeInterceptor() {
+        LocaleInterceptor li = new LocaleInterceptor();
+        li.setParamName("lang");
+        return li;
+    }
+
     /**
      * Interceptors
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeInterceptor());
         registry.addInterceptor(localeChangeInterceptor());
         registry.addInterceptor(new ExecuteTimeInterceptor());
     }

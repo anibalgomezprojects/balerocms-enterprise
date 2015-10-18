@@ -225,19 +225,7 @@ V1.0__Message_example_etc.sql
 
 You can choose the main language for you content from Dashboard.
 
-#### Main language at application startup
-
-If you want to choose your main language at application startup, you need to edit:
-
-    config/SpringConfig.java
-    @Bean
-    public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.forLanguageTag("LANGUAGE CODE"));
-        return slr;
-    }
-    
- Where language code example is: en, es, fr, etc...
+Go to **Global Settings > Main Language**.
 
 ## NOTES
 
