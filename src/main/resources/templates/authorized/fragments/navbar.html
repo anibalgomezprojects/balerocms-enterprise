@@ -20,12 +20,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <ul class="list-unstyled">
+                <li><img src="/images/logos/dashboard.png" class="dashboard-logo" /></li>
+            </ul>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="http://www.balerocms.com/" class="www-logo"><img src="/images/logos/www.png" /></a></li>
-                <li><img src="/images/logos/dashboard.png" class="dashboard-logo" /></li>
                 <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard"><img src="/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
                 <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard"><img src="/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
 

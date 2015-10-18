@@ -126,7 +126,7 @@ body {
 }
 .dashboard-logo {
     margin-top: 18px;
-    margin-left: -7px;
+    margin-left: -50px;
     margin-right: 3px;
 }
 .footer-text {
@@ -214,9 +214,9 @@ body {
 }
 /** Mobile **/
 @media(max-width:767px) {
-    .dashboard_logo {
-        margin-top: -5px;
-        margin-left: 0px;
+    .dashboard-logo {
+        margin-top: 11px;
+        padding-left: 70px;
     }
     .short {
         width: 240px;
