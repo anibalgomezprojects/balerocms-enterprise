@@ -31,8 +31,6 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter{
 
     private String paramName = DEFAULT_PARAM_NAME;
 
-    public static final String LOCALE_SESSION_ATTRIBUTE_NAME = LocaleInterceptor .class.getName() + ".LOCALE";
-
     @Autowired
     private PropertyService propertyService;
 
