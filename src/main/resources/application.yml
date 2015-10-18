@@ -10,3 +10,5 @@ spring:
             starttls: true
 server:
     port: 8080
+multipart:
+    maxFileSize: 15MB
