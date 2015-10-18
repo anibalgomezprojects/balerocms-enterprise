@@ -36,6 +36,11 @@ function sendFile(file, editor, welEditable) {
     $.ajax({
         data: data,
         type: "POST",
+        xhr: function() {
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
+            return myXhr;
+        },
         url: "/upload",
         cache: false,
         contentType: false,
@@ -48,4 +53,14 @@ function sendFile(file, editor, welEditable) {
             );
         }
     });
+}
+// update progress bar
+function progressHandlingFunction(e){
+    if(e.lengthComputable){
+        $('progress').attr({value:e.loaded, max:e.total});
+        // reset progress on complete
+        if (e.loaded == e.total) {
+            $('progress').attr('value','0.0');
+        }
+    }
 }

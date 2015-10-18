@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +51,7 @@ public class FileUploadController {
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
-    public String handleFileUpload(@RequestParam("file") MultipartFile file){
+    public HttpStatus handleFileUpload(@RequestParam("file") MultipartFile file){
         String filePath = FileUploadController.class.getResource("/static/images/uploads/").getPath() + file.getOriginalFilename();
         if (!file.isEmpty()) {
             try {
@@ -61,12 +62,15 @@ public class FileUploadController {
                 stream.close();
                 log.debug("POST /upload {}");
                 log.debug("Creating file: " + filePath);
-                return "You successfully uploaded " + file.getOriginalFilename() + "!";
+                log.debug("You successfully uploaded " + file.getOriginalFilename() + "!");
+                return HttpStatus.OK;
             } catch (Exception e) {
-                return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
+                log.debug("You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+                return HttpStatus.FORBIDDEN;
             }
         } else {
-            return "You failed to upload " + file.getOriginalFilename() + " because the file was empty.";
+            log.debug("You failed to upload " + file.getOriginalFilename() + " because the file was empty.");
+            return HttpStatus.FORBIDDEN;
         }
     }
 
