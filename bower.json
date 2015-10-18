@@ -10,7 +10,6 @@
     "jquery": "2.1.4",
     "json3": "3.3.2",
     "modernizr": "2.8.3",
-    "ng-file-upload": "7.0.15",
     "ngInfiniteScroll": "1.2.0"
   },
   "devDependencies": {
