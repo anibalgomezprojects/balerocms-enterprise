@@ -1,0 +1,67 @@
+/**
+ * Balero CMS Project: Proyecto 100% Mexicano de código libre.
+ * Página Oficial: http://www.balerocms.com
+ *
+ * @author      Anibal Gomez <anibalgomez@icloud.com>
+ * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
+ * @license     Licencia BSD; vea LICENSE.txt
+ */
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #fff;
+}
+.btn-default, .btn-default:hover {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e5e5e5+100;White+3D */
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    border-color: #fcfcfc;
+    color: #616161 !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+    -webkit-font-smoothing: antialiased;
+}
+.bg-danger {
+    margin: 10px;
+    padding: 10px;
+}
+.debug {
+    color: #282828;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: inherit;
+    font-family: Consolas;
+}
+.debug-text {
+    color: red;
+}
+h1 {
+    color: white;
+}
+.row {
+    width: 80%;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    background: #f4f4f4;
+}
+.white {
+    color: white;
+}
+
+/** Mobile **/
+@media(max-width:767px) {
+
+}
