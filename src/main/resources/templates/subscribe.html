@@ -13,14 +13,22 @@
     </style>
 </head>
 <body>
+
 <div class="container">
     <div class="row">
         <img src="/images/mail.png" class="center" />
         <div class="alert alert-info text-center" role="alert">
-            <p>Your Subscription has been canceled!</p>
+            <p th:if="${param.unsubscribe}">
+                Your Subscription has been canceled!
+            </p>
+            <p th:text="#{mail.list.thanks}"
+               th:unless="${param.unsubscribe}">
+                Thank you!
+            </p>
             <p><a href="/" th:text="#{mail.list.home}">Home</a></p>
         </div>
     </div>
 </div>
+
 </body>
 </html>

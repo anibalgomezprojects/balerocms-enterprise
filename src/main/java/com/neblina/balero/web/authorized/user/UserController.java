@@ -144,14 +144,6 @@ public class UserController {
     }
 
     @Secured("ROLE_USER")
-    @RequestMapping(value = "/mailing-list/subscribe/{id}", method = RequestMethod.GET)
-    public String updateMailingListSubscribedGet(
-                                                 @PathVariable("id") Long id) {
-        userService.updateSubscribedStatus();
-        return "redirect:/user/dashboard/";
-    }
-
-    @Secured("ROLE_USER")
     @RequestMapping(value = "/password", method = RequestMethod.POST)
     public String passwordPost(Model model,
                                @RequestParam("newPassword") String newPassword) {
@@ -165,12 +157,25 @@ public class UserController {
         return "authorized/profile";
     }
 
-    @RequestMapping(value = "/unsubscribe/{email}", method = RequestMethod.GET)
-    public String unsubscribeUserGET(@PathVariable("email") String email) {
-        log.debug("GET Request -> /unsubscribe/" + email);
+    @RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+    public String unsubscribeUserGET(@RequestParam("unsubscribe") String email) {
+        log.debug("GET Request -> /subscribe?unsubscribe=" + email);
         Base64.Decoder decoder = Base64.getDecoder();
         userService.cancelSubscribedStatusByEmail(new String(decoder.decode(email)));
-        return "unsubscribe";
+        return "subscribe";
+    }
+
+    @RequestMapping(value = "/subscribe", method = RequestMethod.POST)
+    public String addUserToMailList(@RequestParam("firstname") String firstname,
+                                    @RequestParam("email") String email) {
+        log.debug("POST Request -> /user/subscribe {}");
+        try {
+            userService.createUserAccount("temp", "temp",
+                    "temp", firstname, "temp", email, true, "ROLE_USER", "user");
+        } catch (Exception e) {
+            log.debug("Error: " + e.getMessage());
+        }
+        return "subscribe";
     }
 
 }

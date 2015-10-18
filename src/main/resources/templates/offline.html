@@ -11,7 +11,7 @@
     <div class="row" th:each="setting : ${settings}">
         <p th:utext="${setting.offlineMessage}">_OFFLINE_MESSAGE_WARNING</p>
         <br />
-        <form action="/mail/list" method="post">
+        <form action="/user/subscribe" method="post">
             <input type="text" name="firstname" class="form-control" placeholder="Your Name" />
             <br />
             <input type="email" name="email" class="form-control" placeholder="Your E-mail" />

@@ -68,9 +68,9 @@ public class EmailService {
 
         // Unsubscribe Link
         Base64.Encoder encoder = Base64.getEncoder();
-        String unsubscribeLink = encoder.encodeToString(recipientEmail.getBytes("utf-8"));
+        String base64email = encoder.encodeToString(recipientEmail.getBytes("utf-8"));
         Property property = propertyRepository.findOneById(1L);
-        String fullLink = property.getUrl() + "user/unsubscribe/" + unsubscribeLink;
+        String fullLink = property.getUrl() + "user/subscribe?unsubscribe=" + base64email;
         ctx.setVariable("unsubscribe", fullLink);
 
         // Prepare message using a Spring helper
