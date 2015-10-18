@@ -67,6 +67,12 @@ h6 {
     padding: 15px;
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /**
 * Custom Navbar / Sidebar
 **/
