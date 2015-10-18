@@ -18,7 +18,6 @@
             <table class="table table-striped" th:fragment="blog">
                 <thead>
                 <tr>
-                    <th>#</th>
                     <th th:text="#{blog.text.bloname}">bloName</th>
                     <th th:text="#{blog.text.titlepost}">Title</th>
                     <th class="text-center" th:text="#{blog.text.action}">Action</th>
@@ -26,8 +25,8 @@
                 </thead>
                 <tbody th:each="post : ${posts}">
                 <tr th:class="${post.status}">
-                    <td th:text="${post.id}">_ID</td>
                     <td>
+                        <span th:text="${+post.id}+'.-'">1.</span>
                         <a th:href="@{'/'+${url}+'/blog/'+${post.id}+'/'+${post.permalink}}">
                             <span th:text="${post.bloname}">_NAME</span>
                         </a>
