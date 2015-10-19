@@ -193,15 +193,15 @@ For Homepage Blocks, Page Content and Section Content.
 
 Add fluid containers before insert rich text content (Source Code Mode), example:
 
-&lt;div class="container-fluid"&gt;
+> &lt;div class="container-fluid"&gt;
 
-  &lt;div class="row"&gt;
-  
-...
-    
-  &lt;/div&gt;
-  
-&lt;/div&gt;
+> &lt;div class="row"&gt;
+
+> ...
+
+> &lt;/div&gt;
+
+> &lt;/div&gt;
  
 Please, read the Bootstrap CSS documentation:
 
@@ -283,6 +283,8 @@ Project development by **Neblina Software Company** and **Anibal Gomez**.
 
 Official page: [www.balerocms.com](http://www.balerocms.com/).
 
-![Powered By FreeBSD](images/powered.png)
+![Powered By](images/powered.png)
+![Powered By](images/redhat.png)
+![Powered By](images/osx.png)
 
 Documentation Version: 0.0.1
