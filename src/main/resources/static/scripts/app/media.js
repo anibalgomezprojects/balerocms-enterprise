@@ -61,6 +61,7 @@ angular
             console.info('onCancelItem', fileItem, response, status, headers);
         };
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
+            console.log('update gallery');
             console.info('onCompleteItem', fileItem, response, status, headers);
         };
         uploader.onCompleteAll = function() {

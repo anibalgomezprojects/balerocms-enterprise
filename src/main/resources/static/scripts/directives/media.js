@@ -13,7 +13,7 @@
 angular
 
 
-    .module('app')
+    .module('MediaApp')
 
 
     // Angular File Upload module does not include this directive
