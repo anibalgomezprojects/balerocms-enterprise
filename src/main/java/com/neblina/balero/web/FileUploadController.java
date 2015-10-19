@@ -52,6 +52,7 @@ public class FileUploadController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
     public HttpStatus handleFileUpload(@RequestParam("file") MultipartFile file){
+        log.debug("POST /upload {}");
         String filePath = FileUploadController.class.getResource("/static/images/uploads/").getPath() + file.getOriginalFilename();
         if (!file.isEmpty()) {
             try {
@@ -60,7 +61,6 @@ public class FileUploadController {
                         new BufferedOutputStream(new FileOutputStream(new File(filePath)));
                 stream.write(bytes);
                 stream.close();
-                log.debug("POST /upload {}");
                 log.debug("Creating file: " + filePath);
                 log.debug("You successfully uploaded " + file.getOriginalFilename() + "!");
                 return HttpStatus.OK;
