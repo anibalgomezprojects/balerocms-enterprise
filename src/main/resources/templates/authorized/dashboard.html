@@ -36,6 +36,8 @@
                 <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
                 <br />
                 <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
+                <br />
+                <a href="/admin/media" th:text="#{media.text.title}">Media Manager</a>
             </div>
             <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                 <b th:text="#{dashboard.portal}">Portal</b>
