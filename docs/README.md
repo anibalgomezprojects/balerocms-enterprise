@@ -12,7 +12,7 @@
 
 ### About this project
 
-Balero CMS Enterprise is a Lightweight, Clean and Ultra-Fast, Full Stack, Portal, Content Management System.
+Balero CMS Enterprise is a Lightweight, Clean and Ultra-Fast Content Management System.
 It uses Java Back-End for MVC Controllers and AngularJS Front-End for the API REST Services.
 
 ### Get Started
