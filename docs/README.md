@@ -21,8 +21,9 @@ Cloning project:
 
     $ git clone https://github.com/neblina-software/balerocms-enterprise.git
 
-Navigate to root folder:
+Navigate to root folder and set read/write permissions:
 
+    $ sudo chmod -R 077 balerocms-enterprise
     $ cd balerocms-enterprise
 
 And then, run:
