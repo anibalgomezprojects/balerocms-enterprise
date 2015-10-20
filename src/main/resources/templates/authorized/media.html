@@ -26,7 +26,7 @@
                         <div ng-show="uploader.isHTML5">
                             <!-- 3. nv-file-over uploader="link" over-class="className" -->
                             <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                                Base drop zone
+                                Base drop zone (*jpg,*png,*jpeg,*bmp,*gif)
                             </div>
                         </div>
                         <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
@@ -34,7 +34,6 @@
                     </div>
 
                     <div style="margin-bottom: 40px">
-                        <h2>Uploads only images (with canvas preview)</h2>
                         <h3>The queue</h3>
                         <p>Queue length: {{ uploader.queue.length }}</p>
                         <table class="table">
