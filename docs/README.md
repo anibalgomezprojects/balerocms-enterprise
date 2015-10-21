@@ -228,6 +228,18 @@ You can choose the main language for you content from Dashboard.
 
 Go to **Global Settings > Main Language**.
 
+### Image Gallery
+
+Adding image gallery in content use:
+
+    <div class="gallery">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
+            <img src="..." alt="..." class="img-gallery img-thumbnail" />
+            <img src="..." alt="..." class="img-gallery img-thumbnail" />
+            <img src="..." alt="..." class="img-gallery img-thumbnail" />
+        </div>
+    </div>
+
 ## NOTES
 
 ### Frameworks, Features And Toolchains in this software: 

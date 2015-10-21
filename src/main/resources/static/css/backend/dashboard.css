@@ -121,6 +121,22 @@ body {
     text-align: center;
     font-size: small;
 }
+/**
+ * Balero CMS Gallery
+ * Based on:
+ * http://stackoverflow.com/questions/19448316/responsive-images-inline-block-in-a-div-with-bootstrap
+ **/
+.gallery {
+    width: 33.3%;
+    float: left;
+}
+.img-gallery {
+    border: 0 none;
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
 .label-custom {
     background: rgb(135,224,253); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(135,224,253,1) 0%, rgba(83,203,241,1) 40%, rgba(5,171,224,1) 100%); /* FF3.6+ */

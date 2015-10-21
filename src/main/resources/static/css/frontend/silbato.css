@@ -244,6 +244,18 @@ p.copyright {
     border-top: none !important;
 }
 
+.gallery {
+    width: 33.3%;
+    float: left;
+}
+.img-gallery {
+    border: 0 none;
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
 @media(max-width:767px) {
 
     .intro-divider {

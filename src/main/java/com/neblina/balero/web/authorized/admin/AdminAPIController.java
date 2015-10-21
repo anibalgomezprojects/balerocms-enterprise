@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web.authorized.admin;
 
+import com.neblina.balero.domain.FileGallery;
 import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
@@ -16,6 +17,7 @@ import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
+import com.neblina.balero.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -81,6 +84,15 @@ public class AdminAPIController {
     public HttpStatus saveAdminSubscribebStatusToJSON() {
         userService.updateSubscribedStatus();
         return HttpStatus.OK;
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/uploads", method = RequestMethod.GET)
+    @ResponseBody
+    public List<FileGallery> getUploadsJSON() throws IOException {
+        FileManager fileManager = new FileManager();
+        List<FileGallery> list = fileManager.retrieveImageGalleryList("/static/images/uploads/");
+        return list;
     }
 
 }
