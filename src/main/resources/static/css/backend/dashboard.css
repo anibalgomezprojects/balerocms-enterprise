@@ -201,6 +201,10 @@ body {
     width: 95%;
     height: 80%;
 }
+.text-thumbnail {
+    color: #8c8c8c;
+    text-align: center;
+}
 .toolbar {
     padding-bottom: 30px;
 }

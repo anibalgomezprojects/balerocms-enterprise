@@ -25,7 +25,8 @@
                     <div class="gallery" ng-repeat="upload in uploads">
                         <!--{{ uploads | json }}-->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
-                            <img src="/images/uploads/{{upload.fileName}}" alt="..." class="img-gallery img-thumbnail" />
+                            <img src="/images/uploads/{{upload.fileName}}" title="{{upload.fileName}}" class="img-gallery img-thumbnail" />
+                            <p class="text-thumbnail">{{upload.width}} x {{upload.height}}</p>
                         </div>
                     </div>
 
