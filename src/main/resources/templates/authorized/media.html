@@ -20,7 +20,9 @@
                     <h4>Media</h4>
                 </div>
                 <hr />
-                <div class="row box-text">
+                <div class="row box-text" ng-init="load()">
+
+                    <div id="spinner"></div>
 
                     <div class="gallery" ng-repeat="upload in uploads">
                         <!--{{ uploads | json }}-->

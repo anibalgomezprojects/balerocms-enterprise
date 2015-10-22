@@ -16,9 +16,16 @@ angular
     .module('MediaApp', ['angularFileUpload', 'MediaService'])
 
 
-    .controller('MediaController', ['$scope', 'FileUploader', 'MediaService', function($scope, FileUploader, MediaService) {
+    .controller('MediaController', ['$scope', '$http', 'FileUploader', function($scope, $http, FileUploader) {
 
-        $scope.uploads = MediaService.getUploads().query();
+        $('#spinner').show();
+
+        $scope.load = function() {
+            $http.get('../admin/api/uploads').success(function(data) {
+                $scope.uploads = data;
+                $('#spinner').hide();
+            });
+        }
 
         var uploader = $scope.uploader = new FileUploader({
             url: '/upload'
@@ -66,7 +73,7 @@ angular
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.log('update gallery');
             console.info('onCompleteItem', fileItem, response, status, headers);
-            $scope.uploads = MediaService.getUploads().query();
+            $scope.load();
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
