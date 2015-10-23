@@ -100,10 +100,10 @@ angular
         uploader.onCompleteItem = function(fileItem, response, status, headers) {
             console.log('update gallery');
             console.info('onCompleteItem', fileItem, response, status, headers);
-            $scope.load();
         };
         uploader.onCompleteAll = function() {
             console.info('onCompleteAll');
+            $scope.load();
         };
 
         console.info('uploader', uploader);

@@ -116,7 +116,14 @@ public class AdminAPIController {
         FileManager fileManager = new FileManager();
         for(int i = 0; i < data.size(); i++) {
             String fileName = data.get(i).getFileName();
-            fileManager.deleteResourceFile(fileName);
+            try {
+                if(fileName.equals("bsd_daemon.png")) {
+                    throw new Exception("Can't Delete Unit Test File (bsd_daemon.png).");
+                }
+                fileManager.deleteResourceFile(fileName);
+            } catch (Exception e) {
+                log.debug(e.getMessage());
+            }
             log.debug("JSON Row: " + fileName);
         }
         return HttpStatus.OK;
