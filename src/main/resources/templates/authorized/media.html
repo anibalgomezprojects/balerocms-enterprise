@@ -20,8 +20,11 @@
                     <h4>Media</h4>
                 </div>
                 <hr />
-                <div class="row">
-                    <button class="pull-right btn btn-danger" ng-click="removeFiles()">
+                <div class="row pull-right">
+                    <button class="btn btn-primary" ng-model="status.selectedAll" ng-click="checkAll()">
+                        <span class="glyphicon glyphicon-check"></span>
+                    </button>
+                    <button class="btn btn-danger" ng-click="removeFiles()">
                         <span class="glyphicon glyphicon-trash"></span> ({{deleteQueue.length}})
                     </button>
                 </div>

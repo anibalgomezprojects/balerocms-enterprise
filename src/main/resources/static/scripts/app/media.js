@@ -22,6 +22,9 @@ angular
 
         $scope.deleteQueue = [];
         $scope.chk = [];
+        $scope.status = {
+            selectedAll: false
+        };
 
         $scope.load = function() {
             // Force Clean
@@ -52,6 +55,19 @@ angular
             res.error(function(data, status, headers, config) {
                 alert( "failure message: " + JSON.stringify({data: data}));
             });
+        };
+
+        $scope.checkAll = function() {
+            if($scope.status.selectedAll) {
+                console.debug('false');
+                $scope.status.selectedAll = false;
+            } else {
+                console.debug('true');
+                $scope.status.selectedAll = true;
+            }
+            for(var i = 0; i < $scope.uploads.length; i++) {
+                $scope.chk[i] = $scope.status.selectedAll;
+            }
         };
 
         var uploader = $scope.uploader = new FileUploader({
