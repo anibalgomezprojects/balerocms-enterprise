@@ -39,9 +39,11 @@
                             <p class="text-thumbnail">{{upload.width}} x {{upload.height}}</p>
                             <br />
                             <input type="checkbox" ng-change="addRow($index, upload.fileName)" ng-model="chk[$index]" />
+                            <!-- debug
                             {{ deleteQueue | json }}
                             {{ chk[$index] }}
-                            <!--{{ upload.fileName }}-->
+                            {{ upload.fileName }}
+                            -->
                         </div>
                     </div>
 

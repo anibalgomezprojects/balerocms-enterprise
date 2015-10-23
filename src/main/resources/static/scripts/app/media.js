@@ -28,9 +28,13 @@ angular
         };
 
         $scope.load = function() {
-            // Force Clean
+            // Force Clean / Reset
             $scope.chk = [];
             $scope.deleteQueue = [];
+            $scope.status = {
+                selectedAll: false,
+                icon: 'check'
+            };
             $http.get('../admin/api/uploads').success(function(data) {
                 $scope.uploads = data;
                 $('#spinner').hide();
