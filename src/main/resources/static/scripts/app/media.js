@@ -32,15 +32,7 @@ angular
 
         $scope.addRow = function(index, fileName) {
             console.log('val: ' + $scope.chk[index] + ' ' + fileName);
-            if($scope.chk[index]) {
-                $scope.deleteQueue.push({
-                        'fileName': fileName
-                    }
-                );
-            }
-            if(!$scope.chk[index]) {
-                $scope.deleteQueue.splice(0, 1);
-            }
+            $scope.chk[index] ? $scope.deleteQueue.push({'fileName': fileName})  : $scope.deleteQueue.splice(0, 1);
         };
 
         var uploader = $scope.uploader = new FileUploader({
