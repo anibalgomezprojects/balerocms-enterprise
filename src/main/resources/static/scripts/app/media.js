@@ -24,6 +24,9 @@ angular
         $scope.chk = [];
 
         $scope.load = function() {
+            // Force Clean
+            $scope.chk = [];
+            $scope.deleteQueue = [];
             $http.get('../admin/api/uploads').success(function(data) {
                 $scope.uploads = data;
                 $('#spinner').hide();
