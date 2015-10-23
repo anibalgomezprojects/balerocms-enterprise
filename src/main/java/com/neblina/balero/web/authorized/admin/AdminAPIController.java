@@ -30,6 +30,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -114,7 +115,9 @@ public class AdminAPIController {
         log.debug("POST /admin/api/uploads");
         FileManager fileManager = new FileManager();
         for(int i = 0; i < data.size(); i++) {
-            log.debug("JSON Row: " + data.get(i).getFileName());
+            String fileName = data.get(i).getFileName();
+            fileManager.deleteResourceFile(fileName);
+            log.debug("JSON Row: " + fileName);
         }
         return HttpStatus.OK;
     }

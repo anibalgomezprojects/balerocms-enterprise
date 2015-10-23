@@ -10,6 +10,8 @@
 package com.neblina.balero.util;
 
 import com.neblina.balero.domain.FileGallery;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileManager {
+
+    private static final Logger log = LogManager.getLogger(FileManager.class.getName());
 
     /**
      * Get Relative Path Of Specific Folder
@@ -74,6 +78,19 @@ public class FileManager {
             }
         });
         return list;
+    }
+
+    public void deleteResourceFile(String fileName) {
+        try {
+            File file = new File(getResourcePath("/static/images/uploads/" + fileName));
+            if(!file.exists()) {
+                throw new Exception("File Do Not Exists!" + file);
+            }
+            file.delete();
+            log.debug("Deleting: " + file);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+        }
     }
 
 }
