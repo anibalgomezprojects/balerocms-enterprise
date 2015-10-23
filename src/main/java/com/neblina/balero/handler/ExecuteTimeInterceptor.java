@@ -18,7 +18,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * Adapted for Spring Boot
- * @author lastprophet
+ * @author Anibal Gomez
  *
  * Based on:
  * http://www.concretepage.com/spring/spring-mvc/spring-handlerinterceptor-annotation-example-webmvcconfigureradapter
@@ -31,12 +31,14 @@ public class ExecuteTimeInterceptor extends HandlerInterceptorAdapter{
     @Override
     //before the actual handler will be executed
     public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler)
-            throws Exception {
-
-        long startTime = System.currentTimeMillis();
-        request.setAttribute("startTime", startTime);
-
+                             HttpServletResponse response, Object handler) {
+         try {
+             long startTime = System.currentTimeMillis();
+             request.setAttribute("startTime", startTime);
+         } catch (Exception e) {
+             // View Layer Do Not Exists. Do Nothing
+             // Or Handle If You Want (Unnecessary)
+         }
         return true;
     }
 
@@ -44,25 +46,18 @@ public class ExecuteTimeInterceptor extends HandlerInterceptorAdapter{
     //after the handler is executed
     public void postHandle(
             HttpServletRequest request, HttpServletResponse response,
-            Object handler, ModelAndView modelAndView)
-            throws Exception {
+            Object handler, ModelAndView modelAndView) {
 
-        long startTime = (Long)request.getAttribute("startTime");
-
-        long endTime = System.currentTimeMillis();
-
-        long executeTime = endTime - startTime;
-
-        //modified the exisitng modelAndView
         try {
+            long startTime = (Long)request.getAttribute("startTime");
+            long endTime = System.currentTimeMillis();
+            long executeTime = endTime - startTime;
+            //modified the exisitng modelAndView
             modelAndView.addObject("executeTime", executeTime);
         } catch (Exception e) {
-            log.error("Object View Layer Do Not Exists: " + e.getMessage());
+            // View Layer Do Not Exists. Do Nothing
+            // Or Handle If You Want (Unnecessary)
         }
 
-        //log it
-        if(log.isDebugEnabled()){
-            log.debug("[" + handler + "] executeTime : " + executeTime + "ms");
-        }
     }
 }
