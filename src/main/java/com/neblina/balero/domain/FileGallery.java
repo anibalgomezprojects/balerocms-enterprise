@@ -22,11 +22,14 @@ public class FileGallery {
      * @param width  The Image Width
      * @param height The Image Height
      */
+
+    /**
     public FileGallery(String fileName, int width, int height) {
         this.fileName = fileName;
         this.width = width;
         this.height = height;
     }
+     **/
 
     public String getFileName() {
         return fileName;
@@ -50,6 +53,15 @@ public class FileGallery {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    @Override
+    public String toString() {
+        return "FileGallery [" +
+                "fileName=" + this.fileName + "," +
+                "width=" + this.width + "," +
+                "height=" + this.height
+                + "]";
     }
 
 }

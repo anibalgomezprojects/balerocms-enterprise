@@ -21,7 +21,9 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <button class="pull-right btn btn-danger"><span class="glyphicon glyphicon-trash"></span> ({{deleteQueue.length}})</button>
+                    <button class="pull-right btn btn-danger" ng-click="removeFiles()">
+                        <span class="glyphicon glyphicon-trash"></span> ({{deleteQueue.length}})
+                    </button>
                 </div>
                 <br />
                 <div class="row box-text" ng-init="load()">

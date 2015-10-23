@@ -18,8 +18,12 @@ import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.FileManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -44,6 +48,8 @@ public class AdminAPIController {
 
     @Autowired
     private UserService userService;
+
+    private static final Logger log = LogManager.getLogger(AdminPageController.class.getName());
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/properties")
@@ -93,6 +99,24 @@ public class AdminAPIController {
         FileManager fileManager = new FileManager();
         List<FileGallery> list = fileManager.retrieveImageGalleryList("/static/images/uploads/");
         return list;
+    }
+
+    /**
+     *
+     * @param data Is a JSON Object.
+     *             It Needs to be deserialized to a Java Object
+     * @return
+     */
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/uploads", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public HttpStatus deleteUploadsJSON(@RequestBody List<FileGallery> data)  {
+        log.debug("POST /admin/api/uploads");
+        FileManager fileManager = new FileManager();
+        for(int i = 0; i < data.size(); i++) {
+            log.debug("JSON Row: " + data.get(i).getFileName());
+        }
+        return HttpStatus.OK;
     }
 
 }

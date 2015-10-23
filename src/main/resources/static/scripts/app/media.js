@@ -32,7 +32,23 @@ angular
 
         $scope.addRow = function(index, fileName) {
             console.log('val: ' + $scope.chk[index] + ' ' + fileName);
-            $scope.chk[index] ? $scope.deleteQueue.push({'fileName': fileName})  : $scope.deleteQueue.splice(0, 1);
+            $scope.chk[index] ? $scope.deleteQueue.push({
+                'fileName': fileName,
+                'width': 0,
+                'height': 0
+                })  : $scope.deleteQueue.splice(0, 1);
+        };
+
+        $scope.removeFiles = function() {
+            $('#spinner').show();
+            $('.gallery').hide();
+            var res = $http.post('../admin/api/uploads', $scope.deleteQueue );
+            res.success(function(data, status, headers, config) {
+                $scope.load();
+            });
+            res.error(function(data, status, headers, config) {
+                alert( "failure message: " + JSON.stringify({data: data}));
+            });
         };
 
         var uploader = $scope.uploader = new FileUploader({

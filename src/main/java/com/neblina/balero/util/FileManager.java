@@ -59,11 +59,12 @@ public class FileManager {
                         BufferedImage bimg = ImageIO.read(new File(filePath.toString()));
                         // Build FileGallery Object
                         // Merge Objects
-                        list.add(new FileGallery(
-                                filePath.getFileName().toString(),
-                                bimg.getWidth(),
-                                bimg.getHeight()
-                        ));
+                        FileGallery fileGallery = new FileGallery();
+                        fileGallery.setFileName(filePath.getFileName().toString());
+                        fileGallery.setWidth(bimg.getWidth());
+                        fileGallery.setHeight(bimg.getHeight());
+                        // Add object
+                        list.add(fileGallery);
                         // Clean
                         bimg = null;
                     }
