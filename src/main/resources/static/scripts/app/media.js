@@ -28,7 +28,7 @@ angular
                 $scope.uploads = data;
                 $('#spinner').hide();
             });
-        }
+        };
 
         $scope.addRow = function(index, fileName) {
             console.log('val: ' + $scope.chk[index] + ' ' + fileName);
@@ -39,13 +39,9 @@ angular
                 );
             }
             if(!$scope.chk[index]) {
-                $scope.deleteQueue.splice(index, 1);
+                $scope.deleteQueue.splice(0, 1);
             }
-        }
-
-        $scope.test = function() {
-            alert('checked');
-        }
+        };
 
         var uploader = $scope.uploader = new FileUploader({
             url: '/upload'

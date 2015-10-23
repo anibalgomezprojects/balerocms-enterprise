@@ -21,7 +21,7 @@
                 </div>
                 <hr />
                 <div class="row">
-                    <button class="pull-right btn btn-danger">Delete ({{deleteQueue.length}})</button>
+                    <button class="pull-right btn btn-danger"><span class="glyphicon glyphicon-trash"></span> ({{deleteQueue.length}})</button>
                 </div>
                 <br />
                 <div class="row box-text" ng-init="load()">
@@ -33,7 +33,7 @@
                             <img src="/images/uploads/{{upload.fileName}}" title="{{upload.fileName}}" class="img-gallery img-thumbnail" />
                             <p class="text-thumbnail">{{upload.width}} x {{upload.height}}</p>
                             <br />
-                            <input type="checkbox" ng-click="addRow($index, upload.fileName)" ng-model="chk[$index]" />
+                            <input type="checkbox" ng-change="addRow($index, upload.fileName)" ng-model="chk[$index]" />
                             {{ deleteQueue | json }}
                             {{ chk[$index] }}
                             <!--{{ upload.fileName }}-->
