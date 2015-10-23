@@ -23,7 +23,8 @@ angular
         $scope.deleteQueue = [];
         $scope.chk = [];
         $scope.status = {
-            selectedAll: false
+            selectedAll: false,
+            icon: 'check'
         };
 
         $scope.load = function() {
@@ -61,9 +62,11 @@ angular
             if($scope.status.selectedAll) {
                 console.debug('false');
                 $scope.status.selectedAll = false;
+                $scope.status.icon = 'check';
             } else {
                 console.debug('true');
                 $scope.status.selectedAll = true;
+                $scope.status.icon = 'ok-sign';
             }
             for(var i = 0; i < $scope.uploads.length; i++) {
                 $scope.chk[i] = $scope.status.selectedAll;

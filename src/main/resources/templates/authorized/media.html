@@ -22,7 +22,7 @@
                 <hr />
                 <div class="row pull-right">
                     <button class="btn btn-primary" ng-model="status.selectedAll" ng-click="checkAll()">
-                        <span class="glyphicon glyphicon-check"></span>
+                        <span class="glyphicon glyphicon-{{status.icon}}"></span>
                     </button>
                     <button class="btn btn-danger" ng-click="removeFiles()">
                         <span class="glyphicon glyphicon-trash"></span> ({{deleteQueue.length}})
