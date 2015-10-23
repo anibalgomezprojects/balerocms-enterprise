@@ -63,10 +63,12 @@ angular
                 console.debug('false');
                 $scope.status.selectedAll = false;
                 $scope.status.icon = 'check';
+                $scope.deleteQueue = [];
             } else {
                 console.debug('true');
                 $scope.status.selectedAll = true;
                 $scope.status.icon = 'ok-sign';
+                $scope.deleteQueue = $scope.uploads;
             }
             for(var i = 0; i < $scope.uploads.length; i++) {
                 $scope.chk[i] = $scope.status.selectedAll;
