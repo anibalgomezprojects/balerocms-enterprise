@@ -29,6 +29,11 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
                             <img src="/images/uploads/{{upload.fileName}}" title="{{upload.fileName}}" class="img-gallery img-thumbnail" />
                             <p class="text-thumbnail">{{upload.width}} x {{upload.height}}</p>
+                            <br />
+                            <input type="checkbox" ng-click="addRow($index, upload.fileName)" ng-model="chk[$index]" />
+                            {{ deleteQueue | json }}
+                            {{ chk[$index] }}
+                            <!--{{ upload.fileName }}-->
                         </div>
                     </div>
 
