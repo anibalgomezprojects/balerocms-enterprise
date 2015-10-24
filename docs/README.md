@@ -25,6 +25,10 @@ Navigate to root folder and set read/write permissions:
 
     $ sudo chmod -R 077 balerocms-enterprise
     $ cd balerocms-enterprise
+    
+Choose Release:
+
+    $ git checkout v1.0-BETA
 
 And then, run:
 
