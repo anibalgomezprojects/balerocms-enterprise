@@ -9,28 +9,24 @@
 
 package com.neblina.balero.web.authorized.admin;
 
-import com.neblina.balero.domain.FileGallery;
+import com.neblina.balero.domain.Media;
 import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.PropertyRepository;
-import com.neblina.balero.service.repository.SettingRepository;
 import com.neblina.balero.service.repository.UserRepository;
-import com.neblina.balero.util.FileManager;
+import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -96,9 +92,9 @@ public class AdminAPIController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/uploads", method = RequestMethod.GET)
     @ResponseBody
-    public List<FileGallery> getUploadsJSON() throws IOException {
-        FileManager fileManager = new FileManager();
-        List<FileGallery> list = fileManager.retrieveImageGalleryList("/static/images/uploads/");
+    public List<Media> getUploadsJSON() throws IOException {
+        MediaManager mediaManager = new MediaManager();
+        List<Media> list = mediaManager.retrieveImageGalleryList("/static/images/uploads/");
         return list;
     }
 
@@ -111,16 +107,16 @@ public class AdminAPIController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/uploads", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public HttpStatus deleteUploadsJSON(@RequestBody List<FileGallery> data)  {
+    public HttpStatus deleteUploadsJSON(@RequestBody List<Media> data)  {
         log.debug("POST /admin/api/uploads");
-        FileManager fileManager = new FileManager();
+        MediaManager mediaManager = new MediaManager();
         for(int i = 0; i < data.size(); i++) {
             String fileName = data.get(i).getFileName();
             try {
                 if(fileName.equals("bsd_daemon.png")) {
                     throw new Exception("Can't Delete Unit Test File (bsd_daemon.png).");
                 }
-                fileManager.deleteResourceFile(fileName);
+                mediaManager.deleteResourceFile(fileName);
             } catch (Exception e) {
                 log.debug(e.getMessage());
             }

@@ -10,8 +10,8 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
-import com.neblina.balero.domain.FileGallery;
-import com.neblina.balero.util.FileManager;
+import com.neblina.balero.domain.Media;
+import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
@@ -30,16 +30,16 @@ import static org.junit.Assert.assertThat;
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
-public class FileManagerTest {
+public class MediaManagerTest {
 
-    private static final Logger log = LogManager.getLogger(FileManagerTest.class.getName());
+    private static final Logger log = LogManager.getLogger(MediaManagerTest.class.getName());
 
     @Test
     public void printUploadsFolderPath() throws IOException {
-        FileManager fileManager = new FileManager();
-        List<FileGallery> list = fileManager.retrieveImageGalleryList("/static/images/uploads/");
+        MediaManager mediaManager = new MediaManager();
+        List<Media> list = mediaManager.retrieveImageGalleryList("/static/images/uploads/");
         int i = 0;
-        for(FileGallery file : list) {
+        for(Media file : list) {
             i++;
             log.debug("List<FileGallery>: [ " + i + " ] " +
                             "file Name: " + file.getFileName() + " " +

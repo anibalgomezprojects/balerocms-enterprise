@@ -9,7 +9,7 @@
 
 package com.neblina.balero.util;
 
-import com.neblina.balero.domain.FileGallery;
+import com.neblina.balero.domain.Media;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,9 +22,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManager {
+public class MediaManager {
 
-    private static final Logger log = LogManager.getLogger(FileManager.class.getName());
+    private static final Logger log = LogManager.getLogger(MediaManager.class.getName());
 
     /**
      * Get Relative Path Of Specific Folder
@@ -47,8 +47,8 @@ public class FileManager {
      * @return
      * @throws IOException
      */
-    public List<FileGallery> retrieveImageGalleryList(String resource) throws IOException {
-        List<FileGallery> list = new ArrayList<>();
+    public List<Media> retrieveImageGalleryList(String resource) throws IOException {
+        List<Media> list = new ArrayList<>();
         // Java 8 List Directory
         Files.walk(Paths.get(getResourcePath(resource))).forEach(filePath -> {
             if (Files.isRegularFile(filePath)) {
@@ -63,7 +63,7 @@ public class FileManager {
                         BufferedImage bimg = ImageIO.read(new File(filePath.toString()));
                         // Build FileGallery Object
                         // Merge Objects
-                        FileGallery fileGallery = new FileGallery();
+                        Media fileGallery = new Media();
                         fileGallery.setFileName(filePath.getFileName().toString());
                         fileGallery.setWidth(bimg.getWidth());
                         fileGallery.setHeight(bimg.getHeight());

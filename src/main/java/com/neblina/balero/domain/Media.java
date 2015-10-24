@@ -9,27 +9,11 @@
 
 package com.neblina.balero.domain;
 
-public class FileGallery {
+public class Media {
 
     private String fileName;
     private int width;
     private int height;
-
-    /**
-     * Balero CMS Image Gallery Info
-     * @author Anibal Gomez
-     * @param fileName The Image File Name
-     * @param width  The Image Width
-     * @param height The Image Height
-     */
-
-    /**
-    public FileGallery(String fileName, int width, int height) {
-        this.fileName = fileName;
-        this.width = width;
-        this.height = height;
-    }
-     **/
 
     public String getFileName() {
         return fileName;
@@ -57,7 +41,7 @@ public class FileGallery {
 
     @Override
     public String toString() {
-        return "FileGallery [" +
+        return "Media [" +
                 "fileName=" + this.fileName + "," +
                 "width=" + this.width + "," +
                 "height=" + this.height
