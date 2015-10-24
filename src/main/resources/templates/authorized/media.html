@@ -53,7 +53,7 @@
                         <div ng-show="uploader.isHTML5">
                             <!-- 3. nv-file-over uploader="link" over-class="className" -->
                             <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-                                Base drop zone (*jpg,*png,*jpeg,*bmp,*gif)
+                                <span th:text="#{media.text.drop.zone}">Base drop zone (*jpg,*png,*jpeg,*bmp,*gif)</span>
                             </div>
                         </div>
                         <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
@@ -61,16 +61,16 @@
                     </div>
 
                     <div style="margin-bottom: 40px">
-                        <h3>The queue</h3>
-                        <p>Queue length: {{ uploader.queue.length }}</p>
+                        <h3 th:text="#{media.text.queue}">The queue</h3>
+                        <p><span th:text="#{media.text.queue.lenght}">Queue length:</span> {{ uploader.queue.length }}</p>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th width="50%">Name</th>
-                                <th ng-show="uploader.isHTML5">Size</th>
-                                <th ng-show="uploader.isHTML5">Progress</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th width="50%" th:text="#{media.text.name}">Name</th>
+                                <th ng-show="uploader.isHTML5" th:text="#{media.text.size}">Size</th>
+                                <th ng-show="uploader.isHTML5" th:text="#{media.text.progress}">Progress</th>
+                                <th th:text="#{media.text.status}">Status</th>
+                                <th th:text="#{media.text.action}">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -98,13 +98,16 @@
                                 </td>
                                 <td th:nowrap="nowrap">
                                     <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                        <span class="glyphicon glyphicon-upload"></span>
+                                        <span th:text="#{media.text.upload}">Upload</span>
                                     </button>
                                     <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                        <span class="glyphicon glyphicon-ban-circle"></span>
+                                        <span th:text="#{media.text.cancel}">Cancel</span>
                                     </button>
                                     <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                        <span th:text="#{media.text.remove}">Remove</span>
                                     </button>
                                 </td>
                             </tr>
@@ -113,19 +116,22 @@
 
                         <div>
                             <div>
-                                Queue progress:
+                                <span th:text="#{media.text.queue.progress}">Queue Progress</span>
                                 <div class="progress" style="">
                                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                                 </div>
                             </div>
                             <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
-                                <span class="glyphicon glyphicon-upload"></span> Upload all
+                                <span class="glyphicon glyphicon-upload"></span>
+                                <span th:text="#{media.text.upload.all}">Upload All</span>
                             </button>
                             <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                                <span th:text="#{media.text.cancel.all}">Cancel All</span>
                             </button>
                             <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
-                                <span class="glyphicon glyphicon-trash"></span> Remove all
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span th:text="#{media.text.remove.all}">Remove All</span>
                             </button>
                         </div>
                     </div>
