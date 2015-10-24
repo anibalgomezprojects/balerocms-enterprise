@@ -29,12 +29,22 @@ public class MediaManager {
     /**
      * Get Relative Path Of Specific Folder
      * @author Anibal Gomez
-     * @param resource
      * @return
      */
-    public String getResourcePath(String resource) {
+    public String getResourcePath() {
         return System.getProperty("user.dir") +
-                "/src/main/resources" + resource;
+                File.separator + "src" + File.separator  +
+                "main" + File.separator  + "resources" + File.separator;
+    }
+
+    /**
+     * Gets Uploads's Relative Path Folder
+     * @return
+     */
+    public String getResourceUploadsPath() {
+        return getResourcePath() +
+                "static" + File.separator + "images" + File.separator +
+                "uploads" + File.separator;
     }
 
     /**
@@ -43,14 +53,13 @@ public class MediaManager {
      * Based on:
      * http://stackoverflow.com/questions/6300675/java-mixed-arraylists
      * http://stackoverflow.com/questions/672916/how-to-get-image-height-and-width-using-java
-     * @param resource
      * @return
      * @throws IOException
      */
-    public List<Media> retrieveImageGalleryList(String resource) throws IOException {
+    public List<Media> retrieveImageGalleryList() throws IOException {
         List<Media> list = new ArrayList<>();
         // Java 8 List Directory
-        Files.walk(Paths.get(getResourcePath(resource))).forEach(filePath -> {
+        Files.walk(Paths.get(getResourceUploadsPath())).forEach(filePath -> {
             if (Files.isRegularFile(filePath)) {
                 try {
                     // |jpg|png|jpeg|bmp|gif|
@@ -82,7 +91,7 @@ public class MediaManager {
 
     public void deleteResourceFile(String fileName) {
         try {
-            File file = new File(getResourcePath("/static/images/uploads/" + fileName));
+            File file = new File(getResourceUploadsPath() + fileName);
             if(!file.exists()) {
                 throw new Exception("File Do Not Exists!" + file);
             }

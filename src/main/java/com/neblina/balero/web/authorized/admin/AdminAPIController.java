@@ -94,7 +94,7 @@ public class AdminAPIController {
     @ResponseBody
     public List<Media> getUploadsJSON() throws IOException {
         MediaManager mediaManager = new MediaManager();
-        List<Media> list = mediaManager.retrieveImageGalleryList("/static/images/uploads/");
+        List<Media> list = mediaManager.retrieveImageGalleryList();
         return list;
     }
 

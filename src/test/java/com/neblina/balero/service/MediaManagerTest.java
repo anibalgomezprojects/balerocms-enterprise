@@ -37,7 +37,7 @@ public class MediaManagerTest {
     @Test
     public void printUploadsFolderPath() throws IOException {
         MediaManager mediaManager = new MediaManager();
-        List<Media> list = mediaManager.retrieveImageGalleryList("/static/images/uploads/");
+        List<Media> list = mediaManager.retrieveImageGalleryList();
         int i = 0;
         for(Media file : list) {
             i++;
