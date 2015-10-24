@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BaleroService {
 
-    private static String version = "v_1.0-RELEASE";
+    private static String version = "v_1.0-BETA";
 
     public String getVersion() {
         return version;

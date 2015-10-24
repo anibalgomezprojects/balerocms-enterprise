@@ -29,7 +29,7 @@ public class BaleroServiceTest extends TestCase {
 
     @Test
     public void test_getVersion() throws Exception {
-        assertTrue(service.getVersion().endsWith("1.0-RELEASE"));
+        assertTrue(service.getVersion().endsWith("1.0-BETA"));
     }
 
 }
