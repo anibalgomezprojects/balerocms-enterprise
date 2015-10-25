@@ -61,6 +61,18 @@ See **Changing Authentication For Production Database**.
 
 Congratulations!, you successfully installed Balero CMS EE.
 Open http://localhost:8080/ in your favourite browser.
+
+### Updating Software
+
+    $ git pull
+    $ git checkout NEW_VERSION
+
+Be sure, your db/migrations are added successfully. It will be executed automatically.
+
+    Execute Command:
+    $ mvn test -P prod
+
+See **Database Repair/Migration Tool**.
     
 #### Minification For Production Mode
 
@@ -98,17 +110,6 @@ And login with the sample data:
 **Note: In a live website, please delete 'user' account and change your admin password**.
 
 ## Configuration
-
-### Updating Software
-
-Replace your old files with the new and updated files.
-
-Be sure, your db/migrations are added successfully. It will be executed automatically.
-
-    Execute Command:
-    $ mvn test -P prod
-
-See **Database Repair/Migration Tool**.
 
 ### Changing Authentication For Production Database
 
