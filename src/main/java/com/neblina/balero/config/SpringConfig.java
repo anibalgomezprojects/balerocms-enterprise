@@ -11,7 +11,6 @@ package com.neblina.balero.config;
 
 import com.neblina.balero.handler.ExecuteTimeInterceptor;
 import com.neblina.balero.handler.LocaleInterceptor;
-import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.util.AssetPipeline;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -47,9 +45,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
      */
     @Autowired
     private Environment env;
-
-    @Autowired
-    private PropertyService propertyService;
 
     @Bean
     public AssetPipeline compile() throws IOException {
@@ -106,7 +101,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.forLanguageTag(propertyService.getMainLanguage()));
+        slr.setDefaultLocale(Locale.forLanguageTag("en"));
         return slr;
     }
 
