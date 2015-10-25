@@ -8,6 +8,10 @@
 * Apache Maven (3.2.5 or Higher)
 * MySQL (5 or Higher; Only for production mode)
 
+To Cloning or Updating Software:
+
+* Git (2.3 or Higher)
+
 ## Welcome to Balero CMS Enterprise.
 
 ### About this project
