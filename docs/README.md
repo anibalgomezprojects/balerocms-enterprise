@@ -68,8 +68,14 @@ Open http://localhost:8080/ in your favourite browser.
 
 ### Updating Software
 
+    $ cd balerocms-enterprise
     $ git pull
     $ git checkout NEW_VERSION
+    
+Note: If you edited some files, execute this command after git checkout:
+
+    $ git add .
+    $ git checkout --force NEW VERSION
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
 
