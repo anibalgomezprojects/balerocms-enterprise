@@ -75,8 +75,8 @@
                 <div class="col-sm-10">
                     <select class="form-control" name="mainLanguage" id="mainLanguage">
                         <option th:value="${properties.mainLanguage}" th:text="'Default ('+${properties.mainLanguage}+')'"></option>
-                        <option value="en">English</option>
-                        <option value="es">Español</option>
+                        <option value="en" th:text="#{text.en}">English</option>
+                        <option value="es" th:text="#{text.es}">Español</option>
                     </select>
                 </div>
             </div>
