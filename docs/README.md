@@ -74,8 +74,11 @@ Open http://localhost:8080/ in your favourite browser.
     
 Note: If you edited some files, execute this command after git checkout:
 
-    $ git add .
-    $ git checkout --force NEW VERSION
+You can either commit your changes before you do the merge, or you stash them:
+
+    $ git stash
+    $ git merge origin/master
+    $ git stash pop
 
 Be sure, your db/migrations are added successfully. It will be executed automatically.
 
