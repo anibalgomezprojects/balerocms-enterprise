@@ -41,8 +41,8 @@
                     <li class="dropdown" th:if="${properties.multiLanguage}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span th:text="#{frontend.language}">Language</span> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="./?lang=en">English</a></li>
-                            <li><a href="./?lang=es">Español</a></li>
+                            <li><a href="./?lang=en" th:text="#{text.en}">English</a></li>
+                            <li><a href="./?lang=es" th:text="#{text.es}">Espa&ntilde;ol</a></li>
                         </ul>
                     </li>
                 </ul>

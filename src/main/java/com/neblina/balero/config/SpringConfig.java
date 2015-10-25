@@ -52,7 +52,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     private PropertyService propertyService;
 
     @Bean
-    @Profile("prod")
     public AssetPipeline compile() throws IOException {
         log.debug("Minification: " + env.getProperty("balerocms.minification"));
         boolean balerocmsMinification = Boolean.parseBoolean(env.getProperty("balerocms.minification"));

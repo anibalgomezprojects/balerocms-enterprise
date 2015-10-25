@@ -21,7 +21,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 @Configuration
-@Profile("prod")
 public class AssetPipeline {
 
     private static final Logger log = LogManager.getLogger(AssetPipeline.class.getName());

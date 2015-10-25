@@ -11,8 +11,8 @@
 
     <select class="form-control" name="code" id="code">
         <option th:if="${text}" th:value="${text}" th:text="'Default ('+${text}+')'"></option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
+        <option value="en" th:text="#{text.en}">English</option>
+        <option value="es" th:text="#{text.es}">Español</option>
     </select>
 
 </div>

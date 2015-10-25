@@ -23,3 +23,5 @@ spring:
 flyway:
   encoding: UTF-8
   locations: classpath:dev/db/migration
+balerocms:
+  minification: false
