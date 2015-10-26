@@ -96,11 +96,11 @@ delimiters, which are used to add readability to the code but are not required f
 
 If you activate it, you website will be load faster.
 
-To activate/deactivate:
+It will be load automatically when you execute with production profile:
 
-    application-dev.yml
-    balerocms:
-        minification: true or false
+To enable/disable edit in "config/":
+
+    balerocms-minification: true or false
 
 ## QuickStar Guide
 
@@ -128,7 +128,7 @@ And login with the sample data:
 
 Edit:
 
-* "balerocms-enterprise/src/main/resources/application-prod.yml" starting at Line 2.
+* "balerocms-enterprise/src/main/resources/config/application.properties".
 
 1. Add you MYSQL DB username.
 2. Add your MYSQL DB password.
@@ -137,28 +137,21 @@ Note: Usually "root" and "".
 
 ### Configuring Default Server Port
 
-Default server port is: 8080. To use different port edit **application.yml** -> server.port.
+Default server port is: 8080. To use different port edit **config/application.properties** -> server.port.
 
 ### Configuring E-Mail Newsletter (SMTP Client)
 
-Edit **application.yml** under resources folder, set your credentials
+Edit **config/application.properties** under resources folder, set your credentials
 for you email account.
 
 ## Unit Testing
 
-Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: application-dev.yml.
+Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: "config/".
 
 ### Running Unit Tests with MySQL
 
 Sometimes you need debug a real database, or just want to analyze fields. To do this edit
-application-prod.yml. 
-
-    spring:
-        datasource:
-            dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-            url: jdbc:mysql://localhost:3306/balerocms_enterprise
-            username: root
-            password:
+application.properties. 
             
 Usually "root" and "".        
 
