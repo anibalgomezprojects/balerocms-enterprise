@@ -148,6 +148,9 @@
         </profile>
         <profile>
             <id>prod</id>
+            <properties>
+                <fromPom.user>root_from_pom_value</fromPom.user>
+            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
@@ -173,6 +176,12 @@
                         <groupId>org.flywaydb</groupId>
                         <artifactId>flyway-maven-plugin</artifactId>
                         <version>3.2.1</version>
+                        <configuration>
+                            <url>jdbc:mysql://localhost:3306/balerocms_enterprise</url>
+                            <user>root</user>
+                            <password></password>
+                            <initOnMigrate>true</initOnMigrate>
+                        </configuration>
                         <dependencies>
                             <dependency>
                                 <groupId>com.h2database</groupId>
