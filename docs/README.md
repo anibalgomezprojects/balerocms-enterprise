@@ -128,7 +128,6 @@ And login with the sample data:
 
 Edit:
 
-* "balerocms-enterprise/pom.xml" starting at Line 173.
 * "balerocms-enterprise/src/main/resources/application-prod.yml" starting at Line 2.
 
 1. Add you MYSQL DB username.
