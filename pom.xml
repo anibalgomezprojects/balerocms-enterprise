@@ -146,19 +146,54 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>prod</id>
             <properties>
+                <db.host>localhost</db.host>
+                <db.name>balerocms_enterprise</db.name>
+                <db.user>root</db.user>
+                <db.pass></db.pass>
                 <fromPom.user>root_from_pom_value</fromPom.user>
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <build>
+                <!--
+                Solution provided by anibalgomez@icloud.com>
+                based on:
+                https://github.com/andidev/generator-jhipster/commit/f245e0fa525cf667462487dbd15c0f8e0c3a6b71
+                -->
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                        <includes>
+                            <include>*.properties</include>
+                            <include>application.properties</include>
+                        </includes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>false</filtering>
+                        <excludes>
+                            <exclude>*.properties</exclude>
+                            <exclude>application.properties</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
                 <plugins>
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
+                        <configuration>
+                            <outputDirectory>target/extra-resources</outputDirectory>
+                            <addResources>false</addResources>
+                            <arguments>
+                                <argument>--spring.profiles.active=prod</argument>
+                            </arguments>
+                        </configuration>
                         <dependencies>
                             <dependency>
                                 <groupId>org.springframework</groupId>
@@ -166,11 +201,6 @@
                                 <version>1.2.4.RELEASE</version>
                             </dependency>
                         </dependencies>
-                        <configuration>
-                            <arguments>
-                                <argument>--spring.profiles.active=prod</argument>
-                            </arguments>
-                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.flywaydb</groupId>
