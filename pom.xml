@@ -16,6 +16,11 @@
     </parent>
 
     <properties>
+        <db.host>localhost</db.host>
+        <db.name>balerocms_enterprise</db.name>
+        <db.user>root</db.user>
+        <db.pass></db.pass>
+        <fromPom.user>root_from_pom_value</fromPom.user>
         <java.version>1.8</java.version>
         <start-class>com.neblina.balero.Application</start-class>
     </properties>
@@ -149,22 +154,10 @@
 
         <profile>
             <id>prod</id>
-            <properties>
-                <db.host>localhost</db.host>
-                <db.name>balerocms_enterprise</db.name>
-                <db.user>root</db.user>
-                <db.pass></db.pass>
-                <fromPom.user>root_from_pom_value</fromPom.user>
-            </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
             <build>
-                <!--
-                Solution provided by anibalgomez@icloud.com>
-                based on:
-                https://github.com/andidev/generator-jhipster/commit/f245e0fa525cf667462487dbd15c0f8e0c3a6b71
-                -->
                 <resources>
                     <resource>
                         <directory>src/main/resources</directory>
@@ -207,7 +200,9 @@
                         <artifactId>flyway-maven-plugin</artifactId>
                         <version>3.2.1</version>
                         <configuration>
-                            <url>jdbc:mysql://localhost:3306/balerocms_enterprise</url>
+                            <url>jdbc:mysql://${db.host}:3306/${db.name}</url>
+                            <user>${db.user}</user>
+                            <password>${db.pass}</password>
                             <initOnMigrate>true</initOnMigrate>
                         </configuration>
                         <dependencies>
