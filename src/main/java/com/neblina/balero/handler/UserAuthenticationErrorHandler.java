@@ -56,18 +56,20 @@ public class UserAuthenticationErrorHandler implements ApplicationListener<Authe
 
     @Scheduled(fixedRate = 60000)
     public void blacklistChecker() {
-        log.debug("Updating timer to IP's List...");
         try {
             List<Blacklist> ips = blacklistRepository.findAll();
-            for(Blacklist blacklist: ips) {
-                blacklist.setTimer(blacklist.getTimer()-60000);
-                log.debug("Remaining for: " + blacklist.getIp() +
-                        " Time: " + blacklist.getTimer());
-                blacklistRepository.save(blacklist);
-                if(blacklist.getTimer() <= 0) {
-                    blacklist.setIp(blacklist.getIp());
-                    log.debug("Deleting ip: " + blacklist.getIp());
-                    blacklistRepository.delete(blacklist);
+            if(ips.size() >= 1) {
+                log.debug("Updating timer to IP's List...");
+                for(Blacklist blacklist: ips) {
+                    blacklist.setTimer(blacklist.getTimer()-60000);
+                    log.debug("Remaining for: " + blacklist.getIp() +
+                            " Time: " + blacklist.getTimer());
+                    blacklistRepository.save(blacklist);
+                    if(blacklist.getTimer() <= 0) {
+                        blacklist.setIp(blacklist.getIp());
+                        log.debug("Deleting ip: " + blacklist.getIp());
+                        blacklistRepository.delete(blacklist);
+                    }
                 }
             }
         } catch (Exception e) {
