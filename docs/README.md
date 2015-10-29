@@ -124,44 +124,44 @@ And login with the sample data:
 
 ## Configuration
 
-Balero CMS EE intends to use the traditional configuration method of the LAMPP world.
-
 ### Changing Authentication For Production Database
 
 Edit:
 
-* "config/seup.properties".
+* "balerocms-enterprise/src/main/resources/application.properties".
 
-1. blo.db.host = Host
-2. blo.db.name = Database Name
-3. blo.db.user = Add you MYSQL DB username.
-4. blo.db.pass = Add your MYSQL DB password.
+1. db.host = Host
+2. db.name = Database Name
+3. db.user = Add you MYSQL DB username.
+4. db.password = Add your MYSQL DB password.
         
 Note: Usually "root" and "".
 
-Server Port: Ex. 8080. (http://localhost:8080)
-
-Optional: Set your SMTP Email Settings.
-
 All Done!
+
+**Notes Only For Developers and/or  Advanced Options**:
+
+Balero CMS EE use a database called "balerocms_enterprise" on "localhost" (127.0.0.1) and MySQL port: 3306.
+If you need to change these values you may need to edit:
+
 
 ### Configuring Default Server Port
 
-Default server port is: 8080. To use different port edit **config/setup.properties** -> server.port.
+Default server port is: 8080. To use different port edit **application.properties** -> server.port.
 
 ### Configuring E-Mail Newsletter (SMTP Client)
 
-Edit **config/setup.properties**, find prefix 'mail' and set your credentials
+Edit **application.properties** under resources folder, set your credentials
 for you email account.
 
 ## Unit Testing
 
-Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: "application-prod.properties".
+Unit tests will be run in Development Mode (In-Memory Database), you can find this configuration in: "config/".
 
 ### Running Unit Tests with MySQL
 
 Sometimes you need debug a real database, or just want to analyze fields. To do this edit
-config/setup.properties. 
+application.properties. 
             
 Usually "root" and "".        
 
@@ -175,10 +175,20 @@ If you updated your software and/or mysql/db has been changed, or
 if you get a database error migration, you can fix with:
 
     Repair Command:
-    $ mvn compile flyway:repair -P prod
+    $ mvn -Dflyway.user=root -Dflyway.password= compile flyway:repair -P prod
     
     Migration Command:
-    $ mvn compile flyway:migrate  -P prod
+    $ mvn -Dflyway.user=root -Dflyway.password= compile flyway:migrate  -P prod
+ 
+Note: flyway.user = Your Database Username
+      flyway.password = Your Database Password
+      Usually "root" and "".
+
+If you need other values for db host and db name edit:
+
+Line 180 in pom.xml: < url >jdbc:mysql://localhost:3306/balerocms_enterprise< /url > (For Flywaydb Migrations).
+
+Default values are "localhost" and "balerocms_enterprise"
 
 See **Changing Authentication For Production Database**.
 

@@ -16,7 +16,6 @@
     </parent>
 
     <properties>
-        <fromPom.user>root_from_pom_value</fromPom.user>
         <java.version>1.8</java.version>
         <start-class>com.neblina.balero.Application</start-class>
     </properties>
@@ -118,47 +117,6 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>*.properties</include>
-                    <include>application.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>*.properties</exclude>
-                    <exclude>application.properties</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0-alpha-2</version>
-                <executions>
-                    <execution>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                                <file>${basedir}/config/setup.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
     <!-- Profiles: mvn -Pprofile-name spring-boot:run -->
     <profiles>
         <profile>
@@ -171,13 +129,7 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <outputDirectory>target/extra-resources</outputDirectory>
-                            <addResources>false</addResources>
-                            <arguments>
-                                <argument>--spring.profiles.active=dev</argument>
-                            </arguments>
-                        </configuration>
+                        <version>1.2.5.RELEASE</version>
                         <dependencies>
                             <dependency>
                                 <groupId>org.springframework</groupId>
@@ -185,11 +137,15 @@
                                 <version>1.2.4.RELEASE</version>
                             </dependency>
                         </dependencies>
+                        <configuration>
+                            <arguments>
+                                <argument>--spring.profiles.active=dev</argument>
+                            </arguments>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-
         <profile>
             <id>prod</id>
             <activation>
@@ -200,13 +156,6 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <configuration>
-                            <outputDirectory>target/extra-resources</outputDirectory>
-                            <addResources>false</addResources>
-                            <arguments>
-                                <argument>--spring.profiles.active=prod</argument>
-                            </arguments>
-                        </configuration>
                         <dependencies>
                             <dependency>
                                 <groupId>org.springframework</groupId>
@@ -214,17 +163,16 @@
                                 <version>1.2.4.RELEASE</version>
                             </dependency>
                         </dependencies>
+                        <configuration>
+                            <arguments>
+                                <argument>--spring.profiles.active=prod</argument>
+                            </arguments>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.flywaydb</groupId>
                         <artifactId>flyway-maven-plugin</artifactId>
                         <version>3.2.1</version>
-                        <configuration>
-                            <url>jdbc:mysql://${blo.db.host}:3306/${blo.db.name}</url>
-                            <user>${blo.db.user}</user>
-                            <password>${blo.db.pass}</password>
-                            <initOnMigrate>true</initOnMigrate>
-                        </configuration>
                         <dependencies>
                             <dependency>
                                 <groupId>com.h2database</groupId>
