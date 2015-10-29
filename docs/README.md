@@ -179,10 +179,10 @@ If you updated your software and/or mysql/db has been changed, or
 if you get a database error migration, you can fix with:
 
     Repair Command:
-    $ mvn -Dflyway.user=root -Dflyway.password= compile flyway:repair -P prod
+    $ mvn compile flyway:repair -P prod
     
     Migration Command:
-    $ mvn -Dflyway.user=root -Dflyway.password= compile flyway:migrate  -P prod
+    $ mvn compile flyway:migrate  -P prod
  
 Note: flyway.user = Your Database Username
       flyway.password = Your Database Password
