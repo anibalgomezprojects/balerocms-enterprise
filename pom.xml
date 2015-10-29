@@ -119,33 +119,7 @@
 
     <!-- Profiles: mvn -Pprofile-name spring-boot:run -->
     <profiles>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>1.2.5.RELEASE</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.springframework</groupId>
-                                <artifactId>springloaded</artifactId>
-                                <version>1.2.4.RELEASE</version>
-                            </dependency>
-                        </dependencies>
-                        <configuration>
-                            <arguments>
-                                <argument>--spring.profiles.active=dev</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+
         <profile>
             <id>prod</id>
             <activation>
@@ -184,6 +158,35 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                        <version>1.2.5.RELEASE</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.springframework</groupId>
+                                <artifactId>springloaded</artifactId>
+                                <version>1.2.4.RELEASE</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <arguments>
+                                <argument>--spring.profiles.active=dev</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
     <!-- (you don't need this if you are using a .RELEASE version) -->

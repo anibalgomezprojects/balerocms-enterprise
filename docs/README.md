@@ -124,11 +124,15 @@ And login with the sample data:
 
 ## Configuration
 
+### Finding configuration folder
+
+In **src/main/resources/config**, all user'sconfiguration live there.
+
 ### Changing Authentication For Production Database
 
 Edit:
 
-* "balerocms-enterprise/src/main/resources/application.properties".
+* "application-prod.properties" in resources folder.
 
 1. db.host = Host
 2. db.name = Database Name
@@ -161,7 +165,7 @@ Unit tests will be run in Development Mode (In-Memory Database), you can find th
 ### Running Unit Tests with MySQL
 
 Sometimes you need debug a real database, or just want to analyze fields. To do this edit
-application.properties. 
+application-prod.properties. 
             
 Usually "root" and "".        
 
