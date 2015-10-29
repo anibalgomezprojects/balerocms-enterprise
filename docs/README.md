@@ -30,10 +30,6 @@ Navigate to root folder and set read/write permissions:
     $ sudo chmod -R 077 balerocms-enterprise
     $ cd balerocms-enterprise
     
-Rename **setup-sample.properties** to **setup.properties**.
-
-    $ mv config/setup-sample.properties setup.properties
-    
 Choose Release:
 
     $ git checkout v1.0-BETA

@@ -2,7 +2,6 @@ balero.iml
 target
 logs
 psd
-config/setup.properties
 src/main/resources/static/images/uploads/*
 hs_err_pid*
 .idea
