@@ -275,40 +275,6 @@ Adding image gallery in content use:
 
 ## NOTES
 
-### Frameworks, Features And Toolchains in this software: 
-
-* Spring Boot
-* Spring MVC
-* Spring Security
-* AngularJS
-* Bootstrap / Font-Awesome
-* Flyway DB
-* Hibernate JPA
-* Asset Pipeline
-
-#### Features and Plugins: 
-
-* Spring MVC Controllers
-* AngularJS Asynchronous Spring REST Controllers
-* DB Migrations
-* Development Profiles
-* Embedded Server / Self-Executable Application
-* i18n Embedded / Both Front-End / Back-End Multi-Language
-* Method Security Protection Level (@Secure)
-* Resource Minification (HTML, CSS, Javascript)
-* Multiple Databases (SQL Standars)
-* User / Admin Dashboard
-* UX Elements
-* UX/Responsive Email Newsletter
-* Hot Swap
-* Spring Security Password Hash Encryption / Protection
-* AntiCross-site Scripting (XSS) / OWASP Java HTML Sanitizer
-
-## IoT Support on Enterprise version
-
-* Arduino
-* Raspberry Pi
-
 ## COMPILING DOCUMENTATION
 
 To compile this source, use:
