@@ -174,4 +174,12 @@ public class UserService {
         return user.getType();
     }
 
+    public User findOneByUsername(String username) {
+        return userRepository.findOneByUsername(username);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
 }

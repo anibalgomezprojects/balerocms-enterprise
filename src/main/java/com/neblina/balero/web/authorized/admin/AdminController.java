@@ -37,9 +37,6 @@ public class AdminController {
     private SettingService settingService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -69,9 +66,9 @@ public class AdminController {
     public String dashboardIndex(Model model) {
         model.asMap().clear();
         String username = userService.getMyUsername();
-        model.addAttribute("users", userRepository.findOneByUsername(username));
+        model.addAttribute("users", userService.findOneByUsername(username));
         model.addAttribute("totalPages", pageRepository.findAll().size());
-        model.addAttribute("totalUsers", userRepository.findAll().size());
+        model.addAttribute("totalUsers", userService.findAll().size());
         model.addAttribute("totalBlocks", blockRepository.findAll().size());
         model.addAttribute("totalPosts", blogRepository.findAll().size());
         model.addAttribute("totalComments", commentRepository.findAll().size());
@@ -134,7 +131,7 @@ public class AdminController {
     public String profileGet(Model model) {
         String username = userService.getMyUsername();
         log.debug("Username: " + username);
-        User user = userRepository.findOneByUsername(username);
+        User user = userService.findOneByUsername(username);
         model.addAttribute("user", user);
         return "authorized/profile";
     }
@@ -147,7 +144,7 @@ public class AdminController {
                               @RequestParam("email") String email) {
         log.debug("POST /admin/profile");
         model.addAttribute("success", 1);
-        User user = userRepository.findOneByUsername("admin");
+        User user = userService.findOneByUsername("admin");
         model.addAttribute("user", user);
         userService.saveAdminProfile(firstName, lastName, email);
         return "authorized/profile";
@@ -159,7 +156,7 @@ public class AdminController {
                                @RequestParam("newPassword") String newPassword) {
         log.debug("POST /admin/password");
         model.addAttribute("success", 1);
-        User user = userRepository.findOneByUsername("admin");
+        User user = userService.findOneByUsername("admin");
         model.addAttribute("user", user);
         userService.changeAdminPassword(newPassword);
         return "authorized/profile";
