@@ -35,9 +35,6 @@ import java.util.List;
 public class AdminAPIController {
 
     @Autowired
-    private PropertyRepository propertyRepository;
-
-    @Autowired
     private PropertyService propertyService;
 
     @Autowired
@@ -49,7 +46,7 @@ public class AdminAPIController {
     @RequestMapping("/properties")
     @ResponseBody
     public Property getPropertiesJSON() {
-        return propertyRepository.findOneById(1L);
+        return propertyService.findOneById(1L);
     }
 
     @Secured("ROLE_ADMIN")

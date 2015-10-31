@@ -59,4 +59,8 @@ public class PropertyService {
         return properties.getMainLanguage();
     }
 
+    public Property findOneById(Long id) {
+        return propertyRepository.findOneById(id);
+    }
+
 }
