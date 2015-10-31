@@ -14,11 +14,13 @@ import com.neblina.balero.service.repository.BlogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Service
@@ -88,6 +90,14 @@ public class BlogService {
         blog.setLikes(blog.getLikes()+1);
         blogRepository.save(blog);
         log.debug("Likes: " + blog.getLikes());
+    }
+
+    public List<Blog> findByStatusAndCode(String status, String code, Pageable pageable) {
+        return blogRepository.findByStatusAndCode(status, code, pageable);
+    }
+
+    public List<Blog> findAllByCode(String code, Pageable pageable) {
+        return blogRepository.findAllByCode(code, pageable);
     }
 
 }

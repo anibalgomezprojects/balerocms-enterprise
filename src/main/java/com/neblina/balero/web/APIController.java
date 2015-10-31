@@ -11,7 +11,6 @@ package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
-import com.neblina.balero.service.repository.BlogRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +29,6 @@ public class APIController {
     private static final Logger log = LogManager.getLogger(APIController.class.getName());
 
     @Autowired
-    private BlogRepository blogRepository;
-
-    @Autowired
     private BlogService blogService;
 
     @RequestMapping("/blog")
@@ -40,7 +36,7 @@ public class APIController {
     @Transactional(readOnly = true)
     public List<Blog> blog(Locale locale) {
         log.debug("Call for API /blog");
-        return blogRepository.findByStatusAndCode("success", locale.getLanguage(), null);
+        return blogService.findByStatusAndCode("success", locale.getLanguage(), null);
     }
 
     @RequestMapping("/blog/{id}")
@@ -58,7 +54,7 @@ public class APIController {
             //response.addCookie(userCookie);
             blogService.setLikes(id);
         //}
-        return blogRepository.findAllByCode(locale.getLanguage(), null);
+        return blogService.findAllByCode(locale.getLanguage(), null);
     }
 
 }
