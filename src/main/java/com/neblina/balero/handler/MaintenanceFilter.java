@@ -42,7 +42,7 @@ public class MaintenanceFilter implements Filter {
                 if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
                         url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||
                         url.contains("error") || url.contains("user/subscribe") || url.contains("offline.css")) {
-                    log.debug("Resource file or url allowed: " + url);
+                    // Resource file or url allowed. Nothing to do.
                 } else {
                     log.debug("Redirecting to offline page.");
                     response.sendRedirect("/offline/");
