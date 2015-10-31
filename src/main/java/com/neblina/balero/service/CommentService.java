@@ -70,4 +70,8 @@ public class CommentService {
         commentRepository.delete(comment);
     }
 
+    public List<Comment> findAllByPostPermalink(String permalink) {
+        return commentRepository.findAllByPostPermalink(permalink);
+    }
+
 }

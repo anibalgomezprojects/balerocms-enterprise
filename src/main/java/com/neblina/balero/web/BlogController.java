@@ -42,9 +42,6 @@ public class BlogController {
     private BlogRepository blogRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
-
-    @Autowired
     private CommentService commentService;
 
     @Autowired
@@ -73,7 +70,7 @@ public class BlogController {
         String username = userService.getMyUsername();
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
-        model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
+        model.addAttribute("comments", commentService.findAllByPostPermalink(permalink));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         model.addAttribute("username", username);
         if(!commentCookie.equals("commented")) {
