@@ -57,4 +57,8 @@ public class SettingService {
         propertyRepository.save(properties);
     }
 
+    public Setting findOneByCode(String code) {
+        return settingRepository.findOneByCode(code);
+    }
+
 }

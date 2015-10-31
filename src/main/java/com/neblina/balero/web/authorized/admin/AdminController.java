@@ -34,9 +34,6 @@ public class AdminController {
     private static final Logger log = LogManager.getLogger(AdminController.class.getName());
 
     @Autowired
-    private SettingRepository settingRepository;
-
-    @Autowired
     private SettingService settingService;
 
     @Autowired
@@ -86,7 +83,7 @@ public class AdminController {
     @RequestMapping("/settings")
     public String settings(Model model,
                            Locale locale) {
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+        model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         model.addAttribute("version", baleroService.getVersion());
         return "authorized/settings";
@@ -107,7 +104,7 @@ public class AdminController {
                                @RequestParam(value = "footer") String footer,
                                @RequestParam(value = "offlineMessage") String offlineMessage) {
         model.addAttribute("success", 1);
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+        model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         settingService.saveSettings(
                 locale.getLanguage(),
