@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BlockService {
 
@@ -48,6 +50,14 @@ public class BlockService {
     public void deleteBlock(Long id) {
         Block block = blockRepository.findOneById(id);
         blockRepository.delete(block);
+    }
+
+    public List<Block> findAll() {
+        return blockRepository.findAll();
+    }
+
+    public Block findOneById(Long id) {
+        return blockRepository.findOneById(id);
     }
 
 }
