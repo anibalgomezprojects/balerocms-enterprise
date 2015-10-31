@@ -41,9 +41,6 @@ public class AdminAPIController {
     private PropertyService propertyService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     private static final Logger log = LogManager.getLogger(AdminPageController.class.getName());
@@ -69,7 +66,7 @@ public class AdminAPIController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getUsersJSON() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @Secured("ROLE_ADMIN")
@@ -78,7 +75,7 @@ public class AdminAPIController {
     public User getAdminProfileInJSON() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
-        return userRepository.findOneByUsername(username);
+        return userService.findOneByUsername(username);
     }
 
     @Secured("ROLE_ADMIN")
