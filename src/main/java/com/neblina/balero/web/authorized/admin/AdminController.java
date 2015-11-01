@@ -9,11 +9,13 @@
 
 package com.neblina.balero.web.authorized.admin;
 
+import com.neblina.balero.domain.Template;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.*;
+import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.util.Locale;
 
 @Controller
@@ -79,10 +82,12 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
     public String settings(Model model,
-                           Locale locale) {
+                           Locale locale) throws IOException {
+        MediaManager mediaManager = new MediaManager();
         model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
         model.addAttribute("version", baleroService.getVersion());
+        model.addAttribute("templates", mediaManager.retrieveTemplates());
         return "authorized/settings";
     }
 

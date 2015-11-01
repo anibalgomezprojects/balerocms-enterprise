@@ -11,6 +11,7 @@ package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
 import com.neblina.balero.domain.Media;
+import com.neblina.balero.domain.Template;
 import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -35,7 +39,7 @@ public class MediaManagerTest {
     private static final Logger log = LogManager.getLogger(MediaManagerTest.class.getName());
 
     @Test
-    public void printUploadsFolderPath() throws IOException {
+    public void printUploadsFolderPathAndVerifyIfAtLeastHasOneImage() throws IOException {
         MediaManager mediaManager = new MediaManager();
         List<Media> list = mediaManager.retrieveImageGalleryList();
         int i = 0;
@@ -48,6 +52,17 @@ public class MediaManagerTest {
             );
         }
         assertThat(list.size(), greaterThan(0));
+    }
+
+    @Test
+    public void retrieveTemplateListAndVerifyIfAtLeastHasOneTemplate() throws IOException {
+        log.debug("retrieveTemplateList");
+        MediaManager mediaManager = new MediaManager();
+        List<Template> templates = mediaManager.retrieveTemplates();
+        for(Template template : templates) {
+            log.debug("Template: " + template.getName());
+        }
+        assertThat(templates.size(), greaterThan(0));
     }
 
 
