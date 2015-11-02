@@ -83,8 +83,12 @@
             <div class="form-group">
                 <label for="template" class="col-sm-2 control-label" th:text="#{properties.text.template}">Template</label>
                 <div class="col-sm-10">
-                    <select class="form-control" name="template" id="template" th:each="template : ${templates}">
-                        <option th:value="${template.name}" th:text="${template.name}">Template</option>
+                    <select class="form-control" name="template" id="template">
+                        <option th:value="${properties.template}" th:text="'Current ('+${properties.template}+')'"></option>
+                        <option
+                                th:value="${template.name}"
+                                th:text="${template.name}"
+                                th:each="template : ${templates}">Template</option>
                     </select>
                 </div>
             </div>

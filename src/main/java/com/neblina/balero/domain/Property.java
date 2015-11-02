@@ -23,6 +23,7 @@ public class Property {
     private boolean multiLanguage;
     private String url;
     private String mainLanguage;
+    private String template;
 
 
     public Long getId() {
@@ -73,6 +74,14 @@ public class Property {
         this.mainLanguage = mainLanguage;
     }
 
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+
     @Override
     public String toString() {
         return "Setting [" +
@@ -81,7 +90,9 @@ public class Property {
                 "offline=" + this.offline + "," +
                 "multiLanguage" + this.multiLanguage + "," +
                 "url" + this.url + "," +
-                "mainLanguage" + this.mainLanguage
+                "mainLanguage" + this.mainLanguage + "," +
+                "template" + this.template
                 + "]";
     }
+
 }

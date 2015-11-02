@@ -36,6 +36,7 @@ public class SettingService {
                              String administratorEmail,
                              String url,
                              String mainLanguage,
+                             String template,
                              // Properties
                              String tags,
                              String footer,
@@ -49,6 +50,7 @@ public class SettingService {
         properties.setAdministratorEmail(administratorEmail);
         properties.setUrl(url);
         properties.setMainLanguage(mainLanguage);
+        properties.setTemplate(template);
         // Properties
         settings.setTags(tags);
         settings.setFooter(footer);

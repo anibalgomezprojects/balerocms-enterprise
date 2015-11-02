@@ -104,7 +104,8 @@ public class AdminController {
                                // Properties
                                @RequestParam(value = "tags") String tags,
                                @RequestParam(value = "footer") String footer,
-                               @RequestParam(value = "offlineMessage") String offlineMessage) {
+                               @RequestParam(value = "offlineMessage") String offlineMessage,
+                               @RequestParam(value = "template") String template) {
         model.addAttribute("success", 1);
         model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
         model.addAttribute("properties", propertyRepository.findOneById(1L));
@@ -116,6 +117,7 @@ public class AdminController {
                 administratorEmail,
                 url,
                 mainLanguage,
+                template,
                 // Properties
                 tags,
                 footer,
