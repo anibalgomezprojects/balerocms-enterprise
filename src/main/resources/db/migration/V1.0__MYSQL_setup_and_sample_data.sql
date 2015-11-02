@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `setting` (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	code varchar(255) not null,
 	title varchar(255) not null,
-	title_header varchar(255) not null,
+	title_header text not null,
 	tags varchar(255) not null,
 	footer text not null,
 	offline_message text not null
