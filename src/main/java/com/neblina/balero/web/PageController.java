@@ -10,6 +10,7 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Page;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
@@ -36,13 +37,13 @@ public class PageController {
     private PageRepository pageRepository;
 
     @Autowired
-    private PropertyRepository propertyRepository;
+    private PropertyService propertyService;
 
     @RequestMapping(value = "/{permalink}" )
     String pageIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("properties", propertyService.findOneById(1L));
         try {
             Page page = pageRepository.findOneByPermalink(permalink);
             if(page.getPermalink() == null) {
@@ -52,7 +53,7 @@ public class PageController {
         } catch (Exception e) {
             model.addAttribute("error404", 1);
         }
-        return "silbato/page";
+        return propertyService.getTemplate() + "/page";
     }
 
 }
