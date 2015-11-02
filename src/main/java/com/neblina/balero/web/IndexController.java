@@ -9,6 +9,7 @@
 
 package com.neblina.balero.web;
 
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlockRepository;
 import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.service.repository.PropertyRepository;
@@ -42,7 +43,7 @@ public class IndexController {
     private PageRepository pageRepository;
 
     @Autowired
-    private PropertyRepository propertyRepository;
+    private PropertyService propertyService;
 
     @RequestMapping("/")
     String home(Model model, Locale locale) {
@@ -51,8 +52,8 @@ public class IndexController {
         model.addAttribute("settings", settingRepository.findOneByCode(lang));
         model.addAttribute("blocks", blockRepository.findAllByCode(lang));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
-        return "silbato/index";
+        model.addAttribute("properties", propertyService.findOneById(1L));
+        return propertyService.getTemplate() + "/index";
     }
 
     @RequestMapping("/logout")

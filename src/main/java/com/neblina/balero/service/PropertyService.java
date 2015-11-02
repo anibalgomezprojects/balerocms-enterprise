@@ -63,4 +63,9 @@ public class PropertyService {
         return propertyRepository.findOneById(id);
     }
 
+    public String  getTemplate() {
+        Property properties = propertyRepository.findOneById(1L);
+        return properties.getTemplate();
+    }
+
 }
