@@ -11,6 +11,7 @@ package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.CommentService;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +46,7 @@ public class BlogController {
     private CommentService commentService;
 
     @Autowired
-    private PropertyRepository propertyRepository;
+    private PropertyService propertyService;
 
     @Autowired
     private UserService userService;
@@ -54,12 +55,12 @@ public class BlogController {
     String blogIndex(Model model, Locale locale) {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("properties", propertyService.findOneById(1L));
         Pageable lastTen = new PageRequest(0, 10);
         //model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
         model.addAttribute("posts", blogRepository.findByStatusAndCode("success", locale.getLanguage(), null));
         model.addAttribute("lastTen", blogRepository.findByStatusAndCode("success", locale.getLanguage(), lastTen));
-        return "silbato/blog";
+        return propertyService.getTemplate() + "/blog";
     }
 
     @RequestMapping(value = "/{permalink}", method = RequestMethod.GET)
@@ -71,7 +72,7 @@ public class BlogController {
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         model.addAttribute("comments", commentService.findAllByPostPermalink(permalink));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("properties", propertyService.findOneById(1L));
         model.addAttribute("username", username);
         if(!commentCookie.equals("commented")) {
             model.addAttribute("addComment", 1);
@@ -87,7 +88,7 @@ public class BlogController {
         } catch (Exception e) {
             model.addAttribute("error404", 1);
         }
-        return "silbato/post";
+        return propertyService.getTemplate() + "/post";
     }
 
     @RequestMapping(value = "/{permalink}", method = RequestMethod.POST)
