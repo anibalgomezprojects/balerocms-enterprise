@@ -183,16 +183,6 @@ if you get a database error migration, you can fix with:
     
     Migration Command:
     $ mvn compile flyway:migrate  -P prod
- 
-Note: flyway.user = Your Database Username
-      flyway.password = Your Database Password
-      Usually "root" and "".
-
-If you need other values for db host and db name edit:
-
-Line 180 in pom.xml: < url >jdbc:mysql://localhost:3306/balerocms_enterprise< /url > (For Flywaydb Migrations).
-
-Default values are "localhost" and "balerocms_enterprise"
 
 See **Changing Authentication For Production Database**.
 
