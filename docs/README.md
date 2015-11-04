@@ -213,10 +213,6 @@ $ bower install
 
 It will be downloaded in resources folder **/static/bower_components**.
 
-## Template Engine
-
-Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
-
 ## Security Bugs / Reports
 
 Tested with Mantra WebBrowser. If you found a bug. Please, notify us.
@@ -272,6 +268,35 @@ Adding image gallery in content use:
             <img src="..." alt="..." class="img-gallery img-thumbnail" />
         </div>
     </div>
+    
+### Template System
+
+Balero CMS use ThymeLeaf as template engine, and extends it with AngularJS.
+
+Using template engine. Inside "resources/templates".
+
+Template Structure:
+
+    /
+    +- src/
+       +- main/
+          +- resources/
+              +- templates/
+                 +- $TemplateName
+                    +- css
+                    +- images
+                    +- fragments
+                        +- header.html
+                        +- footer.html
+                        +- mavbar.html
+                        +- metas.html
+                    *.html
+                    
+All files inside "Template Name" will be **public**.
+
+#### Calling template resource from HTML Template
+
+    <link rel="stylesheet" type="text/css" href="/$TemplateName/css/theme.css">
 
 ## NOTES
 
