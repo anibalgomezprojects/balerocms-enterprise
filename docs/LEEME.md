@@ -16,8 +16,11 @@ Para clonar o actualizar el proyecto:
 
 ### Acerca del proyecto
 
-Balero CMS Enterprise es un sistema ultra-ligero, sencillo y un ultra-rápido gestioandor de contenido web.
-Utiliza Java para el Back-End y AngularJS para el Front-End y sus servicios API REST.
+Balero CMS Enterprise es un sistema ultra-ligero, sencillo y un ultra-rápido gestionador de contenido web.
+Utiliza el lenguaje de programación Java para la administración del Panel y AngularJS para el sistema de plantillas y sus servicios asincronos de API REST.
+
+Balero CMS es una plataforma empresarial de contenido general que trabaja y se extiende mediante módulos, es decir
+cualquier funcionalidad puede integrarse a traves de su arquitectura MVC y JPA mediante sus entidades y clases.
 
 ### Comienzo
 
