@@ -6,6 +6,7 @@ ToDo List
 * Like button need to be fixed (not +1 likes)
 - Settings / Summernote Image will upload always in the first box textarea.
 - titleHeaders only accepts 255 chars. Need to be more.
+* Template Directoy Unification.
 
 \* Pending,
 \- Fixed

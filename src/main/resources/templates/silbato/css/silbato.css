@@ -34,7 +34,7 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(/images/banner-bg.png) no-repeat center center;
+    background: url(/silbato/images/banner-bg.png) no-repeat center center;
     background-size: cover;
 }
 
@@ -121,7 +121,7 @@ img {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(/images/banner-bg.png) no-repeat center center;
+    background: url(/silbato/images/banner-bg.png) no-repeat center center;
     background-size: cover;
 }
 
