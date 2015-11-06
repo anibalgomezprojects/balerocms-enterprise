@@ -13,7 +13,6 @@ import com.neblina.balero.domain.Blog;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.BlogRepository;
-import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,6 @@ public class UserAPIController {
     private static final Logger log = LogManager.getLogger(UserService.class.getName());
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -44,7 +40,7 @@ public class UserAPIController {
     @ResponseBody
     public User getUserProfileInJSON() {
         String username = userService.getMyUsername();
-        return userRepository.findOneByUsername(username);
+        return userService.findOneByUsername(username);
     }
 
 
