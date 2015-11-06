@@ -10,7 +10,6 @@
 package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.CommentService;
-import com.neblina.balero.service.repository.CommentRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

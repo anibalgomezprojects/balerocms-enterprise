@@ -12,7 +12,6 @@ package com.neblina.balero.web.authorized.admin;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.EmailService;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,7 +12,6 @@ package com.neblina.balero.web.authorized.admin;
 import com.github.slugify.Slugify;
 import com.neblina.balero.service.PageService;
 import com.neblina.balero.service.PropertyService;
-import com.neblina.balero.service.repository.PageRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

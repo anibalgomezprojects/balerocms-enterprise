@@ -9,7 +9,6 @@
 
 package com.neblina.balero.web.authorized.admin;
 
-import com.neblina.balero.domain.Template;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.SettingService;

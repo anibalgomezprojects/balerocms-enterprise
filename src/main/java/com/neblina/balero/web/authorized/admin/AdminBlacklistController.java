@@ -9,7 +9,6 @@
 
 package com.neblina.balero.web.authorized.admin;
 
-import com.neblina.balero.service.BlacklistService;
 import com.neblina.balero.service.repository.BlacklistRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

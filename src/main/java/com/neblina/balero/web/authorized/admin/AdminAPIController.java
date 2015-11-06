@@ -14,8 +14,6 @@ import com.neblina.balero.domain.Property;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.PropertyRepository;
-import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
