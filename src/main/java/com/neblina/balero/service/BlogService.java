@@ -100,4 +100,12 @@ public class BlogService {
         return blogRepository.findAllByCode(code, pageable);
     }
 
+    public List<Blog> findAll() {
+        return blogRepository.findAll();
+    }
+
+    public Blog findOneById(Long id) {
+        return blogRepository.findOneById(id);
+    }
+
 }
