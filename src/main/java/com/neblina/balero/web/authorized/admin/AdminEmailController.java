@@ -42,9 +42,6 @@ public class AdminEmailController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String email(Model model) {
@@ -57,7 +54,7 @@ public class AdminEmailController {
     public String emailPost(@RequestParam("subject") String subject,
                                  @RequestParam("messageBody") String messageBody,
                                  Model model, Locale locale) throws MessagingException, UnsupportedEncodingException {
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.findAll();
         for(User user: users) {
             log.debug("Sending Email To..." + user.getEmail());
             this.emailService.sendSimpleMail(user.getFirstName(), user.getEmail(), subject, messageBody, locale);
