@@ -12,7 +12,6 @@ package com.neblina.balero.web;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlockRepository;
 import com.neblina.balero.service.repository.PageRepository;
-import com.neblina.balero.service.repository.PropertyRepository;
 import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
