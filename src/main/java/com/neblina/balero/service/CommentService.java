@@ -74,4 +74,8 @@ public class CommentService {
         return commentRepository.findAllByPostPermalink(permalink);
     }
 
+    public Comment findOneById(Long id) {
+        return commentRepository.findOneById(id);
+    }
+
 }

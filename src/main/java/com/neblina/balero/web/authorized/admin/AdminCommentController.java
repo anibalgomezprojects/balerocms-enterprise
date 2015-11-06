@@ -29,9 +29,6 @@ public class AdminCommentController {
     private static final Logger log = LogManager.getLogger(AdminCommentController.class.getName());
 
     @Autowired
-    private CommentRepository commentRepository;
-
-    @Autowired
     private CommentService commentService;
 
     @Secured("ROLE_ADMIN")
@@ -43,7 +40,7 @@ public class AdminCommentController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String commentEditGet(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("comments", commentRepository.findOneById(id));
+        model.addAttribute("comments", commentService.findOneById(id));
         return "authorized/comment_edit";
     }
 
