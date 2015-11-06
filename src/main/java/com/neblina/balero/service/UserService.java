@@ -198,4 +198,7 @@ public class UserService {
         return userRepository.findOneById(id);
     }
 
+    public User findOneByEmail(String email) {
+        return userRepository.findOneByEmail(email);
+    }
 }

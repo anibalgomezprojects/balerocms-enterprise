@@ -108,4 +108,8 @@ public class BlogService {
         return blogRepository.findOneById(id);
     }
 
+    public List<Blog> findAllByAuthor(String username) {
+        return blogRepository.findAllByAuthor(username);
+    }
+
 }

@@ -34,9 +34,6 @@ public class UserController {
     private static final Logger log = LogManager.getLogger(UserController.class.getName());
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -87,13 +84,13 @@ public class UserController {
             model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
             return "silbato/register";
         }
-        User usr = userRepository.findOneByUsername(username);
+        User usr = userService.findOneByUsername(username);
         if(usr != null) {
             log.debug("Username value: " + usr.getUsername());
         }
         if(usr == null) {
             log.debug("Username NOT found");
-            User usr2 = userRepository.findOneByEmail(email);
+            User usr2 = userService.findOneByEmail(email);
             if(usr2 != null) { // email found
                 log.debug("Email already exists. Register with this email.");
                 userService.deleteUserEmail(usr2.getId()); // Clean
@@ -110,7 +107,7 @@ public class UserController {
     @RequestMapping(value = {"", "/", "/dashboard"} )
     public String dashboardUser(Model model) {
         String username = userService.getMyUsername();
-        model.addAttribute("users", userRepository.findOneByUsername(username));
+        model.addAttribute("users", userService.findOneByUsername(username));
         model.addAttribute("posts", blogRepository.findAllByAuthor(username));
         model.addAttribute("url", "user");
         return "authorized/dashboard";
@@ -122,7 +119,7 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username
         log.debug("Username: " + username);
-        User user = userRepository.findOneByUsername(username);
+        User user = userService.findOneByUsername(username);
         model.addAttribute("user", user);
         return "authorized/profile";
     }
@@ -136,7 +133,7 @@ public class UserController {
         log.debug("POST /user/profile");
         String username = userService.getMyUsername();
         model.addAttribute("success", 1);
-        User user = userRepository.findOneByUsername(username);
+        User user = userService.findOneByUsername(username);
         model.addAttribute("user", user);
         model.addAttribute("url", "user");
         userService.saveUserProfile(firstName, lastName, email);
@@ -150,7 +147,7 @@ public class UserController {
         log.debug("POST /user/password");
         String username = userService.getMyUsername();
         model.addAttribute("success", 1);
-        User user = userRepository.findOneByUsername(username);
+        User user = userService.findOneByUsername(username);
         model.addAttribute("user", user);
         model.addAttribute("url", "user");
         userService.changeUserPassword(newPassword);
