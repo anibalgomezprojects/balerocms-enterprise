@@ -10,7 +10,6 @@
 package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Locale;
-
 @Controller
 @RequestMapping("/admin/user")
 public class AdminUserController {
@@ -31,15 +28,12 @@ public class AdminUserController {
     private static final Logger log = LogManager.getLogger(AdminUserController.class.getName());
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private UserService userService;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "")
     public String userList(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userService.findAll());
         return "authorized/user";
     }
 
@@ -53,7 +47,7 @@ public class AdminUserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String userGet(Model model,
                                   @PathVariable("id") Long id) {
-        model.addAttribute("users", userRepository.findOneById(id));
+        model.addAttribute("users", userService.findOneById(id));
         return "authorized/user_edit";
     }
 
@@ -65,7 +59,7 @@ public class AdminUserController {
                                   @RequestParam("lastName") String lastName,
                                   @RequestParam("email") String email) {
         model.addAttribute("success", 1);
-        model.addAttribute("users", userRepository.findOneById(id));
+        model.addAttribute("users", userService.findOneById(id));
         userService.updateUserInfo(
                 id,
                 firstName,
@@ -80,7 +74,7 @@ public class AdminUserController {
     public String deleteUserGet(Model model,
                                   @PathVariable("id") Long id) {
         model.addAttribute("success", 1);
-        model.addAttribute("users", userRepository.findOneById(id));
+        model.addAttribute("users", userService.findOneById(id));
         userService.deleteUserEmail(id);
         return "redirect:/admin/user";
     }
@@ -89,7 +83,7 @@ public class AdminUserController {
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String userEmailListPost(@RequestParam("firstName") String firstName,
                                 @RequestParam("email") String email,
-                                Model model, Locale locale) {
+                                Model model) {
         model.addAttribute("success", 1);
         userService.createUserAccount("temp", "temp", "temp", firstName, "temp", email, true, "ROLE_ANONYMOUS", "user");
         return "redirect:/admin/user";
