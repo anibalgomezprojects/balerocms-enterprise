@@ -14,9 +14,7 @@ import com.neblina.balero.domain.Blog;
 import com.neblina.balero.service.BlogService;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.BlogRepository;
 import com.neblina.balero.service.repository.CommentRepository;
-import com.neblina.balero.service.repository.UserRepository;
 import com.neblina.balero.util.AntiXSS;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,13 +41,7 @@ public class UserBlogController {
     private BlogService blogService;
 
     @Autowired
-    private BlogRepository blogRepository;
-
-    @Autowired
     private CommentRepository commentRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -61,7 +53,7 @@ public class UserBlogController {
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
         String username = userService.getMyUsername();
-        model.addAttribute("posts", blogRepository.findAllByAuthor(username));
+        model.addAttribute("posts", blogService.findAllByAuthor(username));
         model.addAttribute("url", "user");
         return "authorized/blog";
     }
@@ -72,12 +64,12 @@ public class UserBlogController {
                               @PathVariable("id") Long id,
                               @PathVariable("permalink") String permalink) {
         try {
-            Blog blog = blogRepository.findOneById(id);
+            Blog blog = blogService.findOneById(id);
             if(!blog.getAuthor().equals(userService.getMyUsername())) {
                 throw new Exception("You can't access to another user post!");
             }
             model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
-            model.addAttribute("posts", blogRepository.findOneById(id));
+            model.addAttribute("posts", blogService.findOneById(id));
             model.addAttribute("url", userService.getUserType());
             model.addAttribute("multiLanguage" , propertyService.isMultiLanguage());
         } catch (Exception e) {
@@ -118,7 +110,7 @@ public class UserBlogController {
                     "pending"
             );
             model.addAttribute("success", 1);
-            model.addAttribute("posts", blogRepository.findOneById(id));
+            model.addAttribute("posts", blogService.findOneById(id));
         } catch (Exception e) {
             model.addAttribute("securityError", e.getMessage());
         }
@@ -132,7 +124,7 @@ public class UserBlogController {
         String username = userService.getMyUsername();
         LocalDate today = LocalDate.now();
         model.addAttribute("date", today);
-        model.addAttribute("user", userRepository.findOneByUsername(username));
+        model.addAttribute("user", userService.findOneByUsername(username));
         model.addAttribute("url", "user");
         model.addAttribute("multiLanguage" , propertyService.isMultiLanguage());
         log.debug("Date: " + today);
