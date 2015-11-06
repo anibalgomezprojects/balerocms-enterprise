@@ -36,22 +36,19 @@ public class AdminPageController {
     private PageService pageService;
 
     @Autowired
-    private PageRepository pageRepository;
-
-    @Autowired
     private PropertyService propertyService;
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String page(Model model) {
-        model.addAttribute("pages", pageRepository.findAll());
+        model.addAttribute("pages", pageService.findAll());
         return "authorized/page";
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String pageEditGet(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("pages", pageRepository.findOneById(id));
+        model.addAttribute("pages", pageService.findOneById(id));
         model.addAttribute("multiLang", propertyService.isMultiLanguage());
         return "authorized/page_edit";
     }
@@ -77,7 +74,7 @@ public class AdminPageController {
                 author
         );
         model.addAttribute("success", 1);
-        model.addAttribute("pages", pageRepository.findOneById(id));
+        model.addAttribute("pages", pageService.findOneById(id));
         model.addAttribute("multiLang", propertyService.isMultiLanguage());
         return "authorized/page_edit";
     }

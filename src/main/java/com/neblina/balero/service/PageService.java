@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PageService {
 
@@ -62,6 +64,14 @@ public class PageService {
     public void deletePage(Long id) {
         Page page = pageRepository.findOneById(id);
         pageRepository.delete(page);
+    }
+
+    public List<Page> findAll() {
+        return pageRepository.findAll();
+    }
+
+    public Page findOneById(Long id) {
+        return pageRepository.findOneById(id);
     }
 
 }
