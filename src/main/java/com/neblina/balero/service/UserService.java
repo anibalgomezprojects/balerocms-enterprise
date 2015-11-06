@@ -121,8 +121,20 @@ public class UserService {
         log.debug("Changing password for admin...");
     }
 
+    /**
+     * @deprecated
+     */
     public void updateUserEmail(Long id, String email) {
         User user = userRepository.findOneById(id);
+        user.setEmail(email);
+        userRepository.save(user);
+        log.debug("Updating user's email.");
+    }
+
+    public void updateUserInfo(Long id, String firstName, String lastName, String email) {
+        User user = userRepository.findOneById(id);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         user.setEmail(email);
         userRepository.save(user);
         log.debug("Updating user's email.");

@@ -61,10 +61,17 @@ public class AdminUserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public String userPost(Model model,
                                   @PathVariable("id") Long id,
+                                  @RequestParam("firstName") String firstName,
+                                  @RequestParam("lastName") String lastName,
                                   @RequestParam("email") String email) {
         model.addAttribute("success", 1);
         model.addAttribute("users", userRepository.findOneById(id));
-        userService.updateUserEmail(id, email);
+        userService.updateUserInfo(
+                id,
+                firstName,
+                lastName,
+                email
+        );
         return "authorized/user_edit";
     }
 
