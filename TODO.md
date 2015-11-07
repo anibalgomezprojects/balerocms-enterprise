@@ -7,6 +7,7 @@ ToDo List
 - Settings / Summernote Image will upload always in the first box textarea.
 - titleHeaders only accepts 255 chars. Need to be more.
 * Template Directoy Unification.
+* Send Email Only To Subscribed Users.
 
 \* Pending,
 \- Fixed
