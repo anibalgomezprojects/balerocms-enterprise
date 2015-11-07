@@ -175,6 +175,10 @@ public class UserService {
         return userRepository.findAll().size();
     }
 
+    public int getSubscribedUsers() {
+        return userRepository.findAllBySubscribed(true).size();
+    }
+
     public String getMyUsername() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName(); //get logged in username

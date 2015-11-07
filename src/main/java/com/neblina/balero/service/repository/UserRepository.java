@@ -26,4 +26,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User findOneByEmail(String email);
 
+    List<User> findAllBySubscribed(boolean b);
+
 }

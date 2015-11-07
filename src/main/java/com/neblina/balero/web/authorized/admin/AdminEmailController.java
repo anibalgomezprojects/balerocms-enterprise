@@ -44,7 +44,7 @@ public class AdminEmailController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String email(Model model) {
-        model.addAttribute("totalUsers", userService.getTotalUsers());
+        model.addAttribute("totalUsers", userService.getSubscribedUsers());
         return "authorized/email";
     }
 
@@ -55,10 +55,12 @@ public class AdminEmailController {
                                  Model model, Locale locale) throws MessagingException, UnsupportedEncodingException {
         List<User> users = userService.findAll();
         for(User user: users) {
-            log.debug("Sending Email To..." + user.getEmail());
-            this.emailService.sendSimpleMail(user.getFirstName(), user.getEmail(), subject, messageBody, locale);
+            if(user.getSubscribed()) {
+                log.debug("Sending Email To..." + user.getEmail());
+                this.emailService.sendSimpleMail(user.getFirstName(), user.getEmail(), subject, messageBody, locale);
+            }
         }
-        model.addAttribute("totalUsers", userService.getTotalUsers());
+        model.addAttribute("totalUsers", userService.getSubscribedUsers());
         model.addAttribute("success", 1);
         return "authorized/email";
     }
