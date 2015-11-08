@@ -13,7 +13,7 @@
         <div class="row row-centered">
             <div th:each="page : ${pages}">
                 <ul class="unstyled">
-                    <li class="footer-link col-xs-3 col-md-3 unstyled">
+                    <li class="footer-link col-xs-4 col-md-4 unstyled">
                         <a href="#" th:href="@{'/page/'+${page.permalink}}" th:text="${page.title}">_TITLE</a>
                     </li>
                 </ul>

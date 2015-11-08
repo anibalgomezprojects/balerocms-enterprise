@@ -107,7 +107,6 @@ h6 {
 
 footer {
     padding: 10px 0;
-    background-color: #f8f8f8;
 }
 
 /** Responsive Images **/
@@ -183,11 +182,8 @@ nav.custom.navbar-default li a {
     margin-right: auto;
     width: 100%;
     text-align: center;
-    padding-top: 55px;
-    padding-bottom: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: #f8f8f8;
+    padding-top: 30px;
+    padding-bottom: 10px;
     font-weight: lighter;
 }
 
@@ -265,7 +261,6 @@ p.copyright {
 .unstyled {
     list-style-type: none;
     margin-bottom: 10px;
-    text-align: left;
 }
 
 @media(max-width:767px) {
@@ -284,7 +279,6 @@ p.copyright {
     .footer-link {
         display: inline-block;
         width: 100%;
-        text-align: left;
         margin-left: -75px;
     }
 
@@ -311,6 +305,12 @@ p.copyright {
 
     .post {
         float: left;
+    }
+
+    .pages {
+        margin-left: 20px;
+        margin-bottom: -15px;
+        text-align: left;
     }
 
     .sidebar {
