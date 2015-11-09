@@ -9,6 +9,7 @@ ToDo List
 - Template Directoy Unification.
 - Send Email Only To Subscribed Users.
 - i18n Need to be fixed  Dashboard / Static Pages / New Page / Page Title.
+* Email validator .com.mx do not accept this type of emails.
 
 \* Pending,
 \- Fixed

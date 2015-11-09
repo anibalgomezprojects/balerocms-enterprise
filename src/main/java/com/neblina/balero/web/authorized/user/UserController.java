@@ -10,6 +10,7 @@
 package com.neblina.balero.web.authorized.user;
 
 import com.neblina.balero.domain.User;
+import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.UserService;
 import com.neblina.balero.service.repository.*;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +47,7 @@ public class UserController {
     private PageRepository pageRepository;
 
     @Autowired
-    private PropertyRepository propertyRepository;
+    private PropertyService propertyService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model,
@@ -58,8 +59,8 @@ public class UserController {
         String lang = locale.getLanguage();
         model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
-        return "silbato/register";
+        model.addAttribute("properties", propertyService.findOneById(1L));
+        return propertyService.getTemplate() + "/register";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -73,7 +74,7 @@ public class UserController {
                            @RequestParam(value = "email") String email,
                            @ModelAttribute(value="user") @Valid User user, BindingResult bindingResultUser) {
         log.debug("Creating user... " + username);
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
+        model.addAttribute("properties", propertyService.findOneById(1L));
         if(!password.equals(passwordVerify)) {
             bindingResultUser.rejectValue("passwordVerify", "error.passwordVerify", "Do not match.");
         }
@@ -82,7 +83,7 @@ public class UserController {
         }
         if(bindingResultUser.hasErrors()) {
             model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
-            return "silbato/register";
+            return propertyService.getTemplate() +  "/register";
         }
         User usr = userService.findOneByUsername(username);
         if(usr != null) {
