@@ -193,7 +193,7 @@ body {
     width: 64px;
     height: 64px;
     margin-bottom: 7%;
-    background-image: url('/images/spinner.gif');
+    background-image: url('/authorized/images/spinner.gif');
 }
 .space {
     margin-top: 20px;

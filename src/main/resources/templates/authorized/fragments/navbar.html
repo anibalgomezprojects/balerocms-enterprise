@@ -21,20 +21,20 @@
                 <span class="icon-bar"></span>
             </button>
             <ul class="list-unstyled">
-                <li><img src="/images/logos/dashboard.png" class="dashboard-logo" /></li>
+                <li><img src="/authorized/images/logos/dashboard.png" class="dashboard-logo" /></li>
             </ul>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard"><img src="/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
-                <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard"><img src="/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
+                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/dashboard"><img src="/authorized/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
+                <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/dashboard"><img src="/authorized/images/toolbar/home-icon.png" th:alt-title="#{navbar.home}" /></a></li>
 
-                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/profile"><img src="/images/toolbar/profile-icon.png" th:alt-title="#{navbar.profile}" /></a></li>
-                <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/profile"><img src="/images/toolbar/profile-icon.png" th:alt-title="#{navbar.profile}" /></a></li>
+                <li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin/profile"><img src="/authorized/images/toolbar/profile-icon.png" th:alt-title="#{navbar.profile}" /></a></li>
+                <li><a sec:authorize="hasRole('ROLE_USER')" href="/user/profile"><img src="/authorized/images/toolbar/profile-icon.png" th:alt-title="#{navbar.profile}" /></a></li>
 
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin/settings"><img src="/images/toolbar/settings-icon.png" th:alt-title="#{navbar.settings}" /></a></li>
-                <li><a href="/" target="_blank"><img src="/images/toolbar/preview-icon.png" th:alt-title="#{navbar.preview}" /></a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin/settings"><img src="/authorized/images/toolbar/settings-icon.png" th:alt-title="#{navbar.settings}" /></a></li>
+                <li><a href="/" target="_blank"><img src="/authorized/images/toolbar/preview-icon.png" th:alt-title="#{navbar.preview}" /></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
