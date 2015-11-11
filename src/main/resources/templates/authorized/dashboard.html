@@ -21,23 +21,35 @@
             <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                 <b th:text="#{dashboard.menu}">Menu</b>
                 <hr />
-                <a href="/admin/settings" th:text="#{dashboard.setting}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
-                <br />
-                <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
-                <br />
-                <a href="/admin/block" th:text="#{dashboard.block}">_BLOCKS</a>
-                <br />
-                <a href="/admin/email" th:text="#{dashboard.email}">_EMAIL</a>
-                <br />
-                <a href="/admin/user" th:text="#{dashboard.user}">_USER</a>
-                <br />
-                <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
-                <br />
-                <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
-                <br />
-                <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
-                <br />
-                <a href="/admin/media" th:text="#{media.text.title}">Media Manager</a>
+                <ul class="unstyled">
+                    <li>
+                        <a href="/admin/settings" th:text="#{dashboard.setting}"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> _GLOBAL_SETTINGS</a>
+                    </li>
+                    <li>
+                        <a href="/admin/profile" th:text="#{dashboard.profile}">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="/admin/block" th:text="#{dashboard.block}">_BLOCKS</a>
+                    </li>
+                    <li>
+                        <a href="/admin/email" th:text="#{dashboard.email}">_EMAIL</a>
+                    </li>
+                    <li>
+                        <a href="/admin/user" th:text="#{dashboard.user}">_USER</a>
+                    </li>
+                    <li>
+                        <a href="/admin/page" th:text="#{static.page.title}">Static Pages</a>
+                    </li>
+                    <li>
+                        <a href="/admin/blog" th:text="#{blog.text.title}">Blog</a>
+                    </li>
+                    <li>
+                        <a href="/admin/blacklist" th:text="#{blacklist.text.title}">Black List</a>
+                    </li>
+                    <li>
+                        <a href="/admin/media" th:text="#{media.text.title}">Media Manager</a>
+                    </li>
+                </ul>
             </div>
             <div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
                 <b th:text="#{dashboard.portal}">Portal</b>
