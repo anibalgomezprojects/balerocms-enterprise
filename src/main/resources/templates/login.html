@@ -16,7 +16,7 @@
     <form class="form-signin" th:action="@{/login}" method="post">
         <div class="form-signin-heading">
             <a href="http://www.balerocms.com/">
-                <img src="/images/logos/login.png" class="login_logo" />
+                <img src="/images/login.png" class="login_logo" />
             </a>
             <p class="bg-danger text-info" th:if="${param.error}" th:text="#{login.error}">
                 Invalid username and password.

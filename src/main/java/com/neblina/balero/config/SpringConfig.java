@@ -119,12 +119,14 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         return slr;
     }
 
+    /**
      @Bean
      public LocaleChangeInterceptor localeChangeInterceptor() {
      LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
      lci.setParamName("lang");
      return lci;
      }
+     **/
 
     @Bean
     public LocaleInterceptor localeInterceptor() {
@@ -140,7 +142,7 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeInterceptor());
-        registry.addInterceptor(localeChangeInterceptor());
+        //registry.addInterceptor(localeChangeInterceptor());
         registry.addInterceptor(new ExecuteTimeInterceptor());
     }
 

@@ -8,7 +8,10 @@
 
 package com.neblina.balero.handler;
 
+import com.neblina.balero.domain.Information;
+import com.neblina.balero.service.InformationService;
 import com.neblina.balero.service.PropertyService;
+import com.neblina.balero.service.repository.InformationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * Adapted for Spring Boot
@@ -33,6 +38,9 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter{
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private InformationRepository informationRepository;
 
     private final Logger log = LoggerFactory.getLogger(LocaleInterceptor.class);
 
@@ -58,38 +66,36 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter{
                              HttpServletResponse response, Object handler)
             throws Exception {
 
-        String localLocale = null;
         String newLocale = request.getParameter(getParamName());
         if(newLocale != null) {
-            // user clicks lang
-            Cookie cookie = new Cookie("sessionLocale", newLocale);
-            cookie.setMaxAge(60*60); //1 hour
-            response.addCookie(cookie);
+            Information information = new Information();
+            information.setIp(getUserIp());
+            information.setLocale(newLocale);
+            informationRepository.save(information);
+            LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+            localeResolver.setLocale(request, response, StringUtils.parseLocaleString(information.getLocale()));
         }
-
-        Cookie[] cookies = request.getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("sessionLocale")) {
-                    localLocale = cookie.getValue();
-                    log.debug("Cookie Value: "+ cookie.getValue());
+        if(newLocale == null) {
+            try {
+                Information information = informationRepository.findOneByIp(getUserIp());
+                if(information == null) {
+                    throw new Exception("Ip Not Found");
                 }
+                LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+                localeResolver.setLocale(request, response, StringUtils.parseLocaleString(information.getLocale()));
+            } catch (Exception e) {
+                // ip not found set default language system
+                LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+                localeResolver.setLocale(request, response, StringUtils.parseLocaleString(propertyService.getMainLanguage()));
             }
         }
-
-        // Cookie lang Dashboad Lang Property
-        if(localLocale == null) {
-            LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-            localeResolver.setLocale(request, response, StringUtils.parseLocaleString(propertyService.getMainLanguage()));
-        }
-        // Custom User Lang
-        if(localLocale != null) {
-            LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-            localeResolver.setLocale(request, response, StringUtils.parseLocaleString(localLocale));
-        }
-
         return true;
+
+    }
+
+    public String getUserIp() throws UnknownHostException {
+        InetAddress ip = InetAddress.getLocalHost();
+        return ip.getHostAddress();
     }
 
 }
