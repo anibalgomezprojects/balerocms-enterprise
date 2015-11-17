@@ -27,6 +27,11 @@ h6 {
     font-weight: 700;
 }
 
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .background {
     background: #fff;
 }

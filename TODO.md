@@ -12,6 +12,7 @@ ToDo List
 * Email validator .com.mx do not accept this type of emails.
 - Dashboard Multi-Language Doesn't work
 - Newsletter Success Message
+* Dashboard / Static Pages always is 0.
 
 \* Pending,
 \- Fixed
