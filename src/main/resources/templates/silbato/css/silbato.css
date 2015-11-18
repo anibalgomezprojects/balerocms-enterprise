@@ -182,16 +182,6 @@ nav.custom.navbar-default li a {
     letter-spacing: 2px;
 }
 
-.pages {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    text-align: center;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    font-weight: lighter;
-}
-
 .post {
     float: right;
 }
@@ -270,6 +260,20 @@ p.copyright {
 .unstyled {
     list-style-type: none;
     margin-bottom: 10px;
+    text-align: left;
+}
+
+.unstyled a {
+    font-weight: lighter;
+    color: #a9a9a9;
+}
+
+.pages {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 @media(max-width:767px) {
@@ -283,12 +287,6 @@ p.copyright {
     .container, .row {
         padding-left: 20px;
         padding-right: 20px;
-    }
-
-    .footer-link {
-        display: inline-block;
-        width: 100%;
-        margin-left: -75px;
     }
 
     .custom {
@@ -317,9 +315,11 @@ p.copyright {
     }
 
     .pages {
-        margin-left: 20px;
+        margin-left: -50px;
         margin-bottom: -15px;
         text-align: left;
+        display: inline-block;
+        width: 100%;
     }
 
     .sidebar {
