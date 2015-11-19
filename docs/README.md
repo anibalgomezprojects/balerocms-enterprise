@@ -27,7 +27,7 @@ Cloning project:
 
 Navigate to root folder and set read/write permissions:
 
-    $ sudo chmod -R 077 balerocms-enterprise
+    $ sudo chmod -R 777 balerocms-enterprise
     $ cd balerocms-enterprise
     
 Choose Release:
