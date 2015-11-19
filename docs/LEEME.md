@@ -30,7 +30,7 @@ Clonando el proyecto:
 
 Navegue al directorio raíz y asigne permisos de lectura/escritura:
 
-    $ sudo chmod -R 077 balerocms-enterprise
+    $ sudo chmod -R 777 balerocms-enterprise
     $ cd balerocms-enterprise
     
 Seleccione versión:
