@@ -65,15 +65,24 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter{
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler)
             throws Exception {
-
+        String systemLocale = null;
+        log.debug("locale interceptor");
         String newLocale = request.getParameter(getParamName());
         if(newLocale != null) {
-            Information information = new Information();
-            information.setIp(getUserIp());
-            information.setLocale(newLocale);
-            informationRepository.save(information);
-            LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-            localeResolver.setLocale(request, response, StringUtils.parseLocaleString(information.getLocale()));
+            Information information = informationRepository.findOneByIp(getUserIp());
+            if(information == null) {
+                Information newInformation = new Information();
+                newInformation.setIp(getUserIp());
+                newInformation.setLocale(newLocale);
+                systemLocale = newInformation.getLocale();
+                informationRepository.save(newInformation);
+            }
+            if(information != null) {
+                log.debug("Ip found, new locale: " + newLocale);
+                information.setLocale(newLocale);
+                informationRepository.save(information);
+                systemLocale = information.getLocale();
+            }
         }
         if(newLocale == null) {
             try {
@@ -81,20 +90,21 @@ public class LocaleInterceptor extends HandlerInterceptorAdapter{
                 if(information == null) {
                     throw new Exception("Ip Not Found");
                 }
-                LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-                localeResolver.setLocale(request, response, StringUtils.parseLocaleString(information.getLocale()));
+                systemLocale = information.getLocale();
             } catch (Exception e) {
+                log.debug("Setting default language, reason: " + e.getMessage());
                 // ip not found set default language system
-                LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-                localeResolver.setLocale(request, response, StringUtils.parseLocaleString(propertyService.getMainLanguage()));
+                systemLocale = propertyService.getMainLanguage();
             }
         }
+        LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+        localeResolver.setLocale(request, response, StringUtils.parseLocaleString(systemLocale));
         return true;
-
     }
 
     public String getUserIp() throws UnknownHostException {
         InetAddress ip = InetAddress.getLocalHost();
+        log.debug("User ip: " + ip.getHostAddress());
         return ip.getHostAddress();
     }
 
