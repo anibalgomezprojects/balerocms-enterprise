@@ -6,12 +6,9 @@
  * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
  */
 
-package com.neblina.balero.handler;
+package com.neblina.balero.filters;
 
 import com.neblina.balero.service.BlacklistService;
-import com.neblina.balero.service.PropertyService;
-import com.neblina.balero.service.SettingService;
-import com.neblina.balero.service.repository.PropertyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,30 +20,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class MaintenanceFilter implements Filter {
+public class IpFilter implements Filter {
 
-    private final Logger log = LoggerFactory.getLogger(MaintenanceFilter.class);
-
-    @Autowired
-    private PropertyService propertyService;
+    private final Logger log = LoggerFactory.getLogger(IpFilter.class);
 
     @Autowired
     private BlacklistService blacklistService;
 
+    /**
+     * @author Anibal Gomez <anibalgomez@icloud.com>
+     * References: spring.io/guides/gs/rest-service-cors/
+     * @param req
+     * @param res
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
-        if(propertyService.isOfflineStatus() == true && !url.contains("offline")) {
-            if(blacklistService.isIpBanned() == false) {
-                if(url.contains("css") || url.contains("bootstrap") || url.contains("js") || url.contains("font") ||
-                        url.contains("images") || url.contains("admin") || url.contains("logout") || url.contains("login") ||
-                        url.contains("error") || url.contains("user/subscribe") || url.contains("offline.css")) {
-                    // Resource file or url allowed. Nothing to do.
-                } else {
-                    log.debug("Redirecting to offline page.");
-                    response.sendRedirect("/offline/");
-                }
+        if (blacklistService.isIpBanned()) {
+            if (!url.contains("banned")) {
+                log.info("Redirecting to banned page.");
+                response.sendRedirect("/banned/");
             }
         }
         chain.doFilter(req, res);

@@ -7,7 +7,7 @@
  * @license Licencia BSD; vea LICENSE.txt
  */
 
-package com.neblina.balero.handler;
+package com.neblina.balero.interceptors;
 
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlockRepository;

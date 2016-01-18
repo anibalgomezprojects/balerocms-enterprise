@@ -6,10 +6,9 @@
  * @license     Licencia Pública GNU versión 3 o superior; vea LICENSE.txt
  */
 
-package com.neblina.balero.handler;
+package com.neblina.balero.interceptors;
 
 import com.neblina.balero.domain.Information;
-import com.neblina.balero.service.InformationService;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.InformationRepository;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.InetAddress;
