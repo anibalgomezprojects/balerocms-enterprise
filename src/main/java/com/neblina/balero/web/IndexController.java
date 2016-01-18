@@ -10,9 +10,6 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.service.PropertyService;
-import com.neblina.balero.service.repository.BlockRepository;
-import com.neblina.balero.service.repository.PageRepository;
-import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -33,25 +29,11 @@ public class IndexController {
     private static final Logger log = LogManager.getLogger(IndexController.class.getName());
 
     @Autowired
-    private SettingRepository settingRepository;
-
-    @Autowired
-    private BlockRepository blockRepository;
-
-    @Autowired
-    private PageRepository pageRepository;
-
-    @Autowired
     private PropertyService propertyService;
 
     @RequestMapping("/")
-    String home(Model model, Locale locale) {
-        String lang = locale.getLanguage();
-        log.debug("Current Language: " + lang);
-        model.addAttribute("settings", settingRepository.findOneByCode(lang));
-        model.addAttribute("blocks", blockRepository.findAllByCode(lang));
-        model.addAttribute("pages", pageRepository.findAllByCode(lang));
-        model.addAttribute("properties", propertyService.findOneById(1L));
+    String home() {
+        // TODO: Need to be implemented in PopulateGlobalAttribute
         return propertyService.getTemplate() + "/index";
     }
 
@@ -62,9 +44,7 @@ public class IndexController {
     }
 
     @RequestMapping("/offline")
-    String offline(Model model,
-                   Locale locale) {
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
+    String offline() {
         return "offline";
     }
 

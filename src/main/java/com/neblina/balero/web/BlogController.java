@@ -34,12 +34,6 @@ public class BlogController {
     private static final Logger log = LogManager.getLogger(BlogController.class.getName());
 
     @Autowired
-    private SettingRepository settingRepository;
-
-    @Autowired
-    private PageRepository pageRepository;
-
-    @Autowired
     private BlogRepository blogRepository;
 
     @Autowired
@@ -53,11 +47,7 @@ public class BlogController {
 
     @RequestMapping(value = "" )
     String blogIndex(Model model, Locale locale) {
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
-        model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
-        model.addAttribute("properties", propertyService.findOneById(1L));
         Pageable lastTen = new PageRequest(0, 10);
-        //model.addAttribute("posts", blogRepository.findAllByCode(locale.getLanguage(), null));
         model.addAttribute("posts", blogRepository.findByStatusAndCode("success", locale.getLanguage(), null));
         model.addAttribute("lastTen", blogRepository.findByStatusAndCode("success", locale.getLanguage(), lastTen));
         return propertyService.getTemplate() + "/blog";
@@ -69,8 +59,6 @@ public class BlogController {
                      @PathVariable("permalink") String permalink,
                      @CookieValue(value = "commentCookie", defaultValue = "init") String commentCookie) {
         String username = userService.getMyUsername();
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
-        model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
         model.addAttribute("comments", commentService.findAllByPostPermalink(permalink));
         model.addAttribute("properties", propertyService.findOneById(1L));
         model.addAttribute("username", username);

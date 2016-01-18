@@ -30,18 +30,13 @@ public class PageController {
     private static final Logger log = LogManager.getLogger(PageController.class.getName());
 
     @Autowired
-    private SettingRepository settingRepository;
-
-    @Autowired
     private PageRepository pageRepository;
 
     @Autowired
     private PropertyService propertyService;
 
     @RequestMapping(value = "/{permalink}" )
-    String pageIndex(Model model, @PathVariable("permalink") String permalink, Locale locale) {
-        model.addAttribute("settings", settingRepository.findOneByCode(locale.getLanguage()));
-        model.addAttribute("pages", pageRepository.findAllByCode(locale.getLanguage()));
+    String pageIndex(Model model, @PathVariable("permalink") String permalink) {
         model.addAttribute("properties", propertyService.findOneById(1L));
         try {
             Page page = pageRepository.findOneByPermalink(permalink);
