@@ -46,7 +46,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -152,7 +152,7 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>${parent.version}</version>
+                        <version>${project.parent.version}</version>
                         <dependencies>
                             <dependency>
                                 <groupId>org.springframework</groupId>
@@ -197,7 +197,7 @@
                     <plugin>
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>${parent.version}</version>
+                        <version>${project.parent.version}</version>
                         <dependencies>
                             <dependency>
                                 <groupId>org.springframework</groupId>
