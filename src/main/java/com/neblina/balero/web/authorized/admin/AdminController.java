@@ -48,9 +48,6 @@ public class AdminController {
     private BlockRepository blockRepository;
 
     @Autowired
-    private PropertyRepository propertyRepository;
-
-    @Autowired
     private BlogRepository blogRepository;
 
     @Autowired
@@ -80,11 +77,8 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("/settings")
-    public String settings(Model model,
-                           Locale locale) throws IOException {
+    public String settings(Model model) throws IOException {
         MediaManager mediaManager = new MediaManager();
-        model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
         model.addAttribute("version", baleroService.getVersion());
         model.addAttribute("templates", mediaManager.retrieveTemplates());
         return "authorized/settings";
@@ -106,8 +100,6 @@ public class AdminController {
                                @RequestParam(value = "offlineMessage") String offlineMessage,
                                @RequestParam(value = "template") String template) {
         model.addAttribute("success", 1);
-        model.addAttribute("settings", settingService.findOneByCode(locale.getLanguage()));
-        model.addAttribute("properties", propertyRepository.findOneById(1L));
         settingService.saveSettings(
                 locale.getLanguage(),
                 title,

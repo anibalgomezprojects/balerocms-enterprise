@@ -57,6 +57,8 @@ public class PopulateGlobalAttribute {
         model.addAttribute("blocks", blockRepository.findAllByCode(lang));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
         model.addAttribute("properties", propertyService.findOneById(1L));
+        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
+        model.addAttribute("mainLanguage", propertyService.getMainLanguage());
     }
 
 }

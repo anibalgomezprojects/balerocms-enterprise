@@ -40,9 +40,6 @@ public class AdminBlogController {
     @Autowired
     private CommentRepository commentRepository;
 
-    @Autowired
-    private PropertyService propertyService;
-
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = {"", "/"} )
     public String blog(Model model) {
@@ -59,7 +56,6 @@ public class AdminBlogController {
         model.addAttribute("comments", commentRepository.findAllByPostPermalink(permalink));
         model.addAttribute("posts", blogService.findOneById(id));
         model.addAttribute("url", "admin");
-        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/blog_edit";
     }
 
@@ -89,7 +85,6 @@ public class AdminBlogController {
         model.addAttribute("success", 1);
         model.addAttribute("posts", blogService.findOneById(id));
         model.addAttribute("url", "admin");
-        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         return "authorized/blog_edit";
     }
 
@@ -100,8 +95,6 @@ public class AdminBlogController {
         log.debug("Date: " + today);
         model.addAttribute("date", today);
         model.addAttribute("url" , "admin");
-        model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
-        model.addAttribute("mainLanguage", propertyService.getMainLanguage());
         return "authorized/blog_new";
     }
 

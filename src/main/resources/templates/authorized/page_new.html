@@ -32,13 +32,13 @@
                     <input type="text" name="title" class="form-control short" id="title" />
                 </div>
             </div>
-            <div class="form-group" th:if="${multiLang}">
+            <div class="form-group" th:if="${multiLanguage}">
                 <label for="code" class="col-sm-2 control-label" th:text="#{static.page.code}">Code</label>
                 <div class="col-sm-10">
                     <div th:include="authorized/fragments/languages :: languages"></div>
                 </div>
             </div>
-            <div class="form-group" th:unless="${multiLang}">
+            <div class="form-group" th:unless="${multiLanguage}">
                 <input type="hidden" name="code" th:value="${mainLanguage}" />
             </div>
             <div class="form-group">
