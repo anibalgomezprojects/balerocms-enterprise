@@ -13,7 +13,6 @@ import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -30,6 +29,7 @@ public class AssetPipeline {
     }
 
     public void compress(String file) {
+        String userDir = System.getProperty("user.dir");
         String html = "", sCurrentLine;
         try {
             BufferedReader input = new BufferedReader(new FileReader(file));
@@ -40,9 +40,9 @@ public class AssetPipeline {
             String compressedHtml = compressor.compress(html);
             log.debug("Compiling Resource... " + file);
             String newFile = file.replace("templates/", "templates/dist/");
-            log.debug("Output String: " + newFile);
+            //log.debug("Output String: " + newFile);
             String directory = newFile.substring(0, newFile.lastIndexOf("/"));
-            log.debug("Directoriy: " + directory);
+            //log.debug("Directoriy: " + directory);
             File newDir = new File(directory);
             File createFile = new File(newFile);
             if(!newDir.exists()) {
