@@ -16,6 +16,7 @@ import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,9 @@ import java.util.Locale;
 public class PopulateGlobalAttribute {
 
     private static final Logger log = LogManager.getLogger(PopulateGlobalAttribute.class.getName());
+
+    @Autowired
+    private Environment env;
 
     @Autowired
     private SettingRepository settingRepository;
@@ -59,6 +63,11 @@ public class PopulateGlobalAttribute {
         model.addAttribute("properties", propertyService.findOneById(1L));
         model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         model.addAttribute("mainLanguage", propertyService.getMainLanguage());
+        if(Boolean.parseBoolean(env.getProperty("balerocms.minification")) == true) {
+            model.addAttribute("viewDistPath", "dist");
+        } else {
+            model.addAttribute("viewDistPath", "");
+        }
     }
 
 }

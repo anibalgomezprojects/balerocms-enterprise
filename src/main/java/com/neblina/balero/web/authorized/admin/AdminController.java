@@ -63,7 +63,7 @@ public class AdminController {
     //@PreAuthorize("true")
     @RequestMapping(value = {"", "/", "/dashboard" })
     public String dashboardIndex(Model model) {
-        model.asMap().clear();
+        //model.asMap().clear();
         String username = userService.getMyUsername();
         model.addAttribute("users", userService.findOneByUsername(username));
         model.addAttribute("totalPages", pageRepository.findAll().size());

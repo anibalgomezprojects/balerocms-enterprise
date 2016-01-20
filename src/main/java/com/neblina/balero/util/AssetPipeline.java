@@ -39,7 +39,19 @@ public class AssetPipeline {
             HtmlCompressor compressor = new HtmlCompressor();
             String compressedHtml = compressor.compress(html);
             log.debug("Compiling Resource... " + file);
-            FileWriter output = new FileWriter(file);
+            String newFile = file.replace("templates/", "templates/dist/");
+            log.debug("Output String: " + newFile);
+            String directory = newFile.substring(0, newFile.lastIndexOf("/"));
+            log.debug("Directoriy: " + directory);
+            File newDir = new File(directory);
+            File createFile = new File(newFile);
+            if(!newDir.exists()) {
+                newDir.mkdirs();
+            }
+            if(!createFile.exists()) {
+                createFile.createNewFile();
+            }
+            FileWriter output = new FileWriter(newFile);
             BufferedWriter bw = new BufferedWriter(output);
             bw.write(compressedHtml);
             bw.close();

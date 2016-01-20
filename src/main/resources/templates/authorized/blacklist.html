@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="authorized/fragments/metas :: metas">
+<head th:include="__${viewDistPath}__/authorized/fragments/metas :: metas">
        <title></title>
 </head>
 
 <body>
 
-<div th:include="authorized/fragments/navbar :: navbar"></div>
+<div th:include="__${viewDistPath}__/authorized/fragments/navbar :: navbar"></div>
 
 <div class="container">
 
@@ -40,7 +40,7 @@
 
 </div>
 
-<div th:replace="authorized/fragments/footer :: footer"></div>
+<div th:replace="__${viewDistPath}__/authorized/fragments/footer :: footer"></div>
 
 </body>
 </html>

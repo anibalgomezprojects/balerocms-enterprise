@@ -4,6 +4,7 @@ logs
 psd
 diagrams
 src/main/resources/static/images/uploads/*
+src/main/resources/templates/dist/
 hs_err_pid*
 .idea
 .DS_Store

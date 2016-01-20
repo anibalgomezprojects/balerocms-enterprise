@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
-<head th:include="silbato/fragments/metas :: metas">
+<head th:include="__${viewDistPath}__/silbato/fragments/metas :: metas">
     <title></title>
 </head>
 
 <body>
 
-<div th:include="silbato/fragments/navbar :: navbar"></div>
-<div th:include="silbato/fragments/header :: header"></div>
+<div th:include="__${viewDistPath}__/silbato/fragments/navbar :: navbar"></div>
+<div th:include="__${viewDistPath}__/silbato/fragments/header :: header"></div>
 
 <div>
 
@@ -67,12 +67,12 @@
         </div>
     </div>
 
-    <div th:replace="silbato/fragments/block_static :: block_static"></div>
+    <div th:replace="__${viewDistPath}__/silbato/fragments/block_static :: block_static"></div>
 
 </div>
 
-<div th:replace="silbato/fragments/pages :: pages"></div>
-<div th:replace="silbato/fragments/footer :: footer"></div>
+<div th:replace="__${viewDistPath}__/silbato/fragments/pages :: pages"></div>
+<div th:replace="__${viewDistPath}__/silbato/fragments/footer :: footer"></div>
 
 </body>
 
