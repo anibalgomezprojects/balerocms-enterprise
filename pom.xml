@@ -116,6 +116,22 @@
             <artifactId>slugify</artifactId>
             <version>2.1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.jawr</groupId>
+            <artifactId>jawr-core</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>net.jawr.extensions</groupId>
+            <artifactId>jawr-spring-extension</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dtrunk90</groupId>
+            <artifactId>thymeleaf-jawr-extension</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
     <!-- Profiles: mvn -Pprofile-name spring-boot:run -->
@@ -128,31 +144,6 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>net.alchim31.maven</groupId>
-                        <artifactId>yuicompressor-maven-plugin</artifactId>
-                        <version>1.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>compress</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <excludes>
-                                <exclude>static/bootstrap/**</exclude>
-                                <exclude>static/bower_components/**</exclude>
-                                <exclude>static/bootstrap/**</exclude>
-                                <exclude>static/lib/**</exclude>
-                                <exclude>static/vendors/**</exclude>
-                                <exclude>static/font-awesome/**</exclude>
-                                <exclude>**/*-min</exclude>
-                                <exclude>**/*.pack.js</exclude>
-                                <exclude>**/compressed.css</exclude>
-                            </excludes>
-                        </configuration>
-                    </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>properties-maven-plugin</artifactId>
@@ -259,11 +250,6 @@
         <pluginRepository>
             <id>spring-milestones</id>
             <url>http://repo.spring.io/milestone</url>
-        </pluginRepository>
-        <pluginRepository>
-            <name>oss.sonatype.org</name>
-            <id>oss.sonatype.org</id>
-            <url>http://oss.sonatype.org/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
 </project>

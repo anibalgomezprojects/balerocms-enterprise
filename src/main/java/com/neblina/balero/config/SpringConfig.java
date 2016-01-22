@@ -9,6 +9,7 @@
 
 package com.neblina.balero.config;
 
+import com.github.dtrunk90.thymeleaf.jawr.JawrDialect;
 import com.neblina.balero.interceptors.ExecuteTimeInterceptor;
 import com.neblina.balero.interceptors.LocaleInterceptor;
 import com.neblina.balero.util.AssetPipeline;
@@ -28,7 +29,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -142,6 +146,32 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(localeInterceptor());
         //registry.addInterceptor(localeChangeInterceptor());
         registry.addInterceptor(new ExecuteTimeInterceptor());
+    }
+
+    /**
+     * ThymeLeaf JAWR Integration With Additional Features
+     * Based on: https://github.com/comsysto/spring-boot-demo-apps
+     * spring-boot-thymeleaf-jawr
+     * @author (c) 2016 Anibal Gomez
+     */
+    @Bean
+    public SpringTemplateEngine springTemplateEngine() {
+        final SpringTemplateEngine engine = new SpringTemplateEngine();
+        engine.setMessageSource(messageSource());
+        engine.addDialect(new JawrDialect());
+        engine.addDialect(new SpringSecurityDialect());
+        engine.setTemplateResolver(templateResolver());
+        return engine;
+    }
+
+    @Bean
+    public TemplateResolver templateResolver() {
+        final TemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setPrefix("templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setCacheable(false);
+        return templateResolver;
     }
 
 }
