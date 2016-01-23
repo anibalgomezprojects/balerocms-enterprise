@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:jawr="http://jawr.java.net"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>JAWR TEST</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+
+    <!--
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link th:href="'/silbato/css/silbato.css'" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    -->
+    <link jawr:style="'/css/webjars.css'" />
+
+</head>
+
+<body>
+<h1>{hello_world}</h1>
+<p>Jawr integration Test, Please, View Render Page Source Code.</p>
+
+<!--
+<script src="/lib/html5shiv.js"></script>
+<script src="/lib/respond.min.js"></script>
+<script src="/js/scripts.js"></script>
+-->
+<script jawr:script="'/js/webjars.js'" src="#"></script>
+
+</body>
+
+</html>
+

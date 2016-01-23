@@ -57,4 +57,9 @@ public class IndexController {
         return "banned";
     }
 
+    @RequestMapping("/jawr_test")
+    String jawrTest() {
+        return "jawr_test";
+    }
+
 }
