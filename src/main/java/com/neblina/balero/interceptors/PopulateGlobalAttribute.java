@@ -64,14 +64,10 @@ public class PopulateGlobalAttribute {
         model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         model.addAttribute("mainLanguage", propertyService.getMainLanguage());
         if(Boolean.parseBoolean(env.getProperty("balerocms.minification")) == true) {
-            model.addAttribute("viewDistPath", "dist");
-            model.addAttribute("css", "-min.css");
-            model.addAttribute("js", "-min.js");
+
         }
         if(Boolean.parseBoolean(env.getProperty("balerocms.minification")) == false) {
-            model.addAttribute("viewDistPath", "/");
-            model.addAttribute("css", ".css");
-            model.addAttribute("js", ".js");
+
         }
     }
 

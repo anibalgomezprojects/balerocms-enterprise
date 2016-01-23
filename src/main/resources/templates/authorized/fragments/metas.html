@@ -22,11 +22,11 @@
     <link rel="stylesheet" href="/vendors/summernote/summernote.css" />
     <script type="text/javascript" src="/vendors/summernote/summernote.min.js"></script>
 
-    <script type="text/javascript" th:src="'/js/settings-admin'+__${js}__" sec:authorize="hasRole('ROLE_ADMIN')"></script>
-    <script type="text/javascript" th:src="'/js/settings-user'+__${js}__" sec:authorize="hasRole('ROLE_USER')"></script>
+    <script type="text/javascript" src="/js/settings-admin.js" sec:authorize="hasRole('ROLE_ADMIN')"></script>
+    <script type="text/javascript" src="/js/settings-user.js" sec:authorize="hasRole('ROLE_USER')"></script>
 
-    <link th:href="'/authorized/css/dashboard'+__${css}__" rel="stylesheet" />
-    <link th:href="'/authorized/css/ui-elements'+__${css}__" rel="stylesheet" />
+    <link href="/authorized/css/dashboard.css" rel="stylesheet" />
+    <link href="/authorized/css/ui-elements.css" rel="stylesheet" />
 
     <!--[if lt IE 9]>
     <script src="/lib/html5shiv.js"></script>

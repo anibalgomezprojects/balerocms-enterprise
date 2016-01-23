@@ -12,7 +12,6 @@ package com.neblina.balero.config;
 import com.github.dtrunk90.thymeleaf.jawr.JawrDialect;
 import com.neblina.balero.interceptors.ExecuteTimeInterceptor;
 import com.neblina.balero.interceptors.LocaleInterceptor;
-import com.neblina.balero.util.AssetPipeline;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,6 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -55,18 +52,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
             "classpath:/static/", "classpath:/public/",
             "classpath:/templates/", "classpath:/resources/templates/",
     };
-
-    @Bean
-    public AssetPipeline compile() throws IOException {
-        log.debug("Minification: " + env.getProperty("balerocms.minification"));
-        boolean balerocmsMinification = Boolean.parseBoolean(env.getProperty("balerocms.minification"));
-        AssetPipeline resources = new AssetPipeline();
-        if(balerocmsMinification == true) {
-            ArrayList<String> templates = resources.getHtmlResourceFileList("templates/");
-            for(int i = 0; i < templates.size(); i++) resources.compress(templates.get(i));
-        }
-        return resources;
-    }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
