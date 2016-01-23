@@ -10,6 +10,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.config.TestConfig;
 import com.neblina.balero.domain.Media;
 import com.neblina.balero.domain.Template;
 import com.neblina.balero.util.MediaManager;
@@ -22,10 +23,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.List;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -33,7 +31,7 @@ import static org.junit.Assert.assertThat;
 
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = {Application.class, TestConfig.class}, loader = SpringApplicationContextLoader.class)
 public class MediaManagerTest {
 
     private static final Logger log = LogManager.getLogger(MediaManagerTest.class.getName());

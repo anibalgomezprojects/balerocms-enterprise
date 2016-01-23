@@ -10,6 +10,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.config.TestConfig;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ import static org.junit.Assert.assertThat;
 
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = {Application.class, TestConfig.class}, loader = SpringApplicationContextLoader.class)
 public class PropertyRepositoryTest extends TestCase {
 
     @Autowired

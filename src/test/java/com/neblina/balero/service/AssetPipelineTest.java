@@ -10,6 +10,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.config.TestConfig;
 import com.neblina.balero.util.AssetPipeline;
 import junit.framework.TestCase;
 import org.junit.Test;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = {Application.class, TestConfig.class}, loader = SpringApplicationContextLoader.class)
 public class AssetPipelineTest extends TestCase {
 
     @Test

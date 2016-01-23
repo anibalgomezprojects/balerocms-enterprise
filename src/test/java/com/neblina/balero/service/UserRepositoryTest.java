@@ -10,6 +10,7 @@
 package com.neblina.balero.service;
 
 import com.neblina.balero.Application;
+import com.neblina.balero.config.TestConfig;
 import com.neblina.balero.domain.User;
 import com.neblina.balero.service.repository.UserRepository;
 import junit.framework.TestCase;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertThat;
 
 @ActiveProfiles("dev")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = Application.class, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = {Application.class, TestConfig.class}, loader = SpringApplicationContextLoader.class)
 public class UserRepositoryTest extends TestCase {
 
     @Autowired
