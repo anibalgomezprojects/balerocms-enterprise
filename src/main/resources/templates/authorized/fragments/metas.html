@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:jawr="http://jarw.java.net/">
 
 <head th:fragment="metas">
 
@@ -13,25 +15,20 @@
 
     <title th:text="#{dashboard.title}">Dashboard</title>
 
+    <!--
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/vendors/summernote/summernote.css" rel="stylesheet" />
+    <link href="/authorized/css/dashboard.css" rel="stylesheet" />
+    <link href="/authorized/css/ui-elements.css" rel="stylesheet" />
+    -->
+    <link jawr:style="'/css/webjars.css'" />
+
     <script src="/lib/jquery-1.9.1.min.js"></script>
-
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" />
-
-    <link rel="stylesheet" href="/vendors/summernote/summernote.css" />
-    <script type="text/javascript" src="/vendors/summernote/summernote.min.js"></script>
 
     <script type="text/javascript" src="/js/settings-admin.js" sec:authorize="hasRole('ROLE_ADMIN')"></script>
     <script type="text/javascript" src="/js/settings-user.js" sec:authorize="hasRole('ROLE_USER')"></script>
-
-    <link href="/authorized/css/dashboard.css" rel="stylesheet" />
-    <link href="/authorized/css/ui-elements.css" rel="stylesheet" />
-
-    <!--[if lt IE 9]>
-    <script src="/lib/html5shiv.js"></script>
-    <script src="/lib/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
