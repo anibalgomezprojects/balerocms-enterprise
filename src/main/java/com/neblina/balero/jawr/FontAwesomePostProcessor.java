@@ -8,8 +8,7 @@ public class FontAwesomePostProcessor implements ResourceBundlePostProcessor {
     public StringBuffer postProcessBundle(BundleProcessingStatus status, StringBuffer bundleString) {
         // FIXME: use request.contextPath
         String bundle = bundleString.toString();
-        bundle = bundle.replaceAll("../../../font-awesome/", "/webjars/font-awesome/");
-        bundle = bundle.replaceAll("../../font-awesome/", "/webjars/font-awesome/");
+        bundle = bundle.replaceAll("../../static/font-awesome/", "/font-awesome/");
         bundleString = new StringBuffer(bundle);
         return bundleString;
     }
