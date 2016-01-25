@@ -284,9 +284,27 @@ Template Structure:
                     
 All files inside "Template Name" will be **public**.
 
+## Jawr Resource Minification / Unification
+
+In **jawr.properties**
+
+All styles and scripts in one virtual file, simple as:
+
+### CSS Library Integration
+
+Including Bootstrap, Font-Awesome, and styles:
+
+    < link jawr:style="'/css/webjars.css'" / >
+
+### Javascript Library Integration
+
+Including Bower components, AngularJS Framework and JQuery:
+
+    < script jawr:script="'/js/webjars.js'" src="#" > < /script >
+
 #### Calling template resource from HTML Template
 
-    <link rel="stylesheet" type="text/css" href="/$TemplateName/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="/$TemplateName/css//$TemplateName.css">
 
 ## NOTES
 
