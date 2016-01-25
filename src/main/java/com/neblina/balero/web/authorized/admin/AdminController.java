@@ -10,10 +10,12 @@
 package com.neblina.balero.web.authorized.admin;
 
 import com.neblina.balero.domain.User;
-import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.SettingService;
 import com.neblina.balero.service.UserService;
-import com.neblina.balero.service.repository.*;
+import com.neblina.balero.service.repository.BlockRepository;
+import com.neblina.balero.service.repository.BlogRepository;
+import com.neblina.balero.service.repository.CommentRepository;
+import com.neblina.balero.service.repository.PageRepository;
 import com.neblina.balero.util.MediaManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,9 +58,6 @@ public class AdminController {
     @Autowired
     private Environment environment;
 
-    @Autowired
-    private BaleroService baleroService;
-
     @Secured("ROLE_ADMIN")
     //@PreAuthorize("true")
     @RequestMapping(value = {"", "/", "/dashboard" })
@@ -79,7 +78,6 @@ public class AdminController {
     @RequestMapping("/settings")
     public String settings(Model model) throws IOException {
         MediaManager mediaManager = new MediaManager();
-        model.addAttribute("version", baleroService.getVersion());
         model.addAttribute("templates", mediaManager.retrieveTemplates());
         return "authorized/settings";
     }

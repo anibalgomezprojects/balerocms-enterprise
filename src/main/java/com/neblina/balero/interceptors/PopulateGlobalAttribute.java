@@ -9,6 +9,7 @@
 
 package com.neblina.balero.interceptors;
 
+import com.neblina.balero.service.BaleroService;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.BlockRepository;
 import com.neblina.balero.service.repository.PageRepository;
@@ -43,6 +44,9 @@ public class PopulateGlobalAttribute {
     @Autowired
     private PropertyService propertyService;
 
+    @Autowired
+    private BaleroService baleroService;
+
     /**
      * Balero CMS Global Models
      *
@@ -63,6 +67,8 @@ public class PopulateGlobalAttribute {
         model.addAttribute("properties", propertyService.findOneById(1L));
         model.addAttribute("multiLanguage", propertyService.isMultiLanguage());
         model.addAttribute("mainLanguage", propertyService.getMainLanguage());
+        log.debug("Version:" + baleroService.getVersion());
+        model.addAttribute("version", baleroService.getVersion());
         if(Boolean.parseBoolean(env.getProperty("balerocms.minification")) == true) {
 
         }

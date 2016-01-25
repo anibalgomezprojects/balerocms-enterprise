@@ -3,20 +3,23 @@
  * Página Oficial: http://www.balerocms.com
  *
  * @author      Anibal Gomez <anibalgomez@icloud.com>
- * @copyright   Copyright (C) 2015 Neblina Software. Derechos reservados.
+ * @copyright   Copyright (C) 2016 Neblina Software. Derechos reservados.
  * @license     Licencia BSD; vea LICENSE.txt
  */
 
 package com.neblina.balero.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BaleroService {
 
-    private static String version = "v_1.0-BETA";
+    @Autowired
+    private Environment env;
 
     public String getVersion() {
-        return version;
+        return env.getProperty("balerocms.version");
     }
 }
