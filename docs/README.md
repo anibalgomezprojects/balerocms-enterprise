@@ -32,7 +32,13 @@ Navigate to root folder and set read/write permissions:
     
 Choose Release:
 
-    $ git checkout v1.0-BETA
+    $ git checkout $CHOOSE_ONE_TAG
+    
+Where $CHOOSE_ONE_TAG is a tag release.
+    
+Available tags and releases reference:
+
+[https://github.com/neblina-software/balerocms-enterprise/tags](https://github.com/neblina-software/balerocms-enterprise/tags)
 
 And then, run:
 
