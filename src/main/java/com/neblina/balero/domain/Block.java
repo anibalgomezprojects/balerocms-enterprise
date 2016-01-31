@@ -22,6 +22,7 @@ public class Block {
     private String name;
     private String content;
     private String code;
+    private int blockOrder;
 
     public Long getId() {
         return id;
@@ -55,14 +56,22 @@ public class Block {
         this.code = code;
     }
 
+    public int getBlockOrder() {
+        return blockOrder;
+    }
+
+    public void setBlockOrder(int blockOrder) {
+        this.blockOrder = blockOrder;
+    }
+
     @Override
     public String toString() {
         return "Block [" +
                 "id=" + this.id + "," +
                 "name=" + this.name + "," +
                 "content=" + this.content + "," +
-                "code=" + this.code
+                "code=" + this.code + "," +
+                "blockOrder=" + this.blockOrder
                 + "]";
     }
-
 }

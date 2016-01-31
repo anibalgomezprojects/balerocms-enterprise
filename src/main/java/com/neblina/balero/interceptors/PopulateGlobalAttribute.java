@@ -62,7 +62,7 @@ public class PopulateGlobalAttribute {
         String lang = locale.getLanguage();
         log.debug("Current Language: " + lang);
         model.addAttribute("settings", settingRepository.findOneByCode(lang));
-        model.addAttribute("blocks", blockRepository.findAllByCode(lang));
+        model.addAttribute("blocks", blockRepository.findAllByCodeOrderByBlockOrder(lang));
         model.addAttribute("pages", pageRepository.findAllByCode(lang));
         model.addAttribute("properties", propertyService.findOneById(1L));
         model.addAttribute("multiLanguage", propertyService.isMultiLanguage());

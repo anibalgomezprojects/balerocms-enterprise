@@ -28,22 +28,26 @@ public class BlockService {
 
     public void createBlock(String name,
                             String content,
-                            String code) {
+                            String code,
+                            int blockOrder) {
         Block block = new Block();
         block.setName(name);
         block.setContent(content);
         block.setCode(code);
+        block.setBlockOrder(blockOrder);
         blockRepository.save(block);
     }
 
     public void saveBlock(Long id,
                           String name,
                           String content,
-                          String code) {
+                          String code,
+                          int blockOrder) {
         Block block = blockRepository.findOneById(id);
         block.setName(name);
         block.setContent(content);
         block.setCode(code);
+        block.setBlockOrder(blockOrder);
         blockRepository.save(block);
     }
 

@@ -26,4 +26,6 @@ public interface BlockRepository extends CrudRepository<Block, Long> {
 
     Block findOneByCode(String code);
 
+    List<Block> findAllByCodeOrderByBlockOrder(String code);
+
 }

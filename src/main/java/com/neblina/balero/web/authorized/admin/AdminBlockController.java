@@ -54,12 +54,14 @@ public class AdminBlockController {
     public String homepageEditPost(Model model, @PathVariable("id") Long id,
                                    String name,
                                    String content,
-                                   String code) {
+                                   String code,
+                                   int blockOrder) {
         blockService.saveBlock(
                 id,
                 name,
                 content,
-                code
+                code,
+                blockOrder
         );
         model.addAttribute("success", 1);
         model.addAttribute("blocks", blockService.findOneById(id));
@@ -78,13 +80,15 @@ public class AdminBlockController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String homepageNew(
-                              @RequestParam("name") String name,
-                              @RequestParam("content") String content,
-                              @RequestParam("code") String code) {
+            @RequestParam("name") String name,
+            @RequestParam("content") String content,
+            @RequestParam("code") String code,
+            @RequestParam("blockOrder") int blockOrder) {
         blockService.createBlock(
                 name,
                 content,
-                code
+                code,
+                blockOrder
         );
         return "redirect:/admin//block";
     }
