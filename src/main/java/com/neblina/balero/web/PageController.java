@@ -10,9 +10,9 @@
 package com.neblina.balero.web;
 
 import com.neblina.balero.domain.Page;
+import com.neblina.balero.service.PageService;
 import com.neblina.balero.service.PropertyService;
 import com.neblina.balero.service.repository.PageRepository;
-import com.neblina.balero.service.repository.SettingRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/page")
@@ -33,13 +31,16 @@ public class PageController {
     private PageRepository pageRepository;
 
     @Autowired
+    private PageService pageService;
+
+    @Autowired
     private PropertyService propertyService;
 
     @RequestMapping(value = "/{permalink}" )
     String pageIndex(Model model, @PathVariable("permalink") String permalink) {
-        model.addAttribute("properties", propertyService.findOneById(1L));
         try {
             Page page = pageRepository.findOneByPermalink(permalink);
+            pageService.setHits(page.getId());
             if(page.getPermalink() == null) {
                 throw new Exception("Error 404");
             }

@@ -66,6 +66,13 @@ public class PageService {
         pageRepository.delete(page);
     }
 
+    public void setHits(Long id) {
+        Page page = pageRepository.findOneById(id);
+        page.setHits(page.getHits()+1);
+        pageRepository.save(page);
+        log.debug("hits: " + page.getHits());
+    }
+
     public List<Page> findAll() {
         return pageRepository.findAll();
     }
